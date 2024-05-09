@@ -45,12 +45,6 @@ class GroupChatWrapper:
         )
         self.agents.append(agent)
 
-    def remove_agent(self, agent_name : str):
-        for agent in self.agents:
-            if agent.name == agent_name:
-                self.agents.remove(agent)
-                break
-
     def reorder_agents(self, ordered_agent_names : List[str]):
         ordered_agents = []
         for name in ordered_agent_names:

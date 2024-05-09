@@ -11,6 +11,7 @@ IOStream.set_global_default(IOStreamlit(remove_color=True))
 st.title("Groupchat")
 
 agent_templates = {
+    "No template selected": {"name": "", "system_message": ""},
     "Engineer": {"name": "Engineer", "system_message": '''Engineer, You write code to resolve given task. If code running fail, you rewrite code.
             Your reply should be in the form of:
             Part 1:
@@ -23,8 +24,7 @@ agent_templates = {
             ```'''},
     "Critic": {"name": "Critic", "system_message": "Critic, find the bug and ask engineer to fix it, you don't write code."},
     "Product Manager": {"name": "Product Manager", "system_message": "Creative in software product ideas."},
-
-    # Add more templates as needed
+    "Scientist": {"name": "Scientist", "system_message": "Scientist. You follow an approved plan. You are able to categorize papers after seeing their abstracts printed. You don't write code."},
 }
 
 openai_api_key = st.sidebar.text_input("OpenAI API Key")
@@ -51,7 +51,7 @@ with st.form("add_agent"):
         if agent_name == "":
             agent_name = selected_template
         st.session_state.group_chat_wrapper.add_agent(config_list, agent_name, system_message)
-        st.session_state.agent_names.append(selected_template)
+        st.session_state.agent_names.append(agent_name)
         
 
 with st.form("reorder_agents"):
