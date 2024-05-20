@@ -30,13 +30,13 @@ class ChessWrapper(object):
         board = chess.Board()
         self.board_agent = BoardAgent(board=board, config_list=config_list)
         self.player_black = ChessPlayerAgent(
-            color="Black",
+            color="black",
             board_agent=self.board_agent,
             max_turns=number_of_moves,
             llm_config={"cache_seed": None, "temperature": 0.5, "config_list": config_list},
         )
         self.player_white = ChessPlayerAgent(
-            color="White",
+            color="white",
             board_agent=self.board_agent,
             max_turns=number_of_moves,
             llm_config={"cache_seed": None, "temperature": 0.5, "config_list": config_list},

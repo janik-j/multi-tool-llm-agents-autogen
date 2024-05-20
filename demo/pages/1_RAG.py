@@ -1,8 +1,14 @@
 import streamlit as st
 from autogen.io.base import IOStream
+from enum import Enum
 
 from demo import IOStreamlit
-from wrappers import RagWrapper
+from wrappers import RagNoInteractionWrapper, RagWrapper
+
+
+class RagDemoTypeEnum(Enum):
+    RAG = "RAG"
+    RAG_NO_INTERACTION = "RAG no Interaction"
 
 
 # Redirect AutoGen's output to streamlit
@@ -15,10 +21,20 @@ openai_model = st.sidebar.selectbox("OpenAI Model", ["gpt-3.5-turbo", "gpt-4"])
 
 
 with st.form("rag"):
+    demo_type = st.selectbox(
+        "Demo Type",
+        [
+            RagDemoTypeEnum.RAG.value,
+            RagDemoTypeEnum.RAG_NO_INTERACTION.value,
+        ]
+    )
     question = st.text_input('Enter your question')
 
     config_list = [{"model": openai_model, "api_key": openai_api_key}]
-    rag_wrapper = RagWrapper(config_list)
+    rag_wrapper = {
+        RagDemoTypeEnum.RAG.value: RagWrapper,
+        RagDemoTypeEnum.RAG_NO_INTERACTION.value: RagNoInteractionWrapper,
+    }[RagDemoTypeEnum(demo_type).value](config_list)
 
     submitted = st.form_submit_button("Retrieve a response for the question")
     if not openai_api_key.startswith("sk-"):
