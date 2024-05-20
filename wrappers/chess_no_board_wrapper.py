@@ -27,16 +27,16 @@ class ChessNoBoardWrapper(object):
     def __init__(self, config_list: List[Dict], number_of_moves: int) -> None:
         self.player_white = AssistantAgent(
             name="player white",
-            system_message=self.sys_msg_tmpl.format(name="player white", opponent_name="player black", color="white"),
+            system_message=self.sys_msg_tmpl.format(name="Player White", opponent_name="Player Black", color="white"),
             llm_config={"cache_seed": None, "temperature": 0.5, "config_list": config_list},
             max_consecutive_auto_reply=number_of_moves,
         )
         self.player_black = AssistantAgent(
             name="player black",
-            system_message=self.sys_msg_tmpl.format(name="player black", opponent_name="player white", color="black"),
+            system_message=self.sys_msg_tmpl.format(name="Player Black", opponent_name="Player White", color="black"),
             llm_config={"cache_seed": None, "temperature": 0.5, "config_list": config_list},
             max_consecutive_auto_reply=number_of_moves,
         )
 
     def initiate_play(self) -> ChatResult:
-        return self.player_black.initiate_chat(self.player_white, message="Your turn.")
+        return self.player_black.initiate_chat(self.player_white, message="Let's play chess! Your move.")
