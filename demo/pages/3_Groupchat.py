@@ -28,14 +28,14 @@ agent_templates = {
 }
 
 openai_api_key = st.sidebar.text_input("OpenAI API Key")
-openai_model = st.sidebar.selectbox("OpenAI Model", ["gpt-3.5-turbo", "gpt-4"])
+openai_model = st.sidebar.selectbox("OpenAI Model", ["gpt-3.5-turbo", "gpt-3.5-turbo-1106", "gpt-4"])
 config_list = [{"model": openai_model, "api_key": openai_api_key}]
 
 if "group_chat_wrapper" not in st.session_state:
     st.session_state.group_chat_wrapper = GroupChatWrapper([{"model": openai_model, "api_key": openai_api_key}])
 
 if "agent_names" not in st.session_state:
-    st.session_state.agent_names = ["Admin", "Executor"]
+    st.session_state.agent_names = ["Admin"]
 
 
 with st.form("add_agent"):
@@ -66,7 +66,7 @@ with st.form("reorder_agents"):
 
 with st.form("groupchat"):
     prompt = st.text_input('Enter your question')
-    custom_speaker_selection_func = st.selectbox("Select speaker selection function", ["auto", "manual", "random", "round_robin"])
+    custom_speaker_selection_func = st.selectbox("Select speaker selection function", ["auto", "random", "round_robin"])
     submitted = st.form_submit_button("Ask question")
 
     if submitted and openai_api_key.startswith("sk-"):
