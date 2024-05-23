@@ -1,0 +1,24 @@
+{
+  "problem": "If $a<b$, what is the value of $|a-b|+a+b$?\n\n(Your answer can include $a$ and $b,$ and should be as simplified as possible.)",
+  "level": "Level 5",
+  "type": "Algebra",
+  "solution": "Since $a<b,$ $a-b<0.$ It follows that $|a-b|=-(a-b),$ and the equation can be simplified as  \\[|a-b|+a+b=-(a-b)+a+b=\\boxed{2b}.\\]",
+  "correct_ans": "2b",
+  "problem_id": "16",
+  "response_with_ans": "Since $a < b$, the expression $|a - b|$ simplifies to $b - a$.\n\nTherefore, $|a - b| + a + b = (b - a) + a + b = \\boxed{2b}$. \n\nTERMINATE \n",
+  "round": 0,
+  "messages": [
+    {
+      "content": "If $a<b$, what is the value of $|a-b|+a+b$?\n\n(Your answer can include $a$ and $b,$ and should be as simplified as possible.)",
+      "role": "user"
+    },
+    {
+      "content": "Since $a < b$, the expression $|a - b|$ simplifies to $b - a$.\n\nTherefore, $|a - b| + a + b = (b - a) + a + b = \\boxed{2b}$. \n\nTERMINATE \n",
+      "role": "assistant"
+    }
+  ],
+  "time": 0.02123856544494629,
+  "check_result": "the answer is correct. \n",
+  "is_correct": true,
+  "trial": -1
+}

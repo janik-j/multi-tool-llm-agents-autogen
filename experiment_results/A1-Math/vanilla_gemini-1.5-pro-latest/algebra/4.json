@@ -1,0 +1,13 @@
+{
+  "problem": "Find all positive integer values of $c$ such that the equation $x^2-7x+c=0$ only has roots that are real and rational. Express them in decreasing order, separated by commas.",
+  "level": "Level 5",
+  "type": "Algebra",
+  "solution": "For the roots to be real and rational, the discriminant must be a perfect square. Therefore, $(-7)^2-4 \\cdot 1 \\cdot c = 49-4c$ must be a perfect square. The only positive perfect squares less than 49 are $1$, $4$, $9$, $16$, $25$, and $36$. The perfect squares that give a integer value of $c$ are $1$, $9$, and $25$. Thus, we have the equations $49-4c=1$, $49-4c=9$, and $49-4c=25$. Solving, we get that the positive integer values of c are $\\boxed{12, 10, 6}$.",
+  "correct_ans": "12, 10, 6",
+  "problem_id": "4",
+  "response_with_ans": "A quadratic equation has real and rational roots if and only if its discriminant is a perfect square.  The discriminant of $x^2 - 7x + c = 0$ is $7^2 - 4c = 49-4c$.  We want to find all positive integers $c$ such that $49-4c$ is a perfect square.\n\nSince $49-4c$ is odd, if it is a perfect square, it must be the square of an odd integer.  The odd squares less than 49 are 1, 9, 25.  We solve the equations $49-4c = 1$, $49-4c = 9$, and $49-4c = 25$ to get $c=12$, $c=10$, and $c=6$.  Thus, the possible values of $c$ are $\\boxed{12,10,6}$.",
+  "time": 4.403563499450684,
+  "check_result": "the answer is **12,10,6**.\n\nthe answer is correct. \n",
+  "is_correct": true,
+  "trial": -1
+}

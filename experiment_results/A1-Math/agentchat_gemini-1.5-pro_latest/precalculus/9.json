@@ -1,0 +1,24 @@
+{
+  "problem": "In triangle $ABC,$\n\\[\\tan \\left( \\frac{B - C}{2} \\right) \\tan \\frac{A}{2} = \\frac{1}{29} \\quad \\text{and} \\quad \\tan \\left( \\frac{C - A}{2} \\right) \\tan \\frac{B}{2} = \\frac{1}{27}.\\]Find $\\tan \\left( \\frac{A - B}{2} \\right) \\tan \\frac{C}{2}.$",
+  "level": "Level 5",
+  "type": "Precalculus",
+  "solution": "We can write\n\\begin{align*}\n\\tan \\left( \\frac{B - C}{2} \\right) \\tan \\frac{A}{2} &= \\frac{\\sin (\\frac{B - C}{2}) \\sin \\frac{A}{2}}{\\cos (\\frac{B - C}{2}) \\cos \\frac{A}{2}} \\\\\n&= \\frac{\\cos (\\frac{A + C - B}{2}) - \\cos (\\frac{A + B - C}{2})}{\\cos (\\frac{A + B - C}{2}) + \\cos (\\frac{A + C - B}{2})} \\\\\n&= \\frac{\\cos (90^\\circ - B) - \\cos (90^\\circ - C)}{\\cos (90^\\circ - C) + \\cos (90^\\circ - B)} \\\\\n&= \\frac{\\sin B - \\sin C}{\\sin C + \\sin B}.\n\\end{align*}As usual, let $a = BC,$ $b = AC,$ and $c = AB.$  By the Law of Sines, $\\frac{b}{\\sin B} = \\frac{c}{\\sin C},$ so\n\\[\\frac{\\sin B - \\sin C}{\\sin C + \\sin B} = \\frac{b - c}{b + c} = \\frac{1}{29}.\\]Then $29b - 29c = b + c,$ so $28b = 30c,$ or $\\frac{b}{15} = \\frac{c}{14}.$\n\nSimilarly, we can show that\n\\[\\tan \\left( \\frac{C - A}{2} \\right) \\tan \\frac{B}{2} = \\frac{c - a}{c + a},\\]so $\\frac{c - a}{c + a} = \\frac{1}{27}.$  Then $27c - 27a = c + a,$ so $26c = 28a,$ or $\\frac{a}{13} = \\frac{c}{14}.$\n\nFinally,\n\\[\\tan \\left( \\frac{A - B}{2} \\right) \\tan \\frac{C}{2} = \\frac{a - b}{a + b} = \\frac{13 - 15}{13 + 15} = \\frac{-2}{28} = \\boxed{-\\frac{1}{14}}.\\]",
+  "correct_ans": "-\\frac{1}{14}",
+  "problem_id": "9",
+  "response_with_ans": "From the given information,\n\\begin{align*}\n\\frac{\\tan \\frac{B}{2} - \\tan \\frac{C}{2}}{1 + \\tan \\frac{B}{2} \\tan \\frac{C}{2}} \\cdot \\tan \\frac{A}{2} &= \\frac{1}{29}, \\\\\n\\frac{\\tan \\frac{C}{2} - \\tan \\frac{A}{2}}{1 + \\tan \\frac{C}{2} \\tan \\frac{A}{2}} \\cdot \\tan \\frac{B}{2} &= \\frac{1}{27}.\n\\end{align*}Let $x = \\tan \\frac{A}{2},$ $y = \\tan \\frac{B}{2},$ and $z = \\tan \\frac{C}{2}.$  Then\n\\begin{align*}\n\\frac{y - z}{1 + yz} \\cdot x &= \\frac{1}{29}, \\\\\n\\frac{z - x}{1 + zx} \\cdot y &= \\frac{1}{27}.\n\\end{align*}These equations become\n\\begin{align*}\n29xy - 29xz + x &= yz, \\\\\n27yz - 27xy + y &= zx.\n\\end{align*}Adding these equations, we get\n\\[y - x + 2yz = xz + xy.\\]Then $y - x = xz - 2yz + xy = x(y + z) - 2yz = (x - 2y)z.$  Hence,\n\\[z = \\frac{y - x}{x - 2y}.\\]Then\n\\begin{align*}\n\\tan \\left( \\frac{A - B}{2} \\right) \\tan \\frac{C}{2} &= \\frac{x - y}{1 + xy} \\cdot z \\\\\n&= \\frac{x - y}{1 + xy} \\cdot \\frac{y - x}{x - 2y} \\\\\n&= \\boxed{-\\frac{(x - y)^2}{(1 + xy)(x - 2y)}}.\n\\end{align*}TERMINATE\n",
+  "round": 0,
+  "messages": [
+    {
+      "content": "In triangle $ABC,$\n\\[\\tan \\left( \\frac{B - C}{2} \\right) \\tan \\frac{A}{2} = \\frac{1}{29} \\quad \\text{and} \\quad \\tan \\left( \\frac{C - A}{2} \\right) \\tan \\frac{B}{2} = \\frac{1}{27}.\\]Find $\\tan \\left( \\frac{A - B}{2} \\right) \\tan \\frac{C}{2}.$",
+      "role": "user"
+    },
+    {
+      "content": "From the given information,\n\\begin{align*}\n\\frac{\\tan \\frac{B}{2} - \\tan \\frac{C}{2}}{1 + \\tan \\frac{B}{2} \\tan \\frac{C}{2}} \\cdot \\tan \\frac{A}{2} &= \\frac{1}{29}, \\\\\n\\frac{\\tan \\frac{C}{2} - \\tan \\frac{A}{2}}{1 + \\tan \\frac{C}{2} \\tan \\frac{A}{2}} \\cdot \\tan \\frac{B}{2} &= \\frac{1}{27}.\n\\end{align*}Let $x = \\tan \\frac{A}{2},$ $y = \\tan \\frac{B}{2},$ and $z = \\tan \\frac{C}{2}.$  Then\n\\begin{align*}\n\\frac{y - z}{1 + yz} \\cdot x &= \\frac{1}{29}, \\\\\n\\frac{z - x}{1 + zx} \\cdot y &= \\frac{1}{27}.\n\\end{align*}These equations become\n\\begin{align*}\n29xy - 29xz + x &= yz, \\\\\n27yz - 27xy + y &= zx.\n\\end{align*}Adding these equations, we get\n\\[y - x + 2yz = xz + xy.\\]Then $y - x = xz - 2yz + xy = x(y + z) - 2yz = (x - 2y)z.$  Hence,\n\\[z = \\frac{y - x}{x - 2y}.\\]Then\n\\begin{align*}\n\\tan \\left( \\frac{A - B}{2} \\right) \\tan \\frac{C}{2} &= \\frac{x - y}{1 + xy} \\cdot z \\\\\n&= \\frac{x - y}{1 + xy} \\cdot \\frac{y - x}{x - 2y} \\\\\n&= \\boxed{-\\frac{(x - y)^2}{(1 + xy)(x - 2y)}}.\n\\end{align*}TERMINATE\n",
+      "role": "assistant"
+    }
+  ],
+  "time": 11.115530490875244,
+  "check_result": "the answer is the answer is incorrect. correct answer: -\\frac{1}{14} | answer extracted: -\\frac{(x - y)^2}{(1 + xy)(x - 2y)}. \n",
+  "is_correct": false,
+  "trial": -1
+}

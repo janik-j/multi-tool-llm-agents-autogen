@@ -1,0 +1,594 @@
+********************************************************************************
+Problem 0 | Is_correct False | Correct Answer: (-\infty, -14)\cup(-3,\infty)
+
+Reply: Here's how to solve the inequality:
+
+1. **Expand both sides:** 
+   
+   Begin by expanding both sides of the inequality:
+   
+   ```
+   (2x+10)(x+3) < (3x+9)(x+8) 
+   2x^2 + 16x + 30 < 3x^2 + 33x + 72
+   ```
+
+2. **Move all terms to one side:**
+
+   Subtract the left side of the inequality from both sides to get a quadratic expression less than zero:
+   
+   ```
+   0 < x^2 + 17x + 42 
+   ```
+
+3. **Factor the quadratic:**
+
+   Factor the quadratic expression:
+   
+   ```
+   0 < (x + 6)(x + 7)
+   ```
+
+4. **Find the critical points:**
+
+   The critical points are the values of  'x' where the expression equals zero:
+   
+   * x + 6 = 0  =>  x = -6
+   * x + 7 = 0  =>  x = -7
+
+5. **Test intervals:**
+
+   The critical points divide the number line into three intervals:
+
+   * x < -7
+   * -7 < x < -6
+   * x > -6
+
+   Choose a test value within each interval and plug it into the factored inequality  `(x + 6)(x + 7) > 0` to see if it makes the inequality true:
+
+   | Interval | Test Value | (x + 6)(x + 7) > 0 | True/False |
+   |---|---|---|---|
+   | x < -7 | x = -8 | (-2)(-1) > 0 | True |
+   | -7 < x < -6 | x = -6.5 | (-0.5)(0.5) > 0 | False |
+   | x > -6 | x = -5 | (1)(2) > 0  | True |
+
+6. **Write the solution in interval notation:**
+
+   The solution is the union of the intervals where the inequality is true:
+
+   **(-∞, -7) U (-6, ∞)** 
+
+%%%%%%%
+Check: the reply doesn't contain an answer. 
+
+********************************************************************************
+
+********************************************************************************
+Problem 1 | Is_correct False | Correct Answer: 93
+
+Reply: Here's how to solve the problem:
+
+**Understanding the Problem**
+
+We are given an arithmetic progression (a sequence where the difference between consecutive terms is constant). We know the sum of the first 98 terms, and we need to find the sum of the even-numbered terms.
+
+**Using Properties of Arithmetic Progressions**
+
+* **Sum Formula:** The sum of an arithmetic progression is the average of the first and last term, multiplied by the number of terms. So, for the first 98 terms: 
+   
+   (a_1 + a_{98}) * 98 / 2 = 137
+
+* **Common Difference:** Since the common difference is 1, we know:
+    *  a_2 = a_1 + 1
+    *  a_4 = a_1 + 3
+    *  a_6 = a_1 + 5 
+    *  and so on...
+
+**Solving for the Even-Numbered Terms**
+
+Let's rewrite the sum we want to find:
+
+a_2 + a_4 + a_6 + ... + a_{98}  = (a_1 + 1) + (a_1 + 3) + (a_1 + 5) + ... + (a_1 + 97)
+
+Notice that we can regroup this sum:
+
+ = (a_1 + a_1 + a_1 + ... + a_1)  + (1 + 3 + 5 + ... + 97)
+
+There are 49 terms of 'a_1' in the first part.  The second part is the sum of the first 49 odd numbers.
+
+* **Sum of Odd Numbers:** The sum of the first 'n' odd numbers is equal to n². Therefore, 1 + 3 + 5 + ... + 97 = 49² 
+
+**Putting it Together**
+
+Now we can substitute back into our original equation:
+
+(a_1 + a_{98}) * 98 / 2 = 137
+(a_1 + a_{98}) = 274/98
+
+Since a_{98} = a_1 + 97, we can substitute to solve for a_1:
+
+(a_1 + a_1 + 97) = 274/98
+2a_1 = -716/98
+a_1 = -358/98
+
+Finally, we can find the sum of the even-numbered terms:
+
+(a_1 + a_1 + a_1 + ... + a_1)  + (1 + 3 + 5 + ... + 97) = 
+(49 * -358/98) + 49² = -179 + 2401 = **2222** 
+
+**Therefore, a_2 + a_4 + a_6 + ... + a_{98} = 2222** 
+
+%%%%%%%
+Check: the answer is: **2222** 
+
+the answer is incorrect. correct answer: 93 | answer extracted: 2222 
+
+********************************************************************************
+
+********************************************************************************
+Problem 2 | Is_correct True | Correct Answer: 4x-5y=-50
+
+Reply: Let's break down Tina's journey step-by-step and find the coordinates of each turn:
+
+* **Start:** $(0,0)$
+* **North 10:** $(0,10)$ - This is where the camera lands.
+* **East 9:**  $(9,10)$
+* **North 8:** $(9, 18)$
+* **East 7:** $(16, 18)$
+* **North 6:** $(16, 24)$
+* **East 5:** $(21, 24)$
+* **North 4:** $(21, 28)$
+* **East 3:** $(24, 28)$
+* **North 2:** $(24, 30)$
+* **East 1:** $(25, 30)$ - This is where Tina ends her journey.
+
+Now we need to find the equation of the line passing through $(25,30)$ and $(0,10)$. 
+
+**1. Find the slope:**
+
+The slope of a line passing through points $(x_1, y_1)$ and $(x_2, y_2)$ is given by: 
+  
+  slope (m) = $(y_2 - y_1) / (x_2 - x_1)$
+
+In our case:
+
+  m = (30 - 10) / (25 - 0) = 20 / 25 = 4/5
+
+**2. Use the point-slope form:**
+
+The point-slope form of a linear equation is: y - y1 = m(x - x1)
+
+We can use either point, let's use (0, 10):
+
+  y - 10 = (4/5)(x - 0)
+
+**3. Convert to standard form:**
+
+Multiply both sides by 5 to get rid of the fraction:
+
+  5y - 50 = 4x
+
+Rearrange to get the equation in the form ax + by = c:
+
+  **4x - 5y = -50** 
+
+This is the equation of the line Tina drives to get back to her camera.
+%%%%%%%
+Check: the answer is 4x - 5y = -50.
+the answer is correct. 
+
+********************************************************************************
+
+********************************************************************************
+Problem 3 | Is_correct True | Correct Answer: -5
+
+Reply: Setting the two equations equal to each other, we get  \[2x^2 + kx + 6 = -x + 4.\]This simplifies to $2x^2 + (k+1)x + 2 = 0.$  This quadratic equation has exactly one solution when its discriminant is 0.  The discriminant is \[(k+1)^2 - 4(2)(2) = k^2 + 2k - 15 = (k+5)(k-3).\]Thus, $k=-5$ or $k=3.$  The negative value of $k$ is $\boxed{-5}.$
+%%%%%%%
+Check: the answer is **the answer is correct.**
+
+explanation:
+
+1. **answer extracted:** the answer is $\boxed{-5}$.
+2. **problem requirement:** find the negative value of 'k' for which the given system of equations has exactly one solution. 
+3. **comparison:** both the extracted answer and the ground truth answer are '-5'. the reply correctly uses the discriminant method to find the values of 'k' and identifies the negative value. 
+
+********************************************************************************
+
+********************************************************************************
+Problem 4 | Is_correct True | Correct Answer: 12, 10, 6
+
+Reply: A quadratic equation has real and rational roots if and only if its discriminant is a perfect square.  The discriminant of $x^2 - 7x + c = 0$ is $7^2 - 4c = 49-4c$.  We want to find all positive integers $c$ such that $49-4c$ is a perfect square.
+
+Since $49-4c$ is odd, if it is a perfect square, it must be the square of an odd integer.  The odd squares less than 49 are 1, 9, 25.  We solve the equations $49-4c = 1$, $49-4c = 9$, and $49-4c = 25$ to get $c=12$, $c=10$, and $c=6$.  Thus, the possible values of $c$ are $\boxed{12,10,6}$.
+%%%%%%%
+Check: the answer is **12,10,6**.
+
+the answer is correct. 
+
+********************************************************************************
+
+********************************************************************************
+Problem 5 | Is_correct False | Correct Answer: 2
+
+Reply: First, we factor the numerator of the left-hand side to get  \[
+\frac{(3x-1)(x-1)}{x-1} = m.
+\]Since $x \neq 1$, we can cancel the $x-1$ terms to get $3x-1 = m$.  This equation tells us that $m$ can be any real number, so there are $\boxed{\text{no real values}}$ that $m$ cannot have. 
+
+%%%%%%%
+Check: the answer needs manual check.
+********************************************************************************
+
+********************************************************************************
+Problem 6 | Is_correct True | Correct Answer: (-\infty,0]\cup[4,\infty)
+
+Reply: The graphs intersect when the equations $y=x^2+a$ and $y=ax$ have a solution in common.  Substituting the second equation into the first, we get
+\[x^2 + a = ax.\]This simplifies to $x^2 - ax + a = 0.$  This is a quadratic in $x.$  The graphs will intersect if and only if this quadratic has at least one real root.  This means the discriminant must be nonnegative:
+\[a^2 - 4a \ge 0.\]This factors as $a(a - 4) \ge 0,$ so $a \le 0$ or $a \ge 4.$  In interval notation, this is $\boxed{(-\infty,0] \cup [4,\infty)}.$
+%%%%%%%
+Check: the answer is **the answer is correct.**
+
+**explanation:**
+
+1. **answer extracted:** the answer is  $(-\infty,0] \cup [4,\infty)$.
+2. **comparison:** the extracted answer and the ground truth answer are identical and both expressed in the requested interval notation. 
+3. **conclusion:** the reply clearly states the correct answer and the solution process is mathematically sound. 
+
+********************************************************************************
+
+********************************************************************************
+Problem 7 | Is_correct True | Correct Answer: -\dfrac{3}{4}
+
+Reply: We can solve for the roots of the quadratic using the quadratic formula:
+
+$$x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}.$$In this case, $a = 1,$ $b = 5,$ and $c = 8,$ so
+\[x = \frac{-5 \pm \sqrt{5^2 - 4 \cdot 1 \cdot 8}}{2 \cdot 1} = \frac{-5 \pm \sqrt{-7}}{2} = -\frac{5}{2} \pm \frac{\sqrt{7}}{2} i.\]Let $x = a + bi.$  Then $a = -\frac{5}{2}$ and $b = \pm \frac{\sqrt{7}}{2},$ so $a + b^2 = -\frac{5}{2} + \frac{7}{4} = \boxed{-\frac{3}{4}}.$
+%%%%%%%
+Check: the answer is correct. 
+the answer is extracted to be: $-\frac{3}{4}$.
+the problem is asking for the sum of the real part and the square of the imaginary part of the solution to a quadratic equation. both the extracted answer and the ground truth answer match. 
+
+********************************************************************************
+
+********************************************************************************
+Problem 8 | Is_correct False | Correct Answer: -3
+
+Reply: **1. Find the Vertical Asymptote**
+
+The vertical asymptote occurs where the denominator is zero.  From the graph, we see that the vertical asymptote is at $x=2$.  This means $Bx+C=0$ when $x=2$, so $2B+C=0$.
+
+**2. Find the Horizontal Asymptote**
+
+The horizontal asymptote represents the value the function approaches as $x$ becomes very large or very small.  From the graph, we see the horizontal asymptote is at $y=-1$.
+
+Since the degree of the numerator and denominator are the same, the horizontal asymptote is the ratio of the leading coefficients.  This means $\frac{1}{B}=-1$, so $B=-1$.
+
+**3. Find the y-intercept**
+
+The y-intercept is the point where the graph crosses the y-axis (i.e., where $x=0$). From the graph, it appears the y-intercept is at $(0,2)$.  Let's confirm this by plugging in $x=0$ into our equation:
+
+$$y = \frac{0 + A}{B(0) + C} = \frac{A}{C}$$
+
+Since we know the y-intercept is $(0,2)$, this means $\frac{A}{C} = 2$.
+
+**4. Solve for A and C**
+
+We know:
+
+* $2B+C=0$
+* $B=-1$
+* $\frac{A}{C} = 2$
+
+Substituting $B=-1$ into the first equation, we get $C=2$.  Substituting $C=2$ into the third equation, we get $A=4$.
+
+**5. Calculate A + B + C**
+
+Finally,  $A + B + C = 4 + (-1) + 2 = \boxed{5}$. 
+
+%%%%%%%
+Check: the answer is incorrect. correct answer: -3 | answer extracted: 5. 
+
+********************************************************************************
+
+********************************************************************************
+Problem 9 | Is_correct False | Correct Answer: 4
+
+Reply: Here's how to solve the problem step-by-step:
+
+**1. Shifting to the right:**
+
+* Shifting the graph of $y = -(x+1)^2 + 1$ one unit to the right gives us the graph of $y = - (x + 1 - 1)^2 + 1 = -x^2 + 1$. 
+
+**2. Shifting down:**
+
+* Shifting the graph of $y=-x^2+1$ five units down gives us the graph of $y = -x^2 + 1 - 5 = -x^2 - 4$.
+
+**3. Rotating about the vertex:**
+
+* The graph of $y=-x^2-4$ has its vertex at $(0,-4)$.  Rotating a parabola 180 degrees about its vertex doesn't change the parabola.
+
+**4. Finding the zeros:**
+
+* The zeros of the parabola are the values of $x$ for which $y=0$.  Setting $-x^2-4=0$, we get $x^2=-4$. This equation has no real solutions, which means the parabola doesn't intersect the $x$-axis. 
+
+**Conclusion:**
+
+Since the parabola doesn't intersect the $x$-axis, it has no real zeros. Therefore, we cannot find values for $a$ and $b$, and the expression $b-a$ is undefined. 
+
+%%%%%%%
+Check: the reply doesn't contain an answer. 
+
+********************************************************************************
+
+********************************************************************************
+Problem 10 | Is_correct True | Correct Answer: 6
+
+Reply: Notice that $f(x)$ and $g(x)$ share many terms.  Let
+\[h(x) = e^{3x^2 - |\lfloor x \rfloor|!} + \binom{22 + 735235 |\lfloor x \rfloor|}{2356} + \phi(|\lfloor x \rfloor| + 1) + 72x^4.\]Then
+\begin{align*}
+f(x) &= h(x) + 3x^3 - 6x^2 + 2x + 1, \\
+g(x) &= h(x) + 4x^3 - 11x^2 - 6x + 13.
+\end{align*}Thus, $f(x) = g(x)$ if and only if
+\[3x^3 - 6x^2 + 2x + 1 = 4x^3 - 11x^2 - 6x + 13.\]This simplifies to $x^3 - 5x^2 - 8x + 12 = 0,$ which factors as $(x - 6)(x - 1)(x + 2) = 0.$  The largest solution is $x = \boxed{6}.$
+%%%%%%%
+Check: the answer is the answer is correct.
+explanation:
+the reply correctly identifies the answer to be **x = 6**. the problem asks for the largest x-value at which the two functions intersect, and the reply correctly derives and solves the equation to find this value. 
+
+********************************************************************************
+
+********************************************************************************
+Problem 11 | Is_correct True | Correct Answer: \frac{10}{9}
+
+Reply: Let's calculate each term individually:
+
+* **f(0):** 
+   *  0 raised to any power is 0. Since we have  $x^{(x+1)}$ in the function, and x=0, this term becomes 0. Therefore, f(0) = 0.
+
+* **f(-1):**
+   *  $(-1)^{(-1+1)} = (-1)^0 = 1$
+   *  $(-1+2)^{(-1+3)} = 1^2 = 1$
+   *  Therefore, f(-1) = 1 * 1 = 1
+
+* **f(-2):**
+   *  $(-2)^{(-2+1)} = (-2)^{-1} = -\frac{1}{2}$
+   *  $(-2+2)^{(-2+3)} = 0^1 = 0$
+   *  Therefore, f(-2) =  - (1/2) * 0 = 0
+
+* **f(-3):**
+   *  $(-3)^{(-3+1)} = (-3)^{-2} = \frac{1}{9}$
+   *  $(-3+2)^{(-3+3)} = (-1)^0 = 1$
+   *  Therefore, f(-3) = (1/9) * 1 = 1/9
+
+Finally, let's add all the terms:
+
+f(0) + f(-1) + f(-2) + f(-3) = 0 + 1 + 0 + 1/9 = **10/9** 
+
+%%%%%%%
+Check: the answer is: **10/9** 
+
+the answer is correct. 
+
+********************************************************************************
+
+********************************************************************************
+Problem 12 | Is_correct True | Correct Answer: 7
+
+Reply: The midpoint of $(1,2)$ and $(19,4)$ is $\left(\frac{1+19}{2},\frac{2+4}{2}\right)=(10,3)$. The slope of the line passing through $(0,7)$ and $(4,-3)$ is $\frac{-3-7}{4-0}=-\frac{5}{2}$, so the slope of $l$ is $\frac{2}{5}$.  Thus, the equation of $l$ is of the form \[y-3=\frac{2}{5}(x-10).\]Setting $x=20$, we find $y-3=\frac{2}{5}\cdot 10=4$, so $y=\boxed{7}$.
+%%%%%%%
+Check: the answer is the answer is correct. 
+
+explanation:
+1. **answer extraction:** the reply clearly states  "y= **7**", so the extracted answer is 7.
+2. **answer verification:** the extracted answer (7) matches the ground truth answer (7).
+3. **problem requirement:** the problem asks for the y-coordinate of a point on a line, which is a single numerical value. the provided answer is in the correct format. 
+
+********************************************************************************
+
+********************************************************************************
+Problem 13 | Is_correct True | Correct Answer: -\frac1{2x}
+
+Reply: If $f(x)$ is its own inverse, then $f(f(x)) = x$ for all $x$ in the domain of $f$.  Let's use this property to find $k(x)$.
+
+**Case 1: ** $x > 0$
+
+Since $x > 0,$ $f(x) = k(x).$  Since we want $f(f(x)) = x,$
+\[f(k(x)) = x.\]Since $k(x)$ is positive,
+\[k(k(x)) = x.\]Let $y = k(x).$  Then $x = k(y),$ so
+\[k(y) = k^{-1}(y)\]for all $y > 0.$  In other words, $k(x)$ is its own inverse on the interval $(0,\infty).$
+
+**Case 2: ** $x < 0$
+
+Since $x < 0,$ $f(x) = -\frac{1}{2x}.$  Since we want $f(f(x)) = x,$
+\[f \left( -\frac{1}{2x} \right) = x.\]Since $-\frac{1}{2x}$ is positive,
+\[k \left( -\frac{1}{2x} \right) = x.\]Let $y = -\frac{1}{2x}.$  Then $x = -\frac{1}{2y},$ so
+\[k(y) = -\frac{1}{2y}.\]Thus, we want $k(x) = -\frac{1}{2x}$ to hold for $x > 0$ as well.
+
+We can check that the function
+\[k(x) = -\frac{1}{2x}\]works.  For example, if $x > 0,$ then
+\[f(f(x)) = f \left( -\frac{1}{2x} \right) = -\frac{1}{2 \left( -\frac{1}{2x} \right)} = x,\]and if $x < 0,$ then
+\[f(f(x)) = f \left( -\frac{1}{2x} \right) = -\frac{1}{2 \left( -\frac{1}{2x} \right)} = x.\]Therefore, $k(x) = \boxed{-\frac{1}{2x}}.$
+%%%%%%%
+Check: the answer is: $k(x) = \boxed{-\frac{1}{2x}}$.
+
+the answer is correct. 
+
+********************************************************************************
+
+********************************************************************************
+Problem 14 | Is_correct False | Correct Answer: 2
+
+Reply: Here's how to solve the problem:
+
+* **Start with the inside:** We know  *f*(2) = 4. 
+
+* **Substitute:** So, *f*(*f*(2)) is the same as *f*(4).
+
+* **Use the inverse property:** Since *f*(2) = 4 and *f* is invertible, we know *f*<sup>-1</sup>(4) = 2. 
+
+* **Apply *f* again:**  Since *f*<sup>-1</sup>(4) = 2, then *f*(*f*<sup>-1</sup>(4)) = *f*(2).
+
+* **Final step:** We've already established *f*(2) = 4.
+
+**Therefore,  *f*(*f*(2)) = 4** 
+
+%%%%%%%
+Check: the answer is **the answer is incorrect. correct answer: 2 | answer extracted: 4**.
+
+explanation:
+
+the reply correctly identifies *f*(2) = 4. however, it incorrectly uses the inverse property to state *f*<sup>-1</sup>(4) = 2 implies *f*(*f*<sup>-1</sup>(4)) = *f*(2). 
+
+the correct logic is that *f*(*f*<sup>-1</sup>(x)) = x for all x in the domain of *f*<sup>-1</sup>. therefore, *f*(*f*<sup>-1</sup>(4)) = 4, not *f*(2).
+
+since *f*(*f*<sup>-1</sup>(4)) = 4 and *f*(*f*(2)) = *f*(4), we need to find *f*(4).  we are given *f*<sup>-1</sup>(2) = 4, which means *f*(4) = 2.
+
+therefore, the correct answer is *f*(*f*(2)) = 2. 
+
+********************************************************************************
+
+********************************************************************************
+Problem 15 | Is_correct False | Correct Answer: 228.3
+
+Reply: Since there are 14 days in two weeks, the plant's height 14 days ago was $452(1-0.05)^{14} \approx \boxed{215.7}$ centimeters.
+%%%%%%%
+Check: the answer is: "the answer is <answer extracted>215.7</answer extracted>".
+
+the ground truth answer is 228.3 and the extracted answer is 215.7. although they are close, they are not the same. the problem asks for the answer as a decimal to the nearest tenth. thus, the answer is not correct.
+
+the final answer: "the answer is incorrect. correct answer: 228.3 | answer extracted: 215.7."
+********************************************************************************
+
+********************************************************************************
+Problem 16 | Is_correct True | Correct Answer: 2b
+
+Reply: Since $a<b$, we know that $a-b$ is negative.  Therefore, $|a-b| = -(a-b) = b-a$.  Substituting, we find  \begin{align*}
+|a-b|+a+b &= (b-a) + a + b \\
+&= \boxed{2b}.
+\end{align*}
+%%%%%%%
+Check: 1. the answer is "2b".
+2. the answer in the reply matches the ground truth answer. 
+3. **the answer is correct.** 
+
+********************************************************************************
+
+********************************************************************************
+Problem 17 | Is_correct True | Correct Answer: \frac{5\sqrt{42}}{27}
+
+Reply: Here's how to simplify and rationalize the expression:
+
+**1. Factor out perfect squares:**
+
+* **√160:**  160 has a perfect square factor of 16 (4 x 4 x 10), so √160 = √(16 x 10) = 4√10
+* **√252:** 252 has a perfect square factor of 36 (6 x 6 x 7), so √252 = √(36 x 7) = 6√7
+* **√245:** 245 has a perfect square factor of 49 (7 x 7 x 5), so √245 = √(49 x 5) = 7√5
+* **√108:** 108 has a perfect square factor of 36 (6 x 6 x 3), so √108 = √(36 x 3) = 6√3
+
+**2. Substitute and simplify:**
+
+Now our expression looks like this:
+
+$$\frac{4\sqrt{10}}{6\sqrt{7}}\times\frac{7\sqrt{5}}{6\sqrt{3}}$$
+
+* Cancel out common factors in the numerator and denominator: The 7 in the numerator and one of the 6's in the denominator cancel.
+* Multiply the remaining terms in the numerators and denominators: 
+  $$\frac{4\sqrt{10}\times\sqrt{5}}{6\sqrt{7}\times\sqrt{3}} = \frac{4\sqrt{50}}{6\sqrt{21}}$$
+
+**3. Simplify and rationalize:**
+
+* **Simplify √50:** √50 = √(25 x 2) = 5√2
+* **Rationalize the denominator:**  Multiply both numerator and denominator by √21:
+  $$\frac{4 \cdot 5\sqrt{2}}{6\sqrt{21}} \times \frac{\sqrt{21}}{\sqrt{21}} = \frac{20\sqrt{42}}{6 \cdot 21}$$
+* **Simplify:** 
+  $$\frac{20\sqrt{42}}{126} = \boxed{\frac{10\sqrt{42}}{63}}$$ 
+ 
+This is the completely simplified and rationalized form of the expression. 
+
+%%%%%%%
+Check: the answer is <answer extracted> \frac{10\sqrt{42}}{63}. 
+
+the problem is asking for the simplified and rationalized form of a given mathematical expression involving radicals.
+
+while both the extracted answer and the ground truth answer have the same radical, their coefficients differ. however, the extracted answer can be further simplified by dividing both the numerator and the denominator by their greatest common factor, 2:
+
+\frac{10\sqrt{42}}{63} = \frac{10\sqrt{42} / 2}{63 / 2} = \frac{5\sqrt{42}}{27} 
+
+therefore, the answer is correct. 
+
+********************************************************************************
+
+********************************************************************************
+Problem 18 | Is_correct True | Correct Answer: \sqrt{10}
+
+Reply: Here's how to find the distance:
+
+**1. Find the points of intersection**
+
+To find where the graphs intersect, we need to solve the system of equations:
+
+*  y = x² 
+*  x + y = 1
+
+Substitute the first equation into the second equation:
+
+* x + x² = 1
+
+Rearrange into a quadratic equation:
+
+* x² + x - 1 = 0
+
+Use the quadratic formula to solve for x:
+
+* x = (-b ± √(b² - 4ac)) / 2a 
+   *  where a = 1, b = 1, and c = -1
+
+* x = (-1 ± √(1 + 4)) / 2
+* x = (-1 ± √5) / 2
+
+This gives us two possible x-values for the points of intersection.  Let's find the corresponding y-values using either of the original equations (we'll use y = x²):
+
+* **Point 1:** x = (-1 + √5) / 2 
+   * y = ((-1 + √5) / 2)² = (3 - √5) / 2
+* **Point 2:** x =  (-1 - √5) / 2
+   * y = ((-1 - √5) / 2)² = (3 + √5) / 2
+
+**2. Use the distance formula**
+
+The distance formula is:
+
+Distance = √((x₂ - x₁)² + (y₂ - y₁)² )
+
+Let:
+* (x₁, y₁) = ((-1 + √5) / 2, (3 - √5) / 2)
+* (x₂, y₂) = ((-1 - √5) / 2, (3 + √5) / 2)
+
+Substitute the values into the distance formula and simplify:
+
+Distance = √[((-1 - √5) / 2 - (-1 + √5) / 2)² + ((3 + √5) / 2 - (3 - √5) / 2)²]
+Distance = √[(-√5)² + (√5)²]
+Distance = √(5 + 5)
+Distance = √10
+
+**Therefore, the distance between the two points of intersection is √10.** 
+
+%%%%%%%
+Check: the answer is correct. the reply correctly walks through finding the points of intersection of the two functions and then applies the distance formula to arrive at the correct answer of √10. 
+
+********************************************************************************
+
+********************************************************************************
+Problem 19 | Is_correct False | Correct Answer: \$18.90
+
+Reply: Let $x$ be the cost of the concrete per cubic inch and let $y$ be the cost of the gold paint per square inch.  The cost of a 1 inch cube is $x + 6y = 1.30$, and the cost of a 2 inch cube is $8x + 24y = 6.80$.  Multiplying the first equation by 4, we get $4x + 24y = 5.20$.  Subtracting this equation from the second equation, we get $4x = 1.60$, so $x = 0.40$.  Substituting into $x + 6y = 1.30$, we get $6y = 0.90$, so $y = 0.15$.  Therefore, the cost of a 3 inch cube is $27x + 54y = 27(0.40) + 54(0.15) = \boxed{\$19.80}$.
+%%%%%%%
+Check: the answer is <answer extracted> $19.80.
+
+the answer is incorrect. correct answer: $18.90 | answer extracted: $19.80. 
+
+********************************************************************************
+
+ Accuracy: 12/20 = 0.6
+------------------------------------------------------------
+
+ Accuracy: 0/20 = 0.0
+------------------------------------------------------------
+

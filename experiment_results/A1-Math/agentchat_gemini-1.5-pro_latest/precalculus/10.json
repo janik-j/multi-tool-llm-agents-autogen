@@ -1,0 +1,24 @@
+{
+  "problem": "Find the smallest positive integer $x$ (measured in degrees) such that\n\\[\\tan (x - 160^{\\circ}) = \\frac{\\cos50^{\\circ}}{1 - \\sin50^{\\circ}}.\\]",
+  "level": "Level 5",
+  "type": "Precalculus",
+  "solution": "We can write $\\frac{\\cos 50^\\circ}{1 - \\sin 50^\\circ} = \\frac{\\sin 40^\\circ}{1 - \\cos 40^\\circ}.$  By the half-angle formula,\n\\[\\frac{\\sin 40^\\circ}{1 - \\cos 40^\\circ} = \\frac{1}{\\tan 20^\\circ} = \\tan 70^\\circ.\\]We want\n\\[\\tan (x - 160^\\circ) = \\tan 70^\\circ,\\]so $x - 160^\\circ - 70^\\circ = 180^\\circ n$ for some integer $n,$ or\n\\[x = 180^\\circ n + 230^\\circ.\\]Taking $n = -1$ to get the smallest positive value, we get $x = \\boxed{50^\\circ}.$",
+  "correct_ans": "50^\\circ",
+  "problem_id": "10",
+  "response_with_ans": "Here's how to solve the problem:\n\n**1. Simplify the right-hand side of the equation.**\n\nWe can use the following trigonometric identities:\n\n* $\\cos \\theta = \\sin (90^\\circ - \\theta)$\n* $\\sin \\theta = \\cos (90^\\circ - \\theta)$\n* $\\tan \\theta = \\frac{\\sin \\theta}{\\cos \\theta}$\n\nApplying these identities, we get:\n\n\\begin{align*}\n\\frac{\\cos 50^\\circ}{1 - \\sin 50^\\circ} &= \\frac{\\sin (90^\\circ - 50^\\circ)}{1 - \\cos (90^\\circ - 50^\\circ)} \\\\\n&= \\frac{\\sin 40^\\circ}{1 - \\cos 40^\\circ} \\\\\n&= \\frac{\\sin 40^\\circ}{\\sin^2 20^\\circ + \\cos^2 20^\\circ - \\cos 40^\\circ}  \\\\\n&= \\frac{\\sin 40^\\circ}{2 \\sin^2 20^\\circ}  \\quad (\\text{since } \\cos 40^\\circ = 1 - 2\\sin^2 20^\\circ) \\\\\n&= \\frac{2 \\sin 20^\\circ \\cos 20^\\circ}{2 \\sin^2 20^\\circ} \\\\\n&= \\frac{\\cos 20^\\circ}{\\sin 20^\\circ} \\\\\n&= \\cot 20^\\circ \\\\\n&= \\tan 70^\\circ.\n\\end{align*}\n\n**2. Solve the simplified equation.**\n\nNow we have  \\[\\tan (x - 160^\\circ) = \\tan 70^\\circ.\\] Since the tangent function has period $180^\\circ$, the general solution is\n\\[x - 160^\\circ = 70^\\circ + 180^\\circ k\\]for some integer $k$.  Solving for $x$, we find\n\\[x = 230^\\circ + 180^\\circ k.\\]The smallest positive solution is $x = \\boxed{50^\\circ}$ (when $k = -1$).\n\nTERMINATE\n",
+  "round": 0,
+  "messages": [
+    {
+      "content": "Find the smallest positive integer $x$ (measured in degrees) such that\n\\[\\tan (x - 160^{\\circ}) = \\frac{\\cos50^{\\circ}}{1 - \\sin50^{\\circ}}.\\]",
+      "role": "user"
+    },
+    {
+      "content": "Here's how to solve the problem:\n\n**1. Simplify the right-hand side of the equation.**\n\nWe can use the following trigonometric identities:\n\n* $\\cos \\theta = \\sin (90^\\circ - \\theta)$\n* $\\sin \\theta = \\cos (90^\\circ - \\theta)$\n* $\\tan \\theta = \\frac{\\sin \\theta}{\\cos \\theta}$\n\nApplying these identities, we get:\n\n\\begin{align*}\n\\frac{\\cos 50^\\circ}{1 - \\sin 50^\\circ} &= \\frac{\\sin (90^\\circ - 50^\\circ)}{1 - \\cos (90^\\circ - 50^\\circ)} \\\\\n&= \\frac{\\sin 40^\\circ}{1 - \\cos 40^\\circ} \\\\\n&= \\frac{\\sin 40^\\circ}{\\sin^2 20^\\circ + \\cos^2 20^\\circ - \\cos 40^\\circ}  \\\\\n&= \\frac{\\sin 40^\\circ}{2 \\sin^2 20^\\circ}  \\quad (\\text{since } \\cos 40^\\circ = 1 - 2\\sin^2 20^\\circ) \\\\\n&= \\frac{2 \\sin 20^\\circ \\cos 20^\\circ}{2 \\sin^2 20^\\circ} \\\\\n&= \\frac{\\cos 20^\\circ}{\\sin 20^\\circ} \\\\\n&= \\cot 20^\\circ \\\\\n&= \\tan 70^\\circ.\n\\end{align*}\n\n**2. Solve the simplified equation.**\n\nNow we have  \\[\\tan (x - 160^\\circ) = \\tan 70^\\circ.\\] Since the tangent function has period $180^\\circ$, the general solution is\n\\[x - 160^\\circ = 70^\\circ + 180^\\circ k\\]for some integer $k$.  Solving for $x$, we find\n\\[x = 230^\\circ + 180^\\circ k.\\]The smallest positive solution is $x = \\boxed{50^\\circ}$ (when $k = -1$).\n\nTERMINATE\n",
+      "role": "assistant"
+    }
+  ],
+  "time": 11.907599925994873,
+  "check_result": "the answer is the answer is correct.\n```tool_code\nprint('the answer is correct.')\n```",
+  "is_correct": true,
+  "trial": -1
+}

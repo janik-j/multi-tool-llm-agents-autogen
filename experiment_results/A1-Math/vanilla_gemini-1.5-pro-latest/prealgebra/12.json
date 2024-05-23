@@ -1,0 +1,13 @@
+{
+  "problem": "Two numbers are said to be 'relatively prime' if their greatest common factor is 1. How many integers greater than 10 and less than 30 are relatively prime with 28?",
+  "level": "Level 5",
+  "type": "Prealgebra",
+  "solution": "Since $28=2^2\\cdot 7$, a positive integer is relatively prime with $28$ if and only if it contains neither $2$ nor $7$ in its prime factorization. In other words, we want to count the number of integers between $11$ and $29$ inclusive which are divisible by neither $2$ nor $7$.\n\nAll of the odd numbers are not divisible by 2; there are 10 such numbers.  The only one of these that is divisible by 7 is 21, so there are $10- 1 =\\boxed{9}$ numbers between 10 and 30 that are relatively prime with 28.",
+  "correct_ans": "9",
+  "problem_id": "12",
+  "response_with_ans": "Here's how to solve this problem:\n\n**1. Prime Factorization:**\n\n* Find the prime factorization of 28:  28 = 2 x 2 x 7\n\n**2. Identify Numbers Not Relatively Prime:**\n\n* Any number that shares a prime factor with 28 will *not* be relatively prime.  This means we need to eliminate numbers divisible by 2 or 7.\n\n**3. List the Numbers and Eliminate:**\n\n* Integers between 10 and 30: 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29\n* Eliminate multiples of 2: 11, 13, 15, 17, 19, 21, 23, 25, 27, 29\n* Eliminate multiples of 7: 11, 13, 15, 17, 19, 23, 25, 29 \n\n**4. Count the Remaining Numbers:**\n\n* We are left with 9 numbers.\n\n**Answer:** There are **9** integers greater than 10 and less than 30 that are relatively prime with 28. \n",
+  "time": 6.8607611656188965,
+  "check_result": "the answer is **the answer is correct.**\nexplanation:\n1. **answer extracted:** the answer is 9.\n2. **problem objective:** find the number of integers between 10 and 30 that are relatively prime with 28.\n3. **comparison:** the extracted answer and the ground truth answer are both 9. \n4. **conclusion:** the reply correctly identifies and explains the process of finding the 9 integers relatively prime to 28 within the given range. \n",
+  "is_correct": true,
+  "trial": -1
+}

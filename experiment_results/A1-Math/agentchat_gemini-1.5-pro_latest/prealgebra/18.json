@@ -1,0 +1,24 @@
+{
+  "problem": "An equilateral triangle has a side of length 12 inches. What is the area of the triangle, in square inches? Express your answer in simplest radical form.",
+  "level": "Level 5",
+  "type": "Prealgebra",
+  "solution": "The area of an equilateral triangle with side length $s$ is $s^2\\sqrt{3}/4$. We have $s = 12$, so our area is $12^2\\sqrt{3}/4 = \\boxed{36\\sqrt{3}}$.",
+  "correct_ans": "36\\sqrt{3}",
+  "problem_id": "18",
+  "response_with_ans": "Here's how to solve this problem:\n\n**1. Recall the Formula for the Area of an Equilateral Triangle**\n\nThe area of an equilateral triangle is given by:\n\nArea = (\u221a3 / 4) * side\u00b2\n\n**2. Substitute the Given Side Length**\n\nWe are given that the side length is 12 inches. Substituting this into the formula:\n\nArea = (\u221a3 / 4) * 12\u00b2\n\n**3. Calculate the Area**\n\nArea = (\u221a3 / 4) * 144\nArea = 36\u221a3\n\n**Answer:** The area of the equilateral triangle is **36\u221a3 square inches**. \nTERMINATE",
+  "round": 0,
+  "messages": [
+    {
+      "content": "An equilateral triangle has a side of length 12 inches. What is the area of the triangle, in square inches? Express your answer in simplest radical form.",
+      "role": "user"
+    },
+    {
+      "content": "Here's how to solve this problem:\n\n**1. Recall the Formula for the Area of an Equilateral Triangle**\n\nThe area of an equilateral triangle is given by:\n\nArea = (\u221a3 / 4) * side\u00b2\n\n**2. Substitute the Given Side Length**\n\nWe are given that the side length is 12 inches. Substituting this into the formula:\n\nArea = (\u221a3 / 4) * 12\u00b2\n\n**3. Calculate the Area**\n\nArea = (\u221a3 / 4) * 144\nArea = 36\u221a3\n\n**Answer:** The area of the equilateral triangle is **36\u221a3 square inches**. \nTERMINATE",
+      "role": "assistant"
+    }
+  ],
+  "time": 5.183152914047241,
+  "check_result": "the answer is: the area of the equilateral triangle is **36\u221a3 square inches**.\n\nthe ground truth answer matches the extracted answer. \n\nthe problem asks for the answer in the simplest radical form.\n\ntherefore, the answer is: **the answer is correct.** \n",
+  "is_correct": true,
+  "trial": -1
+}

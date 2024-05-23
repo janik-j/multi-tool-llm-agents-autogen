@@ -1,0 +1,13 @@
+{
+  "problem": "A cook has 10 red peppers and 5 green peppers. If the cook selects 6 peppers at random, what is the probability that he selects at least 4 green peppers? Express your answer as a common fraction.",
+  "level": "Level 5",
+  "type": "Counting & Probability",
+  "solution": "We can count the number of ways to choose a group of 4 green and 2 red peppers and the number of ways to choose 5 green and 1 red peppers. These are $\\binom{5}{4}\\binom{10}{2}=5\\cdot45=225$ and $\\binom{5}{5}\\binom{10}{1}=10$. The total number of ways the cook can choose peppers is $\\binom{15}{6}=5005$. Therefore, the probability that out of six randomly chosen peppers at least four will be green is $\\frac{235}{5005}=\\boxed{\\frac{47}{1001}}$.",
+  "correct_ans": "\\frac{47}{1001}",
+  "problem_id": "16",
+  "response_with_ans": "To find the probability of getting at least 4 green peppers, we need to consider two scenarios:\n\n* **Scenario 1: Selecting exactly 4 green peppers** \n   * This means selecting 2 red peppers.\n   * The number of ways to choose 4 green peppers out of 5:  \u2075C\u2084 = 5\n   * The number of ways to choose 2 red peppers out of 10: \u00b9\u2070C\u2082 = 45\n   * The total number of ways to choose 6 peppers out of 15: \u00b9\u2075C\u2086 = 5005\n\n* **Scenario 2: Selecting all 5 green peppers**\n   * This means selecting 1 red pepper.\n   * The number of ways to choose 5 green peppers out of 5: \u2075C\u2085 = 1\n   * The number of ways to choose 1 red pepper out of 10: \u00b9\u2070C\u2081 = 10\n   * The total number of ways to choose 6 peppers out of 15: \u00b9\u2075C\u2086 = 5005 \n\nNow, let's calculate the probabilities for each scenario and add them:\n\n* **Probability of Scenario 1:** (\u2075C\u2084 * \u00b9\u2070C\u2082) / \u00b9\u2075C\u2086 = (5 * 45) / 5005 = 9/203\n* **Probability of Scenario 2:** (\u2075C\u2085 * \u00b9\u2070C\u2081) / \u00b9\u2075C\u2086 = (1 * 10) / 5005 = 2/1001\n\n**Total probability (at least 4 green peppers):** 9/203 + 2/1001 = **11/1001** \n",
+  "time": 7.888824939727783,
+  "check_result": "the answer is the answer is incorrect. correct answer: \\frac{47}{1001} | answer extracted: 11/1001. \n",
+  "is_correct": false,
+  "trial": -1
+}

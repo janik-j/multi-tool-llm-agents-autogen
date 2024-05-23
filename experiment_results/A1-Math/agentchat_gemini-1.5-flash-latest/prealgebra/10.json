@@ -1,0 +1,24 @@
+{
+  "problem": "How many integers $n$ satisfy both of the inequalities $4n + 3 < 25$ and $-7n + 5 < 24$?",
+  "level": "Level 5",
+  "type": "Prealgebra",
+  "solution": "Subtract 3 and divide by 4 on both sides of the first inequality to obtain \\begin{align*}\n4n + 3 &< 25 \\\\\n\\Rightarrow\\qquad 4n &< 22 \\\\\n\\Rightarrow\\qquad n &< 5.5.\n\\end{align*}Similarly, the second inequality yields \\begin{align*}\n-7n + 5 &< 24 \\\\\n\\Rightarrow\\qquad -7n &< 19 \\\\\n\\Rightarrow\\qquad n &> -\\frac{19}{7}.\n\\end{align*}Therefore, we are looking for all the integers between $-\\frac{19}{7}$ and $5.5$. Since $-\\frac{19}{7}$ is between $-3$ and $-2$ and the largest integer less than $5.5$ is 5, we need to count the number of integers between $-2$ and $5$, inclusive. There are $5$ positive integers, $2$ negative integers, and zero, so there are $\\boxed{8}$ integers that satisfy both $4n + 3 < 25$ and $-7n + 5 < 24$.",
+  "correct_ans": "8",
+  "problem_id": "10",
+  "response_with_ans": "```python\n# filename: solve_inequalities.py\nprint(\"Solving the inequality 4n + 3 < 25\")\nprint(\"Subtracting 3 from both sides, we get 4n < 22\")\nprint(\"Dividing both sides by 4, we get n < 5.5\")\nprint(\"Solving the inequality -7n + 5 < 24\")\nprint(\"Subtracting 5 from both sides, we get -7n < 19\")\nprint(\"Dividing both sides by -7, we get n > -19/7\")\nprint(\"Therefore, the integers n that satisfy both inequalities are:\")\nfor i in range(-2, 6):\n  print(i)\n```\nThe integers that satisfy both inequalities are -2, -1, 0, 1, 2, 3, 4, and 5. There are **8** such integers. \nTERMINATE",
+  "round": 0,
+  "messages": [
+    {
+      "content": "How many integers $n$ satisfy both of the inequalities $4n + 3 < 25$ and $-7n + 5 < 24$?",
+      "role": "user"
+    },
+    {
+      "content": "```python\n# filename: solve_inequalities.py\nprint(\"Solving the inequality 4n + 3 < 25\")\nprint(\"Subtracting 3 from both sides, we get 4n < 22\")\nprint(\"Dividing both sides by 4, we get n < 5.5\")\nprint(\"Solving the inequality -7n + 5 < 24\")\nprint(\"Subtracting 5 from both sides, we get -7n < 19\")\nprint(\"Dividing both sides by -7, we get n > -19/7\")\nprint(\"Therefore, the integers n that satisfy both inequalities are:\")\nfor i in range(-2, 6):\n  print(i)\n```\nThe integers that satisfy both inequalities are -2, -1, 0, 1, 2, 3, 4, and 5. There are **8** such integers. \nTERMINATE",
+      "role": "assistant"
+    }
+  ],
+  "time": 3.509181022644043,
+  "check_result": "the answer is correct. \n",
+  "is_correct": true,
+  "trial": -1
+}

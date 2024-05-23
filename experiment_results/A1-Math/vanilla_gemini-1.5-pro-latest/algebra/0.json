@@ -1,0 +1,13 @@
+{
+  "problem": "Find all $x$ that satisfy the inequality $(2x+10)(x+3)<(3x+9)(x+8)$. Express your answer in interval notation.",
+  "level": "Level 5",
+  "type": "Algebra",
+  "solution": "We have \\begin{align*} (2x+10)(x+3)&<(3x+9)(x+8) \\quad \\Rightarrow\n\\\\ 2(x+5)(x+3)&<3(x+3)(x+8) \\quad \\Rightarrow\n\\\\ 2(x+5)(x+3)-3(x+3)(x+8)&<0 \\quad \\Rightarrow\n\\\\ (2x+10-(3x+24))(x+3)&<0 \\quad \\Rightarrow\n\\\\ (-x-14)(x+3)&<0 \\quad \\Rightarrow\n\\\\ (x+14)(x+3)&>0.\n\\end{align*} This inequality is satisfied if and only if $(x+14)$ and $(x+3)$ are either both positive or both negative.  Both factors are positive for $x>-3$ and both factors are negative for $x<-14$.  When $-14<x<-3$, one factor is positive and the other negative, so their product is negative.   Therefore, the range of $x$ that satisfies the inequality is $ \\boxed{(-\\infty, -14)\\cup(-3,\\infty)} $.",
+  "correct_ans": "(-\\infty, -14)\\cup(-3,\\infty)",
+  "problem_id": "0",
+  "response_with_ans": "Here's how to solve the inequality:\n\n1. **Expand both sides:** \n   \n   Begin by expanding both sides of the inequality:\n   \n   ```\n   (2x+10)(x+3) < (3x+9)(x+8) \n   2x^2 + 16x + 30 < 3x^2 + 33x + 72\n   ```\n\n2. **Move all terms to one side:**\n\n   Subtract the left side of the inequality from both sides to get a quadratic expression less than zero:\n   \n   ```\n   0 < x^2 + 17x + 42 \n   ```\n\n3. **Factor the quadratic:**\n\n   Factor the quadratic expression:\n   \n   ```\n   0 < (x + 6)(x + 7)\n   ```\n\n4. **Find the critical points:**\n\n   The critical points are the values of  'x' where the expression equals zero:\n   \n   * x + 6 = 0  =>  x = -6\n   * x + 7 = 0  =>  x = -7\n\n5. **Test intervals:**\n\n   The critical points divide the number line into three intervals:\n\n   * x < -7\n   * -7 < x < -6\n   * x > -6\n\n   Choose a test value within each interval and plug it into the factored inequality  `(x + 6)(x + 7) > 0` to see if it makes the inequality true:\n\n   | Interval | Test Value | (x + 6)(x + 7) > 0 | True/False |\n   |---|---|---|---|\n   | x < -7 | x = -8 | (-2)(-1) > 0 | True |\n   | -7 < x < -6 | x = -6.5 | (-0.5)(0.5) > 0 | False |\n   | x > -6 | x = -5 | (1)(2) > 0  | True |\n\n6. **Write the solution in interval notation:**\n\n   The solution is the union of the intervals where the inequality is true:\n\n   **(-\u221e, -7) U (-6, \u221e)** \n",
+  "time": 11.150550603866577,
+  "check_result": "the reply doesn't contain an answer. \n",
+  "is_correct": false,
+  "trial": -1
+}

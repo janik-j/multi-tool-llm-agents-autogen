@@ -1,0 +1,13 @@
+{
+  "problem": "The graph of the parabola defined by the equation $y=-(x+1)^2+1$ is shifted 1 unit to the right, then shifted 5 units down, then rotated 180 degrees about its vertex. The resulting parabola has zeros at $x=a$ and $x=b$, where $b\\ge a$. What is $b-a$?",
+  "level": "Level 5",
+  "type": "Algebra",
+  "solution": "The graph of the original parabola ($A$) and its final image ($A'$) after rotation and translation is shown below:\n\n[asy]\n\nLabel f;\n\nf.p=fontsize(4);\n\nxaxis(-4,4,Ticks(f, 2.0));\n\nyaxis(-6,5,Ticks(f, 2.0));\n\nreal f(real x)\n\n{\n\nreturn x^2-4;\n\n}\n\ndraw(\"$A'$\", graph(f,-3,3), linewidth(1));\n\nreal g(real x)\n\n{\n\nreturn -(x+1)^2+1;\n\n}\n\ndraw(\"$A$\", graph(g,-3.5,1.5), linewidth(1));\n\n[/asy]\n\nShifting the original parabola 1 unit to the right changes its equation to $y=-x^2+1$. Shifting this last parabola 5 units down changes its equation to $y=-x^2-4$. Rotating it by 180 degrees changes its equation to $y=x^2-4$. So the equation of $A'$ is $y=x^2-4$. To find the zeros of this parabola, we set $y=0$ to get $0=x^2-4$. Factoring the right hand side, we get $0=(x-2)(x+2)$, so either $x-2=0\\Rightarrow x=2$ or $x+2=0 \\Rightarrow x=-2$. Thus, $a=-2$ and $b=2$, so $b-a=\\boxed{4}$.",
+  "correct_ans": "4",
+  "problem_id": "9",
+  "response_with_ans": "Here's how to solve the problem step-by-step:\n\n**1. Shifting to the right:**\n\n* Shifting the graph of $y = -(x+1)^2 + 1$ one unit to the right gives us the graph of $y = - (x + 1 - 1)^2 + 1 = -x^2 + 1$. \n\n**2. Shifting down:**\n\n* Shifting the graph of $y=-x^2+1$ five units down gives us the graph of $y = -x^2 + 1 - 5 = -x^2 - 4$.\n\n**3. Rotating about the vertex:**\n\n* The graph of $y=-x^2-4$ has its vertex at $(0,-4)$.  Rotating a parabola 180 degrees about its vertex doesn't change the parabola.\n\n**4. Finding the zeros:**\n\n* The zeros of the parabola are the values of $x$ for which $y=0$.  Setting $-x^2-4=0$, we get $x^2=-4$. This equation has no real solutions, which means the parabola doesn't intersect the $x$-axis. \n\n**Conclusion:**\n\nSince the parabola doesn't intersect the $x$-axis, it has no real zeros. Therefore, we cannot find values for $a$ and $b$, and the expression $b-a$ is undefined. \n",
+  "time": 6.436766624450684,
+  "check_result": "the reply doesn't contain an answer. \n",
+  "is_correct": false,
+  "trial": -1
+}

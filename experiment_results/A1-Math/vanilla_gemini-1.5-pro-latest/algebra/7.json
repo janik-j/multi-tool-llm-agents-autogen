@@ -1,0 +1,13 @@
+{
+  "problem": "Each solution to $x^2 + 5x + 8 = 0$ can be written in the form $x = a + b i,$ where $a$ and $b$ are real numbers. What is $a + b^2$?",
+  "level": "Level 5",
+  "type": "Algebra",
+  "solution": "Seeing that factoring will not work, we apply the Quadratic Formula: \\begin{align*}\nx &= \\frac{-(5) \\pm \\sqrt{(5)^2 - 4(1)(8)}}{2 (1)}\\\\\n&= \\frac{-5 \\pm \\sqrt{25 - 32}}{2} = \\frac{-5 \\pm \\sqrt{-7}}{2} = -\\frac{5}{2} \\pm \\frac{\\sqrt{7}}{2}i.\n\\end{align*} Now we see that $a = -\\dfrac{5}{2}$ and $b = \\pm \\frac{\\sqrt{7}}{2},$ so $a + b^2 = -\\dfrac{5}{2} + \\dfrac{7}{4} = \\boxed{-\\dfrac{3}{4}}.$",
+  "correct_ans": "-\\dfrac{3}{4}",
+  "problem_id": "7",
+  "response_with_ans": "We can solve for the roots of the quadratic using the quadratic formula:\n\n$$x = \\frac{-b \\pm \\sqrt{b^2 - 4ac}}{2a}.$$In this case, $a = 1,$ $b = 5,$ and $c = 8,$ so\n\\[x = \\frac{-5 \\pm \\sqrt{5^2 - 4 \\cdot 1 \\cdot 8}}{2 \\cdot 1} = \\frac{-5 \\pm \\sqrt{-7}}{2} = -\\frac{5}{2} \\pm \\frac{\\sqrt{7}}{2} i.\\]Let $x = a + bi.$  Then $a = -\\frac{5}{2}$ and $b = \\pm \\frac{\\sqrt{7}}{2},$ so $a + b^2 = -\\frac{5}{2} + \\frac{7}{4} = \\boxed{-\\frac{3}{4}}.$",
+  "time": 4.768099546432495,
+  "check_result": "the answer is correct. \nthe answer is extracted to be: $-\\frac{3}{4}$.\nthe problem is asking for the sum of the real part and the square of the imaginary part of the solution to a quadratic equation. both the extracted answer and the ground truth answer match. \n",
+  "is_correct": true,
+  "trial": -1
+}

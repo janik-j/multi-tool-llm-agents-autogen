@@ -1,0 +1,13 @@
+{
+  "problem": "What is the greatest whole number that MUST be a factor of the sum of any six consecutive positive odd numbers?",
+  "level": "Level 5",
+  "type": "Number Theory",
+  "solution": "Let $2n-5$, $2n-3$, $2n-1$, $2n+1$, $2n+3$, and $2n+5$ be six consecutive positive odd numbers. Their sum is $(2n-5)+(2n-3)+(2n-1)+(2n+1)+(2n+3)+(2n+5)=12n$. Clearly, for any value of $n$, $12$ must divide the sum. By choosing $n=3$ and $n=5$, we can see that $\\boxed{12}$ is the largest whole number that must be a factor.",
+  "correct_ans": "12",
+  "problem_id": "7",
+  "response_with_ans": "Here's how to solve this problem:\n\n**1. Represent the Numbers**\n\nLet the first of the six consecutive odd numbers be represented by  '2n + 1', where 'n' is any whole number.  \n\nThe next five consecutive odd numbers would be:\n\n* 2n + 3\n* 2n + 5\n* 2n + 7\n* 2n + 9\n* 2n + 11\n\n**2. Find the Sum**\n\nAdd these six numbers together:\n\n(2n + 1) + (2n + 3) + (2n + 5) + (2n + 7) + (2n + 9) + (2n + 11) = 12n + 36\n\n**3. Factor the Sum**\n\nFactor out the greatest common factor from the sum:\n\n12n + 36 = 12(n + 3)\n\n**4. Determine the Greatest Factor**\n\nFrom the factored form, we can see that the sum of any six consecutive odd numbers will always be divisible by:\n\n* 12 \n* (n + 3) - However, since 'n' can be any whole number, this factor is not constant.\n\n**Conclusion**\n\nThe greatest whole number that MUST be a factor of the sum of any six consecutive positive odd numbers is **12**. \n",
+  "time": 6.842592477798462,
+  "check_result": "the answer is: the answer is **12**. \nthe answer is correct. \n",
+  "is_correct": true,
+  "trial": -1
+}

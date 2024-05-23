@@ -1,0 +1,13 @@
+{
+  "problem": "A fisherman can see seven aquatic creatures in a lake --- four crocodiles, a catfish, and two giant squid. If he does not wish to fish two crocodiles consecutively, in how many orders can he catch all seven creatures? (Individuals from the same species are indistinguishable.)",
+  "level": "Level 5",
+  "type": "Counting & Probability",
+  "solution": "The crocodiles must be separated from each other by one of the other creatures, so he must catch them first, third, fifth, and seventh. For the second, fourth, and sixth slots, there are $3!$ ways to arrange the remaining three creatures.\n\nHowever, there are two giant squid, so we must divide by $2!$, the number of ways to arrange the squid.\n\nThe answer is $\\dfrac{3!}{2!}=\\boxed{3}$ ways.",
+  "correct_ans": "3",
+  "problem_id": "4",
+  "response_with_ans": "Here's how to solve this problem:\n\n**1. Consider the Restrictions**\n\nThe fisherman cannot catch two crocodiles in a row.  This means we need to find ways to place the other creatures to separate the crocodiles.\n\n**2. Place the Non-Crocodiles**\n\n* Imagine the catfish and two giant squid in a row:  _ _ _ \n* There are 4 spaces where we can insert the crocodiles (including the ends):  _ _ _ _\n\n**3. Distribute the Crocodiles**\n\n* We need to choose 4 of these spaces to place the crocodiles. This is a combination problem, as the order we choose the spaces doesn't matter.\n* The number of ways to choose 4 spaces out of 4 is 4C4 = 1\n\n**4. Arrange the Creatures**\n\n* **Crocodiles:** Since the crocodiles are indistinguishable, there's only 1 way to arrange them once the spaces are chosen.\n* **Other creatures:**  We need to arrange the catfish and two giant squid. There are 3! = 6 ways to arrange 3 distinct items. However, since the two squids are indistinguishable, we've overcounted. We need to divide by 2! (the ways to arrange the two squids). So there are 3!/2! = 3 ways to arrange the non-crocodiles.\n\n**5. Calculate the Total Number of Orders**\n\nMultiply the possibilities at each step:\n\n* Ways to place crocodiles: 1\n* Ways to arrange crocodiles: 1\n* Ways to arrange other creatures: 3\n\nTotal orders: 1 * 1 * 3 = **3** \n\n**Therefore, there are 3 orders in which the fisherman can catch all seven creatures without catching two crocodiles consecutively.** \n",
+  "time": 7.864365100860596,
+  "check_result": "the answer is correct. \nthe answer is 3, which matches the ground truth. \n",
+  "is_correct": true,
+  "trial": -1
+}

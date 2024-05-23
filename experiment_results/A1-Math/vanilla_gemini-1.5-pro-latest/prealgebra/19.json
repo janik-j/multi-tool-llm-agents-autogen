@@ -1,0 +1,13 @@
+{
+  "problem": "Simplify $\\frac{2m+8}{3}-\\frac{2-m}{3}$.",
+  "level": "Level 5",
+  "type": "Prealgebra",
+  "solution": "Both fractions have the same denominator, so we can subtract them: \\[\\frac{2m+8}{3}-\\frac{2-m}{3}=\\frac{(2m+8)-(2-m)}{3}\\] Distributing the negative sign across the parentheses, we get \\[\\frac{2m+8-2-(-m)}{3}=\\frac{2m+8-2+m}{3}=\\frac{3m+6}{3}\\] Notice that every number in the numerator has a common factor of 3. We can use the distributive law in reverse to get \\[\\frac{3m+6}{3}=\\frac{3(m+2)}{3}=\\frac{\\cancel{3}(m+2)}{\\cancel{3}}=\\boxed{m+2}.\\]",
+  "correct_ans": "m+2",
+  "problem_id": "19",
+  "response_with_ans": "Since the fractions have the same denominator, we can combine the numerators directly:\n\n$$\\frac{2m+8}{3}-\\frac{2-m}{3} = \\frac{(2m+8)-(2-m)}{3}$$\n\nNow, distribute the negative sign and combine like terms:\n\n$$\\frac{2m+8-2+m}{3} = \\frac{3m+6}{3}$$\n\nFinally, simplify by dividing both the numerator and denominator by their greatest common factor, 3:\n\n$$\\frac{3m+6}{3} = \\boxed{m+2}$$",
+  "time": 2.994908094406128,
+  "check_result": "the answer is \"the answer is correct.\".\n\n**explanation:**\n\n1. **answer extraction:** the reply clearly provides the answer as  \"\\boxed{m+2}\". so:\n   \"the answer is m+2\"\n\n2. **answer verification:** both the extracted answer (\"m+2\") and the ground truth answer (\"m+2\") are exactly the same.\n\n3. **response selection:** since the extracted answer matches the ground truth answer, the appropriate response is: \"the answer is correct.\" \n",
+  "is_correct": true,
+  "trial": -1
+}

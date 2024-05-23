@@ -1,0 +1,13 @@
+{
+  "problem": "Let $x$ and $y$ be real numbers.  Find the set of possible values of\n\\[\\frac{(x + y)(1 - xy)}{(1 + x^2)(1 + y^2)}.\\]",
+  "level": "Level 5",
+  "type": "Intermediate Algebra",
+  "solution": "Let $a = x + y$ and $b = 1 - xy.$  Then\n\\begin{align*}\na^2 + b^2 &= (x + y)^2 + (1 - xy)^2 \\\\\n&= x^2 + 2xy + y^2 + 1 - 2xy + x^2 y^2 \\\\\n&= 1 + x^2 + y^2 + x^2 y^2 \\\\\n&= (1 + x^2)(1 + y^2),\n\\end{align*}so\n\\[\\frac{(x + y)(1 - xy)}{(1 + x^2)(1 + y^2)} = \\frac{ab}{a^2 + b^2}.\\]By AM-GM, $a^2 + b^2 \\ge 2|ab|,$ so\n\\[\\left| \\frac{(x + y)(1 - xy)}{(1 + x^2)(1 + y^2)} \\right| = \\frac{|ab|}{a^2 + b^2} \\le \\frac{1}{2}.\\]Hence,\n\\[-\\frac{1}{2} \\le \\frac{(x + y)(1 - xy)}{(1 + x^2)(1 + y^2)} \\le \\frac{1}{2}.\\]Setting $y = 0,$ the expression becomes\n\\[\\frac{x}{1 + x^2}.\\]As $x$ varies from $-1$ to 1, $\\frac{x}{1 + x^2}$ takes on every value from $-\\frac{1}{2}$ to $\\frac{1}{2}.$  Therefore, the set of all possible values of the given expression is $\\boxed{\\left[ -\\frac{1}{2}, \\frac{1}{2} \\right]}.$",
+  "correct_ans": "\\left[ -\\frac{1}{2}, \\frac{1}{2} \\right]",
+  "problem_id": "2",
+  "response_with_ans": "By QM-AM,\n\\[\\sqrt{\\frac{x^2 + y^2}{2}} \\ge \\frac{x + y}{2},\\]so $(x + y)^2 \\le 2(x^2 + y^2).$  Then\n\\[(x - y)^2 \\ge 0 = x^2 + y^2 - 2xy,\\]so $2xy \\le x^2 + y^2.$  Hence, $(x + y)^2 \\le 2(2xy) = 4xy,$ so\n\\[(x + y)^2 (1 - xy) \\le 4xy(1 - xy).\\]Also,\n\\[(1 + x^2)(1 + y^2) = 1 + x^2 + y^2 + x^2 y^2 \\ge 1 + 2xy + x^2 y^2 = (1 + xy)^2,\\]so\n\\[\\frac{1}{(1 + x^2)(1 + y^2)} \\le \\frac{1}{(1 + xy)^2}.\\]Therefore,\n\\[\\frac{(x + y)^2 (1 - xy)}{(1 + x^2)(1 + y^2)} \\le \\frac{4xy (1 - xy)}{(1 + xy)^2} = \\frac{4xy}{(1 + xy)^2}.\\]Let $t = \\frac{2xy}{(1 + xy)^2}.$  Then\n\\[t = \\frac{2xy}{x^2 y^2 + 2xy + 1} = \\frac{2}{\\frac{1}{xy} + xy + 2}.\\]By AM-GM,\n\\[\\frac{1}{xy} + xy \\ge 2,\\]so\n\\[t = \\frac{2}{\\frac{1}{xy} + xy + 2} \\le \\frac{2}{2 + 2} = \\frac{1}{2}.\\]Equality occurs when $x = y = 1,$ so the maximum value is $\\frac{1}{2}.$\n\nAlso,\n\\[\\frac{(x + y)^2 (1 - xy)}{(1 + x^2)(1 + y^2)} = \\frac{(x + y)^2 (xy - 1)}{(1 + x^2)(1 + y^2)} \\cdot -1 \\ge -\\frac{4xy (xy - 1)}{(1 + xy)^2} = -\\frac{4xy}{(1 + xy)^2}.\\]The same argument as above shows that $-\\frac{4xy}{(1 + xy)^2} \\ge -\\frac{1}{2},$ so\n\\[\\frac{(x + y)^2 (1 - xy)}{(1 + x^2)(1 + y^2)} \\ge -\\frac{1}{2}.\\]Equality occurs when $x = y = -1,$ so the minimum value is $-\\frac{1}{2}.$\n\nThus, the set of possible values is $\\boxed{\\left[ -\\frac{1}{2}, \\frac{1}{2} \\right]}.$",
+  "time": 13.39909291267395,
+  "check_result": "the answer is $\\boxed{\\left[ -\\frac{1}{2}, \\frac{1}{2} \\right]}$.\n\nthe answer is correct. \n",
+  "is_correct": true,
+  "trial": -1
+}

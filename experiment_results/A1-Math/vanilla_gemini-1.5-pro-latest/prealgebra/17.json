@@ -1,0 +1,13 @@
+{
+  "problem": "What is the sum of the lengths, in centimeters, of the two legs of a 30-60-90 right triangle, if the length of the hypotenuse is $2\\sqrt{6}$ centimeters?",
+  "level": "Level 5",
+  "type": "Prealgebra",
+  "solution": "We know that the ratio of the lengths of the sides of a 30-60-90 triangle is $1:\\sqrt{3}:2$. We know that the length of the hypotenuse is $2\\sqrt{6}$ and the ratio of the length shortest leg to that of the hypotenuse is $1:2$. Therefore, the length of the shorter leg is $\\sqrt{6}$. Since the ratio of the shorter leg to the longer leg is $1:\\sqrt{3}$, the length of the longer leg is $\\sqrt{6} \\cdot \\sqrt{3} = 3\\sqrt{2}$. The sum of the lengths of these two legs is $\\boxed{\\sqrt{6} + 3\\sqrt{2}}$ centimeters.",
+  "correct_ans": "\\sqrt{6} + 3\\sqrt{2}",
+  "problem_id": "17",
+  "response_with_ans": "Here's how to solve the problem:\n\n* **Understanding 30-60-90 Triangles:**  The sides of a 30-60-90 triangle have a special ratio: 1:\u221a3:2. This means the:\n    * Shorter leg is opposite the 30-degree angle.\n    * Longer leg is opposite the 60-degree angle.\n    * Hypotenuse is opposite the 90-degree angle.\n\n* **Setting up the Proportion:** Since the hypotenuse is 2\u221a6, we can set up a proportion to find the lengths of the legs:\n\n   * Hypotenuse (actual) / Hypotenuse (ratio) = Leg (actual) / Leg (ratio)\n\n* **Finding the Shorter Leg:** \n   *  (2\u221a6) / 2 = Shorter Leg / 1 \n   *  \u221a6 = Shorter Leg\n\n* **Finding the Longer Leg:**\n   * (2\u221a6) / 2 = Longer Leg / \u221a3\n   * \u221a6 * \u221a3 = Longer Leg\n   * \u221a18 = Longer Leg \n   * 3\u221a2 = Longer Leg  (Simplifying the radical)\n\n* **Calculating the Sum:**\n   * Shorter Leg + Longer Leg = \u221a6 + 3\u221a2 \n\n**Therefore, the sum of the lengths of the two legs is \u221a6 + 3\u221a2 centimeters.** \n",
+  "time": 6.530844688415527,
+  "check_result": "the answer is correct. \nthe answer is extracted: \u221a6 + 3\u221a2 centimeters.\nthe problem is asking for: the sum of the lengths, in centimeters, of the two legs of a 30-60-90 right triangle, if the length of the hypotenuse is $2\\sqrt{6}$ centimeters. \n",
+  "is_correct": true,
+  "trial": -1
+}

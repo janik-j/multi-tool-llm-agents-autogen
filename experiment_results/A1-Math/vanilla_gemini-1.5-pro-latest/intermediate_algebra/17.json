@@ -1,0 +1,13 @@
+{
+  "problem": "Find the minimum value of the function\n\\[f(x) = \\sqrt{-x^2 + 4x + 21} - \\sqrt{-x^2 + 3x + 10}.\\]",
+  "level": "Level 5",
+  "type": "Intermediate Algebra",
+  "solution": "We can write the function as\n\\[f(x) = \\sqrt{(7 - x)(3 + x)} - \\sqrt{(5 - x)(2 + x)}.\\]This shows that the function is defined only for $-2 \\le x \\le 5.$  Also, $(7 - x)(3 + x) - (5 - x)(2 + x) = x + 11 > 0$ on this interval, which means that $f(x)$ is always positive.\n\nThen\n\\begin{align*}\n[f(x)]^2 &= (7 - x)(3 + x) - 2 \\sqrt{(7 - x)(3 + x)} \\sqrt{(5 - x)(2 + x)} + (5 - x)(2 + x) \\\\\n&= -2x^2 + 7x + 31 - 2 \\sqrt{(7 - x)(2 + x)(5 - x)(3 + x)} \\\\\n&= 2 + (7 - x)(2 + x) - 2 \\sqrt{(7 - x)(2 + x)} \\sqrt{(5 - x)(3 + x)} + (5 - x)(3 + x) \\\\\n&= 2 + \\left[ \\sqrt{(7 - x)(2 + x)} - \\sqrt{(5 - x)(3 + x)} \\right]^2 \\ge 2.\n\\end{align*}Therefore, $f(x) \\ge \\sqrt{2}.$\n\nEquality occurs when $(7 - x)(2 + x) = (5 - x)(3 + x),$ or $x = \\frac{1}{3}.$  We conclude that the minimum value is $\\boxed{\\sqrt{2}}.$",
+  "correct_ans": "\\sqrt{2}",
+  "problem_id": "17",
+  "response_with_ans": "We can write\n\\begin{align*}\nf(x) &= \\sqrt{-x^2 + 4x + 21} - \\sqrt{-x^2 + 3x + 10} \\\\\n&= \\sqrt{(7 - x)(x + 3)} - \\sqrt{(5 - x)(x + 2)}.\n\\end{align*}By QM-AM,\n\\[\\sqrt{\\frac{(7 - x)(x + 3) + (5 - x)(x + 2)}{2}} \\ge \\frac{\\sqrt{(7 - x)(x + 3)} + \\sqrt{(5 - x)(x + 2)}}{2}.\\]Then\n\\[\\sqrt{(7 - x)(x + 3)} + \\sqrt{(5 - x)(x + 2)} \\le \\sqrt{2[(7 - x)(x + 3) + (5 - x)(x + 2)]} = \\sqrt{-4x^2 + 28x + 82}.\\]Hence,\n\\[f(x) \\ge \\sqrt{(7 - x)(x + 3)} - \\sqrt{-4x^2 + 28x + 82}.\\]Again by QM-AM,\n\\[\\sqrt{\\frac{(7 - x)(x + 3) + (-4x^2 + 28x + 82)}{2}} \\ge \\frac{\\sqrt{(7 - x)(x + 3)} + \\sqrt{-4x^2 + 28x + 82}}{2}.\\]Then\n\\[\\sqrt{(7 - x)(x + 3)} + \\sqrt{-4x^2 + 28x + 82} \\le \\sqrt{2[(7 - x)(x + 3) + (-4x^2 + 28x + 82)]} = \\sqrt{-10x^2 + 60x + 290}.\\]Hence,\n\\[f(x) \\ge -\\sqrt{-10x^2 + 60x + 290}.\\]Completing the square in $x,$ we get\n\\[-\\sqrt{-10x^2 + 60x + 290} = -\\sqrt{-(10x^2 - 60x - 290)} = -\\sqrt{-10(x - 3)^2 + 380}.\\]The maximum value of this expression occurs when $x = 3,$ so the minimum value is $-\\sqrt{380} = \\boxed{-2 \\sqrt{95}}.$\n\nEquality occurs when $\\sqrt{(7 - x)(x + 3)} = \\sqrt{-4x^2 + 28x + 82}$ and $\\sqrt{(7 - x)(x + 3)} = -2 \\sqrt{-x^2 + 3x + 10},$ or $x = 3,$ so the minimum value is indeed $-2 \\sqrt{95}.$",
+  "time": 13.328399658203125,
+  "check_result": "the answer is incorrect. correct answer: \\sqrt{2} | answer extracted: -2 \\sqrt{95} \n",
+  "is_correct": false,
+  "trial": -1
+}

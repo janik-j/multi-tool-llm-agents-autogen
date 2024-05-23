@@ -1,0 +1,24 @@
+{
+  "problem": "Let $a_1,$ $a_2,$ $\\dots$ be a sequence of real numbers such that for all positive integers $n,$\n\\[\\sum_{k = 1}^n a_k \\left( \\frac{k}{n} \\right)^2 = 1.\\]Find the smallest $n$ such that $a_n < \\frac{1}{2018}.$",
+  "level": "Level 5",
+  "type": "Intermediate Algebra",
+  "solution": "For $n = 1,$ we get $a_1 = 1.$  Otherwise,\n\\[\\sum_{k = 1}^n k^2 a_k = n^2.\\]Also,\n\\[\\sum_{k = 1}^{n - 1} k^2 a_k = (n - 1)^2.\\]Subtracting these equations, we get\n\\[n^2 a_n = n^2 - (n - 1)^2 = 2n - 1,\\]so $a_n = \\frac{2n - 1}{n^2} = \\frac{2}{n} - \\frac{1}{n^2}.$  Note that $a_n = 1 - \\frac{n^2 - 2n + 1}{n^2} = 1 - \\left( \\frac{n - 1}{n} \\right)^2$ is a decreasing function of $n.$\n\nAlso,\n\\[a_{4035} - \\frac{1}{2018} = \\frac{2}{4035} - \\frac{1}{4035^2} - \\frac{1}{2018} = \\frac{1}{4035 \\cdot 2018} - \\frac{1}{4035^2} > 0,\\]and\n\\[a_{4036} < \\frac{2}{4036} = \\frac{1}{2018}.\\]Thus, the smallest such $n$ is $\\boxed{4036}.$",
+  "correct_ans": "4036",
+  "problem_id": "1",
+  "response_with_ans": "We will use the given equation to find a formula for $a_n$.  We can write the given equation as\n\\[\\frac{1}{n^2} \\sum_{k = 1}^n k^2 a_k = 1.\\]Then $\\sum_{k = 1}^n k^2 a_k = n^2.$  Subtracting the equation $\\sum_{k = 1}^{n - 1} k^2 a_k = (n - 1)^2$ from this equation, we get\n\\[n^2 a_n = n^2 - (n - 1)^2 = 2n - 1,\\]so $a_n = \\frac{2n - 1}{n^2}.$\n\nWe want to find the smallest $n$ such that\n\\[\\frac{2n - 1}{n^2} < \\frac{1}{2018}.\\]This inequality is equivalent to $4036n - 2018 < n^2,$ or $n^2 - 4036n + 2018 > 0.$  By the quadratic formula, the roots of $n^2 - 4036n + 2018 = 0$ are\n\\[n = \\frac{4036 \\pm \\sqrt{4036^2 - 4 \\cdot 2018}}{2} = 2018 \\pm \\sqrt{2018^2 - 2018}.\\]Since $2018^2 - 2018$ is positive, the smaller root is less than 2018, and the larger root is greater than 2018.  Thus, the inequality $n^2 - 4036n + 2018 > 0$ holds for $n$ less than the smaller root, or $n$ greater than the larger root.  Since we want the smallest such $n,$ we take $n = \\boxed{2017}.$\n\nTERMINATE",
+  "round": 0,
+  "messages": [
+    {
+      "content": "Let $a_1,$ $a_2,$ $\\dots$ be a sequence of real numbers such that for all positive integers $n,$\n\\[\\sum_{k = 1}^n a_k \\left( \\frac{k}{n} \\right)^2 = 1.\\]Find the smallest $n$ such that $a_n < \\frac{1}{2018}.$",
+      "role": "user"
+    },
+    {
+      "content": "We will use the given equation to find a formula for $a_n$.  We can write the given equation as\n\\[\\frac{1}{n^2} \\sum_{k = 1}^n k^2 a_k = 1.\\]Then $\\sum_{k = 1}^n k^2 a_k = n^2.$  Subtracting the equation $\\sum_{k = 1}^{n - 1} k^2 a_k = (n - 1)^2$ from this equation, we get\n\\[n^2 a_n = n^2 - (n - 1)^2 = 2n - 1,\\]so $a_n = \\frac{2n - 1}{n^2}.$\n\nWe want to find the smallest $n$ such that\n\\[\\frac{2n - 1}{n^2} < \\frac{1}{2018}.\\]This inequality is equivalent to $4036n - 2018 < n^2,$ or $n^2 - 4036n + 2018 > 0.$  By the quadratic formula, the roots of $n^2 - 4036n + 2018 = 0$ are\n\\[n = \\frac{4036 \\pm \\sqrt{4036^2 - 4 \\cdot 2018}}{2} = 2018 \\pm \\sqrt{2018^2 - 2018}.\\]Since $2018^2 - 2018$ is positive, the smaller root is less than 2018, and the larger root is greater than 2018.  Thus, the inequality $n^2 - 4036n + 2018 > 0$ holds for $n$ less than the smaller root, or $n$ greater than the larger root.  Since we want the smallest such $n,$ we take $n = \\boxed{2017}.$\n\nTERMINATE",
+      "role": "assistant"
+    }
+  ],
+  "time": 5.637038469314575,
+  "check_result": "the answer is incorrect. correct answer: 4036 | answer extracted: 2017. \n",
+  "is_correct": false,
+  "trial": -1
+}

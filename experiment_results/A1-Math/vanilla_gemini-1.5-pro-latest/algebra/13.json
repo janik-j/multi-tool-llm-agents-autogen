@@ -1,0 +1,13 @@
+{
+  "problem": "Let  \\[f(x) =\n\\begin{cases}\nk(x) &\\text{if }x>0, \\\\\n-\\frac1{2x}&\\text{if }x< 0\\\\\n0&\\text{if }x=0.\n\\end{cases}\n\\]Find the function $k(x)$ such that $f(x)$ is its own inverse function.",
+  "level": "Level 5",
+  "type": "Algebra",
+  "solution": "We want to have that $f(f(x))=x$ for every $x.$ If $x=0$ then $f(f(0))=f(0)=0,$ so we are fine.\n\nSince $f$ applied to any negative number returns a positive number, and we can get all positive numbers this way, applying $f$ to any positive number must give a negative number. Therefore $k(x)<0$ for any $x>0.$\n\nIf $x>0$ and $f$ is its own inverse then \\[x=f(f(x))=f(k(x))=-\\frac1{2k(x)},\\]where in the last step we used that $k(x)<0.$\n\nSolving this for $k$ gives  \\[k(x)=\\boxed{-\\frac1{2x}}.\\]",
+  "correct_ans": "-\\frac1{2x}",
+  "problem_id": "13",
+  "response_with_ans": "If $f(x)$ is its own inverse, then $f(f(x)) = x$ for all $x$ in the domain of $f$.  Let's use this property to find $k(x)$.\n\n**Case 1: ** $x > 0$\n\nSince $x > 0,$ $f(x) = k(x).$  Since we want $f(f(x)) = x,$\n\\[f(k(x)) = x.\\]Since $k(x)$ is positive,\n\\[k(k(x)) = x.\\]Let $y = k(x).$  Then $x = k(y),$ so\n\\[k(y) = k^{-1}(y)\\]for all $y > 0.$  In other words, $k(x)$ is its own inverse on the interval $(0,\\infty).$\n\n**Case 2: ** $x < 0$\n\nSince $x < 0,$ $f(x) = -\\frac{1}{2x}.$  Since we want $f(f(x)) = x,$\n\\[f \\left( -\\frac{1}{2x} \\right) = x.\\]Since $-\\frac{1}{2x}$ is positive,\n\\[k \\left( -\\frac{1}{2x} \\right) = x.\\]Let $y = -\\frac{1}{2x}.$  Then $x = -\\frac{1}{2y},$ so\n\\[k(y) = -\\frac{1}{2y}.\\]Thus, we want $k(x) = -\\frac{1}{2x}$ to hold for $x > 0$ as well.\n\nWe can check that the function\n\\[k(x) = -\\frac{1}{2x}\\]works.  For example, if $x > 0,$ then\n\\[f(f(x)) = f \\left( -\\frac{1}{2x} \\right) = -\\frac{1}{2 \\left( -\\frac{1}{2x} \\right)} = x,\\]and if $x < 0,$ then\n\\[f(f(x)) = f \\left( -\\frac{1}{2x} \\right) = -\\frac{1}{2 \\left( -\\frac{1}{2x} \\right)} = x.\\]Therefore, $k(x) = \\boxed{-\\frac{1}{2x}}.$",
+  "time": 10.899519920349121,
+  "check_result": "the answer is: $k(x) = \\boxed{-\\frac{1}{2x}}$.\n\nthe answer is correct. \n",
+  "is_correct": true,
+  "trial": -1
+}

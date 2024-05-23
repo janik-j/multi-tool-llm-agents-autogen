@@ -1,0 +1,13 @@
+{
+  "problem": "Two standard six-faced dice are rolled. Jean wins if the product of the two numbers rolled is odd or a multiple of three, otherwise Allen wins. What is the probability that Jean wins? Express your answer as a common fraction.",
+  "level": "Level 5",
+  "type": "Counting & Probability",
+  "solution": "When two dice are rolled, there are 36 total outcomes. Let's compute the probability that Allen wins. Allen wins if the product of the two numbers is even and not a multiple of 3. In other words, Allen wins if the product is 2 $(1\\cdot2, 2\\cdot1)$, 4 $(1\\cdot4, 4\\cdot1, 2\\cdot2)$, 8 $(2\\cdot4, 4\\cdot2)$, 10 $(2\\cdot5, 5\\cdot2)$, 16 $(4\\cdot4)$, or 20 $(4\\cdot5, 5\\cdot4)$. Therefore, the probability that Allen wins is $\\frac{2+3+2+2+1+2}{36}=12/36=1/3$. Then, the probability that Jean wins is $1-1/3=\\boxed{\\frac{2}{3}}$.",
+  "correct_ans": "\\frac{2}{3}",
+  "problem_id": "18",
+  "response_with_ans": "To solve this, it's easier to figure out the probability that Allen wins, then subtract from 1. \n\n* **Allen wins if the product is even and not a multiple of 3.**\n\nConsider how to get an even product that's not a multiple of 3:\n\n* One die must be even.\n* The other die must be 1 or 5 (since 2 and 4 would make the product a multiple of 3).\n\n**Let's count the possibilities (remember each die has 6 sides):**\n\n* **Die 1 is even (2, 4, or 6), Die 2 is 1 or 5:** 3 possibilities * 2 possibilities = 6 winning combinations for Allen\n* **Die 1 is 1 or 5, Die 2 is even:** 2 possibilities * 3 possibilities = 6 winning combinations for Allen\n\nThat's a total of 12 winning combinations for Allen out of 36 possible rolls (6 sides * 6 sides = 36).\n\n* **Probability of Allen winning:** 12/36 = 1/3\n\n* **Probability of Jean winning:** 1 - (1/3) = **2/3** \n",
+  "time": 5.746074914932251,
+  "check_result": "the answer is: **2/3** \n\nthe answer is correct. \n",
+  "is_correct": true,
+  "trial": -1
+}

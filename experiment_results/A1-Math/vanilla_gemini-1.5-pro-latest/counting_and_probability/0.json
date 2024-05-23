@@ -1,0 +1,13 @@
+{
+  "problem": "An envelope contains eight bills: 2 ones, 2 fives, 2 tens, and 2 twenties. Two bills are drawn at random without replacement. What is the probability that their sum is $\\$20$ or more?",
+  "level": "Level 5",
+  "type": "Counting & Probability",
+  "solution": "There are \\[\n\\binom{8}{2} = \\frac{8!}{6!\\cdot 2!} = 28\n\\]ways to choose the bills. A sum of at least $\\$20$ is obtained by choosing  both $\\$20$ bills, one of the  $\\$20$ bills and one of the six smaller bills, or both $\\$10$ bills.   Hence the probability is \\[\n\\frac{ 1 + 2\\cdot 6 + 1}{28}=\\frac{14}{28}=\\boxed{\\frac{1}{2}}.\n\\]",
+  "correct_ans": "\\frac{1}{2}",
+  "problem_id": "0",
+  "response_with_ans": "Here's how to solve this problem:\n\n**1. Calculate the total number of possible outcomes:**\n\n* You're choosing 2 bills out of 8, so the total number of combinations is \u2078C\u2082 = (8*7)/(2*1) = 28.\n\n**2. Calculate the number of successful outcomes (sum of $20 or more):**\n\nHere are the combinations that result in a sum of $20 or more:\n\n* **Ten + Ten:**  (There's only 1 way to get both tens)\n* **Ten + Twenty:** (2 ways for the ten, 2 ways for the twenty = 4 combinations)\n* **Twenty + Twenty:** (Only 1 way to get both twenties)\n\nThis gives us a total of 1 + 4 + 1 = 6 successful outcomes.\n\n**3. Calculate the probability:**\n\nProbability (Sum \u2265 $20) = (Successful Outcomes) / (Total Possible Outcomes) = 6/28 = 3/14\n\n**Therefore, the probability of drawing two bills with a sum of $20 or more is 3/14.** \n",
+  "time": 5.431321859359741,
+  "check_result": "the answer is the answer is incorrect. correct answer: \\frac{1}{2} | answer extracted: 3/14. \nexplanation:\nthe reply correctly lists the successful combinations but fails to account for the fact that the bills are drawn *without replacement*.  this means that after drawing one bill, there are only 7 left.\n\nhere's a corrected calculation:\n\n* **ten + ten:** (1/4) * (1/7) = 1/28\n* **ten + twenty:** (1/4)*(1/7) + (1/4)*(1/7) = 2/28\n* **twenty + twenty:** (1/4)*(1/7) = 1/28\n* **twenty + ten:** (1/4)*(1/7) + (1/4)*(1/7) = 2/28\n\nadding those up gives 6/28, which simplifies to 3/14. this needs to be doubled to account for the order in which the bills can be drawn (ten then twenty, or twenty then ten).\n\ntherefore, the correct probability is (3/14) * 2 = 3/7, which simplifies to 1/2. \n",
+  "is_correct": false,
+  "trial": -1
+}

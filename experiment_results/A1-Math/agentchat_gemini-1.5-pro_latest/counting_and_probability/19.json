@@ -1,0 +1,24 @@
+{
+  "problem": "Ten people are sitting around a round table.  Three of them are chosen at random to give a presentation.  What is the probability that the three chosen people were sitting in consecutive seats?",
+  "level": "Level 5",
+  "type": "Counting & Probability",
+  "solution": "Let's count as our outcomes the ways to select 3 people without regard to order.  There are $\\binom{10}{3} = 120$ ways to select any 3 people.  The number of successful outcomes is the number of ways to select 3 consecutive people.  There are only 10 ways to do this -- think of first selecting the middle person, then we take his or her two neighbors.  Therefore, the probability is $\\frac{10}{120} = \\boxed{\\frac{1}{12}}$.",
+  "correct_ans": "\\frac{1}{12}",
+  "problem_id": "19",
+  "response_with_ans": "Here's how we can solve this problem:\n\n**1. Calculate the total possible combinations**\n\nThe total number of ways to choose 3 people out of 10 is a combination problem (order doesn't matter). We can calculate this using the formula:\n\n\u00b9\u2070C\u2083 = (10!)/(3!7!) = 120\n\n*There are 120 total possible combinations of choosing 3 people out of 10.*\n\n**2. Calculate the number of favorable combinations**\n\nLet's visualize the table. Imagine the people are numbered 1 through 10.  \n\n*   For people 1, 2, and 3 to be sitting consecutively, they must be chosen.\n*   Similarly, groups 2, 3, and 4; 3, 4, and 5, and so on, would also be consecutive.\n\nThere are 10 such groups that would result in consecutive seating (including the group 10, 1, 2 - as it's a round table).\n\n*There are 10 favorable combinations where the three chosen people are sitting consecutively.*\n\n**3. Calculate the probability**\n\nThe probability of the three chosen people sitting consecutively is the number of favorable combinations divided by the total number of possible combinations.\n\nProbability = 10/120 = 1/12\n\n**Therefore, the probability that the three chosen people were sitting in consecutive seats is 1/12.** \nTERMINATE",
+  "round": 0,
+  "messages": [
+    {
+      "content": "Ten people are sitting around a round table.  Three of them are chosen at random to give a presentation.  What is the probability that the three chosen people were sitting in consecutive seats?",
+      "role": "user"
+    },
+    {
+      "content": "Here's how we can solve this problem:\n\n**1. Calculate the total possible combinations**\n\nThe total number of ways to choose 3 people out of 10 is a combination problem (order doesn't matter). We can calculate this using the formula:\n\n\u00b9\u2070C\u2083 = (10!)/(3!7!) = 120\n\n*There are 120 total possible combinations of choosing 3 people out of 10.*\n\n**2. Calculate the number of favorable combinations**\n\nLet's visualize the table. Imagine the people are numbered 1 through 10.  \n\n*   For people 1, 2, and 3 to be sitting consecutively, they must be chosen.\n*   Similarly, groups 2, 3, and 4; 3, 4, and 5, and so on, would also be consecutive.\n\nThere are 10 such groups that would result in consecutive seating (including the group 10, 1, 2 - as it's a round table).\n\n*There are 10 favorable combinations where the three chosen people are sitting consecutively.*\n\n**3. Calculate the probability**\n\nThe probability of the three chosen people sitting consecutively is the number of favorable combinations divided by the total number of possible combinations.\n\nProbability = 10/120 = 1/12\n\n**Therefore, the probability that the three chosen people were sitting in consecutive seats is 1/12.** \nTERMINATE",
+      "role": "assistant"
+    }
+  ],
+  "time": 8.734999179840088,
+  "check_result": "the answer is extracted: 1/12.\nthe answer is correct. \n",
+  "is_correct": true,
+  "trial": -1
+}

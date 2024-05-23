@@ -1,0 +1,13 @@
+{
+  "problem": "Bekah has exactly three brass house number digits: 2, 3 and 5. How many distinct numbers can she form using one or more of the digits?",
+  "level": "Level 5",
+  "type": "Prealgebra",
+  "solution": "If Bekah uses only one digit, she can form three numbers. If she uses two digits, she has three choices for the tens place and two for the units, so she can form six numbers. Finally, if Bekah uses all three digits, she has three choices for the hundreds place, two for the tens, and one for the units, so she can form six numbers. Thus, Bekah can form $3 + 6 + 6 = \\boxed{15}$ distinct numbers.",
+  "correct_ans": "15",
+  "problem_id": "11",
+  "response_with_ans": "Here's how to solve this:\n\n* **One-digit numbers:** She can form 3 different numbers (2, 3, and 5).\n\n* **Two-digit numbers:** She has 3 choices for the first digit and 3 choices for the second digit, giving her 3*3 = 9 different numbers.\n\n* **Three-digit numbers:**  She has 3 choices for the first digit, 3 for the second, and 3 for the third, giving her 3*3*3 = 27 different numbers.\n\nIn total, Bekah can form 3 + 9 + 27 = **39** distinct numbers. \n",
+  "time": 3.465545415878296,
+  "check_result": "the answer is the answer is incorrect. correct answer: 15 | answer extracted: 39. \n\nthe problem asks for distinct numbers. the reply correctly calculates the number of permutations for each digit length but fails to account for repetitions when the digits to choose from include duplicates. \n",
+  "is_correct": false,
+  "trial": -1
+}

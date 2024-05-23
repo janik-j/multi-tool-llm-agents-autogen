@@ -1,0 +1,13 @@
+{
+  "problem": "Suppose $a$ and $b$ are positive real numbers with $a > b$ and $ab = 8.$  Find the minimum value of $\\frac{a^2 + b^2}{a - b}.$",
+  "level": "Level 5",
+  "type": "Intermediate Algebra",
+  "solution": "We can write\n\\[\\frac{a^2 + b^2}{a - b} = \\frac{a^2 + b^2 - 2ab + 16}{a - b} = \\frac{(a - b)^2 + 16}{a - b} = a - b + \\frac{16}{a - b}.\\]By AM-GM,\n\\[a - b + \\frac{16}{a - b} \\ge 2 \\sqrt{(a - b) \\cdot \\frac{16}{a - b}} = 8.\\]Equality occurs when $a - b = 4$ and $ab = 8.$  We can solve these equations to find $a = 2 \\sqrt{3} + 2$ and $b = 2 \\sqrt{3} - 2.$  Thus, the minimum value is $\\boxed{8}.$",
+  "correct_ans": "8",
+  "problem_id": "4",
+  "response_with_ans": "By QM-AM,\n\\[\\sqrt{\\frac{a^2 + b^2}{2}} \\ge \\frac{a + b}{2}.\\]Then $a^2 + b^2 \\ge \\frac{(a + b)^2}{2},$ so\n\\[\\frac{a^2 + b^2}{a - b} \\ge \\frac{(a + b)^2}{2(a - b)}.\\]We can write\n\\begin{align*}\n\\frac{(a + b)^2}{2(a - b)} &= \\frac{a^2 + 2ab + b^2}{2(a - b)} \\\\\n&= \\frac{a^2 - 2ab + b^2 + 4ab}{2(a - b)} \\\\\n&= \\frac{(a - b)^2}{2(a - b)} + \\frac{4ab}{2(a - b)} \\\\\n&= \\frac{a - b}{2} + \\frac{16}{a - b}.\n\\end{align*}By AM-GM,\n\\[\\frac{a - b}{2} + \\frac{16}{a - b} \\ge 2 \\sqrt{\\frac{a - b}{2} \\cdot \\frac{16}{a - b}} = 8.\\]Equality occurs when $a = 2 \\sqrt{2}$ and $b = \\sqrt{2},$ so the minimum value is $\\boxed{8}.$",
+  "time": 6.753130674362183,
+  "check_result": "the answer is correct. the answer is extracted as: \"the minimum value is $\\boxed{8}.$\" this matches the ground truth answer. \n",
+  "is_correct": true,
+  "trial": -1
+}

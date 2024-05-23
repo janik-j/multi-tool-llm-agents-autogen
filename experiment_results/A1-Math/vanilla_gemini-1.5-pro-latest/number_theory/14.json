@@ -1,0 +1,13 @@
+{
+  "problem": "What is the sum of the smallest and second-smallest positive integers $a$ satisfying the congruence $$27a\\equiv 17 \\pmod{40}~?$$",
+  "level": "Level 5",
+  "type": "Number Theory",
+  "solution": "Note that $27$ and $40$ are relatively prime, so $27$ has an inverse $\\pmod{40}$. Conveniently, the inverse of $27\\pmod{40}$ is easily found to be $3$, as we have $27\\cdot 3 = 81\\equiv 1\\pmod{40}$.\n\nTo solve the congruence $27a\\equiv 17\\pmod{40}$, we multiply both sides by $3$ and simplify: \\begin{align*}\n3\\cdot 27a &\\equiv 3\\cdot 17 \\pmod{40} \\\\\na &\\equiv 51 \\pmod{40} \\\\\na &\\equiv 11 \\pmod{40}\n\\end{align*}Each operation in this sequence is reversible, so the solution set is exactly the set of integers congruent to $11\\pmod{40}$. The smallest and second-smallest positive solutions are $11$ and $51$. Their sum is $\\boxed{62}$.",
+  "correct_ans": "62",
+  "problem_id": "14",
+  "response_with_ans": "First, we find the greatest common divisor of 27 and 40.  Since 27 is a factor of 81 and 40 is a factor of 80, the greatest common divisor of 27 and 40 is a factor of $81-80=1$.  Therefore, the greatest common divisor of 27 and 40 is 1, which means that 27 and 40 are relatively prime.\n\nBecause 27 and 40 are relatively prime, there exists an integer $b$ such that $27b\\equiv 1 \\pmod{40}$.  Multiplying both sides of the given congruence by $b$, we get $$a\\equiv 17b\\pmod{40}.$$To find $b$, we can note that $27 \\cdot 3 = 81 \\equiv 1 \\pmod{40},$ so $b = 3.$  Therefore, $$a\\equiv 17\\cdot 3 \\equiv \\boxed{11} \\pmod{40}.$$ The smallest two positive integers satisfying this congruence are 11 and 51, and their sum is $11+51=\\boxed{62}$.",
+  "time": 5.773414373397827,
+  "check_result": "the answer is correct. \n\nthe answer is extracted from the line \"their sum is $11+51=\\boxed{62}$\". the problem is asking for the sum of the two smallest integers satisfying the modulus equation, and both the reply and the ground truth answer agree that it is 62. \n",
+  "is_correct": true,
+  "trial": -1
+}

@@ -1,0 +1,24 @@
+{
+  "problem": "Find all values of $k,$ for which there exists a nonzero vector $\\mathbf{v}$ such that\n\\[\\begin{pmatrix} 2 & -2 & 1 \\\\ 2 & -3 & 2 \\\\ -1 & 2 & 0 \\end{pmatrix} \\mathbf{v} = k \\mathbf{v}.\\]",
+  "level": "Level 5",
+  "type": "Precalculus",
+  "solution": "We can write the equation as\n\\[\\begin{pmatrix} 2 & -2 & 1 \\\\ 2 & -3 & 2 \\\\ -1 & 2 & 0 \\end{pmatrix} \\mathbf{v} = k \\mathbf{I} \\mathbf{v} = \\begin{pmatrix} k & 0 & 0 \\\\ 0 & k & 0 \\\\ 0 & 0 & k \\end{pmatrix} \\mathbf{v}.\\]Then\n\\[\\begin{pmatrix} 2 - k & -2 & 1 \\\\ 2 & -3 - k & 2 \\\\ -1 & 2 & -k \\end{pmatrix} \\mathbf{v} = \\mathbf{0}.\\]This equation has a nonzero vector $\\mathbf{v}$ as a solution if and only if\n\\[\\begin{vmatrix} 2 - k & -2 & 1 \\\\ 2 & -3 - k & 2 \\\\ -1 & 2 & -k \\end{vmatrix} = 0.\\]Expanding this determinant, we get\n\\begin{align*}\n\\begin{vmatrix} 2 - k & -2 & 1 \\\\ 2 & -3 - k & 2 \\\\ -1 & 2 & -k \\end{vmatrix} &= (2 - k) \\begin{vmatrix} -3 - k & 2 \\\\ 2 & -k \\end{vmatrix} - (-2) \\begin{vmatrix} 2 & 2 \\\\ -1 & -k \\end{vmatrix} + \\begin{vmatrix} 2 & -3 - k \\\\ -1 & 2 \\end{vmatrix} \\\\\n&= (2 - k)((-3 - k)(-k) - (2)(2)) -(-2) ((2)(-k) - (2)(-1)) + ((2)(2) - (-3 - k)(-1)) \\\\\n&= -k^3 - k^2 + 5k - 3.\n\\end{align*}Thus, $k^3 + k^2 - 5k + 3 = 0.$  This equation factors as $(k - 1)^2 (k + 3) = 0,$ so the possible values of $k$ are $\\boxed{1, -3}.$\n\nNote that for $k = 1,$ we can take $\\mathbf{v} = \\begin{pmatrix} -1 \\\\ 0 \\\\ 1 \\end{pmatrix},$ and for $k = -3,$ we can take $\\mathbf{v} = \\begin{pmatrix} -1 \\\\ -2 \\\\ 1 \\end{pmatrix}.$",
+  "correct_ans": "1, -3",
+  "problem_id": "15",
+  "response_with_ans": "The equation\n\\[\\begin{pmatrix} 2 & -2 & 1 \\\\ 2 & -3 & 2 \\\\ -1 & 2 & 0 \\end{pmatrix} \\mathbf{v} = k \\mathbf{v}\\]means that $\\mathbf{v}$ is an eigenvector of the matrix\n\\[\\begin{pmatrix} 2 & -2 & 1 \\\\ 2 & -3 & 2 \\\\ -1 & 2 & 0 \\end{pmatrix}\\]with eigenvalue $k.$  Thus, we want to find the eigenvalues of this matrix.\n\nTo find the eigenvalues, we solve the equation\n\\[\\det \\begin{pmatrix} 2 - k & -2 & 1 \\\\ 2 & -3 - k & 2 \\\\ -1 & 2 & -k \\end{pmatrix} = 0.\\]Expanding, we get\n\\[(2 - k)((-3 - k)(-k) - 4) + 2(2k - 2) + 1(4 + 2(-3 - k)) = 0.\\]This simplifies to $k^3 + k^2 - 5k - 3 = 0.$  We can factor this as $(k + 1)(k^2 - 5) = 0,$ so $k = -1$ or $k = \\pm \\sqrt{5}.$  Thus, the possible values of $k$ are $\\boxed{-1, -\\sqrt{5}, \\sqrt{5}}.$\n\nTERMINATE\n",
+  "round": 0,
+  "messages": [
+    {
+      "content": "Find all values of $k,$ for which there exists a nonzero vector $\\mathbf{v}$ such that\n\\[\\begin{pmatrix} 2 & -2 & 1 \\\\ 2 & -3 & 2 \\\\ -1 & 2 & 0 \\end{pmatrix} \\mathbf{v} = k \\mathbf{v}.\\]",
+      "role": "user"
+    },
+    {
+      "content": "The equation\n\\[\\begin{pmatrix} 2 & -2 & 1 \\\\ 2 & -3 & 2 \\\\ -1 & 2 & 0 \\end{pmatrix} \\mathbf{v} = k \\mathbf{v}\\]means that $\\mathbf{v}$ is an eigenvector of the matrix\n\\[\\begin{pmatrix} 2 & -2 & 1 \\\\ 2 & -3 & 2 \\\\ -1 & 2 & 0 \\end{pmatrix}\\]with eigenvalue $k.$  Thus, we want to find the eigenvalues of this matrix.\n\nTo find the eigenvalues, we solve the equation\n\\[\\det \\begin{pmatrix} 2 - k & -2 & 1 \\\\ 2 & -3 - k & 2 \\\\ -1 & 2 & -k \\end{pmatrix} = 0.\\]Expanding, we get\n\\[(2 - k)((-3 - k)(-k) - 4) + 2(2k - 2) + 1(4 + 2(-3 - k)) = 0.\\]This simplifies to $k^3 + k^2 - 5k - 3 = 0.$  We can factor this as $(k + 1)(k^2 - 5) = 0,$ so $k = -1$ or $k = \\pm \\sqrt{5}.$  Thus, the possible values of $k$ are $\\boxed{-1, -\\sqrt{5}, \\sqrt{5}}.$\n\nTERMINATE\n",
+      "role": "assistant"
+    }
+  ],
+  "time": 5.016756057739258,
+  "check_result": "the answer is incorrect. correct answer: 1, -3 | answer extracted: -1, -sqrt(5), sqrt(5). \n",
+  "is_correct": false,
+  "trial": -1
+}

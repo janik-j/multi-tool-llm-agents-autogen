@@ -1,0 +1,24 @@
+{
+  "problem": "How many integers $n$ satisfy both of the inequalities $4n + 3 < 25$ and $-7n + 5 < 24$?",
+  "level": "Level 5",
+  "type": "Prealgebra",
+  "solution": "Subtract 3 and divide by 4 on both sides of the first inequality to obtain \\begin{align*}\n4n + 3 &< 25 \\\\\n\\Rightarrow\\qquad 4n &< 22 \\\\\n\\Rightarrow\\qquad n &< 5.5.\n\\end{align*}Similarly, the second inequality yields \\begin{align*}\n-7n + 5 &< 24 \\\\\n\\Rightarrow\\qquad -7n &< 19 \\\\\n\\Rightarrow\\qquad n &> -\\frac{19}{7}.\n\\end{align*}Therefore, we are looking for all the integers between $-\\frac{19}{7}$ and $5.5$. Since $-\\frac{19}{7}$ is between $-3$ and $-2$ and the largest integer less than $5.5$ is 5, we need to count the number of integers between $-2$ and $5$, inclusive. There are $5$ positive integers, $2$ negative integers, and zero, so there are $\\boxed{8}$ integers that satisfy both $4n + 3 < 25$ and $-7n + 5 < 24$.",
+  "correct_ans": "8",
+  "problem_id": "10",
+  "response_with_ans": "Here's how we can solve this problem:\n\n**1. Solve each inequality separately:**\n\n* **Inequality 1:**  4n + 3 < 25\n   1. Subtract 3 from both sides: 4n < 22\n   2. Divide both sides by 4: n < 5.5\n\n* **Inequality 2:** -7n + 5 < 24\n   1. Subtract 5 from both sides: -7n < 19\n   2. Divide both sides by -7 (and remember to flip the inequality sign when dividing by a negative number): n > -2.71 (approximately)\n\n**2. Combine the solutions:**\n\nWe need values of 'n' that satisfy BOTH inequalities. \n\n*  n < 5.5 means 'n' can be any number less than 5.5.\n*  n > -2.71 means 'n' can be any number greater than -2.71.\n\nCombining these, 'n' must be a number between -2.71 and 5.5. \n\n**3.  Find the integers within the solution range:**\n\nSince 'n' must be an integer, the integers that satisfy both inequalities are: -2, -1, 0, 1, 2, 3, 4, and 5.\n\n**Answer:** There are **8** integers that satisfy both inequalities. \nTERMINATE\n",
+  "round": 0,
+  "messages": [
+    {
+      "content": "How many integers $n$ satisfy both of the inequalities $4n + 3 < 25$ and $-7n + 5 < 24$?",
+      "role": "user"
+    },
+    {
+      "content": "Here's how we can solve this problem:\n\n**1. Solve each inequality separately:**\n\n* **Inequality 1:**  4n + 3 < 25\n   1. Subtract 3 from both sides: 4n < 22\n   2. Divide both sides by 4: n < 5.5\n\n* **Inequality 2:** -7n + 5 < 24\n   1. Subtract 5 from both sides: -7n < 19\n   2. Divide both sides by -7 (and remember to flip the inequality sign when dividing by a negative number): n > -2.71 (approximately)\n\n**2. Combine the solutions:**\n\nWe need values of 'n' that satisfy BOTH inequalities. \n\n*  n < 5.5 means 'n' can be any number less than 5.5.\n*  n > -2.71 means 'n' can be any number greater than -2.71.\n\nCombining these, 'n' must be a number between -2.71 and 5.5. \n\n**3.  Find the integers within the solution range:**\n\nSince 'n' must be an integer, the integers that satisfy both inequalities are: -2, -1, 0, 1, 2, 3, 4, and 5.\n\n**Answer:** There are **8** integers that satisfy both inequalities. \nTERMINATE\n",
+      "role": "assistant"
+    }
+  ],
+  "time": 8.358264923095703,
+  "check_result": "the answer is: **8**.\n\nthe answer is correct. \n",
+  "is_correct": true,
+  "trial": -1
+}

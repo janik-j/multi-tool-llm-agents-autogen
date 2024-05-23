@@ -1,0 +1,13 @@
+{
+  "problem": "How many positive and negative integers is $12$ a multiple of?",
+  "level": "Level 5",
+  "type": "Prealgebra",
+  "solution": "The number $12$ is a multiple of $-12, -6, -4, -3, -2, -1, 1, 2, 3, 4, 6,$ and $12,$ for a total of $\\boxed{12}$ integers.",
+  "correct_ans": "12",
+  "problem_id": "1",
+  "response_with_ans": "Here's how to think about this:\n\n* **Positive Factors:** The positive factors of 12 are 1, 2, 3, 4, 6, and 12. There are **6** of them.\n\n* **Negative Factors:** For every positive factor, there's a corresponding negative factor.  So, the negative factors of 12 are -1, -2, -3, -4, -6, and -12.  There are also **6** of these.\n\n**Total:** In total, there are 6 + 6 = **12** positive and negative integers that 12 is a multiple of. \n",
+  "time": 3.461881160736084,
+  "check_result": "the answer is \"the answer is correct.\"\n\n**explanation:**\n\n1. **answer extraction:** the reply clearly states \"in total, there are 6 + 6 = **12** positive and negative integers that 12 is a multiple of.\" so, the extracted answer is **12**.\n\n2. **answer verification:** the ground truth answer is also **12**. \n\n3. **conclusion:** since the extracted answer and the ground truth answer are the same, the answer is correct. \n",
+  "is_correct": true,
+  "trial": -1
+}

@@ -1,0 +1,24 @@
+{
+  "problem": "Find all numbers $a$ for which the graph of $y=x^2+a$ and the graph of $y=ax$ intersect. Express your answer in interval notation.",
+  "level": "Level 5",
+  "type": "Algebra",
+  "solution": "If these two graphs intersect then the points of intersection occur when  \\[x^2+a=ax,\\] or  \\[x^2-ax+a=0.\\] This quadratic has solutions exactly when the discriminant is nonnegative: \\[(-a)^2-4\\cdot1\\cdot a\\geq0.\\] This simplifies to  \\[a(a-4)\\geq0.\\] This quadratic (in $a$) is nonnegative when $a$ and $a-4$ are either both $\\ge 0$ or both $\\le 0$. This is true for $a$ in $$(-\\infty,0]\\cup[4,\\infty).$$ Therefore the line and quadratic intersect exactly when $a$ is in $\\boxed{(-\\infty,0]\\cup[4,\\infty)}$.",
+  "correct_ans": "(-\\infty,0]\\cup[4,\\infty)",
+  "problem_id": "6",
+  "response_with_ans": "Here's how to solve the problem:\n\n**1. Set up the equation**\n\nFor the graphs to intersect, the y-values must be equal at that point.  Therefore, we can set the two equations equal to each other:\n\n  $x^2 + a = ax$\n\n**2. Rearrange into a quadratic equation**\n\nSubtract $ax$ from both sides to get a standard quadratic equation:\n\n  $x^2 - ax + a = 0$\n\n**3.  Apply the discriminant**\n\nFor the graphs to intersect, this quadratic equation must have at least one real solution. This means the discriminant (the part under the square root in the quadratic formula) must be greater than or equal to zero.\n\nThe discriminant is: $b^2 - 4ac$\n\nIn our equation:\n* a = 1\n* b = -a\n* c = a\n\nSubstitute these values into the discriminant:\n\n  $(-a)^2 - 4(1)(a) \\ge 0$\n\n**4. Solve the inequality**\n\nSimplify and solve the inequality:\n\n  $a^2 - 4a \\ge 0$\n\n  $a(a - 4) \\ge 0$\n\nThis inequality holds true when:\n*  $a \\le 0$  or \n*  $a \\ge 4$\n\n**Answer:**\n\nThe graphs intersect when $a$ is in the interval **(-\u221e, 0] U [4, \u221e)**. \nTERMINATE",
+  "round": 0,
+  "messages": [
+    {
+      "content": "Find all numbers $a$ for which the graph of $y=x^2+a$ and the graph of $y=ax$ intersect. Express your answer in interval notation.",
+      "role": "user"
+    },
+    {
+      "content": "Here's how to solve the problem:\n\n**1. Set up the equation**\n\nFor the graphs to intersect, the y-values must be equal at that point.  Therefore, we can set the two equations equal to each other:\n\n  $x^2 + a = ax$\n\n**2. Rearrange into a quadratic equation**\n\nSubtract $ax$ from both sides to get a standard quadratic equation:\n\n  $x^2 - ax + a = 0$\n\n**3.  Apply the discriminant**\n\nFor the graphs to intersect, this quadratic equation must have at least one real solution. This means the discriminant (the part under the square root in the quadratic formula) must be greater than or equal to zero.\n\nThe discriminant is: $b^2 - 4ac$\n\nIn our equation:\n* a = 1\n* b = -a\n* c = a\n\nSubstitute these values into the discriminant:\n\n  $(-a)^2 - 4(1)(a) \\ge 0$\n\n**4. Solve the inequality**\n\nSimplify and solve the inequality:\n\n  $a^2 - 4a \\ge 0$\n\n  $a(a - 4) \\ge 0$\n\nThis inequality holds true when:\n*  $a \\le 0$  or \n*  $a \\ge 4$\n\n**Answer:**\n\nThe graphs intersect when $a$ is in the interval **(-\u221e, 0] U [4, \u221e)**. \nTERMINATE",
+      "role": "assistant"
+    }
+  ],
+  "time": 8.790333986282349,
+  "check_result": "the answer is: (-\u221e, 0] u [4, \u221e)\nthe answer is correct. \n",
+  "is_correct": true,
+  "trial": -1
+}

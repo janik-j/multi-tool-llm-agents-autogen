@@ -1,0 +1,24 @@
+{
+  "problem": "Simplify $\\frac{2m+8}{3}-\\frac{2-m}{3}$.",
+  "level": "Level 5",
+  "type": "Prealgebra",
+  "solution": "Both fractions have the same denominator, so we can subtract them: \\[\\frac{2m+8}{3}-\\frac{2-m}{3}=\\frac{(2m+8)-(2-m)}{3}\\] Distributing the negative sign across the parentheses, we get \\[\\frac{2m+8-2-(-m)}{3}=\\frac{2m+8-2+m}{3}=\\frac{3m+6}{3}\\] Notice that every number in the numerator has a common factor of 3. We can use the distributive law in reverse to get \\[\\frac{3m+6}{3}=\\frac{3(m+2)}{3}=\\frac{\\cancel{3}(m+2)}{\\cancel{3}}=\\boxed{m+2}.\\]",
+  "correct_ans": "m+2",
+  "problem_id": "19",
+  "response_with_ans": "Here's how to simplify the expression:\n\n**1. Combine the numerators:**\n\nSince the fractions have the same denominator, we can combine the numerators directly:\n\n```\n(2m + 8 - (2 - m)) / 3 \n```\n\n**2. Simplify the numerator:**\n\nDistribute the negative sign and combine like terms:\n\n```\n(2m + 8 - 2 + m) / 3\n(3m + 6) / 3\n```\n\n**3. Factor out a 3 from the numerator:**\n\n```\n3(m + 2) / 3\n```\n\n**4. Cancel the common factor:**\n\nCancel the common factor of 3 in the numerator and denominator:\n\n```\nm + 2 \n```\n\nTherefore, the simplified expression is **m + 2**. \nTERMINATE",
+  "round": 0,
+  "messages": [
+    {
+      "content": "Simplify $\\frac{2m+8}{3}-\\frac{2-m}{3}$.",
+      "role": "user"
+    },
+    {
+      "content": "Here's how to simplify the expression:\n\n**1. Combine the numerators:**\n\nSince the fractions have the same denominator, we can combine the numerators directly:\n\n```\n(2m + 8 - (2 - m)) / 3 \n```\n\n**2. Simplify the numerator:**\n\nDistribute the negative sign and combine like terms:\n\n```\n(2m + 8 - 2 + m) / 3\n(3m + 6) / 3\n```\n\n**3. Factor out a 3 from the numerator:**\n\n```\n3(m + 2) / 3\n```\n\n**4. Cancel the common factor:**\n\nCancel the common factor of 3 in the numerator and denominator:\n\n```\nm + 2 \n```\n\nTherefore, the simplified expression is **m + 2**. \nTERMINATE",
+      "role": "assistant"
+    }
+  ],
+  "time": 6.412104606628418,
+  "check_result": "the answer is **m + 2**. \n\nthe answer is correct. \n",
+  "is_correct": true,
+  "trial": -1
+}

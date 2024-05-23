@@ -1,0 +1,13 @@
+{
+  "problem": "An equilateral triangle has a side of length 12 inches. What is the area of the triangle, in square inches? Express your answer in simplest radical form.",
+  "level": "Level 5",
+  "type": "Prealgebra",
+  "solution": "The area of an equilateral triangle with side length $s$ is $s^2\\sqrt{3}/4$. We have $s = 12$, so our area is $12^2\\sqrt{3}/4 = \\boxed{36\\sqrt{3}}$.",
+  "correct_ans": "36\\sqrt{3}",
+  "problem_id": "18",
+  "response_with_ans": "Here's how to find the area of an equilateral triangle:\n\n**1. Understand the Formula**\n\nThe area of a triangle is given by:\n\n   Area = (1/2) * base * height\n\n**2. Find the Height**\n\n* Draw an altitude (height) from one vertex of the triangle to the midpoint of the opposite side. This altitude bisects the base and creates two 30-60-90 right triangles. \n* The short leg of each 30-60-90 triangle is half the length of the base (12 inches / 2 = 6 inches).\n* The long leg of a 30-60-90 triangle is \u221a3 times the short leg. Therefore, the height (the long leg in this case) is 6\u221a3 inches.\n\n**3. Calculate the Area**\n\n* Base = 12 inches\n* Height = 6\u221a3 inches\n\nArea = (1/2) * 12 inches * 6\u221a3 inches \n      = 36\u221a3 square inches\n\n**Answer:** The area of the equilateral triangle is **36\u221a3 square inches**. \n",
+  "time": 5.451015949249268,
+  "check_result": "the answer is **36\u221a3 square inches**. \n\nlet's compare:\n\nthe problem asks for the area of the triangle in simplest radical form.\n\nthe extracted answer and the ground truth answer are both **36\u221a3** .\n\nthus, both answers are in the same format and have the same value.\n\ntherefore, the answer is: **the answer is correct.** \n",
+  "is_correct": true,
+  "trial": -1
+}

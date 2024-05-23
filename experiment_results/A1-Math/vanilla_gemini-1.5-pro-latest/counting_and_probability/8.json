@@ -1,0 +1,13 @@
+{
+  "problem": "While staying in a 15-story hotel, Polya plays the following game. She enters an elevator on the $6^{\\mathrm{th}}$ floor. She flips a fair coin five times to determine her next five stops. Each time she flips heads, she goes up one floor. Each time she flips tails, she goes down one floor. What is the probability that each of her next five stops is on the $7^{\\mathrm{th}}$ floor or higher? Express your answer as a common fraction.",
+  "level": "Level 5",
+  "type": "Counting & Probability",
+  "solution": "If Polya is never to visit the sixth floor after she begins, we know that her first stop is at the seventh floor. Moreover, her second stop must be at the eighth floor. She has three moves left, and the only way she can ever visit the 6th floor from the 8th floor in three remaining moves is to go down in both of the following two steps. The probability of getting to the eighth step in two moves is $\\frac{1}{2^2} = \\frac{1}{4}$. And the probability of not going downward in the next two steps is $1- \\frac{1}{4} = \\frac{3}{4}$. So the overall probability of never hitting the sixth floor after the beginning is $\\frac{1}{4} \\cdot \\frac{3}{4} = \\boxed{\\frac{3}{16}}.$",
+  "correct_ans": "\\frac{3}{16}",
+  "problem_id": "8",
+  "response_with_ans": "In order for Polya to never go below the 7th floor, she needs to get at least one heads in her first two flips (otherwise she'll be on the 4th floor).  Let's look at the cases:\n\n* **Case 1: Heads, then Tails**\n\nIf her first flip is heads and her second is tails, she's back to the 6th floor. In order to stay above the 7th floor for the remaining flips, she needs all three to be heads. The probability of this sequence (HT HHH) is $\\left(\\frac{1}{2}\\right)^5 = \\frac{1}{32}$.\n\n* **Case 2: Tails, then Heads**\n\nThis is the same situation as the previous case, just in reverse! The probability of this sequence (TH HHH) is also $\\frac{1}{32}$.\n\n* **Case 3: Heads, then Heads**\n\nIf her first two flips are heads, she's guaranteed to stay above the 7th floor no matter what the remaining flips are. The probability of starting with two heads (HH...) is $\\left(\\frac{1}{2}\\right)^2 = \\frac{1}{4}$, and since any sequence of tails and heads will work for the remaining flips, we multiply this probability by 1 (representing 100% certainty).\n\nNow we add the probabilities of each case to find the total probability:\n\n$\\frac{1}{32} + \\frac{1}{32} + \\frac{1}{4} = \\boxed{\\frac{5}{16}}$",
+  "time": 7.509944438934326,
+  "check_result": "the answer is incorrect. correct answer: \\frac{3}{16} | answer extracted: \\boxed{\\frac{5}{16}} \n",
+  "is_correct": false,
+  "trial": -1
+}

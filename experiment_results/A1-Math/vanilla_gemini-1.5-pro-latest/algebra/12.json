@@ -1,0 +1,13 @@
+{
+  "problem": "The line $l$ passes through the midpoint of $(1,2)$ and $(19,4)$.  Also, line $l$ is perpendicular to the line passing through $(0,7)$ and $(4,-3)$. What is the $y$-coordinate of the point on $l$ whose $x$-coordinate is $20$?",
+  "level": "Level 5",
+  "type": "Algebra",
+  "solution": "The midpoint of the points $(1,2)$ and $(19,4)$ is $\\left(\\frac{1+19}{2},\\frac{2+4}{2}\\right)=(10,3)$, so the line $l$ passes through $(10,3)$. The slope of the line through $(0,7)$ and $(4,-3)$ is $\\frac{7-(-3)}{0-(4)}=\\frac{10}{-4}=-\\frac{5}{2}$. The line $l$ is perpendicular to this line, so its slope is the negative reciprocal of $-\\frac{5}{2}$, which is $\\frac{2}{5}$.\n\nWe have the slope of the line and a point on the line, so we can find the equation of line $l$ in point-slope form: $(y-3)=\\frac{2}{5}(x-10)$. Simplifying this gives $y=\\frac{2}{5}(x-10)+3=\\frac{2}{5}x-\\frac{2}{5}(10)+3=\\frac{2}{5}x-4+3=\\frac{2}{5}x-1$. We want the value of $y$ when $x=20$, so we plug in: $y=\\frac{2}{5}(20)-1=2(4)-1=\\boxed{7}$.",
+  "correct_ans": "7",
+  "problem_id": "12",
+  "response_with_ans": "The midpoint of $(1,2)$ and $(19,4)$ is $\\left(\\frac{1+19}{2},\\frac{2+4}{2}\\right)=(10,3)$. The slope of the line passing through $(0,7)$ and $(4,-3)$ is $\\frac{-3-7}{4-0}=-\\frac{5}{2}$, so the slope of $l$ is $\\frac{2}{5}$.  Thus, the equation of $l$ is of the form \\[y-3=\\frac{2}{5}(x-10).\\]Setting $x=20$, we find $y-3=\\frac{2}{5}\\cdot 10=4$, so $y=\\boxed{7}$.",
+  "time": 3.7122890949249268,
+  "check_result": "the answer is the answer is correct. \n\nexplanation:\n1. **answer extraction:** the reply clearly states  \"y= **7**\", so the extracted answer is 7.\n2. **answer verification:** the extracted answer (7) matches the ground truth answer (7).\n3. **problem requirement:** the problem asks for the y-coordinate of a point on a line, which is a single numerical value. the provided answer is in the correct format. \n",
+  "is_correct": true,
+  "trial": -1
+}
