@@ -27,6 +27,12 @@ agent_templates = {
     "Scientist": {"name": "Scientist", "system_message": "Scientist. You follow an approved plan. You are able to categorize papers after seeing their abstracts printed. You don't write code."},
 }
 
+avatars = {
+    "tool": "https://img.icons8.com/?size=100&id=vFvrMYYJ8Ra7&format=png&color=000000",
+    "assistant": "https://cdn-icons-png.flaticon.com/512/4333/4333609.png", # hint assistant and user are switched see https://github.com/microsoft/autogen/discussions/1839
+    "user": "https://img.icons8.com/?size=100&id=GBu1KXnCZZ8j&format=png&color=000000"
+}
+
 openai_api_key = st.sidebar.text_input("OpenAI API Key")
 openai_model = st.sidebar.selectbox("OpenAI Model", ["gpt-3.5-turbo", "gpt-3.5-turbo-1106", "gpt-4"])
 config_list = [{"model": openai_model, "api_key": openai_api_key}]
@@ -65,9 +71,28 @@ with st.form("reorder_agents"):
         st.session_state.group_chat_wrapper.reorder_agents(reordered_agents)
 
 with st.form("groupchat"):
-    prompt = st.text_input('Enter your question')
     custom_speaker_selection_func = st.selectbox("Select speaker selection function", ["auto", "random", "round_robin"])
     submitted = st.form_submit_button("Ask question")
 
-    if submitted and openai_api_key.startswith("sk-"):
-        st.session_state.group_chat_wrapper.retrieve(config_list, prompt, custom_speaker_selection_func)
+if "messages" not in st.session_state:
+    st.session_state["messages"] = [{"role": "user", "content": "What do you wanna learn more about?"}]
+
+for msg in st.session_state.messages:
+    st.chat_message(msg["role"], avatar=avatars.get(msg["role"])).write(msg["content"])
+
+if prompt := st.chat_input():
+    st.session_state.messages.append({"role": "user", "content": prompt})
+    st.chat_message("user", avatar=avatars["assistant"]).write(prompt)
+
+
+    if not openai_api_key.startswith("sk-"):
+        st.warning("Please enter your OpenAI API key!", icon="⚠")
+    else:
+        result = st.session_state.group_chat_wrapper.retrieve(config_list, prompt, custom_speaker_selection_func)
+        for message in result.chat_history:
+            print(message)
+            role = message["role"]
+            content = message["content"]
+            if content:  # Skip if content is empty
+                st.session_state.messages.append({"role": role, "content": content})
+                st.chat_message(role, avatar=avatars.get(role)).write(content)

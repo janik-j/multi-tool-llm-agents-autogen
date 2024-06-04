@@ -15,7 +15,7 @@ class GroupChatWrapper(object):
             name="Admin",
             system_message="you are Admin, a human user. You will reply [TERMINATE] if task get resolved.",
             max_consecutive_auto_reply=10,
-            human_input_mode="ALWAYS",
+            human_input_mode="NEVER",
             description="Admin, a human user.",
             code_execution_config={"last_n_messages": 3, "work_dir": self.work_dir, "use_docker": True },
         )

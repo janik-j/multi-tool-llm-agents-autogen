@@ -14,7 +14,6 @@ from autogen.cache import Cache
 class FunctionCallsWrapper(object):
 
     def __init__(self, config_list: List[Dict]) -> None:
-
         self.sys_msg_tmpl = """You are a function call agent. You can use functions: `python`, `browser`
 
 1. **Step-by-Step Approach**:
@@ -67,7 +66,7 @@ Problem:
         # define functions according to the function description
         @self.user_proxy.register_for_execution()
         @self.chatbot.register_for_llm(name="browser", description="The browser tool performs web searches by opening the provided query in the default web browser using the webbrowser module. It returns a string indicating the search is being performed.")
-        def exec_browser(query: Annotated[str, "The query to search in the browser."]) -> str:
+        def exec_browser(query: str) -> str:
             """
             Search the query in the browser with the `browser` tool.
             Args:
@@ -80,14 +79,11 @@ Problem:
             webbrowser.open(url)
             return f"Searching for {query} in the browser."
         
-
-    def initiate_chat(self, question) -> ChatResult:
+    def initiate_chat(self, question: str) -> ChatResult:
         with Cache.disk() as cache:
-            # start the conversation
             return self.user_proxy.initiate_chat(
                 self.chatbot,
                 message=question,
                 cache=cache,
                 max_turns=4,
             )
-
