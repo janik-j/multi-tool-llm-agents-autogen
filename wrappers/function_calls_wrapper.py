@@ -2,18 +2,18 @@
 # https://github.com/microsoft/autogen/blob/main/notebook/agentchat_function_call.ipynb
 # https://medium.com/@kyeg/equipping-autonomous-agents-with-tools-49d146bcbf9e
 
-from typing import Any, Callable, Dict, List, Optional, Tuple, Union
-from autogen import AssistantAgent, UserProxyAgent
-from IPython import get_ipython
-from typing_extensions import Annotated
-from autogen.agentchat import ChatResult
 import os
-import autogen
+from autogen import AssistantAgent, UserProxyAgent
+from autogen.agentchat import ChatResult
 from autogen.cache import Cache
+from googleapiclient.discovery import build
+from typing import Dict, List
+
 
 class FunctionCallsWrapper(object):
+    GSEARCH_CUSTOM_SEARCH_ID: str = "15c5c6f98a3d246ca"
 
-    def __init__(self, config_list: List[Dict]) -> None:
+    def __init__(self, config_list: List[Dict], gsearch_api_key: str) -> None:
         self.sys_msg_tmpl = """You are a function call agent. You can use functions: `python`, `browser`
 
 1. **Step-by-Step Approach**:
@@ -74,10 +74,19 @@ Problem:
             Returns:
                 str: The search results.
             """
-            import webbrowser
-            url = f"https://www.google.com/search?q={query}"
-            webbrowser.open(url)
-            return f"Searching for {query} in the browser."
+            service = build("customsearch", "v1", developerKey=gsearch_api_key)
+            results = service.cse().list(
+                q=query, cx=self.GSEARCH_CUSTOM_SEARCH_ID, num=5
+            ).execute()
+            return '\n'.join([
+                f"""
+                Search result #{i}
+                Title: {result["title"]}
+                Snippet: {result["snippet"]}
+                
+                """
+                for i, result in enumerate(results["items"])
+            ])
         
     def initiate_chat(self, question: str) -> ChatResult:
         with Cache.disk() as cache:

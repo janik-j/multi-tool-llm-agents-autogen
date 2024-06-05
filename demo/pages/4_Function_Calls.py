@@ -2,11 +2,6 @@
 # pip install autogen==0.1.0 streamlit==1.32.2
 
 import streamlit as st
-from autogen import AssistantAgent, UserProxyAgent
-from autogen.cache import Cache
-from typing import List, Dict, Any
-import os
-from autogen.agentchat import ChatResult
 from wrappers import FunctionCallsWrapper
 
 # Initialize avatars
@@ -18,8 +13,9 @@ avatars = {
 
 # Streamlit application
 st.title("💬 Autogen Writing Studio")
-openai_api_key = st.sidebar.text_input("OpenAI API Key", type="password")
+openai_api_key = st.sidebar.text_input("OpenAI API Key")
 openai_model = st.sidebar.selectbox("OpenAI Model", ["gpt-3.5-turbo", "gpt-3.5-turbo-1106", "gpt-4"])
+gsearch_api_key = st.sidebar.text_input("Google Search API Key")
 config_list = [{"model": openai_model, "api_key": openai_api_key}]
 
 if "messages" not in st.session_state:
@@ -36,7 +32,7 @@ if prompt := st.chat_input():
     if not openai_api_key.startswith("sk-"):
         st.warning("Please enter your OpenAI API key!", icon="⚠")
     else:
-        function_calls_wrapper = FunctionCallsWrapper(config_list)
+        function_calls_wrapper = FunctionCallsWrapper(config_list, gsearch_api_key)
 
         result = function_calls_wrapper.initiate_chat(prompt)
 
