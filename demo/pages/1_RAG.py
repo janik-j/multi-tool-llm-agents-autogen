@@ -17,7 +17,7 @@ IOStream.set_global_default(IOStreamlit(remove_color=True))
 st.title("AutoGen Retrieval Augmented Chat")
 
 openai_api_key = st.sidebar.text_input("OpenAI API Key")
-openai_model = st.sidebar.selectbox("OpenAI Model", ["gpt-3.5-turbo", "gpt-4"])
+openai_model = st.sidebar.selectbox("OpenAI Model", ["gpt-3.5-turbo", "gpt-4", "gpt-4o"])
 
 
 with st.form("rag"):

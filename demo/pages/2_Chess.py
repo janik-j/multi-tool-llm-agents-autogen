@@ -18,7 +18,7 @@ IOStream.set_global_default(IOStreamlit())
 st.title("AutoGen Chess")
 
 openai_api_key = st.sidebar.text_input("OpenAI API Key")
-openai_model = st.sidebar.selectbox("OpenAI Model", ["gpt-3.5-turbo", "gpt-4"])
+openai_model = st.sidebar.selectbox("OpenAI Model", ["gpt-3.5-turbo", "gpt-4", "gpt-4o"])
 
 
 with st.form("chess"):

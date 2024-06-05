@@ -34,7 +34,7 @@ avatars = {
 }
 
 openai_api_key = st.sidebar.text_input("OpenAI API Key")
-openai_model = st.sidebar.selectbox("OpenAI Model", ["gpt-3.5-turbo", "gpt-3.5-turbo-1106", "gpt-4"])
+openai_model = st.sidebar.selectbox("OpenAI Model", ["gpt-3.5-turbo", "gpt-3.5-turbo-1106", "gpt-4", "gpt-4o"])
 config_list = [{"model": openai_model, "api_key": openai_api_key}]
 
 if "group_chat_wrapper" not in st.session_state:
