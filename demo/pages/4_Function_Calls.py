@@ -3,6 +3,10 @@
 
 import streamlit as st
 from wrappers import FunctionCallsWrapper
+from demo import IOStreamlit
+from autogen.io.base import IOStream
+
+IOStream.set_global_default(IOStreamlit())
 
 # Initialize avatars
 avatars = {
@@ -12,7 +16,7 @@ avatars = {
 }
 
 # Streamlit application
-st.title("💬 Autogen Writing Studio")
+st.title("Function Calls (Webbrowser) 💬")
 openai_api_key = st.sidebar.text_input("OpenAI API Key")
 openai_model = st.sidebar.selectbox("OpenAI Model", ["gpt-3.5-turbo", "gpt-3.5-turbo-1106", "gpt-4", "gpt-4o"])
 gsearch_api_key = st.sidebar.text_input("Google Search API Key")

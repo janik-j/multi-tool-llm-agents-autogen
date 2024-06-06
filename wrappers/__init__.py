@@ -5,6 +5,7 @@ from .rag_no_interaction_wrapper import RagNoInteractionWrapper
 from .rag_wrapper import RagWrapper
 from .group_chat_wrapper import GroupChatWrapper
 from .function_calls_wrapper import FunctionCallsWrapper
+from .dalle_wrapper import DalleWrapper
 
 __all__ = [
     "ChessNestedChatsWrapper",
@@ -13,5 +14,6 @@ __all__ = [
     "RagNoInteractionWrapper",
     "RagWrapper",
     "FunctionCallsWrapper",
-    "GroupChatWrapper"
+    "GroupChatWrapper",
+    "DalleWrapper",
 ]
