@@ -1,0 +1,127 @@
+--------------------
+###
+system
+###
+You are an autoregressive language model that completes user's sentences.
+--------------------
+--------------------
+###
+user
+###
+
+We have an autonomous computer control agent that can perform atomic instructions specified by natural language to control computers. There are two types of instructions it can execute. 
+
+First, given the instruction that matches the regular expression, "^type\s.{1,}$", it can type a list of characters via the keyboard. This instruction should specify the target keyboard input for the agent to type. Before this typing instruction, you should first locate the cursor by clicking the input box with click instruction.
+
+Second, given the instruction that matches the regular expression, "^clickxpath\s.{1,}$", it can click an HTML element with an xpath that is visible on the webpage. The target of this instruction should be a valid xpath.
+
+Below is the HTML code of the webpage where the agent should solve a task.
+<div id="wrap" data-wob_ref="2" data-wob_eps="e0">
+  <div id="query">Click on the link "Ac".</div>
+  <div id="area" data-wob_ref="3" data-wob_eps="e0"><span class="alink" data-wob_ref="4" data-wob_eps="e0">Volutpat.</span> Et tellus. Ut ullamcorper habitant pellentesque eget tempor. <span class="alink" data-wob_ref="5" data-wob_eps="e0">Ac</span> <span class="alink" data-wob_ref="6" data-wob_eps="e0">vitae,</span> sit etiam ac eu vestibulum phasellus in <span class="alink" data-wob_ref="7" data-wob_eps="e0">magna</span> justo.</div>
+</div>
+
+Current task: Click on the link "Ac".
+plan:
+--------------------
+--------------------
+###
+assistant
+###
+To solve the current task of clicking on the link "Ac", we can use the following plan:
+
+1. Locate the target HTML element using its xpath. The xpath for the link "Ac" is "//span[@class='alink'][text()='Ac']".
+
+2. Execute the instruction "clickxpath //span[@class='alink'][text()='Ac']" to click on the link.
+
+By following this plan, the autonomous computer control agent will be able to complete the task of clicking on the link "Ac".
+--------------------
+--------------------
+###
+user
+###
+
+
+Below is the HTML code of the webpage where the agent should solve a task.
+<div id="wrap" data-wob_ref="2" data-wob_eps="e0">
+  <div id="query">Click on the link "Ac".</div>
+  <div id="area" data-wob_ref="3" data-wob_eps="e0"><span class="alink" data-wob_ref="4" data-wob_eps="e0">Volutpat.</span> Et tellus. Ut ullamcorper habitant pellentesque eget tempor. <span class="alink" data-wob_ref="5" data-wob_eps="e0">Ac</span> <span class="alink" data-wob_ref="6" data-wob_eps="e0">vitae,</span> sit etiam ac eu vestibulum phasellus in <span class="alink" data-wob_ref="7" data-wob_eps="e0">magna</span> justo.</div>
+</div>
+
+Current task: Click on the link "Ac".
+
+
+Here is a plan you are following now.
+
+To solve the current task of clicking on the link "Ac", we can use the following plan:
+
+1. Locate the target HTML element using its xpath. The xpath for the link "Ac" is "//span[@class='alink'][text()='Ac']".
+
+2. Execute the instruction "clickxpath //span[@class='alink'][text()='Ac']" to click on the link.
+
+By following this plan, the autonomous computer control agent will be able to complete the task of clicking on the link "Ac".
+
+
+
+We have a history of instructions that have been already executed by the autonomous agent so far.
+No instruction has been executed yet.
+
+Based on the plan and the history of instructions executed so far, the first instruction should be `
+--------------------
+--------------------
+###
+assistant
+###
+type //div[@id='query']`. This instruction will locate the input box for the task and click on it.
+--------------------
+--------------------
+###
+user
+###
+Hold on, please wait for my next instruction.
+--------------------
+--------------------
+###
+assistant
+###
+Sure, I'll wait for your next instruction. Just let me know when you're ready.
+--------------------
+--------------------
+###
+user
+###
+
+
+Below is the HTML code of the webpage where the agent should solve a task.
+<div id="wrap" data-wob_ref="2" data-wob_eps="e0">
+  <div id="query">Click on the link "Ac".</div>
+  <div id="area" data-wob_ref="3" data-wob_eps="e0"><span class="alink" data-wob_ref="4" data-wob_eps="e0">Volutpat.</span> Et tellus. Ut ullamcorper habitant pellentesque eget tempor. <span class="alink" data-wob_ref="5" data-wob_eps="e0">Ac</span> <span class="alink" data-wob_ref="6" data-wob_eps="e0">vitae,</span> sit etiam ac eu vestibulum phasellus in <span class="alink" data-wob_ref="7" data-wob_eps="e0">magna</span> justo.</div>
+</div>
+
+Current task: Click on the link "Ac".
+
+
+Here is a plan you are following now.
+
+To solve the current task of clicking on the link "Ac", we can use the following plan:
+
+1. Locate the target HTML element using its xpath. The xpath for the link "Ac" is "//span[@class='alink'][text()='Ac']".
+
+2. Execute the instruction "clickxpath //span[@class='alink'][text()='Ac']" to click on the link.
+
+By following this plan, the autonomous computer control agent will be able to complete the task of clicking on the link "Ac".
+
+
+
+We have a history of instructions that have been already executed by the autonomous agent so far.
+1: type //div[@id='query']
+
+
+Based on the plan and the history of instructions executed so far, the next proper instruction should be `
+--------------------
+--------------------
+###
+assistant
+###
+clickxpath //span[@class='alink'][text()='Ac']`. This instruction will click on the link "Ac" based on the plan and the executed instruction history.
+--------------------

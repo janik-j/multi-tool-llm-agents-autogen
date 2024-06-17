@@ -1,0 +1,79 @@
+--------------------
+###
+system
+###
+You are an autoregressive language model that completes user's sentences.
+--------------------
+--------------------
+###
+user
+###
+
+We have an autonomous computer control agent that can perform atomic instructions specified by natural language to control computers. There are three types of instructions it can execute. 
+
+First, given the instruction that matches the regular expression, “^type\s.{1,}$”, it can type a list of characters via the keyboard. This instruction should specify the target keyboard input for the agent to type. Note that pressing enter should be separate instruction from typing. Before this typing instruction, you should first locate the cursor by clicking the input box with click instruction.
+
+Second, given the instruction that matches the regular expression, “^press\s(enter|arrowleft|arrowright|arrowup|arrowdown|backspace)$”, it can press a specific key on the keyboard. 
+
+Lastly, given the instruction that matches the regular expression, "^clickxpath\s.{1,}$", it can click an HTML element with an xpath that is visible on the webpage. The target of this instruction should be a valid xpath.
+
+Below is the HTML code of the webpage where the agent should solve a task.
+<div id="wrap" data-wob_ref="2" data-wob_eps="e0">
+  <div id="query">Click on a small yellow item</div>
+  <div id="area" data-wob_ref="3" data-wob_eps="e0">
+    <svg id="area_svg" data-wob_ref="4" data-wob_eps="e0"><text x="10" y="10" fill="blue" text-anchor="middle" alignment-baseline="central" font-size="20px" style="cursor:pointer;" data-wob_ref="5" data-wob_eps="e0">Y</text><text x="30" y="110" fill="yellow" text-anchor="middle" alignment-baseline="central" font-size="10px" style="cursor:pointer;" data-wob_ref="6" data-wob_eps="e0">x</text><polygon points="45,115 50,105 55,115" fill="red" style="cursor:pointer;" data-wob_ref="7" data-wob_eps="e0"></polygon><rect x="125" y="85" width="10" height="10" fill="magenta" style="cursor:pointer;" data-wob_ref="8" data-wob_eps="e0"></rect><text x="70" y="90" fill="black" text-anchor="middle" alignment-baseline="central" font-size="10px" style="cursor:pointer;" data-wob_ref="9" data-wob_eps="e0">x</text><text x="50" y="90" fill="aqua" text-anchor="middle" alignment-baseline="central" font-size="10px" style="cursor:pointer;" data-wob_ref="10" data-wob_eps="e0">9</text><text x="70" y="130" fill="black" text-anchor="middle" alignment-baseline="central" font-size="10px" style="cursor:pointer;" data-wob_ref="11" data-wob_eps="e0">f</text><text x="50" y="50" fill="red" text-anchor="middle" alignment-baseline="central" font-size="20px" style="cursor:pointer;" data-wob_ref="12" data-wob_eps="e0">w</text><text x="110" y="50" fill="magenta" text-anchor="middle" alignment-baseline="central" font-size="10px" style="cursor:pointer;" data-wob_ref="13" data-wob_eps="e0">Q</text><text x="110" y="110" fill="red" text-anchor="middle" alignment-baseline="central" font-size="10px" style="cursor:pointer;" data-wob_ref="14" data-wob_eps="e0">v</text><polygon points="105,15 110,5 115,15" fill="yellow" style="cursor:pointer;" data-wob_ref="15" data-wob_eps="e0"></polygon><text x="30" y="30" fill="yellow" text-anchor="middle" alignment-baseline="central" font-size="10px" style="cursor:pointer;" data-wob_ref="16" data-wob_eps="e0">m</text><text x="10" y="70" fill="green" text-anchor="middle" alignment-baseline="central" font-size="20px" style="cursor:pointer;" data-wob_ref="17" data-wob_eps="e0">U</text><text x="90" y="110" fill="magenta" text-anchor="middle" alignment-baseline="central" font-size="20px" style="cursor:pointer;" data-wob_ref="18" data-wob_eps="e0">u</text><circle cx="50" cy="10" r="5" fill="black" style="cursor:pointer;" data-wob_ref="19" data-wob_eps="e0"></circle><polygon points="0,40 10,20 20,40" fill="magenta" style="cursor:pointer;" data-wob_ref="20" data-wob_eps="e0"></polygon></svg>
+  </div>
+</div>
+
+Example plans)
+The task is to click on the magenta digit on the webpage.
+Here is a plan to solve this example task on the webpage with the autonomous agent. 
+1. Clickxpath //*[name()='svg']//*[name()='text' and @fill='magenta']
+
+The task is to click on the large 4 on the webpage.
+Here is a plan to solve this example task on the webpage with the autonomous agent. 
+1. clickxpath //*[name()='svg']//*[name()='text' and @fill="aqua" and @font-size="20px" and text()="4"]
+
+Current task: Click on a small yellow item
+plan:
+--------------------
+--------------------
+###
+assistant
+###
+1. clickxpath //*[name()='svg']//*[name()='text' and @fill='yellow' and @font-size='10px']
+--------------------
+--------------------
+###
+user
+###
+
+
+Below is the HTML code of the webpage where the agent should solve a task.
+<div id="wrap" data-wob_ref="2" data-wob_eps="e0">
+  <div id="query">Click on a small yellow item</div>
+  <div id="area" data-wob_ref="3" data-wob_eps="e0">
+    <svg id="area_svg" data-wob_ref="4" data-wob_eps="e0"><text x="10" y="10" fill="blue" text-anchor="middle" alignment-baseline="central" font-size="20px" style="cursor:pointer;" data-wob_ref="5" data-wob_eps="e0">Y</text><text x="30" y="110" fill="yellow" text-anchor="middle" alignment-baseline="central" font-size="10px" style="cursor:pointer;" data-wob_ref="6" data-wob_eps="e0">x</text><polygon points="45,115 50,105 55,115" fill="red" style="cursor:pointer;" data-wob_ref="7" data-wob_eps="e0"></polygon><rect x="125" y="85" width="10" height="10" fill="magenta" style="cursor:pointer;" data-wob_ref="8" data-wob_eps="e0"></rect><text x="70" y="90" fill="black" text-anchor="middle" alignment-baseline="central" font-size="10px" style="cursor:pointer;" data-wob_ref="9" data-wob_eps="e0">x</text><text x="50" y="90" fill="aqua" text-anchor="middle" alignment-baseline="central" font-size="10px" style="cursor:pointer;" data-wob_ref="10" data-wob_eps="e0">9</text><text x="70" y="130" fill="black" text-anchor="middle" alignment-baseline="central" font-size="10px" style="cursor:pointer;" data-wob_ref="11" data-wob_eps="e0">f</text><text x="50" y="50" fill="red" text-anchor="middle" alignment-baseline="central" font-size="20px" style="cursor:pointer;" data-wob_ref="12" data-wob_eps="e0">w</text><text x="110" y="50" fill="magenta" text-anchor="middle" alignment-baseline="central" font-size="10px" style="cursor:pointer;" data-wob_ref="13" data-wob_eps="e0">Q</text><text x="110" y="110" fill="red" text-anchor="middle" alignment-baseline="central" font-size="10px" style="cursor:pointer;" data-wob_ref="14" data-wob_eps="e0">v</text><polygon points="105,15 110,5 115,15" fill="yellow" style="cursor:pointer;" data-wob_ref="15" data-wob_eps="e0"></polygon><text x="30" y="30" fill="yellow" text-anchor="middle" alignment-baseline="central" font-size="10px" style="cursor:pointer;" data-wob_ref="16" data-wob_eps="e0">m</text><text x="10" y="70" fill="green" text-anchor="middle" alignment-baseline="central" font-size="20px" style="cursor:pointer;" data-wob_ref="17" data-wob_eps="e0">U</text><text x="90" y="110" fill="magenta" text-anchor="middle" alignment-baseline="central" font-size="20px" style="cursor:pointer;" data-wob_ref="18" data-wob_eps="e0">u</text><circle cx="50" cy="10" r="5" fill="black" style="cursor:pointer;" data-wob_ref="19" data-wob_eps="e0"></circle><polygon points="0,40 10,20 20,40" fill="magenta" style="cursor:pointer;" data-wob_ref="20" data-wob_eps="e0"></polygon></svg>
+  </div>
+</div>
+
+Current task: Click on a small yellow item
+
+
+Here is a plan you are following now.
+
+1. clickxpath //*[name()='svg']//*[name()='text' and @fill='yellow' and @font-size='10px']
+
+
+
+We have a history of instructions that have been already executed by the autonomous agent so far.
+No instruction has been executed yet.
+
+Based on the plan and the history of instructions executed so far, the first instruction should be `
+--------------------
+--------------------
+###
+assistant
+###
+clickxpath //*[name()='svg']//*[name()='text' and @fill='yellow' and @font-size='10px']`
+--------------------

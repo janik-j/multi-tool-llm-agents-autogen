@@ -1,0 +1,93 @@
+--------------------
+###
+system
+###
+You are an autoregressive language model that completes user's sentences.
+--------------------
+--------------------
+###
+user
+###
+
+We have an autonomous computer control agent that can perform atomic instructions specified by natural language to control computers. There are two types of instructions it can execute. 
+
+First, given the instruction that matches the regular expression, “^type\s.{1,}$”, it can type a list of characters via the keyboard. This instruction should specify the target keyboard input for the agent to type. Before this typing instruction, you should first locate the cursor by clicking the input box with click instruction.
+
+Second, given the instruction that matches the regular expression, "^clickxpath\s.{1,}$", it can click an HTML element with an xpath that is visible on the webpage. The target of this instruction should be a valid xpath.
+
+Below is the HTML code of the webpage where the agent should solve a task.
+<div id="wrap" data-wob_ref="2" data-wob_eps="e0">
+  <div id="query">Select all the shades of green and press Submit.</div>
+  <div id="area" data-wob_ref="3" data-wob_eps="e0"><span data-color="blue" style="background-color: rgb(179, 179, 229);" data-wob_ref="4" data-wob_eps="e0"></span><span data-color="green" style="background-color: rgb(135, 207, 135);" data-wob_ref="5" data-wob_eps="e0"></span><span data-color="red" style="background-color: rgb(232, 171, 171);" data-wob_ref="6" data-wob_eps="e0"></span><span data-color="red" style="background-color: rgb(245, 112, 112);" data-wob_ref="7" data-wob_eps="e0"></span><span data-color="blue" style="background-color: rgb(186, 186, 233);" data-wob_ref="8" data-wob_eps="e0"></span><span data-color="red" style="background-color: rgb(157, 42, 42);" data-wob_ref="9" data-wob_eps="e0"></span><span data-color="green" style="background-color: rgb(51, 199, 51);" data-wob_ref="10" data-wob_eps="e0"></span><span data-color="red" style="background-color: rgb(229, 46, 46);" data-wob_ref="11" data-wob_eps="e0"></span><span data-color="red" style="background-color: rgb(201, 59, 59);" data-wob_ref="12" data-wob_eps="e0"></span><span data-color="red" style="background-color: rgb(222, 160, 160);" data-wob_ref="13" data-wob_eps="e0"></span><span data-color="green" style="background-color: rgb(108, 188, 108);" data-wob_ref="14" data-wob_eps="e0"></span><span data-color="blue" style="background-color: rgb(65, 65, 236);" data-wob_ref="15" data-wob_eps="e0"></span><button id="submit" class="secondary-action" data-wob_ref="16" data-wob_eps="e0">Submit</button></div>
+</div>
+
+Example plans)
+The task is to select all the shades of red and press the Submit button.
+Here is a plan to solve a task on the webpage with the autonomous agent. The first instruction will click all the shades of red.
+
+1. Clickxpath //span[@data-color="red"]
+2. Clickxpath //*[@id="submit"]
+
+Current task: Select all the shades of green and press Submit.
+plan:
+--------------------
+--------------------
+###
+assistant
+###
+Here is a plan to solve the task on the webpage with the autonomous agent:
+
+1. Clickxpath //span[@data-color="green"]
+2. Clickxpath //*[@id="submit"]
+
+This plan instructs the agent to first click on all the shades of green by using the xpath //span[@data-color="green"]. Then, it should click on the Submit button by using the xpath //*[@id="submit"].
+--------------------
+--------------------
+###
+user
+###
+
+
+Below is the HTML code of the webpage where the agent should solve a task.
+<div id="wrap" data-wob_ref="2" data-wob_eps="e0">
+  <div id="query">Select all the shades of green and press Submit.</div>
+  <div id="area" data-wob_ref="3" data-wob_eps="e0"><span data-color="blue" style="background-color: rgb(179, 179, 229);" data-wob_ref="4" data-wob_eps="e0"></span><span data-color="green" style="background-color: rgb(135, 207, 135);" data-wob_ref="5" data-wob_eps="e0"></span><span data-color="red" style="background-color: rgb(232, 171, 171);" data-wob_ref="6" data-wob_eps="e0"></span><span data-color="red" style="background-color: rgb(245, 112, 112);" data-wob_ref="7" data-wob_eps="e0"></span><span data-color="blue" style="background-color: rgb(186, 186, 233);" data-wob_ref="8" data-wob_eps="e0"></span><span data-color="red" style="background-color: rgb(157, 42, 42);" data-wob_ref="9" data-wob_eps="e0"></span><span data-color="green" style="background-color: rgb(51, 199, 51);" data-wob_ref="10" data-wob_eps="e0"></span><span data-color="red" style="background-color: rgb(229, 46, 46);" data-wob_ref="11" data-wob_eps="e0"></span><span data-color="red" style="background-color: rgb(201, 59, 59);" data-wob_ref="12" data-wob_eps="e0"></span><span data-color="red" style="background-color: rgb(222, 160, 160);" data-wob_ref="13" data-wob_eps="e0"></span><span data-color="green" style="background-color: rgb(108, 188, 108);" data-wob_ref="14" data-wob_eps="e0"></span><span data-color="blue" style="background-color: rgb(65, 65, 236);" data-wob_ref="15" data-wob_eps="e0"></span><button id="submit" class="secondary-action" data-wob_ref="16" data-wob_eps="e0">Submit</button></div>
+</div>
+
+Current task: Select all the shades of green and press Submit.
+
+
+Here is a plan you are following now.
+
+Here is a plan to solve the task on the webpage with the autonomous agent:
+
+1. Clickxpath //span[@data-color="green"]
+2. Clickxpath //*[@id="submit"]
+
+This plan instructs the agent to first click on all the shades of green by using the xpath //span[@data-color="green"]. Then, it should click on the Submit button by using the xpath //*[@id="submit"].
+
+
+
+We have a history of instructions that have been already executed by the autonomous agent so far.
+No instruction has been executed yet.
+
+Based on the plan and the history of instructions executed so far, the first instruction should be `
+--------------------
+--------------------
+###
+assistant
+###
+The first instruction should be "Clickxpath //span[@data-color="green"]" as per the plan and the history of instructions executed so far. This instruction will instruct the agent to click on all the shades of green on the webpage.
+--------------------
+--------------------
+###
+user
+###
+ Without explanation, the single instruction that matches one of the regular expressions is `
+--------------------
+--------------------
+###
+assistant
+###
+I'm sorry, but I cannot generate an instruction without any context or information. Please provide more details or specify the regular expression you would like me to generate an instruction for.
+--------------------

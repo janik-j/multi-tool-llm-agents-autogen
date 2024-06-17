@@ -1,0 +1,329 @@
+--------------------
+###
+system
+###
+You are an autoregressive language model that completes user's sentences.
+--------------------
+--------------------
+###
+user
+###
+
+We have an autonomous computer control agent that can perform atomic instructions specified by natural language to control computers. There are two types of instructions it can execute. 
+
+First, given the instruction that matches the regular expression, “^type\s.{1,}$”, it can type a list of characters via the keyboard. This instruction should specify the target keyboard input for the agent to type. Before this typing instruction, you should first locate the cursor by clicking the input box with click instruction.
+
+Second, given the instruction that matches the regular expression, "^clickxpath\s.{1,}$", it can click an HTML element with an xpath that is visible on the webpage. The target of this instruction should be a valid xpath.
+
+Below is the HTML code of the webpage where the agent should solve a task.
+<div id="wrap" data-wob_ref="2" data-wob_eps="e0">
+  <div id="query">Expand the sections below, to find and click on the link "risus".</div>
+  <div id="area" class="ui-accordion ui-widget ui-helper-reset" role="tablist" data-wob_ref="3" data-wob_eps="e0"><h3 class="ui-accordion-header ui-corner-top ui-accordion-header-collapsed ui-corner-all ui-state-default ui-accordion-icons" role="tab" id="ui-id-1" aria-controls="ui-id-2" aria-selected="false" aria-expanded="false" tabindex="0" data-wob_ref="4" data-wob_eps="e0"><span class="ui-accordion-header-icon ui-icon ui-icon-triangle-1-e"></span> Section #1</h3><div class="ui-accordion-content ui-corner-bottom ui-helper-reset ui-widget-content" id="ui-id-2" aria-labelledby="ui-id-1" role="tabpanel" aria-hidden="true" style="display: none; height: 66px;">Risus consectetur phasellus <span class="alink">pretium</span> pellentesque ultricies <span class="alink">aliquam</span> enim. Tortor <span class="alink">diam</span> mi <span class="alink">cras</span> nunc pharetra sit velit adipiscing. Est nunc <span class="alink">ipsum.</span></div><h3 class="ui-accordion-header ui-corner-top ui-accordion-header-collapsed ui-corner-all ui-state-default ui-accordion-icons" role="tab" id="ui-id-3" aria-controls="ui-id-4" aria-selected="false" aria-expanded="false" tabindex="-1" data-wob_ref="5" data-wob_eps="e0"><span class="ui-accordion-header-icon ui-icon ui-icon-triangle-1-e"></span> Section #2</h3><div class="ui-accordion-content ui-corner-bottom ui-helper-reset ui-widget-content" id="ui-id-4" aria-labelledby="ui-id-3" role="tabpanel" aria-hidden="true" style="display: none; height: 66px;">Pharetra <span class="alink">et.</span> Imperdiet porta <span class="alink">lectus</span> volutpat. <span class="alink">Morbi</span> convallis tellus odio bibendum vitae sed adipiscing odio curabitur pellentesque. <span class="alink">Hendrerit.</span> Sagittis enim.</div><h3 class="ui-accordion-header ui-corner-top ui-accordion-header-collapsed ui-corner-all ui-state-default ui-accordion-icons" role="tab" id="ui-id-5" aria-controls="ui-id-6" aria-selected="false" aria-expanded="false" tabindex="-1" data-wob_ref="6" data-wob_eps="e0"><span class="ui-accordion-header-icon ui-icon ui-icon-triangle-1-e"></span> Section #3</h3><div class="ui-accordion-content ui-corner-bottom ui-helper-reset ui-widget-content" id="ui-id-6" aria-labelledby="ui-id-5" role="tabpanel" aria-hidden="true" style="display: none; height: 66px;"><span class="alink">Varius</span> phasellus <span class="alink">et</span> <span class="alink">accumsan.</span> Neque gravida id amet nam a tristique at semper urna cras <span class="alink">risus</span> venenatis at <span class="alink">non</span> <span class="alink">tellus.</span></div></div>
+</div>
+
+Example plans)
+task: find a proper section that include the text "adipiscing" and click on the link "adipiscing" on the webpage.
+plan:
+1. clickxpath //*[@id="ui-id-3"] // click the tab that includes the link with a text "adipiscing"
+2. clickxpath //*[@class="alink" and text()="adipiscing"]
+
+task: find a proper section that include the text "lectus" and click on the link "lectus" on the webpage.
+plan:
+1. clickxpath //*[@id="ui-id-19"] // click the tab that includes the link with a text "lectus" 
+2. clickxpath //span[@class='alink' and contains(text(), 'lectus')]
+
+Current task: Expand the sections below, to find and click on the link "risus".
+plan:
+--------------------
+--------------------
+###
+assistant
+###
+1. clickxpath //*[@id="ui-id-1"] // expand the first section
+2. clickxpath //*[@class="alink" and text()="risus"] // click on the link "risus"
+--------------------
+--------------------
+###
+user
+###
+
+
+Below is the HTML code of the webpage where the agent should solve a task.
+<div id="wrap" data-wob_ref="2" data-wob_eps="e0">
+  <div id="query">Expand the sections below, to find and click on the link "risus".</div>
+  <div id="area" class="ui-accordion ui-widget ui-helper-reset" role="tablist" data-wob_ref="3" data-wob_eps="e0"><h3 class="ui-accordion-header ui-corner-top ui-accordion-header-collapsed ui-corner-all ui-state-default ui-accordion-icons" role="tab" id="ui-id-1" aria-controls="ui-id-2" aria-selected="false" aria-expanded="false" tabindex="0" data-wob_ref="4" data-wob_eps="e0"><span class="ui-accordion-header-icon ui-icon ui-icon-triangle-1-e"></span> Section #1</h3><div class="ui-accordion-content ui-corner-bottom ui-helper-reset ui-widget-content" id="ui-id-2" aria-labelledby="ui-id-1" role="tabpanel" aria-hidden="true" style="display: none; height: 66px;">Risus consectetur phasellus <span class="alink">pretium</span> pellentesque ultricies <span class="alink">aliquam</span> enim. Tortor <span class="alink">diam</span> mi <span class="alink">cras</span> nunc pharetra sit velit adipiscing. Est nunc <span class="alink">ipsum.</span></div><h3 class="ui-accordion-header ui-corner-top ui-accordion-header-collapsed ui-corner-all ui-state-default ui-accordion-icons" role="tab" id="ui-id-3" aria-controls="ui-id-4" aria-selected="false" aria-expanded="false" tabindex="-1" data-wob_ref="5" data-wob_eps="e0"><span class="ui-accordion-header-icon ui-icon ui-icon-triangle-1-e"></span> Section #2</h3><div class="ui-accordion-content ui-corner-bottom ui-helper-reset ui-widget-content" id="ui-id-4" aria-labelledby="ui-id-3" role="tabpanel" aria-hidden="true" style="display: none; height: 66px;">Pharetra <span class="alink">et.</span> Imperdiet porta <span class="alink">lectus</span> volutpat. <span class="alink">Morbi</span> convallis tellus odio bibendum vitae sed adipiscing odio curabitur pellentesque. <span class="alink">Hendrerit.</span> Sagittis enim.</div><h3 class="ui-accordion-header ui-corner-top ui-accordion-header-collapsed ui-corner-all ui-state-default ui-accordion-icons" role="tab" id="ui-id-5" aria-controls="ui-id-6" aria-selected="false" aria-expanded="false" tabindex="-1" data-wob_ref="6" data-wob_eps="e0"><span class="ui-accordion-header-icon ui-icon ui-icon-triangle-1-e"></span> Section #3</h3><div class="ui-accordion-content ui-corner-bottom ui-helper-reset ui-widget-content" id="ui-id-6" aria-labelledby="ui-id-5" role="tabpanel" aria-hidden="true" style="display: none; height: 66px;"><span class="alink">Varius</span> phasellus <span class="alink">et</span> <span class="alink">accumsan.</span> Neque gravida id amet nam a tristique at semper urna cras <span class="alink">risus</span> venenatis at <span class="alink">non</span> <span class="alink">tellus.</span></div></div>
+</div>
+
+Current task: Expand the sections below, to find and click on the link "risus".
+
+
+Here is a plan you are following now.
+
+1. clickxpath //*[@id="ui-id-1"] // expand the first section
+2. clickxpath //*[@class="alink" and text()="risus"] // click on the link "risus"
+
+
+
+We have a history of instructions that have been already executed by the autonomous agent so far.
+No instruction has been executed yet.
+
+Based on the plan and the history of instructions executed so far, the first instruction should be `
+--------------------
+--------------------
+###
+assistant
+###
+clickxpath /*[@id="ui-id-1"]`.
+--------------------
+--------------------
+###
+user
+###
+Hold on, please wait for my next instruction.
+--------------------
+--------------------
+###
+assistant
+###
+Sure, I'll wait for your next instruction. Just let me know when you're ready to proceed.
+--------------------
+--------------------
+###
+user
+###
+
+
+Below is the HTML code of the webpage where the agent should solve a task.
+<div id="wrap" data-wob_ref="2" data-wob_eps="e0">
+  <div id="query">Expand the sections below, to find and click on the link "risus".</div>
+  <div id="area" class="ui-accordion ui-widget ui-helper-reset" role="tablist" data-wob_ref="3" data-wob_eps="e0"><h3 class="ui-accordion-header ui-corner-top ui-accordion-header-collapsed ui-corner-all ui-state-default ui-accordion-icons" role="tab" id="ui-id-1" aria-controls="ui-id-2" aria-selected="false" aria-expanded="false" tabindex="0" data-wob_ref="4" data-wob_eps="e0"><span class="ui-accordion-header-icon ui-icon ui-icon-triangle-1-e"></span> Section #1</h3><div class="ui-accordion-content ui-corner-bottom ui-helper-reset ui-widget-content" id="ui-id-2" aria-labelledby="ui-id-1" role="tabpanel" aria-hidden="true" style="display: none; height: 66px;">Risus consectetur phasellus <span class="alink">pretium</span> pellentesque ultricies <span class="alink">aliquam</span> enim. Tortor <span class="alink">diam</span> mi <span class="alink">cras</span> nunc pharetra sit velit adipiscing. Est nunc <span class="alink">ipsum.</span></div><h3 class="ui-accordion-header ui-corner-top ui-accordion-header-collapsed ui-corner-all ui-state-default ui-accordion-icons" role="tab" id="ui-id-3" aria-controls="ui-id-4" aria-selected="false" aria-expanded="false" tabindex="-1" data-wob_ref="5" data-wob_eps="e0"><span class="ui-accordion-header-icon ui-icon ui-icon-triangle-1-e"></span> Section #2</h3><div class="ui-accordion-content ui-corner-bottom ui-helper-reset ui-widget-content" id="ui-id-4" aria-labelledby="ui-id-3" role="tabpanel" aria-hidden="true" style="display: none; height: 66px;">Pharetra <span class="alink">et.</span> Imperdiet porta <span class="alink">lectus</span> volutpat. <span class="alink">Morbi</span> convallis tellus odio bibendum vitae sed adipiscing odio curabitur pellentesque. <span class="alink">Hendrerit.</span> Sagittis enim.</div><h3 class="ui-accordion-header ui-corner-top ui-accordion-header-collapsed ui-corner-all ui-state-default ui-accordion-icons" role="tab" id="ui-id-5" aria-controls="ui-id-6" aria-selected="false" aria-expanded="false" tabindex="-1" data-wob_ref="6" data-wob_eps="e0"><span class="ui-accordion-header-icon ui-icon ui-icon-triangle-1-e"></span> Section #3</h3><div class="ui-accordion-content ui-corner-bottom ui-helper-reset ui-widget-content" id="ui-id-6" aria-labelledby="ui-id-5" role="tabpanel" aria-hidden="true" style="display: none; height: 66px;"><span class="alink">Varius</span> phasellus <span class="alink">et</span> <span class="alink">accumsan.</span> Neque gravida id amet nam a tristique at semper urna cras <span class="alink">risus</span> venenatis at <span class="alink">non</span> <span class="alink">tellus.</span></div></div>
+</div>
+
+Current task: Expand the sections below, to find and click on the link "risus".
+
+
+Here is a plan you are following now.
+
+1. clickxpath //*[@id="ui-id-1"] // expand the first section
+2. clickxpath //*[@class="alink" and text()="risus"] // click on the link "risus"
+
+
+
+We have a history of instructions that have been already executed by the autonomous agent so far.
+1: clickxpath /*[@id="ui-id-1"]
+
+
+Based on the plan and the history of instructions executed so far, the next proper instruction should be `
+--------------------
+--------------------
+###
+assistant
+###
+clickxpath //*[@class="alink" and text()="risus"]`.
+--------------------
+--------------------
+###
+user
+###
+Hold on, please wait for my next instruction.
+--------------------
+--------------------
+###
+assistant
+###
+Sure, I'll wait for your next instruction. Just let me know when you're ready to proceed.
+--------------------
+--------------------
+###
+user
+###
+
+
+Below is the HTML code of the webpage where the agent should solve a task.
+<div id="wrap" data-wob_ref="2" data-wob_eps="e0">
+  <div id="query">Expand the sections below, to find and click on the link "risus".</div>
+  <div id="area" class="ui-accordion ui-widget ui-helper-reset" role="tablist" data-wob_ref="3" data-wob_eps="e0"><h3 class="ui-accordion-header ui-corner-top ui-accordion-header-collapsed ui-corner-all ui-state-default ui-accordion-icons" role="tab" id="ui-id-1" aria-controls="ui-id-2" aria-selected="false" aria-expanded="false" tabindex="0" data-wob_ref="4" data-wob_eps="e0"><span class="ui-accordion-header-icon ui-icon ui-icon-triangle-1-e"></span> Section #1</h3><div class="ui-accordion-content ui-corner-bottom ui-helper-reset ui-widget-content" id="ui-id-2" aria-labelledby="ui-id-1" role="tabpanel" aria-hidden="true" style="display: none; height: 66px;">Risus consectetur phasellus <span class="alink">pretium</span> pellentesque ultricies <span class="alink">aliquam</span> enim. Tortor <span class="alink">diam</span> mi <span class="alink">cras</span> nunc pharetra sit velit adipiscing. Est nunc <span class="alink">ipsum.</span></div><h3 class="ui-accordion-header ui-corner-top ui-accordion-header-collapsed ui-corner-all ui-state-default ui-accordion-icons" role="tab" id="ui-id-3" aria-controls="ui-id-4" aria-selected="false" aria-expanded="false" tabindex="-1" data-wob_ref="5" data-wob_eps="e0"><span class="ui-accordion-header-icon ui-icon ui-icon-triangle-1-e"></span> Section #2</h3><div class="ui-accordion-content ui-corner-bottom ui-helper-reset ui-widget-content" id="ui-id-4" aria-labelledby="ui-id-3" role="tabpanel" aria-hidden="true" style="display: none; height: 66px;">Pharetra <span class="alink">et.</span> Imperdiet porta <span class="alink">lectus</span> volutpat. <span class="alink">Morbi</span> convallis tellus odio bibendum vitae sed adipiscing odio curabitur pellentesque. <span class="alink">Hendrerit.</span> Sagittis enim.</div><h3 class="ui-accordion-header ui-corner-top ui-accordion-header-collapsed ui-corner-all ui-state-default ui-accordion-icons" role="tab" id="ui-id-5" aria-controls="ui-id-6" aria-selected="false" aria-expanded="false" tabindex="-1" data-wob_ref="6" data-wob_eps="e0"><span class="ui-accordion-header-icon ui-icon ui-icon-triangle-1-e"></span> Section #3</h3><div class="ui-accordion-content ui-corner-bottom ui-helper-reset ui-widget-content" id="ui-id-6" aria-labelledby="ui-id-5" role="tabpanel" aria-hidden="true" style="display: none; height: 66px;"><span class="alink">Varius</span> phasellus <span class="alink">et</span> <span class="alink">accumsan.</span> Neque gravida id amet nam a tristique at semper urna cras <span class="alink">risus</span> venenatis at <span class="alink">non</span> <span class="alink">tellus.</span></div></div>
+</div>
+
+Current task: Expand the sections below, to find and click on the link "risus".
+
+
+Here is a plan you are following now.
+
+1. clickxpath //*[@id="ui-id-1"] // expand the first section
+2. clickxpath //*[@class="alink" and text()="risus"] // click on the link "risus"
+
+
+
+We have a history of instructions that have been already executed by the autonomous agent so far.
+1: clickxpath /*[@id="ui-id-1"]
+2: clickxpath //*[@class="alink" and text()="risus"]
+
+
+Based on the plan and the history of instructions executed so far, the next proper instruction should be `
+--------------------
+--------------------
+###
+assistant
+###
+The next proper instruction based on the plan and history of instructions executed so far would be to find and click on the link "risus".
+--------------------
+--------------------
+###
+user
+###
+ Without explanation, the single instruction that matches one of the regular expressions is `
+--------------------
+--------------------
+###
+assistant
+###
+type some_text_here
+--------------------
+--------------------
+###
+user
+###
+Hold on, please wait for my next instruction.
+--------------------
+--------------------
+###
+assistant
+###
+Sure, I'll wait for your next instruction. Just let me know when you're ready to proceed.
+--------------------
+--------------------
+###
+user
+###
+
+
+Below is the HTML code of the webpage where the agent should solve a task.
+<div id="wrap" data-wob_ref="2" data-wob_eps="e0">
+  <div id="query">Expand the sections below, to find and click on the link "risus".</div>
+  <div id="area" class="ui-accordion ui-widget ui-helper-reset" role="tablist" data-wob_ref="3" data-wob_eps="e0"><h3 class="ui-accordion-header ui-corner-top ui-accordion-header-collapsed ui-corner-all ui-state-default ui-accordion-icons" role="tab" id="ui-id-1" aria-controls="ui-id-2" aria-selected="false" aria-expanded="false" tabindex="0" data-wob_ref="4" data-wob_eps="e0"><span class="ui-accordion-header-icon ui-icon ui-icon-triangle-1-e"></span> Section #1</h3><div class="ui-accordion-content ui-corner-bottom ui-helper-reset ui-widget-content" id="ui-id-2" aria-labelledby="ui-id-1" role="tabpanel" aria-hidden="true" style="display: none; height: 66px;">Risus consectetur phasellus <span class="alink">pretium</span> pellentesque ultricies <span class="alink">aliquam</span> enim. Tortor <span class="alink">diam</span> mi <span class="alink">cras</span> nunc pharetra sit velit adipiscing. Est nunc <span class="alink">ipsum.</span></div><h3 class="ui-accordion-header ui-corner-top ui-accordion-header-collapsed ui-corner-all ui-state-default ui-accordion-icons" role="tab" id="ui-id-3" aria-controls="ui-id-4" aria-selected="false" aria-expanded="false" tabindex="-1" data-wob_ref="5" data-wob_eps="e0"><span class="ui-accordion-header-icon ui-icon ui-icon-triangle-1-e"></span> Section #2</h3><div class="ui-accordion-content ui-corner-bottom ui-helper-reset ui-widget-content" id="ui-id-4" aria-labelledby="ui-id-3" role="tabpanel" aria-hidden="true" style="display: none; height: 66px;">Pharetra <span class="alink">et.</span> Imperdiet porta <span class="alink">lectus</span> volutpat. <span class="alink">Morbi</span> convallis tellus odio bibendum vitae sed adipiscing odio curabitur pellentesque. <span class="alink">Hendrerit.</span> Sagittis enim.</div><h3 class="ui-accordion-header ui-corner-top ui-accordion-header-collapsed ui-corner-all ui-state-default ui-accordion-icons" role="tab" id="ui-id-5" aria-controls="ui-id-6" aria-selected="false" aria-expanded="false" tabindex="-1" data-wob_ref="6" data-wob_eps="e0"><span class="ui-accordion-header-icon ui-icon ui-icon-triangle-1-e"></span> Section #3</h3><div class="ui-accordion-content ui-corner-bottom ui-helper-reset ui-widget-content" id="ui-id-6" aria-labelledby="ui-id-5" role="tabpanel" aria-hidden="true" style="display: none; height: 66px;"><span class="alink">Varius</span> phasellus <span class="alink">et</span> <span class="alink">accumsan.</span> Neque gravida id amet nam a tristique at semper urna cras <span class="alink">risus</span> venenatis at <span class="alink">non</span> <span class="alink">tellus.</span></div></div>
+</div>
+
+Current task: Expand the sections below, to find and click on the link "risus".
+
+
+Here is a plan you are following now.
+
+1. clickxpath //*[@id="ui-id-1"] // expand the first section
+2. clickxpath //*[@class="alink" and text()="risus"] // click on the link "risus"
+
+
+
+We have a history of instructions that have been already executed by the autonomous agent so far.
+1: clickxpath /*[@id="ui-id-1"]
+2: clickxpath //*[@class="alink" and text()="risus"]
+3: type some_text_here
+
+
+Based on the plan and the history of instructions executed so far, the next proper instruction should be `
+--------------------
+--------------------
+###
+assistant
+###
+clickxpath //*[@id="ui-id-3"] // expand the second section
+--------------------
+--------------------
+###
+user
+###
+Hold on, please wait for my next instruction.
+--------------------
+--------------------
+###
+assistant
+###
+Sure, I'll wait for your next instruction. Just let me know when you're ready to proceed.
+--------------------
+--------------------
+###
+user
+###
+
+
+Below is the HTML code of the webpage where the agent should solve a task.
+<div id="wrap" data-wob_ref="2" data-wob_eps="e0">
+  <div id="query">Expand the sections below, to find and click on the link "risus".</div>
+  <div id="area" class="ui-accordion ui-widget ui-helper-reset" role="tablist" data-wob_ref="3" data-wob_eps="e0"><h3 class="ui-accordion-header ui-corner-top ui-accordion-header-collapsed ui-corner-all ui-state-default ui-accordion-icons" role="tab" id="ui-id-1" aria-controls="ui-id-2" aria-selected="false" aria-expanded="false" tabindex="0" data-wob_ref="4" data-wob_eps="e0"><span class="ui-accordion-header-icon ui-icon ui-icon-triangle-1-e"></span> Section #1</h3><div class="ui-accordion-content ui-corner-bottom ui-helper-reset ui-widget-content" id="ui-id-2" aria-labelledby="ui-id-1" role="tabpanel" aria-hidden="true" style="display: none; height: 66px;">Risus consectetur phasellus <span class="alink">pretium</span> pellentesque ultricies <span class="alink">aliquam</span> enim. Tortor <span class="alink">diam</span> mi <span class="alink">cras</span> nunc pharetra sit velit adipiscing. Est nunc <span class="alink">ipsum.</span></div><h3 class="ui-accordion-header ui-corner-top ui-accordion-header-collapsed ui-corner-all ui-state-default ui-accordion-icons" role="tab" id="ui-id-3" aria-controls="ui-id-4" aria-selected="false" aria-expanded="false" tabindex="-1" data-wob_ref="5" data-wob_eps="e0"><span class="ui-accordion-header-icon ui-icon ui-icon-triangle-1-e"></span> Section #2</h3><div class="ui-accordion-content ui-corner-bottom ui-helper-reset ui-widget-content" id="ui-id-4" aria-labelledby="ui-id-3" role="tabpanel" aria-hidden="true" style="display: none; height: 66px;">Pharetra <span class="alink">et.</span> Imperdiet porta <span class="alink">lectus</span> volutpat. <span class="alink">Morbi</span> convallis tellus odio bibendum vitae sed adipiscing odio curabitur pellentesque. <span class="alink">Hendrerit.</span> Sagittis enim.</div><h3 class="ui-accordion-header ui-corner-top ui-accordion-header-collapsed ui-corner-all ui-state-default ui-accordion-icons" role="tab" id="ui-id-5" aria-controls="ui-id-6" aria-selected="false" aria-expanded="false" tabindex="-1" data-wob_ref="6" data-wob_eps="e0"><span class="ui-accordion-header-icon ui-icon ui-icon-triangle-1-e"></span> Section #3</h3><div class="ui-accordion-content ui-corner-bottom ui-helper-reset ui-widget-content" id="ui-id-6" aria-labelledby="ui-id-5" role="tabpanel" aria-hidden="true" style="display: none; height: 66px;"><span class="alink">Varius</span> phasellus <span class="alink">et</span> <span class="alink">accumsan.</span> Neque gravida id amet nam a tristique at semper urna cras <span class="alink">risus</span> venenatis at <span class="alink">non</span> <span class="alink">tellus.</span></div></div>
+</div>
+
+Current task: Expand the sections below, to find and click on the link "risus".
+
+
+Here is a plan you are following now.
+
+1. clickxpath //*[@id="ui-id-1"] // expand the first section
+2. clickxpath //*[@class="alink" and text()="risus"] // click on the link "risus"
+
+
+
+We have a history of instructions that have been already executed by the autonomous agent so far.
+1: clickxpath /*[@id="ui-id-1"]
+2: clickxpath //*[@class="alink" and text()="risus"]
+3: type some_text_here
+4: clickxpath //*[@id="ui-id-3"] // expand the second section
+
+
+Based on the plan and the history of instructions executed so far, the next proper instruction should be `
+--------------------
+--------------------
+###
+assistant
+###
+clickxpath //*[@class="alink" and text()="tellus"] // click on the link "tellus"
+--------------------
+--------------------
+###
+user
+###
+Hold on, please wait for my next instruction.
+--------------------
+--------------------
+###
+assistant
+###
+Sure, I'll wait for your next instruction. Just let me know when you're ready to proceed.
+--------------------
+--------------------
+###
+user
+###
+
+
+Below is the HTML code of the webpage where the agent should solve a task.
+<div id="wrap" data-wob_ref="2" data-wob_eps="e0">
+  <div id="query">Expand the sections below, to find and click on the link "risus".</div>
+  <div id="area" class="ui-accordion ui-widget ui-helper-reset" role="tablist" data-wob_ref="3" data-wob_eps="e0"><h3 class="ui-accordion-header ui-corner-top ui-accordion-header-collapsed ui-corner-all ui-state-default ui-accordion-icons" role="tab" id="ui-id-1" aria-controls="ui-id-2" aria-selected="false" aria-expanded="false" tabindex="0" data-wob_ref="4" data-wob_eps="e0"><span class="ui-accordion-header-icon ui-icon ui-icon-triangle-1-e"></span> Section #1</h3><div class="ui-accordion-content ui-corner-bottom ui-helper-reset ui-widget-content" id="ui-id-2" aria-labelledby="ui-id-1" role="tabpanel" aria-hidden="true" style="display: none; height: 66px;">Risus consectetur phasellus <span class="alink">pretium</span> pellentesque ultricies <span class="alink">aliquam</span> enim. Tortor <span class="alink">diam</span> mi <span class="alink">cras</span> nunc pharetra sit velit adipiscing. Est nunc <span class="alink">ipsum.</span></div><h3 class="ui-accordion-header ui-corner-top ui-accordion-header-collapsed ui-corner-all ui-state-default ui-accordion-icons" role="tab" id="ui-id-3" aria-controls="ui-id-4" aria-selected="false" aria-expanded="false" tabindex="-1" data-wob_ref="5" data-wob_eps="e0"><span class="ui-accordion-header-icon ui-icon ui-icon-triangle-1-e"></span> Section #2</h3><div class="ui-accordion-content ui-corner-bottom ui-helper-reset ui-widget-content" id="ui-id-4" aria-labelledby="ui-id-3" role="tabpanel" aria-hidden="true" style="display: none; height: 66px;">Pharetra <span class="alink">et.</span> Imperdiet porta <span class="alink">lectus</span> volutpat. <span class="alink">Morbi</span> convallis tellus odio bibendum vitae sed adipiscing odio curabitur pellentesque. <span class="alink">Hendrerit.</span> Sagittis enim.</div><h3 class="ui-accordion-header ui-corner-top ui-accordion-header-collapsed ui-corner-all ui-state-default ui-accordion-icons" role="tab" id="ui-id-5" aria-controls="ui-id-6" aria-selected="false" aria-expanded="false" tabindex="-1" data-wob_ref="6" data-wob_eps="e0"><span class="ui-accordion-header-icon ui-icon ui-icon-triangle-1-e"></span> Section #3</h3><div class="ui-accordion-content ui-corner-bottom ui-helper-reset ui-widget-content" id="ui-id-6" aria-labelledby="ui-id-5" role="tabpanel" aria-hidden="true" style="display: none; height: 66px;"><span class="alink">Varius</span> phasellus <span class="alink">et</span> <span class="alink">accumsan.</span> Neque gravida id amet nam a tristique at semper urna cras <span class="alink">risus</span> venenatis at <span class="alink">non</span> <span class="alink">tellus.</span></div></div>
+</div>
+
+Current task: Expand the sections below, to find and click on the link "risus".
+
+
+Here is a plan you are following now.
+
+1. clickxpath //*[@id="ui-id-1"] // expand the first section
+2. clickxpath //*[@class="alink" and text()="risus"] // click on the link "risus"
+
+
+
+We have a history of instructions that have been already executed by the autonomous agent so far.
+1: clickxpath /*[@id="ui-id-1"]
+2: clickxpath //*[@class="alink" and text()="risus"]
+3: type some_text_here
+4: clickxpath //*[@id="ui-id-3"] // expand the second section
+5: clickxpath //*[@class="alink" and text()="tellus"] // click on the link "tellus"
+
+
+Based on the plan and the history of instructions executed so far, the next proper instruction should be `
+--------------------
+--------------------
+###
+assistant
+###
+The next proper instruction based on the plan and history of instructions executed so far would depend on the specific task or goal you have in mind. If you can provide more details or specify the next step, I can assist you better.
+--------------------

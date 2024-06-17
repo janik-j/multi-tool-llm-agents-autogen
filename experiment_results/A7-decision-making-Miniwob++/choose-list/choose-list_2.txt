@@ -1,0 +1,94 @@
+--------------------
+###
+system
+###
+You are an autoregressive language model that completes user's sentences.
+--------------------
+--------------------
+###
+user
+###
+
+We have an autonomous computer control agent that can perform atomic instructions specified by natural language to control computers. There are two types of instructions it can execute. 
+
+First, given the instruction that matches the regular expression, "^type\s.{1,}$", it can type a list of characters via the keyboard. This instruction should specify the target keyboard input for the agent to type. Before this typing instruction, you should first locate the cursor by clicking the input box with click instruction.
+
+Second, given the instruction that matches the regular expression, "^clickxpath\s.{1,}$", it can click an HTML element with an xpath that is visible on the webpage. The target of this instruction should be a valid xpath.
+
+Below is the HTML code of the webpage where the agent should solve a task.
+<div id="wrap" data-wob_ref="2" data-wob_eps="e0">
+  <div id="query">Select Guam from the list and click Submit.</div>
+  <div id="area" data-wob_ref="3" data-wob_eps="e0"><select id="options" style="width:150px;" class="Botswana,Vatican City State,Samoa,Guam" data-wob_ref="4" data-wob_eps="e0"><option>Botswana</option><option>Vatican City State</option><option>Samoa</option><option>Guam</option></select><button class="secondary-action" data-wob_ref="5" data-wob_eps="e0">Submit</button></div>
+</div>
+
+Current task: Select Guam from the list and click Submit.
+plan:
+--------------------
+--------------------
+###
+assistant
+###
+To solve the current task of selecting Guam from the list and clicking Submit, you can use the following plan:
+
+1. Use the clickxpath instruction with the target xpath of the select element to locate the dropdown list. The xpath for the select element is: `//div[@id='area']/select[@id='options']`
+
+2. Once the dropdown list is located, use the clickxpath instruction again, this time with the target xpath of the option element containing "Guam". The xpath for the option element is: `//div[@id='area']/select[@id='options']/option[text()='Guam']`
+
+3. After selecting Guam from the dropdown list, use the clickxpath instruction with the target xpath of the Submit button to click it. The xpath for the Submit button is: `//div[@id='area']/button[@class='secondary-action']`
+
+By following this plan, the autonomous computer control agent will be able to select Guam from the list and click Submit on the webpage.
+--------------------
+--------------------
+###
+user
+###
+
+
+Below is the HTML code of the webpage where the agent should solve a task.
+<div id="wrap" data-wob_ref="2" data-wob_eps="e0">
+  <div id="query">Select Guam from the list and click Submit.</div>
+  <div id="area" data-wob_ref="3" data-wob_eps="e0"><select id="options" style="width:150px;" class="Botswana,Vatican City State,Samoa,Guam" data-wob_ref="4" data-wob_eps="e0"><option>Botswana</option><option>Vatican City State</option><option>Samoa</option><option>Guam</option></select><button class="secondary-action" data-wob_ref="5" data-wob_eps="e0">Submit</button></div>
+</div>
+
+Current task: Select Guam from the list and click Submit.
+
+
+Here is a plan you are following now.
+
+To solve the current task of selecting Guam from the list and clicking Submit, you can use the following plan:
+
+1. Use the clickxpath instruction with the target xpath of the select element to locate the dropdown list. The xpath for the select element is: `//div[@id='area']/select[@id='options']`
+
+2. Once the dropdown list is located, use the clickxpath instruction again, this time with the target xpath of the option element containing "Guam". The xpath for the option element is: `//div[@id='area']/select[@id='options']/option[text()='Guam']`
+
+3. After selecting Guam from the dropdown list, use the clickxpath instruction with the target xpath of the Submit button to click it. The xpath for the Submit button is: `//div[@id='area']/button[@class='secondary-action']`
+
+By following this plan, the autonomous computer control agent will be able to select Guam from the list and click Submit on the webpage.
+
+
+
+We have a history of instructions that have been already executed by the autonomous agent so far.
+No instruction has been executed yet.
+
+Based on the plan and the history of instructions executed so far, the first instruction should be `
+--------------------
+--------------------
+###
+assistant
+###
+Based on the plan and the history of instructions executed so far, the first instruction to be executed by the autonomous agent should be to click the input box.
+
+Example: `clickxpath //div[@id='wrap']/div[@id='query']`
+--------------------
+--------------------
+###
+user
+###
+ Without explanation, the single instruction that matches one of the regular expressions is `
+--------------------
+--------------------
+###
+assistant
+###
+Without explanation and without any context, it is unclear what you are referring to by mentioning "the single instruction that matches one of the regular expressions." Could you please provide more information or clarify your request so that I can assist you better?
+--------------------

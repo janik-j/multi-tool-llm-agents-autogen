@@ -1,0 +1,84 @@
+--------------------
+###
+system
+###
+You are an autoregressive language model that completes user's sentences.
+--------------------
+--------------------
+###
+user
+###
+
+We have an autonomous computer control agent that can perform atomic instructions specified by natural language to control computers. There are two types of instructions it can execute. 
+
+First, given the instruction that matches the regular expression, "^type\s.{1,}$", it can type a list of characters via the keyboard. This instruction should specify the target keyboard input for the agent to type. Before this typing instruction, you should first locate the cursor by clicking the input box with click instruction.
+
+Second, given the instruction that matches the regular expression, "^clickxpath\s.{1,}$", it can click an HTML element with an xpath that is visible on the webpage. The target of this instruction should be a valid xpath.
+
+Below is the HTML code of the webpage where the agent should solve a task.
+<div id="wrap" data-wob_ref="2" data-wob_eps="e0">
+  <div id="query">Click on the link "in.".</div>
+  <div id="area" data-wob_ref="3" data-wob_eps="e0">Sed libero sit sodales volutpat elementum <span class="alink" data-wob_ref="4" data-wob_eps="e0">in.</span> Lobortis. Feugiat <span class="alink" data-wob_ref="5" data-wob_eps="e0">velit.</span> Pretium sagittis mauris <span class="alink" data-wob_ref="6" data-wob_eps="e0">nullam</span> dui. Ultrices leo gravida. Nec ultrices.</div>
+</div>
+
+Current task: Click on the link "in.".
+plan:
+--------------------
+--------------------
+###
+assistant
+###
+To solve the task of clicking on the link "in.", you can use the following plan:
+
+1. Locate the cursor by clicking on the input box using the click instruction with the target being the input box.
+2. Use the clickxpath instruction with the target as a valid xpath to click on the HTML element that corresponds to the link "in.".
+
+The xpath for the link "in." is:
+//span[@class="alink"][text()="in."]
+
+So, the complete plan is:
+1. Click on the input box to locate the cursor.
+2. Use the clickxpath instruction with the target as "//span[@class="alink"][text()="in."]".
+--------------------
+--------------------
+###
+user
+###
+
+
+Below is the HTML code of the webpage where the agent should solve a task.
+<div id="wrap" data-wob_ref="2" data-wob_eps="e0">
+  <div id="query">Click on the link "in.".</div>
+  <div id="area" data-wob_ref="3" data-wob_eps="e0">Sed libero sit sodales volutpat elementum <span class="alink" data-wob_ref="4" data-wob_eps="e0">in.</span> Lobortis. Feugiat <span class="alink" data-wob_ref="5" data-wob_eps="e0">velit.</span> Pretium sagittis mauris <span class="alink" data-wob_ref="6" data-wob_eps="e0">nullam</span> dui. Ultrices leo gravida. Nec ultrices.</div>
+</div>
+
+Current task: Click on the link "in.".
+
+
+Here is a plan you are following now.
+
+To solve the task of clicking on the link "in.", you can use the following plan:
+
+1. Locate the cursor by clicking on the input box using the click instruction with the target being the input box.
+2. Use the clickxpath instruction with the target as a valid xpath to click on the HTML element that corresponds to the link "in.".
+
+The xpath for the link "in." is:
+//span[@class="alink"][text()="in."]
+
+So, the complete plan is:
+1. Click on the input box to locate the cursor.
+2. Use the clickxpath instruction with the target as "//span[@class="alink"][text()="in."]".
+
+
+
+We have a history of instructions that have been already executed by the autonomous agent so far.
+No instruction has been executed yet.
+
+Based on the plan and the history of instructions executed so far, the first instruction should be `
+--------------------
+--------------------
+###
+assistant
+###
+clickxpath //span[@class="alink"][text()="in."]
+--------------------

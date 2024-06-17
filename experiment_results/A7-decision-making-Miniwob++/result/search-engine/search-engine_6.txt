@@ -1,0 +1,429 @@
+--------------------
+###
+system
+###
+You are an autoregressive language model that completes user's sentences.
+--------------------
+--------------------
+###
+user
+###
+
+We have an autonomous computer control agent that can perform atomic instructions specified by natural language to control computers. There are two types of instructions it can execute. 
+
+First, given the instruction that matches the regular expression, "^type\s.{1,}$", it can type a list of characters via the keyboard. This instruction should specify the target keyboard input for the agent to type. Note that pressing enter should be separate instruction from typing. Before this typing instruction, you should first locate the cursor by clicking the input box with click instruction.
+
+Second, given the instruction that matches the regular expression, "^clickxpath\s.{1,}$", it can click an HTML element with an xpath that is visible on the webpage. The target of this instruction should be a valid xpath.
+
+Below is the HTML code of the webpage where the agent should solve a task.
+<div id="wrap" data-wob_ref="2" data-wob_eps="e0">
+  <div id="query">Use the textbox to enter "<span class="bold">Macie</span>" and press "Search", then find and click the <span class="bold">3rd</span> search result.</div>
+  <div id="area" data-wob_ref="3" data-wob_eps="e0">
+    <div id="search-bar" data-wob_ref="4" data-wob_eps="e0">
+      <input type="text" id="search-text" data-wob_ref="5" data-wob_eps="e0">
+      <button id="search" data-wob_ref="6" data-wob_eps="e0">Search</button>
+    </div>
+    <div id="page-content"></div>
+    <ul id="pagination"></ul>
+  </div>
+</div>
+
+Example plans)
+task: use the textbox to enter "Tiger" and press "Search", then find and click the 5th search result.
+plan:
+1. clickxpath //*[@id="search-text"] // click the input box
+2. type Tiger
+3. clickxpath //*[@id="search"]
+4. clickxpath //*[@id="pagination"]/li[4]/a // First, move to the corresponding result page. You need to move to the second page where the 5th result is located
+5. clickxpath //*[@id="page-content"]/div[2]/a // Each page contains three results and 5-3=2 Click the second result to select 5th result by clicking the first a tag.
+
+task: use the textbox to enter "Thaddeus" and press "Search", then find and click the 5th search result.
+plan:
+1. clickxpath //*[@id="search-text"] // click the input box
+2. type Thaddeus
+3. clickxpath //*[@id="search"]
+4. clickxpath //*[@id="pagination"]/li[4]/a // First, move to the corresponding result page. You need to move to the second page where the 5th result is located
+5. clickxpath //*[@id="page-content"]/div[2]/a // Each page contains three results and 5-3=2. Click the second result to select 5th result by clicking the first a tag.
+
+task: use the textbox to enter "Maple" and press "Search", then find and click the 6th search result.
+plan:
+1. clickxpath //*[@id="search-text"] // click the input box
+2. type Maple
+3. clickxpath //*[@id="search"]
+4. clickxpath //*[@id="pagination"]/li[4]/a // First, move to the corresponding result page. You need to move to the second page where the 6th result is located
+5. clickxpath //*[@id="page-content"]/div[3]/a // Each page contains three results and 6-3=3. Click the thrid result to select 6th result by clicking the first a tag.
+
+task: use the textbox to enter "Thaddeus" and press "Search", then find and click the 7th search result.
+plan:
+1. clickxpath //*[@id="search-text"] // click the input box
+2. type Thaddeus
+3. clickxpath //*[@id="search"]
+4. clickxpath //*[@id="pagination"]/li[5]/a // First, move to the corresponding result page. You need to move to the third page where the 7th result is located
+5. clickxpath //*[@id="page-content"]/div[1]/a // Each page contains three results and 7-6=1. Click the first result to select 7th result by clicking the first a tag.
+
+task: use the textbox to enter "Grill" and press "Search", then find and click the 8th search result.
+plan:
+1. clickxpath //*[@id="search-text"] // click the input box
+2. type Grill
+3. clickxpath //*[@id="search"]
+4. clickxpath //*[@id="pagination"]/li[5]/a // First, move to the corresponding result page. You need to move to the third page where the 8th result is located
+5. clickxpath //*[@id="page-content"]/div[2]/a // Each page contains three results and 8-6=2. Click the second result to select 8th result by clicking the first a tag.
+
+task: use the textbox to enter "Home" and press "Search", then find and click the 9th search result.
+plan:
+1. clickxpath //*[@id="search-text"] // click the input box
+2. type Home
+3. clickxpath //*[@id="search"]
+4. clickxpath //*[@id="pagination"]/li[5]/a // First, move to the corresponding result page. You need to move to the third page where the 9th result is located
+5. clickxpath //*[@id="page-content"]/div[3]/a // Each page contains three results and 9-6=3. Click the third result to select 9th result by clicking the first a tag.
+
+task: use the textbox to enter "apple" and press "Search", then find and click the 4th search result.
+plan:
+1. clickxpath //*[@id="search-text"] // click the input box
+2. type apple
+3. clickxpath //*[@id="search"]
+4. clickxpath //*[@id="pagination"]/li[4]/a // First, move to the corresponding result page. You need to move to the second page where the 4th result is located
+5. clickxpath //*[@id="page-content"]/div[1]/a // Each page contains three results and 4-3=1. Click the first result to select 4th result by clicking the first a tag.
+
+task: use the textbox to enter "dog" and press "Search", then find and click the 3rd search result.
+plan:
+1. clickxpath //*[@id="search-text"] // click the input box
+2. type dog
+3. clickxpath //*[@id="search"]
+4. clickxpath //*[@id="page-content"]/div[3]/a // The result appears on the first page. Click the third result
+
+task: use the textbox to enter "Mad" and press "Search", then find and click the 2nd search result.
+plan:
+1. clickxpath //*[@id="search-text"] // click the input box
+2. type Mad
+3. clickxpath //*[@id="search"]
+4. clickxpath //*[@id="page-content"]/div[2]/a // The result appears on the first page. Click the second result
+
+task: use the textbox to enter "Power" and press "Search", then find and click the 1st search result.
+plan:
+1. clickxpath //*[@id="search-text"] // click the input box
+2. type Power
+3. clickxpath //*[@id="search"]
+4. clickxpath //*[@id="page-content"]/div[1]/a // The result appears on the first page. Click the first result
+
+task: use the textbox to enter "Port" and press "Search", then find and click the 8th search result.
+plan:
+1. clickxpath //*[@id="search-text"] // click the input box
+2. type Port
+3. clickxpath //*[@id="search"]
+4. clickxpath //*[@id="pagination"]/li[5]/a // First, move to the corresponding result page. You need to move to the third page where the 8th result is located
+5. clickxpath //*[@id="page-content"]/div[2]/a // Each page contains three results and 8-6=2. Click the second result to select 8th result by clicking the first a tag.
+
+task: use the textbox to enter "Language" and press "Search", then find and click the 3rd search result.
+plan:
+1. clickxpath //*[@id="search-text"] // click the input box
+2. type Language
+3. clickxpath //*[@id="search"]
+4. clickxpath //*[@id="page-content"]/div[3]/a // The result appears on the first page. Click the third result
+
+task: use the textbox to enter "Cat" and press "Search", then find and click the 2nd search result.
+plan:
+1. clickxpath //*[@id="search-text"] // click the input box
+2. type Cat
+3. clickxpath //*[@id="search"]
+4. clickxpath //*[@id="page-content"]/div[2]/a // The result appears on the first page. Click the second result
+
+task: use the textbox to enter "Samsung" and press "Search", then find and click the 7th search result.
+plan:
+1. clickxpath //*[@id="search-text"] // click the input box
+2. type Samsung
+3. clickxpath //*[@id="search"]
+4. clickxpath //*[@id="pagination"]/li[5]/a // First, move to the corresponding result page. You need to move to the third page where the 7th result is located
+5. clickxpath //*[@id="page-content"]/div[1]/a // Each page contains three results and 7-6=1. Click the first result to select 7th result by clicking the first a tag.
+
+task: use the textbox to enter "Naver" and press "Search", then find and click the 4th search result.
+plan:
+1. clickxpath //*[@id="search-text"] // click the input box
+2. type Naver
+3. clickxpath //*[@id="search"]
+4. clickxpath //*[@id="pagination"]/li[4]/a // First, move to the corresponding result page. You need to move to the second page where the 4th result is located
+5. clickxpath //*[@id="page-content"]/div[1]/a // Each page contains three results and 4-3=1. Click the first result to select 4th result by clicking the first a tag.
+
+task: use the textbox to enter "Glass" and press "Search", then find and click the 7th search result.
+plan:
+1. clickxpath //*[@id="search-text"] // click the input box
+2. type Glass
+3. clickxpath //*[@id="search"]
+4. clickxpath //*[@id="pagination"]/li[5]/a // First, move to the corresponding result page. You need to move to the third page where the 7th result is located
+5. clickxpath //*[@id="page-content"]/div[1]/a // Each page contains three results and 7-6=1. Click the first result to select 7th result by clicking the first a tag.
+
+task: use the textbox to enter "Baby" and press "Search", then find and click the 6th search result.
+plan:
+1. clickxpath //*[@id="search-text"] // click the input box
+2. type Baby
+3. clickxpath //*[@id="search"]
+4. clickxpath //*[@id="pagination"]/li[4]/a // First, move to the corresponding result page. You need to move to the second page where the 6th result is located
+5. clickxpath //*[@id="page-content"]/div[3]/a // Each page contains three results and 6-3=3. Click the thrid result to select 6th result by clicking the first a tag.
+
+task: use the textbox to enter "Grill" and press "Search", then find and click the 8th search result.
+plan:
+1. clickxpath //*[@id="search-text"] // click the input box
+2. type Grill
+3. clickxpath //*[@id="search"]
+4. clickxpath //*[@id="pagination"]/li[5]/a // First, move to the corresponding result page. You need to move to the third page where the 8th result is located
+5. clickxpath //*[@id="page-content"]/div[2]/a // Each page contains three results and 8-6=2. Click the second result to select 8th result by clicking the first a tag.
+
+task: use the textbox to enter "Atlas" and press "Search", then find and click the 5th search result.
+plan:
+1. clickxpath //*[@id="search-text"] // click the input box
+2. type Atlas
+3. clickxpath //*[@id="search"]
+4. clickxpath //*[@id="pagination"]/li[4]/a // First, move to the corresponding result page. You need to move to the second page where the 5th result is located
+5. clickxpath //*[@id="page-content"]/div[2]/a // Each page contains three results and 5-3=2. Click the second result to select 5th result by clicking the first a tag.
+
+task: use the textbox to enter "Monday" and press "Search", then find and click the 2nd search result.
+plan:
+1. clickxpath //*[@id="search-text"] // click the input box
+2. type Monday
+3. clickxpath //*[@id="search"]
+4. clickxpath //*[@id="page-content"]/div[2]/a // The result appears on the first page. Click the second result
+
+task: use the textbox to enter "Cat" and press "Search", then find and click the 3rd search result.
+plan:
+1. clickxpath //*[@id="search-text"] // click the input box
+2. type Cat
+3. clickxpath //*[@id="search"]
+4. clickxpath //*[@id="page-content"]/div[3]/a // The result appears on the first page. Click the third result
+
+task: use the textbox to enter "Bear" and press "Search", then find and click the 4th search result.
+plan:
+1. clickxpath //*[@id="search-text"] // click the input box
+2. type Bear
+3. clickxpath //*[@id="search"]
+4. clickxpath //*[@id="pagination"]/li[4]/a // First, move to the corresponding result page. You need to move to the second page where the 4th result is located
+5. clickxpath //*[@id="page-content"]/div[1]/a // Each page contains three results and 4-3=1. Click the first result to select 4th result by clicking the first a tag.
+
+
+Current task: Use the textbox to enter "Macie" and press "Search", then find and click the 3rd search result.
+plan:
+--------------------
+--------------------
+###
+assistant
+###
+1. clickxpath //*[@id="search-text"] // click the input box
+2. type Macie
+3. clickxpath //*[@id="search"]
+4. clickxpath //*[@id="page-content"]/div[3]/a // Each page contains three results and the 3rd result is the first result on the page. Click the first result to select the 3rd search result by clicking the first 'a' tag.
+--------------------
+--------------------
+###
+user
+###
+
+
+Below is the HTML code of the webpage where the agent should solve a task.
+<div id="wrap" data-wob_ref="2" data-wob_eps="e0">
+  <div id="query">Use the textbox to enter "<span class="bold">Macie</span>" and press "Search", then find and click the <span class="bold">3rd</span> search result.</div>
+  <div id="area" data-wob_ref="3" data-wob_eps="e0">
+    <div id="search-bar" data-wob_ref="4" data-wob_eps="e0">
+      <input type="text" id="search-text" data-wob_ref="5" data-wob_eps="e0">
+      <button id="search" data-wob_ref="6" data-wob_eps="e0">Search</button>
+    </div>
+    <div id="page-content"></div>
+    <ul id="pagination"></ul>
+  </div>
+</div>
+
+Current task: Use the textbox to enter "Macie" and press "Search", then find and click the 3rd search result.
+
+
+Here is a plan you are following now.
+
+1. clickxpath //*[@id="search-text"] // click the input box
+2. type Macie
+3. clickxpath //*[@id="search"]
+4. clickxpath //*[@id="page-content"]/div[3]/a // Each page contains three results and the 3rd result is the first result on the page. Click the first result to select the 3rd search result by clicking the first 'a' tag.
+
+
+
+We have a history of instructions that have been already executed by the autonomous agent so far.
+No instruction has been executed yet.
+
+Based on the plan and the history of instructions executed so far, the first instruction should be `
+--------------------
+--------------------
+###
+assistant
+###
+clickxpath //*[@id="search-text"]`. This instruction clicks the input box to activate it.
+--------------------
+--------------------
+###
+user
+###
+Hold on, please wait for my next instruction.
+--------------------
+--------------------
+###
+assistant
+###
+Sure, I'll wait for your next instruction. Just let me know when you're ready.
+--------------------
+--------------------
+###
+user
+###
+
+
+Below is the HTML code of the webpage where the agent should solve a task.
+<div id="wrap" data-wob_ref="2" data-wob_eps="e0">
+  <div id="query">Use the textbox to enter "<span class="bold">Macie</span>" and press "Search", then find and click the <span class="bold">3rd</span> search result.</div>
+  <div id="area" data-wob_ref="3" data-wob_eps="e0">
+    <div id="search-bar" data-wob_ref="4" data-wob_eps="e0">
+      <input type="text" id="search-text" data-wob_ref="5" data-wob_eps="e0" data-tampered="e0">
+      <button id="search" data-wob_ref="6" data-wob_eps="e0">Search</button>
+    </div>
+    <div id="page-content"></div>
+    <ul id="pagination"></ul>
+  </div>
+</div>
+
+Current task: Use the textbox to enter "Macie" and press "Search", then find and click the 3rd search result.
+
+
+Here is a plan you are following now.
+
+1. clickxpath //*[@id="search-text"] // click the input box
+2. type Macie
+3. clickxpath //*[@id="search"]
+4. clickxpath //*[@id="page-content"]/div[3]/a // Each page contains three results and the 3rd result is the first result on the page. Click the first result to select the 3rd search result by clicking the first 'a' tag.
+
+
+
+We have a history of instructions that have been already executed by the autonomous agent so far.
+1: clickxpath //*[@id="search-text"]
+
+
+Based on the plan and the history of instructions executed so far, the next instruction should be `
+--------------------
+--------------------
+###
+assistant
+###
+type Macie`.
+--------------------
+--------------------
+###
+user
+###
+Hold on, please wait for my next instruction.
+--------------------
+--------------------
+###
+assistant
+###
+Of course, I'll be here when you're ready to give the next instruction. Just let me know when you're ready.
+--------------------
+--------------------
+###
+user
+###
+
+
+Below is the HTML code of the webpage where the agent should solve a task.
+<div id="wrap" data-wob_ref="2" data-wob_eps="e0">
+  <div id="query">Use the textbox to enter "<span class="bold">Macie</span>" and press "Search", then find and click the <span class="bold">3rd</span> search result.</div>
+  <div id="area" data-wob_ref="3" data-wob_eps="e0">
+    <div id="search-bar" data-wob_ref="4" data-wob_eps="e0">
+      <input type="text" id="search-text" data-wob_ref="5" data-wob_eps="e0" data-tampered="e0">
+      <button id="search" data-wob_ref="6" data-wob_eps="e0">Search</button>
+    </div>
+    <div id="page-content"></div>
+    <ul id="pagination"></ul>
+  </div>
+</div>
+
+Current task: Use the textbox to enter "Macie" and press "Search", then find and click the 3rd search result.
+
+
+Here is a plan you are following now.
+
+1. clickxpath //*[@id="search-text"] // click the input box
+2. type Macie
+3. clickxpath //*[@id="search"]
+4. clickxpath //*[@id="page-content"]/div[3]/a // Each page contains three results and the 3rd result is the first result on the page. Click the first result to select the 3rd search result by clicking the first 'a' tag.
+
+
+
+We have a history of instructions that have been already executed by the autonomous agent so far.
+1: clickxpath //*[@id="search-text"]
+2: type Macie
+
+
+Based on the plan and the history of instructions executed so far, the next instruction should be `
+--------------------
+--------------------
+###
+assistant
+###
+clickxpath //*[@id="search"]`.
+--------------------
+--------------------
+###
+user
+###
+Hold on, please wait for my next instruction.
+--------------------
+--------------------
+###
+assistant
+###
+No problem, I'll wait for your next instruction. Just let me know when you're ready.
+--------------------
+--------------------
+###
+user
+###
+
+
+Below is the HTML code of the webpage where the agent should solve a task.
+<div id="wrap" data-wob_ref="2" data-wob_eps="e0">
+  <div id="query">Use the textbox to enter "<span class="bold">Macie</span>" and press "Search", then find and click the <span class="bold">3rd</span> search result.</div>
+  <div id="area" data-wob_ref="3" data-wob_eps="e0">
+    <div id="search-bar" data-wob_ref="4" data-wob_eps="e0">
+      <input type="text" id="search-text" data-wob_ref="5" data-wob_eps="e0" data-tampered="e0">
+      <button id="search" data-wob_ref="6" data-wob_eps="e0" data-tampered="e0">Search</button>
+    </div>
+    <div id="page-content" data-wob_ref="7" data-wob_eps="e0"><div data-wob_ref="8" data-wob_eps="e0"><a href="#" class="search-title" data-result="0" data-wob_ref="9" data-wob_eps="e0">Renda</a>
+  <div class="search-url" data-wob_ref="10" data-wob_eps="e0">https://vitaehabitasse.rocks</div>
+  <div class="search-desc" data-wob_ref="11" data-wob_eps="e0">In suspendisse morbi.</div></div><div data-wob_ref="12" data-wob_eps="e0"><a href="#" class="search-title" data-result="1" data-wob_ref="13" data-wob_eps="e0">Keli</a>
+  <div class="search-url" data-wob_ref="14" data-wob_eps="e0">https://www.sit.gg</div>
+  <div class="search-desc" data-wob_ref="15" data-wob_eps="e0">Consequat nunc.</div></div><div data-wob_ref="16" data-wob_eps="e0"><a href="#" class="search-title" data-result="2" data-wob_ref="17" data-wob_eps="e0">Macie</a>
+  <div class="search-url" data-wob_ref="18" data-wob_eps="e0">https://est.net</div>
+  <div class="search-desc" data-wob_ref="19" data-wob_eps="e0">Nulla urna.</div></div></div>
+    <ul id="pagination" class="pagination" data-wob_ref="20" data-wob_eps="e0"><li class="page-item first disabled"><a href="#" class="page-link">First</a></li><li class="page-item prev disabled"><a href="#" class="page-link">&lt;</a></li><li class="page-item active" data-wob_ref="21" data-wob_eps="e0"><a href="#" class="page-link" data-wob_ref="22" data-wob_eps="e0">1</a></li><li class="page-item" data-wob_ref="23" data-wob_eps="e0"><a href="#" class="page-link" data-wob_ref="24" data-wob_eps="e0">2</a></li><li class="page-item" data-wob_ref="25" data-wob_eps="e0"><a href="#" class="page-link" data-wob_ref="26" data-wob_eps="e0">3</a></li><li class="page-item next" data-wob_ref="27" data-wob_eps="e0"><a href="#" class="page-link" data-wob_ref="28" data-wob_eps="e0">&gt;</a></li><li class="page-item last"><a href="#" class="page-link">Last</a></li></ul>
+  </div>
+</div>
+
+Current task: Use the textbox to enter "Macie" and press "Search", then find and click the 3rd search result.
+
+
+Here is a plan you are following now.
+
+1. clickxpath //*[@id="search-text"] // click the input box
+2. type Macie
+3. clickxpath //*[@id="search"]
+4. clickxpath //*[@id="page-content"]/div[3]/a // Each page contains three results and the 3rd result is the first result on the page. Click the first result to select the 3rd search result by clicking the first 'a' tag.
+
+
+
+We have a history of instructions that have been already executed by the autonomous agent so far.
+1: clickxpath //*[@id="search-text"]
+2: type Macie
+3: clickxpath //*[@id="search"]
+
+
+Based on the plan and the history of instructions executed so far, the next instruction should be `
+--------------------
+--------------------
+###
+assistant
+###
+clickxpath //*[@id="page-content"]/div[3]/a`.
+--------------------

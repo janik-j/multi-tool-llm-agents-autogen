@@ -1,0 +1,181 @@
+--------------------
+###
+system
+###
+You are an autoregressive language model that completes user's sentences.
+--------------------
+--------------------
+###
+user
+###
+
+We have an autonomous computer control agent that can perform atomic instructions specified by natural language to control computers. There are two types of instructions it can execute. 
+
+First, given the instruction that matches the regular expression, “^type\s.{1,}$”, it can type a list of characters via the keyboard. This instruction should specify the target keyboard input for the agent to type. Before this typing instruction, you should first locate the cursor by clicking the input box with click instruction.
+
+Second, given the instruction that matches the regular expression, "^clickxpath\s.{1,}$", it can click an HTML element with an xpath that is visible on the webpage. The target of this instruction should be a valid xpath.
+
+Lastly, given the instruction that matches the regular expression, "^movemouse\s.{1,}$",it can move mouse cursor on an HTML element with an xpath that is visible on the webpage.
+
+Below is the HTML code of the webpage where the agent should solve a task.
+<div id="wrap" data-wob_ref="2" data-wob_eps="e0">
+  <div id="query">Select Carole&gt;Kelcey&gt;Fawnia</div>
+  <div id="area" data-wob_ref="3" data-wob_eps="e0"><ul id="menu" role="menu" tabindex="0" class="ui-menu ui-widget ui-widget-content" data-wob_ref="4" data-wob_eps="e0"><li class="ui-menu-item" data-wob_ref="5" data-wob_eps="e0"><div id="ui-id-1" tabindex="-1" role="menuitem" class="ui-menu-item-wrapper" data-wob_ref="6" data-wob_eps="e0">Clemmie</div></li><li class="ui-menu-item" data-wob_ref="7" data-wob_eps="e0"><div aria-haspopup="true" id="ui-id-2" tabindex="-1" role="menuitem" class="ui-menu-item-wrapper" data-wob_ref="8" data-wob_eps="e0"><span class="ui-menu-icon ui-icon ui-icon-caret-1-e" data-wob_ref="9" data-wob_eps="e0"></span>Bryana</div><ul role="menu" aria-hidden="true" aria-expanded="false" class="ui-menu ui-widget ui-widget-content ui-front" style="display: none;"><li class="ui-menu-item"><div aria-haspopup="true" id="ui-id-3" tabindex="-1" role="menuitem" class="ui-menu-item-wrapper"><span class="ui-menu-icon ui-icon ui-icon-caret-1-e"></span>Dru</div><ul role="menu" aria-hidden="true" aria-expanded="false" class="ui-menu ui-widget ui-widget-content ui-front" style="display: none;"><li class="ui-menu-item"><div id="ui-id-4" tabindex="-1" role="menuitem" class="ui-menu-item-wrapper">Pamela</div></li><li class="ui-menu-item"><div id="ui-id-5" tabindex="-1" role="menuitem" class="ui-menu-item-wrapper">Lulita</div></li></ul></li><li class="ui-menu-item"><div id="ui-id-6" tabindex="-1" role="menuitem" class="ui-menu-item-wrapper">Lynnett</div></li></ul></li><li class="ui-menu-item" data-wob_ref="10" data-wob_eps="e0"><div id="ui-id-7" tabindex="-1" role="menuitem" class="ui-menu-item-wrapper" data-wob_ref="11" data-wob_eps="e0">Bertina</div></li><li class="ui-menu-item" data-wob_ref="12" data-wob_eps="e0"><div aria-haspopup="true" id="ui-id-8" tabindex="-1" role="menuitem" class="ui-menu-item-wrapper" data-wob_ref="13" data-wob_eps="e0"><span class="ui-menu-icon ui-icon ui-icon-caret-1-e" data-wob_ref="14" data-wob_eps="e0"></span>Carole</div><ul role="menu" aria-hidden="true" aria-expanded="false" class="ui-menu ui-widget ui-widget-content ui-front" style="display: none;"><li class="ui-menu-item"><div id="ui-id-9" tabindex="-1" role="menuitem" class="ui-menu-item-wrapper">Sadella</div></li><li class="ui-menu-item"><div aria-haspopup="true" id="ui-id-10" tabindex="-1" role="menuitem" class="ui-menu-item-wrapper"><span class="ui-menu-icon ui-icon ui-icon-caret-1-e"></span>Kelcey</div><ul role="menu" aria-hidden="true" aria-expanded="false" class="ui-menu ui-widget ui-widget-content ui-front" style="display: none;"><li class="ui-menu-item"><div id="ui-id-11" tabindex="-1" role="menuitem" class="ui-menu-item-wrapper">Fawnia</div></li><li class="ui-menu-item"><div id="ui-id-12" tabindex="-1" role="menuitem" class="ui-menu-item-wrapper">Myrle</div></li><li class="ui-menu-item"><div id="ui-id-13" tabindex="-1" role="menuitem" class="ui-menu-item-wrapper">Ilse</div></li></ul></li><li class="ui-menu-item"><div aria-haspopup="true" id="ui-id-14" tabindex="-1" role="menuitem" class="ui-menu-item-wrapper"><span class="ui-menu-icon ui-icon ui-icon-caret-1-e"></span>Kathy</div><ul role="menu" aria-hidden="true" aria-expanded="false" class="ui-menu ui-widget ui-widget-content ui-front" style="display: none;"><li class="ui-menu-item"><div id="ui-id-15" tabindex="-1" role="menuitem" class="ui-menu-item-wrapper">Carlynn</div></li><li class="ui-menu-item"><div id="ui-id-16" tabindex="-1" role="menuitem" class="ui-menu-item-wrapper">Leonora</div></li><li class="ui-menu-item"><div id="ui-id-17" tabindex="-1" role="menuitem" class="ui-menu-item-wrapper">Anastasie</div></li><li class="ui-menu-item"><div id="ui-id-18" tabindex="-1" role="menuitem" class="ui-menu-item-wrapper">Alica</div></li></ul></li></ul></li></ul></div>
+</div>
+
+Example plans)
+The task is for the agent to select Leonelle > Jane > Amabel from the HTML code provided.
+Here is a plan to solve this example task on the webpage with the autonomous agent. You must use "movemouse" not "clickxpath" to expand option.
+1. movemouse //*[text()="Leonelle"]
+2. movemouse //*[text()="Jane"]
+3. clickxpath //*[text()="Amabel"]
+
+
+Current task: Select Carole>Kelcey>Fawnia
+plan:
+--------------------
+--------------------
+###
+assistant
+###
+The plan to solve the current task is as follows:
+
+1. movemouse //*[text()="Carole"]
+2. movemouse //*[text()="Kelcey"]
+3. clickxpath //*[text()="Fawnia"]
+--------------------
+--------------------
+###
+user
+###
+
+
+Below is the HTML code of the webpage where the agent should solve a task.
+<div id="wrap" data-wob_ref="2" data-wob_eps="e0">
+  <div id="query">Select Carole&gt;Kelcey&gt;Fawnia</div>
+  <div id="area" data-wob_ref="3" data-wob_eps="e0"><ul id="menu" role="menu" tabindex="0" class="ui-menu ui-widget ui-widget-content" data-wob_ref="4" data-wob_eps="e0"><li class="ui-menu-item" data-wob_ref="5" data-wob_eps="e0"><div id="ui-id-1" tabindex="-1" role="menuitem" class="ui-menu-item-wrapper" data-wob_ref="6" data-wob_eps="e0">Clemmie</div></li><li class="ui-menu-item" data-wob_ref="7" data-wob_eps="e0"><div aria-haspopup="true" id="ui-id-2" tabindex="-1" role="menuitem" class="ui-menu-item-wrapper" data-wob_ref="8" data-wob_eps="e0"><span class="ui-menu-icon ui-icon ui-icon-caret-1-e" data-wob_ref="9" data-wob_eps="e0"></span>Bryana</div><ul role="menu" aria-hidden="true" aria-expanded="false" class="ui-menu ui-widget ui-widget-content ui-front" style="display: none;"><li class="ui-menu-item"><div aria-haspopup="true" id="ui-id-3" tabindex="-1" role="menuitem" class="ui-menu-item-wrapper"><span class="ui-menu-icon ui-icon ui-icon-caret-1-e"></span>Dru</div><ul role="menu" aria-hidden="true" aria-expanded="false" class="ui-menu ui-widget ui-widget-content ui-front" style="display: none;"><li class="ui-menu-item"><div id="ui-id-4" tabindex="-1" role="menuitem" class="ui-menu-item-wrapper">Pamela</div></li><li class="ui-menu-item"><div id="ui-id-5" tabindex="-1" role="menuitem" class="ui-menu-item-wrapper">Lulita</div></li></ul></li><li class="ui-menu-item"><div id="ui-id-6" tabindex="-1" role="menuitem" class="ui-menu-item-wrapper">Lynnett</div></li></ul></li><li class="ui-menu-item" data-wob_ref="10" data-wob_eps="e0"><div id="ui-id-7" tabindex="-1" role="menuitem" class="ui-menu-item-wrapper" data-wob_ref="11" data-wob_eps="e0">Bertina</div></li><li class="ui-menu-item" data-wob_ref="12" data-wob_eps="e0"><div aria-haspopup="true" id="ui-id-8" tabindex="-1" role="menuitem" class="ui-menu-item-wrapper" data-wob_ref="13" data-wob_eps="e0"><span class="ui-menu-icon ui-icon ui-icon-caret-1-e" data-wob_ref="14" data-wob_eps="e0"></span>Carole</div><ul role="menu" aria-hidden="true" aria-expanded="false" class="ui-menu ui-widget ui-widget-content ui-front" style="display: none;"><li class="ui-menu-item"><div id="ui-id-9" tabindex="-1" role="menuitem" class="ui-menu-item-wrapper">Sadella</div></li><li class="ui-menu-item"><div aria-haspopup="true" id="ui-id-10" tabindex="-1" role="menuitem" class="ui-menu-item-wrapper"><span class="ui-menu-icon ui-icon ui-icon-caret-1-e"></span>Kelcey</div><ul role="menu" aria-hidden="true" aria-expanded="false" class="ui-menu ui-widget ui-widget-content ui-front" style="display: none;"><li class="ui-menu-item"><div id="ui-id-11" tabindex="-1" role="menuitem" class="ui-menu-item-wrapper">Fawnia</div></li><li class="ui-menu-item"><div id="ui-id-12" tabindex="-1" role="menuitem" class="ui-menu-item-wrapper">Myrle</div></li><li class="ui-menu-item"><div id="ui-id-13" tabindex="-1" role="menuitem" class="ui-menu-item-wrapper">Ilse</div></li></ul></li><li class="ui-menu-item"><div aria-haspopup="true" id="ui-id-14" tabindex="-1" role="menuitem" class="ui-menu-item-wrapper"><span class="ui-menu-icon ui-icon ui-icon-caret-1-e"></span>Kathy</div><ul role="menu" aria-hidden="true" aria-expanded="false" class="ui-menu ui-widget ui-widget-content ui-front" style="display: none;"><li class="ui-menu-item"><div id="ui-id-15" tabindex="-1" role="menuitem" class="ui-menu-item-wrapper">Carlynn</div></li><li class="ui-menu-item"><div id="ui-id-16" tabindex="-1" role="menuitem" class="ui-menu-item-wrapper">Leonora</div></li><li class="ui-menu-item"><div id="ui-id-17" tabindex="-1" role="menuitem" class="ui-menu-item-wrapper">Anastasie</div></li><li class="ui-menu-item"><div id="ui-id-18" tabindex="-1" role="menuitem" class="ui-menu-item-wrapper">Alica</div></li></ul></li></ul></li></ul></div>
+</div>
+
+Current task: Select Carole>Kelcey>Fawnia
+
+
+Here is a plan you are following now.
+
+The plan to solve the current task is as follows:
+
+1. movemouse //*[text()="Carole"]
+2. movemouse //*[text()="Kelcey"]
+3. clickxpath //*[text()="Fawnia"]
+
+
+
+We have a history of instructions that have been already executed by the autonomous agent so far.
+No instruction has been executed yet.
+
+Based on the plan and the history of instructions executed so far, the first instruction should be `
+--------------------
+--------------------
+###
+assistant
+###
+movemouse //*[text()="Carole"]`. This instruction will move the mouse cursor to the element with the text "Carole" on the webpage.
+--------------------
+--------------------
+###
+user
+###
+Hold on, please wait for my next instruction.
+--------------------
+--------------------
+###
+assistant
+###
+Sure, I'll wait for your next instruction. Just let me know when you're ready.
+--------------------
+--------------------
+###
+user
+###
+
+
+Below is the HTML code of the webpage where the agent should solve a task.
+<div id="wrap" data-wob_ref="2" data-wob_eps="e0">
+  <div id="query">Select Carole&gt;Kelcey&gt;Fawnia</div>
+  <div id="area" data-wob_ref="3" data-wob_eps="e0"><ul id="menu" role="menu" tabindex="0" class="ui-menu ui-widget ui-widget-content" data-wob_ref="4" data-wob_eps="e0" aria-activedescendant="ui-id-8"><li class="ui-menu-item" data-wob_ref="5" data-wob_eps="e0"><div id="ui-id-1" tabindex="-1" role="menuitem" class="ui-menu-item-wrapper" data-wob_ref="6" data-wob_eps="e0">Clemmie</div></li><li class="ui-menu-item" data-wob_ref="7" data-wob_eps="e0"><div aria-haspopup="true" id="ui-id-2" tabindex="-1" role="menuitem" class="ui-menu-item-wrapper" data-wob_ref="8" data-wob_eps="e0"><span class="ui-menu-icon ui-icon ui-icon-caret-1-e" data-wob_ref="9" data-wob_eps="e0"></span>Bryana</div><ul role="menu" aria-hidden="true" aria-expanded="false" class="ui-menu ui-widget ui-widget-content ui-front" style="display: none;"><li class="ui-menu-item"><div aria-haspopup="true" id="ui-id-3" tabindex="-1" role="menuitem" class="ui-menu-item-wrapper"><span class="ui-menu-icon ui-icon ui-icon-caret-1-e"></span>Dru</div><ul role="menu" aria-hidden="true" aria-expanded="false" class="ui-menu ui-widget ui-widget-content ui-front" style="display: none;"><li class="ui-menu-item"><div id="ui-id-4" tabindex="-1" role="menuitem" class="ui-menu-item-wrapper">Pamela</div></li><li class="ui-menu-item"><div id="ui-id-5" tabindex="-1" role="menuitem" class="ui-menu-item-wrapper">Lulita</div></li></ul></li><li class="ui-menu-item"><div id="ui-id-6" tabindex="-1" role="menuitem" class="ui-menu-item-wrapper">Lynnett</div></li></ul></li><li class="ui-menu-item" data-wob_ref="10" data-wob_eps="e0"><div id="ui-id-7" tabindex="-1" role="menuitem" class="ui-menu-item-wrapper" data-wob_ref="11" data-wob_eps="e0">Bertina</div></li><li class="ui-menu-item" data-wob_ref="12" data-wob_eps="e0"><div aria-haspopup="true" id="ui-id-8" tabindex="-1" role="menuitem" class="ui-menu-item-wrapper ui-state-active" data-wob_ref="13" data-wob_eps="e0"><span class="ui-menu-icon ui-icon ui-icon-caret-1-e" data-wob_ref="14" data-wob_eps="e0"></span>Carole</div><ul role="menu" aria-hidden="true" aria-expanded="false" class="ui-menu ui-widget ui-widget-content ui-front" style="display: none;"><li class="ui-menu-item"><div id="ui-id-9" tabindex="-1" role="menuitem" class="ui-menu-item-wrapper">Sadella</div></li><li class="ui-menu-item"><div aria-haspopup="true" id="ui-id-10" tabindex="-1" role="menuitem" class="ui-menu-item-wrapper"><span class="ui-menu-icon ui-icon ui-icon-caret-1-e"></span>Kelcey</div><ul role="menu" aria-hidden="true" aria-expanded="false" class="ui-menu ui-widget ui-widget-content ui-front" style="display: none;"><li class="ui-menu-item"><div id="ui-id-11" tabindex="-1" role="menuitem" class="ui-menu-item-wrapper">Fawnia</div></li><li class="ui-menu-item"><div id="ui-id-12" tabindex="-1" role="menuitem" class="ui-menu-item-wrapper">Myrle</div></li><li class="ui-menu-item"><div id="ui-id-13" tabindex="-1" role="menuitem" class="ui-menu-item-wrapper">Ilse</div></li></ul></li><li class="ui-menu-item"><div aria-haspopup="true" id="ui-id-14" tabindex="-1" role="menuitem" class="ui-menu-item-wrapper"><span class="ui-menu-icon ui-icon ui-icon-caret-1-e"></span>Kathy</div><ul role="menu" aria-hidden="true" aria-expanded="false" class="ui-menu ui-widget ui-widget-content ui-front" style="display: none;"><li class="ui-menu-item"><div id="ui-id-15" tabindex="-1" role="menuitem" class="ui-menu-item-wrapper">Carlynn</div></li><li class="ui-menu-item"><div id="ui-id-16" tabindex="-1" role="menuitem" class="ui-menu-item-wrapper">Leonora</div></li><li class="ui-menu-item"><div id="ui-id-17" tabindex="-1" role="menuitem" class="ui-menu-item-wrapper">Anastasie</div></li><li class="ui-menu-item"><div id="ui-id-18" tabindex="-1" role="menuitem" class="ui-menu-item-wrapper">Alica</div></li></ul></li></ul></li></ul></div>
+</div>
+
+Current task: Select Carole>Kelcey>Fawnia
+
+
+Here is a plan you are following now.
+
+The plan to solve the current task is as follows:
+
+1. movemouse //*[text()="Carole"]
+2. movemouse //*[text()="Kelcey"]
+3. clickxpath //*[text()="Fawnia"]
+
+
+
+We have a history of instructions that have been already executed by the autonomous agent so far.
+1: movemouse //*[text()="Carole"]
+
+
+Based on the plan and the history of instructions executed so far, the next proper instruction should be `
+--------------------
+--------------------
+###
+assistant
+###
+movemouse //*[text()="Kelcey"]`. This instruction will move the mouse cursor to the element with the text "Kelcey" on the webpage.
+--------------------
+--------------------
+###
+user
+###
+Hold on, please wait for my next instruction.
+--------------------
+--------------------
+###
+assistant
+###
+Of course, I'll wait for your next instruction. Just let me know when you're ready.
+--------------------
+--------------------
+###
+user
+###
+
+
+Below is the HTML code of the webpage where the agent should solve a task.
+<div id="wrap" data-wob_ref="2" data-wob_eps="e0">
+  <div id="query">Select Carole&gt;Kelcey&gt;Fawnia</div>
+  <div id="area" data-wob_ref="3" data-wob_eps="e0"><ul id="menu" role="menu" tabindex="0" class="ui-menu ui-widget ui-widget-content" data-wob_ref="4" data-wob_eps="e0" aria-activedescendant="ui-id-10"><li class="ui-menu-item" data-wob_ref="5" data-wob_eps="e0"><div id="ui-id-1" tabindex="-1" role="menuitem" class="ui-menu-item-wrapper" data-wob_ref="6" data-wob_eps="e0">Clemmie</div></li><li class="ui-menu-item" data-wob_ref="7" data-wob_eps="e0"><div aria-haspopup="true" id="ui-id-2" tabindex="-1" role="menuitem" class="ui-menu-item-wrapper" data-wob_ref="8" data-wob_eps="e0"><span class="ui-menu-icon ui-icon ui-icon-caret-1-e" data-wob_ref="9" data-wob_eps="e0"></span>Bryana</div><ul role="menu" aria-hidden="true" aria-expanded="false" class="ui-menu ui-widget ui-widget-content ui-front" style="display: none;"><li class="ui-menu-item"><div aria-haspopup="true" id="ui-id-3" tabindex="-1" role="menuitem" class="ui-menu-item-wrapper"><span class="ui-menu-icon ui-icon ui-icon-caret-1-e"></span>Dru</div><ul role="menu" aria-hidden="true" aria-expanded="false" class="ui-menu ui-widget ui-widget-content ui-front" style="display: none;"><li class="ui-menu-item"><div id="ui-id-4" tabindex="-1" role="menuitem" class="ui-menu-item-wrapper">Pamela</div></li><li class="ui-menu-item"><div id="ui-id-5" tabindex="-1" role="menuitem" class="ui-menu-item-wrapper">Lulita</div></li></ul></li><li class="ui-menu-item"><div id="ui-id-6" tabindex="-1" role="menuitem" class="ui-menu-item-wrapper">Lynnett</div></li></ul></li><li class="ui-menu-item" data-wob_ref="10" data-wob_eps="e0"><div id="ui-id-7" tabindex="-1" role="menuitem" class="ui-menu-item-wrapper" data-wob_ref="11" data-wob_eps="e0">Bertina</div></li><li class="ui-menu-item" data-wob_ref="12" data-wob_eps="e0"><div aria-haspopup="true" id="ui-id-8" tabindex="-1" role="menuitem" class="ui-menu-item-wrapper ui-state-active" data-wob_ref="13" data-wob_eps="e0"><span class="ui-menu-icon ui-icon ui-icon-caret-1-e" data-wob_ref="14" data-wob_eps="e0"></span>Carole</div><ul role="menu" aria-expanded="true" class="ui-menu ui-widget ui-widget-content ui-front" style="display: block; top: 106px; left: 56px;" data-wob_ref="15" data-wob_eps="e0"><li class="ui-menu-item" data-wob_ref="16" data-wob_eps="e0"><div id="ui-id-9" tabindex="-1" role="menuitem" class="ui-menu-item-wrapper" data-wob_ref="17" data-wob_eps="e0">Sadella</div></li><li class="ui-menu-item" data-wob_ref="18" data-wob_eps="e0"><div aria-haspopup="true" id="ui-id-10" tabindex="-1" role="menuitem" class="ui-menu-item-wrapper ui-state-active" data-wob_ref="19" data-wob_eps="e0"><span class="ui-menu-icon ui-icon ui-icon-caret-1-e" data-wob_ref="20" data-wob_eps="e0"></span>Kelcey</div><ul role="menu" aria-hidden="true" aria-expanded="false" class="ui-menu ui-widget ui-widget-content ui-front" style="display: none;"><li class="ui-menu-item"><div id="ui-id-11" tabindex="-1" role="menuitem" class="ui-menu-item-wrapper">Fawnia</div></li><li class="ui-menu-item"><div id="ui-id-12" tabindex="-1" role="menuitem" class="ui-menu-item-wrapper">Myrle</div></li><li class="ui-menu-item"><div id="ui-id-13" tabindex="-1" role="menuitem" class="ui-menu-item-wrapper">Ilse</div></li></ul></li><li class="ui-menu-item" data-wob_ref="21" data-wob_eps="e0"><div aria-haspopup="true" id="ui-id-14" tabindex="-1" role="menuitem" class="ui-menu-item-wrapper" data-wob_ref="22" data-wob_eps="e0"><span class="ui-menu-icon ui-icon ui-icon-caret-1-e" data-wob_ref="23" data-wob_eps="e0"></span>Kathy</div><ul role="menu" aria-hidden="true" aria-expanded="false" class="ui-menu ui-widget ui-widget-content ui-front" style="display: none;"><li class="ui-menu-item"><div id="ui-id-15" tabindex="-1" role="menuitem" class="ui-menu-item-wrapper">Carlynn</div></li><li class="ui-menu-item"><div id="ui-id-16" tabindex="-1" role="menuitem" class="ui-menu-item-wrapper">Leonora</div></li><li class="ui-menu-item"><div id="ui-id-17" tabindex="-1" role="menuitem" class="ui-menu-item-wrapper">Anastasie</div></li><li class="ui-menu-item"><div id="ui-id-18" tabindex="-1" role="menuitem" class="ui-menu-item-wrapper">Alica</div></li></ul></li></ul></li></ul></div>
+</div>
+
+Current task: Select Carole>Kelcey>Fawnia
+
+
+Here is a plan you are following now.
+
+The plan to solve the current task is as follows:
+
+1. movemouse //*[text()="Carole"]
+2. movemouse //*[text()="Kelcey"]
+3. clickxpath //*[text()="Fawnia"]
+
+
+
+We have a history of instructions that have been already executed by the autonomous agent so far.
+1: movemouse //*[text()="Carole"]
+2: movemouse //*[text()="Kelcey"]
+
+
+Based on the plan and the history of instructions executed so far, the next proper instruction should be `
+--------------------
+--------------------
+###
+assistant
+###
+clickxpath //*[text()="Fawnia"]`. This instruction will click on the element with the text "Fawnia" on the webpage.
+--------------------

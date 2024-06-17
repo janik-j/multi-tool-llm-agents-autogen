@@ -1,0 +1,175 @@
+--------------------
+###
+system
+###
+You are an autoregressive language model that completes user's sentences.
+--------------------
+--------------------
+###
+user
+###
+
+We have an autonomous computer control agent that can perform atomic instructions specified by natural language to control computers. There are two types of instructions it can execute. 
+
+First, given the instruction that matches the regular expression, "^type\s.{1,}$", it can type a list of characters via the keyboard. This instruction should specify the target keyboard input for the agent to type. Before this typing instruction, you should first locate the cursor by clicking the input box with click instruction.
+
+Second, given the instruction that matches the regular expression, "^clickxpath\s.{1,}$", it can click an HTML element with an xpath that is visible on the webpage. The target of this instruction should be a valid xpath.
+
+Below is the HTML code of the webpage where the agent should solve a task.
+<div id="wrap" data-wob_ref="2" data-wob_eps="e0">
+  <div id="query">Select Aviva from the list and click Submit.</div>
+  <div id="area" data-wob_ref="3" data-wob_eps="e0"><select id="options" style="width:150px;" class="Aviva,Josepha,Ines,Delcine,Theresita" data-wob_ref="4" data-wob_eps="e0"><option>Aviva</option><option>Josepha</option><option>Ines</option><option>Delcine</option><option>Theresita</option></select><button class="secondary-action" data-wob_ref="5" data-wob_eps="e0">Submit</button></div>
+</div>
+
+Current task: Select Aviva from the list and click Submit.
+plan:
+--------------------
+--------------------
+###
+assistant
+###
+1. Find the input box containing the target text by clicking on it with a "clickxpath" instruction. The xpath for this element is "//div[@id='query']".
+2. Type "Aviva" into the input box using a "type" instruction with the target text as "Aviva".
+3. Find the "Submit" button by clicking on it with a "clickxpath" instruction. The xpath for this element is "//button[@class='secondary-action']".
+4. Wait for the page to update or load, if necessary.
+
+Once these steps are completed, the agent will have selected "Aviva" from the list and clicked the "Submit" button.
+--------------------
+--------------------
+###
+user
+###
+
+
+Below is the HTML code of the webpage where the agent should solve a task.
+<div id="wrap" data-wob_ref="2" data-wob_eps="e0">
+  <div id="query">Select Aviva from the list and click Submit.</div>
+  <div id="area" data-wob_ref="3" data-wob_eps="e0"><select id="options" style="width:150px;" class="Aviva,Josepha,Ines,Delcine,Theresita" data-wob_ref="4" data-wob_eps="e0"><option>Aviva</option><option>Josepha</option><option>Ines</option><option>Delcine</option><option>Theresita</option></select><button class="secondary-action" data-wob_ref="5" data-wob_eps="e0">Submit</button></div>
+</div>
+
+Current task: Select Aviva from the list and click Submit.
+
+
+Here is a plan you are following now.
+
+1. Find the input box containing the target text by clicking on it with a "clickxpath" instruction. The xpath for this element is "//div[@id='query']".
+2. Type "Aviva" into the input box using a "type" instruction with the target text as "Aviva".
+3. Find the "Submit" button by clicking on it with a "clickxpath" instruction. The xpath for this element is "//button[@class='secondary-action']".
+4. Wait for the page to update or load, if necessary.
+
+Once these steps are completed, the agent will have selected "Aviva" from the list and clicked the "Submit" button.
+
+
+
+We have a history of instructions that have been already executed by the autonomous agent so far.
+No instruction has been executed yet.
+
+Based on the plan and the history of instructions executed so far, the first instruction should be `
+--------------------
+--------------------
+###
+assistant
+###
+clickxpath //div[@id='query']
+--------------------
+--------------------
+###
+user
+###
+Hold on, please wait for my next instruction.
+--------------------
+--------------------
+###
+assistant
+###
+Sure, I'll wait for your next instruction. Just let me know when you're ready.
+--------------------
+--------------------
+###
+user
+###
+
+
+Below is the HTML code of the webpage where the agent should solve a task.
+<div id="wrap" data-wob_ref="2" data-wob_eps="e0">
+  <div id="query" data-tampered="e0">Select Aviva from the list and click Submit.</div>
+  <div id="area" data-wob_ref="3" data-wob_eps="e0"><select id="options" style="width:150px;" class="Aviva,Josepha,Ines,Delcine,Theresita" data-wob_ref="4" data-wob_eps="e0"><option>Aviva</option><option>Josepha</option><option>Ines</option><option>Delcine</option><option>Theresita</option></select><button class="secondary-action" data-wob_ref="5" data-wob_eps="e0">Submit</button></div>
+</div>
+
+Current task: Select Aviva from the list and click Submit.
+
+
+Here is a plan you are following now.
+
+1. Find the input box containing the target text by clicking on it with a "clickxpath" instruction. The xpath for this element is "//div[@id='query']".
+2. Type "Aviva" into the input box using a "type" instruction with the target text as "Aviva".
+3. Find the "Submit" button by clicking on it with a "clickxpath" instruction. The xpath for this element is "//button[@class='secondary-action']".
+4. Wait for the page to update or load, if necessary.
+
+Once these steps are completed, the agent will have selected "Aviva" from the list and clicked the "Submit" button.
+
+
+
+We have a history of instructions that have been already executed by the autonomous agent so far.
+1: clickxpath //div[@id='query']
+
+
+Based on the plan and the history of instructions executed so far, the next proper instruction should be `
+--------------------
+--------------------
+###
+assistant
+###
+type Aviva
+--------------------
+--------------------
+###
+user
+###
+Hold on, please wait for my next instruction.
+--------------------
+--------------------
+###
+assistant
+###
+Of course, I'll be here when you're ready to provide the next instruction. Just let me know.
+--------------------
+--------------------
+###
+user
+###
+
+
+Below is the HTML code of the webpage where the agent should solve a task.
+<div id="wrap" data-wob_ref="2" data-wob_eps="e0">
+  <div id="query" data-tampered="e0">Select Aviva from the list and click Submit.</div>
+  <div id="area" data-wob_ref="3" data-wob_eps="e0"><select id="options" style="width:150px;" class="Aviva,Josepha,Ines,Delcine,Theresita" data-wob_ref="4" data-wob_eps="e0"><option>Aviva</option><option>Josepha</option><option>Ines</option><option>Delcine</option><option>Theresita</option></select><button class="secondary-action" data-wob_ref="5" data-wob_eps="e0">Submit</button></div>
+</div>
+
+Current task: Select Aviva from the list and click Submit.
+
+
+Here is a plan you are following now.
+
+1. Find the input box containing the target text by clicking on it with a "clickxpath" instruction. The xpath for this element is "//div[@id='query']".
+2. Type "Aviva" into the input box using a "type" instruction with the target text as "Aviva".
+3. Find the "Submit" button by clicking on it with a "clickxpath" instruction. The xpath for this element is "//button[@class='secondary-action']".
+4. Wait for the page to update or load, if necessary.
+
+Once these steps are completed, the agent will have selected "Aviva" from the list and clicked the "Submit" button.
+
+
+
+We have a history of instructions that have been already executed by the autonomous agent so far.
+1: clickxpath //div[@id='query']
+2: type Aviva
+
+
+Based on the plan and the history of instructions executed so far, the next proper instruction should be `
+--------------------
+--------------------
+###
+assistant
+###
+clickxpath //button[@class='secondary-action']
+--------------------

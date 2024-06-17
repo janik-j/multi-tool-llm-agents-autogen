@@ -1,0 +1,338 @@
+--------------------
+###
+system
+###
+You are an autoregressive language model that completes user's sentences.
+--------------------
+--------------------
+###
+user
+###
+
+We have an autonomous computer control agent that can perform atomic instructions specified by natural language to control computers. There are two types of instructions it can execute. 
+
+First, given the instruction that matches the regular expression, "^type\s.{1,}$", it can type a list of characters via the keyboard. This instruction should specify the target keyboard input for the agent to type. Before this typing instruction, you should first locate the cursor by clicking the input box with click instruction.
+
+Second, given the instruction that matches the regular expression, "^clickxpath\s.{1,}$", it can click an HTML element with an xpath that is visible on the webpage. The target of this instruction should be a valid xpath.
+
+Below is the HTML code of the webpage where the agent should solve a task.
+<div id="wrap" data-wob_ref="2" data-wob_eps="e0">
+  <div id="query">Select words similar to genuine, incorrect, halt and click Submit.</div>
+  <div id="area" data-wob_ref="3" data-wob_eps="e0">
+    <div id="boxes" data-wob_ref="4" data-wob_eps="e0"><label data-wob_ref="5" data-wob_eps="e0"><input type="checkbox" id="ch0" data-wob_ref="6" data-wob_eps="e0">dumb</label><br><label data-wob_ref="7" data-wob_eps="e0"><input type="checkbox" id="ch1" data-wob_ref="8" data-wob_eps="e0">fleshy</label><br><label data-wob_ref="9" data-wob_eps="e0"><input type="checkbox" id="ch2" data-wob_ref="10" data-wob_eps="e0">finish</label><br><label data-wob_ref="11" data-wob_eps="e0"><input type="checkbox" id="ch3" data-wob_ref="12" data-wob_eps="e0">wrong</label><br><label data-wob_ref="13" data-wob_eps="e0"><input type="checkbox" id="ch4" data-wob_ref="14" data-wob_eps="e0">real</label><br><label data-wob_ref="15" data-wob_eps="e0"><input type="checkbox" id="ch5" data-wob_ref="16" data-wob_eps="e0">cars</label><br></div>
+    <br>
+    <button id="subbtn" class="secondary-action" data-wob_ref="17" data-wob_eps="e0">Submit</button>
+  </div>
+</div>
+
+Example plans)
+task: select the words similar to bunnies, tiny, scared, swine and click the Submit button.
+plan: we need to select synonyms of the given words and the words themselves.
+1. clickxpath //label[text() = 'rabbit']/input // rabbit is a synonym of bunnies
+2. clickxpath //label[text() = 'pig']/input // pig is a synonym of swine
+3. clickxpath //label[text() = 'panicked']/input panicked is a synonym of scared
+4. clickxpath //label[text() = 'tiny']/input 
+5. clickxpath //button[@id='subbtn']
+
+
+Current task: Select words similar to genuine, incorrect, halt and click Submit.
+plan:
+--------------------
+--------------------
+###
+assistant
+###
+To solve the current task, we need to select words similar to "genuine," "incorrect," and "halt," and then click the "Submit" button. Here is the plan:
+
+1. Click the checkbox for the word "genuine" by using the xpath: //label[text() = 'genuine']/input.
+2. Click the checkbox for the word "incorrect" by using the xpath: //label[text() = 'incorrect']/input.
+3. Click the checkbox for the word "halt" by using the xpath: //label[text() = 'halt']/input.
+4. Click the "Submit" button by using the xpath: //button[@id='subbtn'].
+
+Execute these steps in order to complete the task.
+--------------------
+--------------------
+###
+user
+###
+
+
+Below is the HTML code of the webpage where the agent should solve a task.
+<div id="wrap" data-wob_ref="2" data-wob_eps="e0">
+  <div id="query">Select words similar to genuine, incorrect, halt and click Submit.</div>
+  <div id="area" data-wob_ref="3" data-wob_eps="e0">
+    <div id="boxes" data-wob_ref="4" data-wob_eps="e0"><label data-wob_ref="5" data-wob_eps="e0"><input type="checkbox" id="ch0" data-wob_ref="6" data-wob_eps="e0">dumb</label><br><label data-wob_ref="7" data-wob_eps="e0"><input type="checkbox" id="ch1" data-wob_ref="8" data-wob_eps="e0">fleshy</label><br><label data-wob_ref="9" data-wob_eps="e0"><input type="checkbox" id="ch2" data-wob_ref="10" data-wob_eps="e0">finish</label><br><label data-wob_ref="11" data-wob_eps="e0"><input type="checkbox" id="ch3" data-wob_ref="12" data-wob_eps="e0">wrong</label><br><label data-wob_ref="13" data-wob_eps="e0"><input type="checkbox" id="ch4" data-wob_ref="14" data-wob_eps="e0">real</label><br><label data-wob_ref="15" data-wob_eps="e0"><input type="checkbox" id="ch5" data-wob_ref="16" data-wob_eps="e0">cars</label><br></div>
+    <br>
+    <button id="subbtn" class="secondary-action" data-wob_ref="17" data-wob_eps="e0">Submit</button>
+  </div>
+</div>
+
+Current task: Select words similar to genuine, incorrect, halt and click Submit.
+
+
+Here is a plan you are following now.
+
+To solve the current task, we need to select words similar to "genuine," "incorrect," and "halt," and then click the "Submit" button. Here is the plan:
+
+1. Click the checkbox for the word "genuine" by using the xpath: //label[text() = 'genuine']/input.
+2. Click the checkbox for the word "incorrect" by using the xpath: //label[text() = 'incorrect']/input.
+3. Click the checkbox for the word "halt" by using the xpath: //label[text() = 'halt']/input.
+4. Click the "Submit" button by using the xpath: //button[@id='subbtn'].
+
+Execute these steps in order to complete the task.
+
+
+
+We have a history of instructions that have been already executed by the autonomous agent so far.
+No instruction has been executed yet.
+
+Based on the plan and the history of instructions executed so far, the first instruction should be `
+--------------------
+--------------------
+###
+assistant
+###
+clickxpath //label[text() = 'genuine']/input`.
+--------------------
+--------------------
+###
+user
+###
+Hold on, please wait for my next instruction.
+--------------------
+--------------------
+###
+assistant
+###
+Sure, I'll wait for your next instruction. Just let me know when you're ready.
+--------------------
+--------------------
+###
+user
+###
+
+
+Below is the HTML code of the webpage where the agent should solve a task.
+<div id="wrap" data-wob_ref="2" data-wob_eps="e0">
+  <div id="query">Select words similar to genuine, incorrect, halt and click Submit.</div>
+  <div id="area" data-wob_ref="3" data-wob_eps="e0">
+    <div id="boxes" data-wob_ref="4" data-wob_eps="e0"><label data-wob_ref="5" data-wob_eps="e0"><input type="checkbox" id="ch0" data-wob_ref="6" data-wob_eps="e0">dumb</label><br><label data-wob_ref="7" data-wob_eps="e0"><input type="checkbox" id="ch1" data-wob_ref="8" data-wob_eps="e0">fleshy</label><br><label data-wob_ref="9" data-wob_eps="e0"><input type="checkbox" id="ch2" data-wob_ref="10" data-wob_eps="e0">finish</label><br><label data-wob_ref="11" data-wob_eps="e0"><input type="checkbox" id="ch3" data-wob_ref="12" data-wob_eps="e0">wrong</label><br><label data-wob_ref="13" data-wob_eps="e0"><input type="checkbox" id="ch4" data-wob_ref="14" data-wob_eps="e0">real</label><br><label data-wob_ref="15" data-wob_eps="e0"><input type="checkbox" id="ch5" data-wob_ref="16" data-wob_eps="e0">cars</label><br></div>
+    <br>
+    <button id="subbtn" class="secondary-action" data-wob_ref="17" data-wob_eps="e0">Submit</button>
+  </div>
+</div>
+
+Current task: Select words similar to genuine, incorrect, halt and click Submit.
+
+
+Here is a plan you are following now.
+
+To solve the current task, we need to select words similar to "genuine," "incorrect," and "halt," and then click the "Submit" button. Here is the plan:
+
+1. Click the checkbox for the word "genuine" by using the xpath: //label[text() = 'genuine']/input.
+2. Click the checkbox for the word "incorrect" by using the xpath: //label[text() = 'incorrect']/input.
+3. Click the checkbox for the word "halt" by using the xpath: //label[text() = 'halt']/input.
+4. Click the "Submit" button by using the xpath: //button[@id='subbtn'].
+
+Execute these steps in order to complete the task.
+
+
+
+We have a history of instructions that have been already executed by the autonomous agent so far.
+1: clickxpath //label[text() = 'genuine']/input
+
+
+Based on the plan and the history of instructions executed so far, the next proper instruction should be `
+--------------------
+--------------------
+###
+assistant
+###
+clickxpath //label[text() = 'incorrect']/input`.
+--------------------
+--------------------
+###
+user
+###
+Hold on, please wait for my next instruction.
+--------------------
+--------------------
+###
+assistant
+###
+Sure, I'll wait for your next instruction. Just let me know when you're ready.
+--------------------
+--------------------
+###
+user
+###
+
+
+Below is the HTML code of the webpage where the agent should solve a task.
+<div id="wrap" data-wob_ref="2" data-wob_eps="e0">
+  <div id="query">Select words similar to genuine, incorrect, halt and click Submit.</div>
+  <div id="area" data-wob_ref="3" data-wob_eps="e0">
+    <div id="boxes" data-wob_ref="4" data-wob_eps="e0"><label data-wob_ref="5" data-wob_eps="e0"><input type="checkbox" id="ch0" data-wob_ref="6" data-wob_eps="e0">dumb</label><br><label data-wob_ref="7" data-wob_eps="e0"><input type="checkbox" id="ch1" data-wob_ref="8" data-wob_eps="e0">fleshy</label><br><label data-wob_ref="9" data-wob_eps="e0"><input type="checkbox" id="ch2" data-wob_ref="10" data-wob_eps="e0">finish</label><br><label data-wob_ref="11" data-wob_eps="e0"><input type="checkbox" id="ch3" data-wob_ref="12" data-wob_eps="e0">wrong</label><br><label data-wob_ref="13" data-wob_eps="e0"><input type="checkbox" id="ch4" data-wob_ref="14" data-wob_eps="e0">real</label><br><label data-wob_ref="15" data-wob_eps="e0"><input type="checkbox" id="ch5" data-wob_ref="16" data-wob_eps="e0">cars</label><br></div>
+    <br>
+    <button id="subbtn" class="secondary-action" data-wob_ref="17" data-wob_eps="e0">Submit</button>
+  </div>
+</div>
+
+Current task: Select words similar to genuine, incorrect, halt and click Submit.
+
+
+Here is a plan you are following now.
+
+To solve the current task, we need to select words similar to "genuine," "incorrect," and "halt," and then click the "Submit" button. Here is the plan:
+
+1. Click the checkbox for the word "genuine" by using the xpath: //label[text() = 'genuine']/input.
+2. Click the checkbox for the word "incorrect" by using the xpath: //label[text() = 'incorrect']/input.
+3. Click the checkbox for the word "halt" by using the xpath: //label[text() = 'halt']/input.
+4. Click the "Submit" button by using the xpath: //button[@id='subbtn'].
+
+Execute these steps in order to complete the task.
+
+
+
+We have a history of instructions that have been already executed by the autonomous agent so far.
+1: clickxpath //label[text() = 'genuine']/input
+2: clickxpath //label[text() = 'incorrect']/input
+
+
+Based on the plan and the history of instructions executed so far, the next proper instruction should be `
+--------------------
+--------------------
+###
+assistant
+###
+clickxpath //label[text() = 'halt']/input.
+--------------------
+--------------------
+###
+user
+###
+Hold on, please wait for my next instruction.
+--------------------
+--------------------
+###
+assistant
+###
+Sure, I'll wait for your next instruction. Just let me know when you're ready.
+--------------------
+--------------------
+###
+user
+###
+
+
+Below is the HTML code of the webpage where the agent should solve a task.
+<div id="wrap" data-wob_ref="2" data-wob_eps="e0">
+  <div id="query">Select words similar to genuine, incorrect, halt and click Submit.</div>
+  <div id="area" data-wob_ref="3" data-wob_eps="e0">
+    <div id="boxes" data-wob_ref="4" data-wob_eps="e0"><label data-wob_ref="5" data-wob_eps="e0"><input type="checkbox" id="ch0" data-wob_ref="6" data-wob_eps="e0">dumb</label><br><label data-wob_ref="7" data-wob_eps="e0"><input type="checkbox" id="ch1" data-wob_ref="8" data-wob_eps="e0">fleshy</label><br><label data-wob_ref="9" data-wob_eps="e0"><input type="checkbox" id="ch2" data-wob_ref="10" data-wob_eps="e0">finish</label><br><label data-wob_ref="11" data-wob_eps="e0"><input type="checkbox" id="ch3" data-wob_ref="12" data-wob_eps="e0">wrong</label><br><label data-wob_ref="13" data-wob_eps="e0"><input type="checkbox" id="ch4" data-wob_ref="14" data-wob_eps="e0">real</label><br><label data-wob_ref="15" data-wob_eps="e0"><input type="checkbox" id="ch5" data-wob_ref="16" data-wob_eps="e0">cars</label><br></div>
+    <br>
+    <button id="subbtn" class="secondary-action" data-wob_ref="17" data-wob_eps="e0">Submit</button>
+  </div>
+</div>
+
+Current task: Select words similar to genuine, incorrect, halt and click Submit.
+
+
+Here is a plan you are following now.
+
+To solve the current task, we need to select words similar to "genuine," "incorrect," and "halt," and then click the "Submit" button. Here is the plan:
+
+1. Click the checkbox for the word "genuine" by using the xpath: //label[text() = 'genuine']/input.
+2. Click the checkbox for the word "incorrect" by using the xpath: //label[text() = 'incorrect']/input.
+3. Click the checkbox for the word "halt" by using the xpath: //label[text() = 'halt']/input.
+4. Click the "Submit" button by using the xpath: //button[@id='subbtn'].
+
+Execute these steps in order to complete the task.
+
+
+
+We have a history of instructions that have been already executed by the autonomous agent so far.
+1: clickxpath //label[text() = 'genuine']/input
+2: clickxpath //label[text() = 'incorrect']/input
+3: clickxpath //label[text() = 'halt']/input.
+
+
+Based on the plan and the history of instructions executed so far, the next proper instruction should be `
+--------------------
+--------------------
+###
+assistant
+###
+clickxpath //button[@id='subbtn'].
+--------------------
+--------------------
+###
+user
+###
+Hold on, please wait for my next instruction.
+--------------------
+--------------------
+###
+assistant
+###
+Alright, I'll wait for your next instruction. Just let me know when you're ready to proceed.
+--------------------
+--------------------
+###
+user
+###
+
+
+Below is the HTML code of the webpage where the agent should solve a task.
+<div id="wrap" data-wob_ref="2" data-wob_eps="e0">
+  <div id="query">Select words similar to genuine, incorrect, halt and click Submit.</div>
+  <div id="area" data-wob_ref="3" data-wob_eps="e0">
+    <div id="boxes" data-wob_ref="4" data-wob_eps="e0"><label data-wob_ref="5" data-wob_eps="e0"><input type="checkbox" id="ch0" data-wob_ref="6" data-wob_eps="e0">dumb</label><br><label data-wob_ref="7" data-wob_eps="e0"><input type="checkbox" id="ch1" data-wob_ref="8" data-wob_eps="e0">fleshy</label><br><label data-wob_ref="9" data-wob_eps="e0"><input type="checkbox" id="ch2" data-wob_ref="10" data-wob_eps="e0">finish</label><br><label data-wob_ref="11" data-wob_eps="e0"><input type="checkbox" id="ch3" data-wob_ref="12" data-wob_eps="e0">wrong</label><br><label data-wob_ref="13" data-wob_eps="e0"><input type="checkbox" id="ch4" data-wob_ref="14" data-wob_eps="e0">real</label><br><label data-wob_ref="15" data-wob_eps="e0"><input type="checkbox" id="ch5" data-wob_ref="16" data-wob_eps="e0">cars</label><br></div>
+    <br>
+    <button id="subbtn" class="secondary-action" data-wob_ref="17" data-wob_eps="e0">Submit</button>
+  </div>
+</div>
+
+Current task: Select words similar to genuine, incorrect, halt and click Submit.
+
+
+Here is a plan you are following now.
+
+To solve the current task, we need to select words similar to "genuine," "incorrect," and "halt," and then click the "Submit" button. Here is the plan:
+
+1. Click the checkbox for the word "genuine" by using the xpath: //label[text() = 'genuine']/input.
+2. Click the checkbox for the word "incorrect" by using the xpath: //label[text() = 'incorrect']/input.
+3. Click the checkbox for the word "halt" by using the xpath: //label[text() = 'halt']/input.
+4. Click the "Submit" button by using the xpath: //button[@id='subbtn'].
+
+Execute these steps in order to complete the task.
+
+
+
+We have a history of instructions that have been already executed by the autonomous agent so far.
+1: clickxpath //label[text() = 'genuine']/input
+2: clickxpath //label[text() = 'incorrect']/input
+3: clickxpath //label[text() = 'halt']/input.
+4: clickxpath //button[@id='subbtn'].
+
+
+Based on the plan and the history of instructions executed so far, the next proper instruction should be `
+--------------------
+--------------------
+###
+assistant
+###
+There are no more instructions required as all the steps in the plan have been executed. The task to select words similar to "genuine," "incorrect," and "halt," and click the "Submit" button has been completed. If you have any other tasks or instructions, please let me know.
+--------------------
+--------------------
+###
+user
+###
+ Without explanation, the single instruction that matches one of the regular expressions is `
+--------------------
+--------------------
+###
+assistant
+###
+Sure, here is the instruction that matches one of the regular expressions: `type <keyboard_input>`.
+--------------------

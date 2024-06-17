@@ -1,0 +1,78 @@
+--------------------
+###
+system
+###
+You are an autoregressive language model that completes user's sentences.
+--------------------
+--------------------
+###
+user
+###
+
+We have an autonomous computer control agent that can perform atomic instructions specified by natural language to control computers. There are two types of instructions it can execute. 
+
+First, given the instruction that matches the regular expression, "^type\s.{1,}$", it can type a list of characters via the keyboard. This instruction should specify the target keyboard input for the agent to type. Before this typing instruction, you should first locate the cursor by clicking the input box with click instruction.
+
+Second, given the instruction that matches the regular expression, "^clickxpath\s.{1,}$", it can click an HTML element with an xpath that is visible on the webpage. The target of this instruction should be a valid xpath.
+
+Below is the HTML code of the webpage where the agent should solve a task.
+<div id="wrap" data-wob_ref="2" data-wob_eps="e0">
+  <div id="query">Click button ONE.</div>
+  <div id="area" data-wob_ref="3" data-wob_eps="e0">
+    <button id="subbtn" style="position:absolute; left:2px; top:151px" data-wob_ref="4" data-wob_eps="e0">ONE</button>
+    <button id="subbtn2" style="position:absolute; left:115px; top:56px" data-wob_ref="5" data-wob_eps="e0">TWO</button>
+  </div>
+</div>
+
+Current task: Click button ONE.
+plan:
+--------------------
+--------------------
+###
+assistant
+###
+To solve the current task of clicking button ONE, the plan should involve using the "clickxpath" instruction with the valid xpath of the button element. Since the button with the text "ONE" has the id "subbtn", the xpath for it would be "//button[@id='subbtn']".
+
+Thus, the plan to solve the task is as follows:
+
+1. Use the "clickxpath" instruction with the xpath "//button[@id='subbtn']" to click the button with the text "ONE".
+--------------------
+--------------------
+###
+user
+###
+
+
+Below is the HTML code of the webpage where the agent should solve a task.
+<div id="wrap" data-wob_ref="2" data-wob_eps="e0">
+  <div id="query">Click button ONE.</div>
+  <div id="area" data-wob_ref="3" data-wob_eps="e0">
+    <button id="subbtn" style="position:absolute; left:2px; top:151px" data-wob_ref="4" data-wob_eps="e0">ONE</button>
+    <button id="subbtn2" style="position:absolute; left:115px; top:56px" data-wob_ref="5" data-wob_eps="e0">TWO</button>
+  </div>
+</div>
+
+Current task: Click button ONE.
+
+
+Here is a plan you are following now.
+
+To solve the current task of clicking button ONE, the plan should involve using the "clickxpath" instruction with the valid xpath of the button element. Since the button with the text "ONE" has the id "subbtn", the xpath for it would be "//button[@id='subbtn']".
+
+Thus, the plan to solve the task is as follows:
+
+1. Use the "clickxpath" instruction with the xpath "//button[@id='subbtn']" to click the button with the text "ONE".
+
+
+
+We have a history of instructions that have been already executed by the autonomous agent so far.
+No instruction has been executed yet.
+
+Based on the plan and the history of instructions executed so far, the first instruction should be `
+--------------------
+--------------------
+###
+assistant
+###
+clickxpath //button[@id='subbtn']
+--------------------

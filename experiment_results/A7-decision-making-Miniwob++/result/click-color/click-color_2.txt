@@ -1,0 +1,115 @@
+--------------------
+###
+system
+###
+You are an autoregressive language model that completes user's sentences.
+--------------------
+--------------------
+###
+user
+###
+
+We have an autonomous computer control agent that can perform atomic instructions specified by natural language to control computers. There are two types of instructions it can execute. 
+
+First, given the instruction that matches the regular expression, "^type\s.{1,}$", it can type a list of characters via the keyboard. This instruction should specify the target keyboard input for the agent to type. Before this typing instruction, you should first locate the cursor by clicking the input box with click instruction.
+
+Second, given the instruction that matches the regular expression, "^clickxpath\s.{1,}$", it can click an HTML element with an xpath that is visible on the webpage. The target of this instruction should be a valid xpath.
+
+Below is the HTML code of the webpage where the agent should solve a task.
+<div id="wrap" data-wob_ref="2" data-wob_eps="e0">
+  <div id="query">Click on the <span class="bold">white</span> colored box.</div>
+  <div id="area" data-wob_ref="3" data-wob_eps="e0"><div class="color" data-color="white" style="background-color: white;" data-wob_ref="4" data-wob_eps="e0"></div><div class="color" data-color="pink" style="background-color: pink;" data-wob_ref="5" data-wob_eps="e0"></div><div class="color" data-color="cyan" style="background-color: cyan;" data-wob_ref="6" data-wob_eps="e0"></div><div class="color" data-color="blue" style="background-color: blue;" data-wob_ref="7" data-wob_eps="e0"></div></div>
+</div>
+
+Current task: Click on the white colored box.
+plan:
+--------------------
+--------------------
+###
+assistant
+###
+1. Locate the cursor by clicking on the input box.
+2. Use the "clickxpath" instruction with the target xpath of the white colored box to click on it.
+
+--------------------
+--------------------
+###
+user
+###
+
+
+Below is the HTML code of the webpage where the agent should solve a task.
+<div id="wrap" data-wob_ref="2" data-wob_eps="e0">
+  <div id="query">Click on the <span class="bold">white</span> colored box.</div>
+  <div id="area" data-wob_ref="3" data-wob_eps="e0"><div class="color" data-color="white" style="background-color: white;" data-wob_ref="4" data-wob_eps="e0"></div><div class="color" data-color="pink" style="background-color: pink;" data-wob_ref="5" data-wob_eps="e0"></div><div class="color" data-color="cyan" style="background-color: cyan;" data-wob_ref="6" data-wob_eps="e0"></div><div class="color" data-color="blue" style="background-color: blue;" data-wob_ref="7" data-wob_eps="e0"></div></div>
+</div>
+
+Current task: Click on the white colored box.
+
+
+Here is a plan you are following now.
+
+1. Locate the cursor by clicking on the input box.
+2. Use the "clickxpath" instruction with the target xpath of the white colored box to click on it.
+
+
+
+
+We have a history of instructions that have been already executed by the autonomous agent so far.
+No instruction has been executed yet.
+
+Based on the plan and the history of instructions executed so far, the first instruction should be `
+--------------------
+--------------------
+###
+assistant
+###
+type //*[@id="query"]
+--------------------
+--------------------
+###
+user
+###
+Hold on, please wait for my next instruction.
+--------------------
+--------------------
+###
+assistant
+###
+Sure, I'll wait for your next instruction. Just let me know when you're ready.
+--------------------
+--------------------
+###
+user
+###
+
+
+Below is the HTML code of the webpage where the agent should solve a task.
+<div id="wrap" data-wob_ref="2" data-wob_eps="e0">
+  <div id="query">Click on the <span class="bold">white</span> colored box.</div>
+  <div id="area" data-wob_ref="3" data-wob_eps="e0"><div class="color" data-color="white" style="background-color: white;" data-wob_ref="4" data-wob_eps="e0"></div><div class="color" data-color="pink" style="background-color: pink;" data-wob_ref="5" data-wob_eps="e0"></div><div class="color" data-color="cyan" style="background-color: cyan;" data-wob_ref="6" data-wob_eps="e0"></div><div class="color" data-color="blue" style="background-color: blue;" data-wob_ref="7" data-wob_eps="e0"></div></div>
+</div>
+
+Current task: Click on the white colored box.
+
+
+Here is a plan you are following now.
+
+1. Locate the cursor by clicking on the input box.
+2. Use the "clickxpath" instruction with the target xpath of the white colored box to click on it.
+
+
+
+
+We have a history of instructions that have been already executed by the autonomous agent so far.
+1: type //*[@id="query"]
+
+
+Based on the plan and the history of instructions executed so far, the next proper instruction should be `
+--------------------
+--------------------
+###
+assistant
+###
+clickxpath //*[@data-color="white"]
+--------------------
