@@ -6,14 +6,13 @@ from autogen.agentchat.contrib.capabilities import generate_images
 from typing import List
 
 class DalleWrapper(object):
-    CRITIC_SYSTEM_MESSAGE = """You need to improve the prompt of the figures you saw.
-    How to create an image that is better in terms of color, shape, text (clarity), and other things.
+    CRITIC_SYSTEM_MESSAGE = """You need to improve the prompt of the user.
+    Optimize it in a way to create an image that is better in terms of color, shape, text (clarity), and other things.
     Reply with the following format:
 
-    CRITICS: the image needs to improve...
     PROMPT: here is the updated prompt!
 
-    If you have no critique or a prompt, just say TERMINATE
+    If you have no better prompt, just say TERMINATE
     """
 
     def __init__(self, gpt_config: str, gpt_vision_config: str, dalle_config: str):
