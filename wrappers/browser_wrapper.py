@@ -15,9 +15,6 @@ class BrowserWrapper(object):
     MAX_TOKENS: int = 10000
 
     def __init__(self, config_list: List[Dict], gsearch_api_key: str) -> None:
-        import os
-        os.environ["PATH"] += os.pathsep + '/opt/X11/bin'
-
         self.user_proxy = UserProxyAgent(
             name="user_proxy",
             system_message="""
