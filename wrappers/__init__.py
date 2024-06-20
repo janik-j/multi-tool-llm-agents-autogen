@@ -1,3 +1,4 @@
+from .browser_wrapper import BrowserWrapper
 from .chess_nested_chats_wrapper import ChessNestedChatsWrapper
 from .chess_no_board_wrapper import ChessNoBoardWrapper
 from .chess_wrapper import ChessWrapper
@@ -10,6 +11,7 @@ from .rag_no_interaction_wrapper import RagNoInteractionWrapper
 from .rag_wrapper import RagWrapper
 
 __all__ = [
+    "BrowserWrapper",
     "ChessNestedChatsWrapper",
     "ChessNoBoardWrapper",
     "ChessWrapper",
