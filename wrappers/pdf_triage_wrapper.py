@@ -14,12 +14,63 @@ class PdfTriageWrapper(object):
 
         self.user_proxy = UserProxyAgent(
             name="user_proxy",
-            system_message="You are a human user. When you are satisfied with the answer, reply with TERMINATE.",
+            system_message="""
+                You are a human user.
+                When you are satisfied with the answer, reply with TERMINATE.
+                """,
             human_input_mode="NEVER",
             max_consecutive_auto_reply=10,
             llm_config={"cache_seed": None, "temperature": 0, "config_list": config_list},
         )
-        self.pdf_parser = ConversableAgent(
+        self.pdf_parser = self.get_pdf_parser(config_list)
+
+        self.register_functions(
+            self.user_proxy,
+            self.pdf_parser,
+            pdf_path,
+            config_list[0]["api_key"],
+            config_list[0]["model"],
+        )
+
+    @staticmethod
+    def register_functions(
+            user_proxy: UserProxyAgent,
+            pdf_parser: ConversableAgent,
+            pdf_path: Optional[str],
+            api_key: str,
+            api_version: str,
+    ) -> None:
+        # Non thread safe
+        openai.api_key = api_key
+        openai.api_version = api_version
+
+        vector_index = PdfTriageWrapper.get_vector_index(pdf_path)
+
+        register_function(
+            partial(PdfTriageWrapper.fetch_page, pdf_path=pdf_path),
+            caller=pdf_parser,
+            executor=user_proxy,
+            name="fetch_page",
+            description="Execute fetch_page(page_number) to retrieve the contents of a page.",
+        )
+        register_function(
+            partial(PdfTriageWrapper.fetch_section, vector_index=vector_index),
+            caller=pdf_parser,
+            executor=user_proxy,
+            name="fetch_section",
+            description="Execute fetch_section(section) to retrieve the contents of a section.",
+        )
+        register_function(
+            partial(PdfTriageWrapper.retrieve, vector_index=vector_index),
+            caller=pdf_parser,
+            executor=user_proxy,
+            name="retrieve",
+            description="Execute retrieve(query) to retrieve an answer for a given query.",
+        )
+
+    @staticmethod
+    def get_pdf_parser(config_list: List[Dict]) -> ConversableAgent:
+        return ConversableAgent(
             name="pdf_parser",
             system_message="""
             You can use the following functions to help you generate the answer:
@@ -29,35 +80,8 @@ class PdfTriageWrapper(object):
             3. retrieve(query) to answer a general question about the PDF contents.
             """,
             human_input_mode="NEVER",
-            is_termination_msg=self.is_termination_message,
+            is_termination_msg=PdfTriageWrapper.is_termination_message,
             llm_config={"cache_seed": None, "temperature": 0, "config_list": config_list},
-        )
-
-        openai.api_key = config_list[0]["api_key"]
-        openai.api_version = config_list[0]["model"]
-
-        vector_index = self.get_vector_index(pdf_path)
-
-        register_function(
-            partial(self.fetch_page, pdf_path=pdf_path),
-            caller=self.pdf_parser,
-            executor=self.user_proxy,
-            name="fetch_page",
-            description="Execute fetch_page(page_number) to retrieve the contents of a page.",
-        )
-        register_function(
-            partial(self.fetch_section, vector_index=vector_index),
-            caller=self.pdf_parser,
-            executor=self.user_proxy,
-            name="fetch_section",
-            description="Execute fetch_section(section) to retrieve the contents of a section.",
-        )
-        register_function(
-            partial(self.retrieve, vector_index=vector_index),
-            caller=self.pdf_parser,
-            executor=self.user_proxy,
-            name="retrieve",
-            description="Execute retrieve(query) to retrieve an answer for a given query.",
         )
 
     @staticmethod

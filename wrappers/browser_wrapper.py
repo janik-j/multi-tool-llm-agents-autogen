@@ -17,12 +17,21 @@ class BrowserWrapper(object):
     def __init__(self, config_list: List[Dict], gsearch_api_key: str) -> None:
         self.user_proxy = UserProxyAgent(
             name="user_proxy",
-            system_message="You are a human user. When you are satisfied with the answer, reply with TERMINATE.",
+            system_message="""
+                You are a human user.
+                When you are satisfied with the answer, reply with TERMINATE.
+                """,
             human_input_mode="NEVER",
             max_consecutive_auto_reply=1,
             llm_config={"cache_seed": None, "temperature": 0, "config_list": config_list},
         )
-        self.web_retriever = ConversableAgent(
+        self.web_retriever = self.get_web_retriever(config_list)
+
+        self.register_functions(self.user_proxy, self.web_retriever, gsearch_api_key)
+
+    @staticmethod
+    def get_web_retriever(config_list: List[Dict]) -> ConversableAgent:
+        return ConversableAgent(
             name="web_retriever",
             system_message="""
                 You can use the following functions to help you generate the answer:
@@ -32,22 +41,28 @@ class BrowserWrapper(object):
                 """,
             human_input_mode="NEVER",
             max_consecutive_auto_reply=1,
-            is_termination_msg=self.is_termination_message,
+            is_termination_msg=BrowserWrapper.is_termination_message,
             llm_config={"cache_seed": None, "temperature": 0, "config_list": config_list},
         )
 
+    @staticmethod
+    def register_functions(
+            user_proxy: UserProxyAgent,
+            web_retriever: ConversableAgent,
+            gsearch_api_key: str,
+    ) -> None:
         register_function(
-            partial(self.search, gsearch_api_key=gsearch_api_key),
-            caller=self.web_retriever,
-            executor=self.user_proxy,
+            partial(BrowserWrapper.search, gsearch_api_key=gsearch_api_key),
+            caller=web_retriever,
+            executor=user_proxy,
             name="search",
             description="Execute fetch_page(page_number) to retrieve the contents of a page.",
         )
 
         register_function(
-            self.open,
-            caller=self.web_retriever,
-            executor=self.user_proxy,
+            BrowserWrapper.open,
+            caller=web_retriever,
+            executor=user_proxy,
             name="open",
             description="Execute open(url) to open a specific web page and retrieve its contents.",
         )
@@ -64,7 +79,6 @@ class BrowserWrapper(object):
             q=query, cx=BrowserWrapper.GSEARCH_CUSTOM_SEARCH_ID, num=10
         ).execute()
 
-        print(results)
         return '\n'.join([
             f"""
                 Search result #{i}

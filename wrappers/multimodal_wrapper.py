@@ -12,7 +12,11 @@ class MultimodalWrapper(object):
             max_consecutive_auto_reply=0,
             llm_config={"cache_seed": None, "temperature": 0, "config_list": text_config_list},
         )
-        self.image_explainer = MultimodalConversableAgent(
+        self.image_explainer = self.get_image_explainer(vision_config_list)
+
+    @staticmethod
+    def get_image_explainer(vision_config_list: List[Dict]) -> MultimodalConversableAgent:
+        return MultimodalConversableAgent(
             name="image_explainer",
             llm_config={"cache_seed": None, "temperature": 0, "config_list": vision_config_list},
         )
