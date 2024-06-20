@@ -80,6 +80,7 @@ class PdfTriageWrapper(object):
             3. retrieve(query) to answer a general question about the PDF contents.
             """,
             human_input_mode="NEVER",
+            max_consecutive_auto_reply=10,
             is_termination_msg=PdfTriageWrapper.is_termination_message,
             llm_config={"cache_seed": None, "temperature": 0, "config_list": config_list},
         )

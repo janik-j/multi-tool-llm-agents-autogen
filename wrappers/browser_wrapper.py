@@ -15,6 +15,9 @@ class BrowserWrapper(object):
     MAX_TOKENS: int = 10000
 
     def __init__(self, config_list: List[Dict], gsearch_api_key: str) -> None:
+        import os
+        os.environ["PATH"] += os.pathsep + '/opt/X11/bin'
+
         self.user_proxy = UserProxyAgent(
             name="user_proxy",
             system_message="""
@@ -22,7 +25,7 @@ class BrowserWrapper(object):
                 When you are satisfied with the answer, reply with TERMINATE.
                 """,
             human_input_mode="NEVER",
-            max_consecutive_auto_reply=1,
+            max_consecutive_auto_reply=10,
             llm_config={"cache_seed": None, "temperature": 0, "config_list": config_list},
         )
         self.web_retriever = self.get_web_retriever(config_list)
@@ -40,7 +43,7 @@ class BrowserWrapper(object):
                 2. open(url) to open a specific URL address if provided by the user.
                 """,
             human_input_mode="NEVER",
-            max_consecutive_auto_reply=1,
+            max_consecutive_auto_reply=10,
             is_termination_msg=BrowserWrapper.is_termination_message,
             llm_config={"cache_seed": None, "temperature": 0, "config_list": config_list},
         )
