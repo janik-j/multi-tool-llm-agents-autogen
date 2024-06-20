@@ -13,7 +13,7 @@ class MultimodalWrapper(object):
             llm_config={"cache_seed": None, "temperature": 0, "config_list": text_config_list},
         )
         self.image_explainer = MultimodalConversableAgent(
-            name="image-explainer",
+            name="image_explainer",
             llm_config={"cache_seed": None, "temperature": 0, "config_list": vision_config_list},
         )
 
