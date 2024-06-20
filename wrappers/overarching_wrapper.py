@@ -26,7 +26,7 @@ class OverarchingWrapper(object):
                 When you are satisfied with the answer, reply with TERMINATE.
                 """,
             human_input_mode="NEVER",
-            max_consecutive_auto_reply=0,
+            max_consecutive_auto_reply=10,
             llm_config=llm_config,
         )
 
