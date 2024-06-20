@@ -1,8 +1,7 @@
 import openai
 import pymupdf
 from autogen import register_function
-from autogen.agentchat import ChatResult, UserProxyAgent
-from autogen.agentchat.contrib.multimodal_conversable_agent import MultimodalConversableAgent
+from autogen.agentchat import ChatResult, ConversableAgent, UserProxyAgent
 from functools import partial
 from llama_index.core import SimpleDirectoryReader, VectorStoreIndex
 from typing import Dict, List, Optional
@@ -15,11 +14,12 @@ class PdfTriageWrapper(object):
 
         self.user_proxy = UserProxyAgent(
             name="user_proxy",
+            system_message="You are a human user. When you are satisfied with the answer, reply with TERMINATE.",
             human_input_mode="NEVER",
-            max_consecutive_auto_reply=0,
+            max_consecutive_auto_reply=10,
             llm_config={"cache_seed": None, "temperature": 0, "config_list": config_list},
         )
-        self.pdf_parser = MultimodalConversableAgent(
+        self.pdf_parser = ConversableAgent(
             name="pdf_parser",
             system_message="""
             You can use the following functions to help you generate the answer:
@@ -28,6 +28,8 @@ class PdfTriageWrapper(object):
             2. fetch_section(section) to retrieve the contents of a section from the PDF.
             3. retrieve(query) to answer a general question about the PDF contents.
             """,
+            human_input_mode="NEVER",
+            is_termination_msg=self.is_termination_message,
             llm_config={"cache_seed": None, "temperature": 0, "config_list": config_list},
         )
 
@@ -37,26 +39,30 @@ class PdfTriageWrapper(object):
         vector_index = self.get_vector_index(pdf_path)
 
         register_function(
-            partial(self.fetch_page, pdf_path),
+            partial(self.fetch_page, pdf_path=pdf_path),
             caller=self.pdf_parser,
             executor=self.user_proxy,
             name="fetch_page",
             description="Execute fetch_page(page_number) to retrieve the contents of a page.",
         )
         register_function(
-            partial(self.fetch_section, vector_index),
+            partial(self.fetch_section, vector_index=vector_index),
             caller=self.pdf_parser,
             executor=self.user_proxy,
             name="fetch_section",
             description="Execute fetch_section(section) to retrieve the contents of a section.",
         )
         register_function(
-            partial(self.retrieve, vector_index),
+            partial(self.retrieve, vector_index=vector_index),
             caller=self.pdf_parser,
             executor=self.user_proxy,
             name="retrieve",
             description="Execute retrieve(query) to retrieve an answer for a given query.",
         )
+
+    @staticmethod
+    def is_termination_message(message: Dict) -> bool:
+        return "TERMINATE" in message['content']
 
     @staticmethod
     def get_vector_index(pdf_path: Optional[str]) -> VectorStoreIndex:
@@ -78,7 +84,7 @@ class PdfTriageWrapper(object):
     def query_index(vector_index: VectorStoreIndex, query: str) -> str:
         query_engine = vector_index.as_query_engine()
         response = query_engine.query(query)
-        return response.response_txt
+        return str(response)
 
     @staticmethod
     def fetch_section(vector_index: VectorStoreIndex, section: str) -> str:
