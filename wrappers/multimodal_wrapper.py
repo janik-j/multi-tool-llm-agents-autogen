@@ -8,9 +8,14 @@ class MultimodalWrapper(object):
     def __init__(self, text_config_list: List[Dict], vision_config_list: List[Dict]) -> None:
         self.user_proxy = UserProxyAgent(
             name="user_proxy",
+            system_message="""
+                You are a human user.
+                If the question has been answered, reply with TERMINATE.
+                """,
             human_input_mode="NEVER",
-            max_consecutive_auto_reply=0,
+            max_consecutive_auto_reply=10,
             llm_config={"cache_seed": None, "temperature": 0, "config_list": text_config_list},
+            code_execution_config={"use_docker": False},
         )
         self.image_explainer = self.get_image_explainer(vision_config_list)
 
@@ -18,6 +23,7 @@ class MultimodalWrapper(object):
     def get_image_explainer(vision_config_list: List[Dict]) -> MultimodalConversableAgent:
         return MultimodalConversableAgent(
             name="image_explainer",
+            human_input_mode="NEVER",
             llm_config={"cache_seed": None, "temperature": 0, "config_list": vision_config_list},
         )
 

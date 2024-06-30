@@ -23,7 +23,7 @@ class OverarchingWrapper(object):
             name="user_proxy",
             system_message="""
                 You are a human user.
-                When you are satisfied with the answer, reply with TERMINATE.
+                If the question has been answered, reply with TERMINATE.
                 """,
             human_input_mode="NEVER",
             max_consecutive_auto_reply=10,
@@ -73,7 +73,7 @@ class OverarchingWrapper(object):
             groupchat=self.groupchat,
             system_message="""
                 You are a group chat manager.
-                When you are satisfied with the answer, reply with TERMINATE.
+                If the question has been answered, reply with TERMINATE.
                 """,
             llm_config=llm_config,
         )

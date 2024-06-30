@@ -16,11 +16,12 @@ class PdfTriageWrapper(object):
             name="user_proxy",
             system_message="""
                 You are a human user.
-                When you are satisfied with the answer, reply with TERMINATE.
+                If the question has been answered, reply with TERMINATE.
                 """,
             human_input_mode="NEVER",
             max_consecutive_auto_reply=10,
             llm_config={"cache_seed": None, "temperature": 0, "config_list": config_list},
+            code_execution_config={"use_docker": False},
         )
         self.pdf_parser = self.get_pdf_parser(config_list)
 
@@ -47,21 +48,21 @@ class PdfTriageWrapper(object):
         vector_index = PdfTriageWrapper.get_vector_index(pdf_path)
 
         register_function(
-            partial(PdfTriageWrapper.fetch_page, pdf_path=pdf_path),
+            partial(PdfTriageWrapper.fetch_page, pdf_path),
             caller=pdf_parser,
             executor=user_proxy,
             name="fetch_page",
             description="Execute fetch_page(page_number) to retrieve the contents of a page.",
         )
         register_function(
-            partial(PdfTriageWrapper.fetch_section, vector_index=vector_index),
+            partial(PdfTriageWrapper.fetch_section, vector_index),
             caller=pdf_parser,
             executor=user_proxy,
             name="fetch_section",
             description="Execute fetch_section(section) to retrieve the contents of a section.",
         )
         register_function(
-            partial(PdfTriageWrapper.retrieve, vector_index=vector_index),
+            partial(PdfTriageWrapper.retrieve, vector_index),
             caller=pdf_parser,
             executor=user_proxy,
             name="retrieve",
@@ -90,9 +91,11 @@ class PdfTriageWrapper(object):
         return "TERMINATE" in message['content']
 
     @staticmethod
-    def get_vector_index(pdf_path: Optional[str]) -> VectorStoreIndex:
+    def get_vector_index(pdf_path: Optional[str]) -> Optional[VectorStoreIndex]:
+        if pdf_path is None:
+            return None
         index_documents = SimpleDirectoryReader(
-            input_files=([pdf_path] if pdf_path is not None else [])
+            input_files=[pdf_path]
         ).load_data()
         return VectorStoreIndex.from_documents(index_documents)
 
@@ -106,20 +109,25 @@ class PdfTriageWrapper(object):
         return page.get_text()
 
     @staticmethod
-    def query_index(vector_index: VectorStoreIndex, query: str) -> str:
+    def query_index(vector_index: Optional[VectorStoreIndex], query: str) -> str:
+        if vector_index is None:
+            return """
+                No context provided.
+                Use your best judgement to answer the question.
+                """
         query_engine = vector_index.as_query_engine()
         response = query_engine.query(query)
         return str(response)
 
     @staticmethod
-    def fetch_section(vector_index: VectorStoreIndex, section: str) -> str:
+    def fetch_section(vector_index: Optional[VectorStoreIndex], section: str) -> str:
         return PdfTriageWrapper.query_index(
             vector_index,
             f"Get me the contexts of the section {section}.",
         )
 
     @staticmethod
-    def retrieve(vector_index: VectorStoreIndex, query: str) -> str:
+    def retrieve(vector_index: Optional[VectorStoreIndex], query: str) -> str:
         return PdfTriageWrapper.query_index(
             vector_index,
             f"Provide the most relevant context for the following query: \"{query}\"",
