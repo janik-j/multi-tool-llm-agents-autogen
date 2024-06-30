@@ -1,5 +1,6 @@
 import autogen
 from typing import Dict, List, Optional
+from wrappers.calculator_wrapper import CalculatorWrapper
 from wrappers.browser_wrapper import BrowserWrapper
 from wrappers.multimodal_wrapper import MultimodalWrapper
 from wrappers.pdf_triage_wrapper import PdfTriageWrapper
@@ -40,11 +41,14 @@ class OverarchingWrapper(object):
         )
         self.web_retriever = BrowserWrapper.get_web_retriever(config_list)
         BrowserWrapper.register_functions(self.user_proxy, self.web_retriever, gsearch_api_key)
+        self.calculator = CalculatorWrapper.get_calculator(config_list)
+        CalculatorWrapper.register_functions(self.user_proxy, self.calculator)
 
         self.agents = [
             self.user_proxy,
             self.chatbot,
             self.web_retriever,
+            self.calculator,
         ]
 
         if image_path is not None:
