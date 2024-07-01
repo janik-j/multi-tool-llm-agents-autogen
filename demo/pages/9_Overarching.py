@@ -66,17 +66,17 @@ with st.form("agent_names"):
 
 with st.form("overarching"):
     user_prompt = st.text_input("Enter your question")
-    uploaded_image = st.file_uploader("Add a context image", type=["jpg", "png"])
-    uploaded_pdf = st.file_uploader("Add a context PDF", type=["pdf"])
+    uploaded_image = st.file_uploader("Add a context image", type=["jpg", "png"], disabled=(not image_explainer))
+    uploaded_pdf = st.file_uploader("Add a context PDF", type=["pdf"], disabled=(not pdf_parser))
 
     overarching_submitted = st.form_submit_button("Generate an answer")
 
     if not openai_api_key.startswith("sk-"):
         st.warning("Please enter your OpenAI API key!", icon="⚠")
-    if not gsearch_api_key:
+    if web_retriever and not gsearch_api_key:
         st.warning("Please enter your Google Search API key!", icon="⚠")
 
-    if overarching_submitted and openai_api_key.startswith("sk-"):
+    if overarching_submitted and openai_api_key.startswith("sk-") and (not web_retriever or gsearch_api_key):
         tmp_files = []
 
         image_path = None
