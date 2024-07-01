@@ -20,7 +20,7 @@ class OverarchingWrapper(object):
     ) -> None:
         self.image_path = image_path
         self.pdf_path = pdf_path
-
+        self.tool_avatar = None
         llm_config = {"cache_seed": None, "temperature": 0, "config_list": config_list}
 
         self.user_proxy = autogen.UserProxyAgent(
@@ -47,21 +47,27 @@ class OverarchingWrapper(object):
         self.calculator = CalculatorWrapper.get_calculator(config_list)
         CalculatorWrapper.register_functions(self.user_proxy, self.calculator)
         self.dalle = DalleWrapper.get_dalle_agent(llm_config, gpt_vision_config, dalle_config)
+        
 
 
         def print_messages(recipient, messages, sender, config):
             print(f"Messages from: {sender.name} sent to: {recipient.name} | num messages: {len(messages)} | message: {messages[-1]}")
             user = messages[-1]['name']
             content = messages[-1]['content']
-            user_avatar = avatar[user]
-            
             tool_calls = messages[-1].get('tool_calls', [])
+            user_avatar = avatar[user]
+
             for call in tool_calls:
                 function_name = call['function']['name']
                 arguments = call['function']['arguments']
-                content = f"\nFunction call: \"{function_name}\" with arguments {arguments}"
+                content += f"\nFunction call: \"{function_name}\" with arguments {arguments}"
+                self.tool_avatar = avatar[user]
 
-            st.chat_message(user, avatar=user_avatar).write(content)
+            if "tool_responses" in messages[-1]:
+                st.chat_message(user, avatar=self.tool_avatar).write(content)
+            else:
+                st.chat_message(user, avatar=user_avatar).write(content)
+
         
             return False, None  # required to ensure the agent communication flow continues
 
