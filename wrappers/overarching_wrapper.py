@@ -5,7 +5,7 @@ from wrappers.browser_wrapper import BrowserWrapper
 from wrappers.multimodal_wrapper import MultimodalWrapper
 from wrappers.pdf_triage_wrapper import PdfTriageWrapper
 from wrappers.dalle_wrapper import DalleWrapper
-
+import streamlit as st
 
 class OverarchingWrapper(object):
 
@@ -48,6 +48,32 @@ class OverarchingWrapper(object):
         CalculatorWrapper.register_functions(self.user_proxy, self.calculator)
         self.dalle = DalleWrapper.get_dalle_agent(llm_config, gpt_vision_config, dalle_config)
 
+
+        def print_messages(recipient, messages, sender, config):
+            print(f"Messages from: {sender.name} sent to: {recipient.name} | num messages: {len(messages)} | message: {messages[-1]}")
+            user = messages[-1]['name']
+            content = messages[-1]['content']
+            user_avatar = avatar[user]
+            
+            tool_calls = messages[-1].get('tool_calls', [])
+            for call in tool_calls:
+                function_name = call['function']['name']
+                arguments = call['function']['arguments']
+                content = f"\nFunction call: \"{function_name}\" with arguments {arguments}"
+
+            st.chat_message(user, avatar=user_avatar).write(content)
+        
+            return False, None  # required to ensure the agent communication flow continues
+
+        # Define avatars for each agent: logos from https://icons8.com/
+        avatar = {"user_proxy" :"https://cdn-icons-png.flaticon.com/512/4333/4333609.png", 
+                  "chatbot":"https://img.icons8.com/?size=100&id=GBu1KXnCZZ8j&format=png&color=000000", 
+                  "web_retriever":"https://img.icons8.com/?size=100&id=TfgcKLCFPMgk&format=png&color=000000", 
+                  "calculator":"https://img.icons8.com/?size=100&id=qrOXrfUDKkOX&format=png&color=000000", 
+                  "dalle":"https://img.icons8.com/?size=100&id=ziwGuOoPfTsn&format=png&color=000000",
+                  "manager": "https://img.icons8.com/?size=100&id=124190&format=png&color=000000"}
+
+
         self.agents = [
             self.user_proxy,
             self.chatbot,
@@ -55,6 +81,14 @@ class OverarchingWrapper(object):
             self.calculator,
             self.dalle,
         ]
+
+
+        for component in self.agents:
+            component.register_reply(
+                [autogen.Agent, None],
+                reply_func=print_messages,
+                config={"callback": None},
+            )
 
         if image_path is not None:
             self.image_explainer = MultimodalWrapper.get_image_explainer(config_list)

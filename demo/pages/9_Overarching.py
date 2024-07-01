@@ -6,7 +6,7 @@ from demo import IOStreamlitChat
 from wrappers import OverarchingWrapper
 
 
-IOStream.set_global_default(IOStreamlitChat())
+#IOStream.set_global_default(IOStreamlitChat())
 
 st.title("AutoGen Overarching Agent")
 
