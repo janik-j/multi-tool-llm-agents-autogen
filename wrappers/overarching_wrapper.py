@@ -4,6 +4,7 @@ from wrappers.calculator_wrapper import CalculatorWrapper
 from wrappers.browser_wrapper import BrowserWrapper
 from wrappers.multimodal_wrapper import MultimodalWrapper
 from wrappers.pdf_triage_wrapper import PdfTriageWrapper
+from wrappers.dalle_wrapper import DalleWrapper
 
 
 class OverarchingWrapper(object):
@@ -11,6 +12,8 @@ class OverarchingWrapper(object):
     def __init__(
             self,
             config_list: List[Dict],
+            gpt_vision_config : List[Dict],
+            dalle_config : List[Dict],
             image_path: Optional[str],
             pdf_path: Optional[str],
             gsearch_api_key: str,
@@ -43,12 +46,14 @@ class OverarchingWrapper(object):
         BrowserWrapper.register_functions(self.user_proxy, self.web_retriever, gsearch_api_key)
         self.calculator = CalculatorWrapper.get_calculator(config_list)
         CalculatorWrapper.register_functions(self.user_proxy, self.calculator)
+        self.dalle = DalleWrapper.get_dalle_agent(llm_config, gpt_vision_config, dalle_config)
 
         self.agents = [
             self.user_proxy,
             self.chatbot,
             self.web_retriever,
             self.calculator,
+            self.dalle,
         ]
 
         if image_path is not None:
@@ -100,7 +105,8 @@ class OverarchingWrapper(object):
         if self.pdf_path is not None:
             prompt += f"You can use the attached PDF to get context.\n"
 
-        self.user_proxy.initiate_chat(
+        result = self.user_proxy.initiate_chat(
             self.manager,
             message=prompt,
         )
+        return result, DalleWrapper.extract_images(self.dalle, self.manager)

@@ -1,6 +1,7 @@
 import json
 import os
 import matplotlib.pyplot as plt
+import numpy as np
 
 # Original results from page 33: https://arxiv.org/pdf/2308.08155
 paper_result = paper_result = [
@@ -79,3 +80,11 @@ plt.grid(axis='x', linestyle='--', alpha=0.7)
 # Show the plot
 plt.tight_layout()
 plt.show()
+
+avg_paper_performance = np.mean(paper_success_rates)
+avg_json_performance = np.mean(json_success_rates)
+deviation = np.mean(np.std([paper_success_rates, json_success_rates], axis=0))
+
+print(f"Average paper performance: {avg_paper_performance}%")
+print(f"Average recreated performance: {avg_json_performance}%")
+print(f"Deviation between performances: {deviation}")

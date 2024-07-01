@@ -12,20 +12,17 @@ class IOStreamlitChat(IOConsole):
         self.avatars = {
             "assistant": "https://img.icons8.com/?size=100&id=GBu1KXnCZZ8j&format=png&color=000000"
         }
-        self.print_count = 0
 
     def print(self, *objects, sep=" ", end="\n", flush=False) -> None:
-        self.print_count += 1
-        if self.print_count >= 3: # skip first user message
-            output = StringIO()
-            print(*objects, sep=sep, end=end, flush=flush, file=output)
-            output_value = output.getvalue()
-            # Convert ANSI colors to HTML
-            ansi_converter = Ansi2HTMLConverter()
-            output_value = ansi_converter.convert(output_value)
-            # Display the output using Streamlit
-            self.extract_non_empty_ansi2html(output_value)
-            output.close()
+        output = StringIO()
+        print(*objects, sep=sep, end=end, flush=flush, file=output)
+        output_value = output.getvalue()
+        # Convert ANSI colors to HTML
+        ansi_converter = Ansi2HTMLConverter()
+        output_value = ansi_converter.convert(output_value)
+        # Display the output using Streamlit
+        self.extract_non_empty_ansi2html(output_value)
+        output.close()
             
 
     def extract_non_empty_ansi2html(self, html_content):
