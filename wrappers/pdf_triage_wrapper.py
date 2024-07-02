@@ -1,5 +1,6 @@
 import openai
 import pymupdf
+import streamlit as st
 from autogen import register_function
 from autogen.agentchat import ChatResult, ConversableAgent, UserProxyAgent
 from functools import partial
@@ -97,10 +98,13 @@ class PdfTriageWrapper(ChatWrapperMixin):
     def get_vector_index(pdf_path: Optional[str]) -> Optional[VectorStoreIndex]:
         if pdf_path is None:
             return None
+        PdfTriageWrapper.send_message("Loading the PDF index...")
         index_documents = SimpleDirectoryReader(
             input_files=[pdf_path]
         ).load_data()
-        return VectorStoreIndex.from_documents(index_documents)
+        vector_index = VectorStoreIndex.from_documents(index_documents)
+        PdfTriageWrapper.send_message("Successfully loaded the PDF index")
+        return vector_index
 
     @staticmethod
     def fetch_page(pdf_path: Optional[str], page_number: int) -> str:

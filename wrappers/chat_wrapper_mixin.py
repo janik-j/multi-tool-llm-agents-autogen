@@ -4,6 +4,7 @@ from typing import Any, Dict, Iterable, List, Optional, Tuple, Union
 
 
 class ChatWrapperMixin(object):
+    DEFAULT_USER: str = "system"
     DEFAULT_AVATAR: str = "https://img.icons8.com/?size=100&id=GBu1KXnCZZ8j&format=png&color=000000"
 
     AVATARS: Dict[str, str] = {
@@ -12,9 +13,16 @@ class ChatWrapperMixin(object):
         "dalle": "https://img.icons8.com/?size=100&id=ziwGuOoPfTsn&format=png&color=000000",
         "image_explainer": "https://img.icons8.com/?size=100&id=13120&format=png&color=000000",
         "manager": "https://img.icons8.com/?size=100&id=124190&format=png&color=000000",
+        "system": "https://img.icons8.com/?size=100&id=iSNxtIhB8C9B&format=png&color=000000",
         "user_proxy": "https://cdn-icons-png.flaticon.com/512/4333/4333609.png",
         "web_retriever": "https://img.icons8.com/?size=100&id=TfgcKLCFPMgk&format=png&color=000000",
     }
+
+    @staticmethod
+    def send_message(content: str, user: str = "system"):
+        user_avatar = ChatWrapperMixin.AVATARS.get(user, ChatWrapperMixin.DEFAULT_AVATAR)
+        message = st.chat_message(user, avatar=user_avatar)
+        message.write(content)
 
     @staticmethod
     def print_messages(
@@ -36,15 +44,12 @@ class ChatWrapperMixin(object):
             content = "".join(line["text"] if line["type"] == "text" else f"<{line['type']}>" for line in content)
 
         tool_calls = messages[-1].get("tool_calls", [])
-        user_avatar = ChatWrapperMixin.AVATARS.get(user, ChatWrapperMixin.DEFAULT_AVATAR)
-
         for tool_call in tool_calls:
             function_name = tool_call["function"]["name"]
             arguments = tool_call["function"]["arguments"]
             content += f"\nFunction call: \"{function_name}\" with arguments {arguments}"
 
-        message = st.chat_message(user, avatar=user_avatar)
-        message.write(content)
+        ChatWrapperMixin.send_message(content, user)
 
         # required to ensure the agent communication flow continues
         return False, None
