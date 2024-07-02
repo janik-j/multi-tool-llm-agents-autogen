@@ -29,15 +29,19 @@ with st.form("rag"):
         ]
     )
     question = st.text_input('Enter your question')
-
-    config_list = [{"model": openai_model, "api_key": openai_api_key}]
-    rag_wrapper = {
-        RagDemoTypeEnum.RAG.value: RagWrapper,
-        RagDemoTypeEnum.RAG_NO_INTERACTION.value: RagNoInteractionWrapper,
-    }[RagDemoTypeEnum(demo_type).value](config_list)
+    corpus_file_link = st.text_input(
+        "Enter your corpus file link",
+        value="https://huggingface.co/datasets/thinkall/NaturalQuestionsQA/resolve/main/corpus.txt",
+    )
 
     submitted = st.form_submit_button("Retrieve a response for the question")
     if not openai_api_key.startswith("sk-"):
         st.warning("Please enter your OpenAI API key!", icon="⚠")
     if submitted and openai_api_key.startswith("sk-"):
+        config_list = [{"model": openai_model, "api_key": openai_api_key}]
+        rag_wrapper = {
+            RagDemoTypeEnum.RAG.value: RagWrapper,
+            RagDemoTypeEnum.RAG_NO_INTERACTION.value: RagNoInteractionWrapper,
+        }[RagDemoTypeEnum(demo_type).value](config_list, corpus_file_link)
+
         rag_wrapper.retrieve(question)

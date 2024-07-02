@@ -18,7 +18,7 @@ class RagNoInteractionWrapper(object):
     Context is: {input_context}
     """
 
-    def __init__(self, config_list: List[Dict]) -> None:
+    def __init__(self, config_list: List[Dict], corpus_file=CORPUS_FILE) -> None:
         self.assistant = RetrieveAssistantAgent(
             name="assistant",
             system_message="You are a helpful assistant.",
@@ -33,7 +33,7 @@ class RagNoInteractionWrapper(object):
             max_consecutive_auto_reply=10,
             retrieve_config={
                 "task": "qa",
-                "docs_path": self.CORPUS_FILE,
+                "docs_path": corpus_file,
                 "chunk_token_size": 2000,
                 "model": config_list[0]["model"],
                 "client": chromadb.PersistentClient(path="/tmp/chromadb"),
