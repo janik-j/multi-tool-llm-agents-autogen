@@ -35,7 +35,7 @@ class ChatWrapperMixin(object):
             f"Messages from: {sender.name} sent to: {recipient.name} | num messages: {len(messages)} | message: {messages[-1]}"
         )
 
-        user = sender.name
+        user = sender.name if sender.name != "chat_manager" else messages[-1]["name"]
 
         content = messages[-1]["content"]
         if content is None:
