@@ -28,7 +28,6 @@ class PdfTriageWrapper(ChatWrapperMixin):
         )
         self.pdf_parser = self.get_pdf_parser(config_list)
 
-        self.register_replies_callback([self.user_proxy, self.pdf_parser])
         self.register_functions(
             self.user_proxy,
             self.pdf_parser,
@@ -142,6 +141,8 @@ class PdfTriageWrapper(ChatWrapperMixin):
 
     def initiate_chat(self, user_prompt: str) -> ChatResult:
         self.pdf_parser.reset()
+
+        self.register_replies_callback([self.user_proxy, self.pdf_parser])
 
         prompt = user_prompt if self.pdf_path is None else f"""
             Using the attached PDF, answer the following question:

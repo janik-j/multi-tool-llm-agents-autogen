@@ -21,8 +21,6 @@ class MultimodalWrapper(ChatWrapperMixin):
         )
         self.image_explainer = self.get_image_explainer(vision_config_list)
 
-        self.register_replies_callback([self.user_proxy, self.image_explainer])
-
     @staticmethod
     def get_image_explainer(vision_config_list: List[Dict]) -> MultimodalConversableAgent:
         return MultimodalConversableAgent(
@@ -33,6 +31,8 @@ class MultimodalWrapper(ChatWrapperMixin):
 
     def initiate_chat(self, user_prompt: str, user_image_path: Optional[str]) -> ChatResult:
         self.image_explainer.reset()
+
+        self.register_replies_callback([self.user_proxy, self.image_explainer])
 
         prompt = user_prompt if user_image_path is None else f"""
             Using <img {user_image_path}> as knowledge base, answer the following question:

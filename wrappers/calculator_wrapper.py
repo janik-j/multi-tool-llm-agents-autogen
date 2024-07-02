@@ -21,7 +21,6 @@ class CalculatorWrapper(ChatWrapperMixin):
         )
         self.calculator = self.get_calculator(config_list)
 
-        self.register_replies_callback([self.user_proxy, self.calculator])
         self.register_functions(self.user_proxy, self.calculator)
 
     @staticmethod
@@ -98,6 +97,8 @@ class CalculatorWrapper(ChatWrapperMixin):
 
     def initiate_chat(self, user_prompt: str) -> ChatResult:
         self.calculator.reset()
+
+        self.register_replies_callback([self.user_proxy, self.calculator])
 
         return self.user_proxy.initiate_chat(
             self.calculator,

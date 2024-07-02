@@ -30,7 +30,6 @@ class BrowserWrapper(ChatWrapperMixin):
         )
         self.web_retriever = self.get_web_retriever(config_list)
 
-        self.register_replies_callback([self.user_proxy, self.web_retriever])
         self.register_functions(self.user_proxy, self.web_retriever, gsearch_api_key)
 
     @staticmethod
@@ -118,6 +117,8 @@ class BrowserWrapper(ChatWrapperMixin):
 
     def initiate_chat(self, user_prompt: str) -> ChatResult:
         self.web_retriever.reset()
+
+        self.register_replies_callback([self.user_proxy, self.web_retriever])
 
         return self.user_proxy.initiate_chat(
             self.web_retriever,
