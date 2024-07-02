@@ -15,24 +15,15 @@ openai_model = st.sidebar.selectbox("OpenAI Model", ["gpt-3.5-turbo", "gpt-4", "
 gsearch_api_key = st.sidebar.text_input("Google Search API Key")
 
 config_list = [{"model": openai_model, "api_key": openai_api_key}]
-gpt_vision_config = {"config_list": [{"model": "gpt-4-vision-preview", "api_key": openai_api_key}], "timeout": 120, "temperature": 0.7}
-dalle_config = {"config_list": [{"model": "dall-e-3", "api_key": openai_api_key}], "timeout": 120,"temperature": 0.7}
 
-calculator = st.checkbox("Calculator", value=True)
-chatbot = st.checkbox("Chatbot", value=True)
-dalle = st.checkbox("DALLE", value=True)
-web_retriever = st.checkbox("Web Retriever", value=True)
-image_explainer = st.checkbox("Image Explainer")
-pdf_parser = st.checkbox("PDF Parser")
+overarching_wrapper = OverarchingWrapper(config_list)
 
-enabled_agents = {
-    "calculator": calculator,
-    "chatbot": chatbot,
-    "dalle": dalle,
-    "web_retriever": web_retriever,
-    "image_explainer": image_explainer,
-    "pdf_parser": pdf_parser,
-}
+calculator_enabled = st.checkbox("Calculator")
+chatbot_enabled = st.checkbox("Chatbot")
+dalle_enabled = st.checkbox("DALLE")
+web_retriever_enabled = st.checkbox("Web Retriever")
+image_explainer_enabled = st.checkbox("Image Explainer")
+pdf_parser_enabled = st.checkbox("PDF Parser")
 
 if "custom_agent_names" not in st.session_state:
     st.session_state.custom_agent_names = []
@@ -63,42 +54,80 @@ with st.form("agent_names"):
     if agent_names_submitted:
         st.session_state.custom_agent_names = new_custom_agent_names
 
-
 with st.form("overarching"):
     user_prompt = st.text_input("Enter your question")
-    uploaded_image = st.file_uploader("Add a context image", type=["jpg", "png"], disabled=(not image_explainer))
-    uploaded_pdf = st.file_uploader("Add a context PDF", type=["pdf"], disabled=(not pdf_parser))
+    uploaded_image = st.file_uploader(
+        "Add a context image",
+        type=["jpg", "png"],
+        disabled=(not image_explainer_enabled),
+    )
+    uploaded_pdf = st.file_uploader(
+        "Add a context PDF",
+        type=["pdf"],
+        disabled=(not pdf_parser_enabled),
+    )
 
     overarching_submitted = st.form_submit_button("Generate an answer")
 
     if not openai_api_key.startswith("sk-"):
         st.warning("Please enter your OpenAI API key!", icon="⚠")
-    if web_retriever and not gsearch_api_key:
+    if web_retriever_enabled and not gsearch_api_key:
         st.warning("Please enter your Google Search API key!", icon="⚠")
 
-    if overarching_submitted and openai_api_key.startswith("sk-") and (not web_retriever or gsearch_api_key):
+    if overarching_submitted and openai_api_key.startswith("sk-") and (not web_retriever_enabled or gsearch_api_key):
         tmp_files = []
 
-        image_path = None
-        if uploaded_image is not None:
+        if calculator_enabled:
+            overarching_wrapper.add_calculator()
+        else:
+            overarching_wrapper.remove_calculator()
+
+        if chatbot_enabled:
+            overarching_wrapper.add_custom_agent(
+                agent_name="chatbot",
+                system_message="""
+                    You are a chatbot, you can answer text queries.
+                    In case no other agents can answer, you should step in.
+                    """,
+            )
+        else:
+            overarching_wrapper.remove_custom_agent("chatbot")
+
+        if dalle_enabled:
+            overarching_wrapper.add_dalle()
+        else:
+            overarching_wrapper.remove_dalle()
+
+        if web_retriever_enabled:
+            overarching_wrapper.add_web_retriever(gsearch_api_key)
+        else:
+            overarching_wrapper.remove_web_retriever()
+
+        if image_explainer_enabled and uploaded_image is not None:
             image_tmp_file = tempfile.NamedTemporaryFile(mode="wb")
             image_tmp_file.write(uploaded_image.read())
             tmp_files.append(uploaded_image)
             image_path = image_tmp_file.name
 
-        pdf_path = None
-        if uploaded_pdf is not None:
+            overarching_wrapper.add_image_explainer(image_path)
+        else:
+            overarching_wrapper.remove_image_explainer()
+
+        if pdf_parser_enabled and uploaded_pdf is not None:
             pdf_tmp_file = tempfile.NamedTemporaryFile(mode="wb")
             pdf_tmp_file.write(uploaded_pdf.read())
             tmp_files.append(uploaded_pdf)
             pdf_path = pdf_tmp_file.name
 
-        overarching_wrapper = OverarchingWrapper(enabled_agents, config_list, gpt_vision_config, dalle_config, image_path, pdf_path, gsearch_api_key)
+            overarching_wrapper.add_pdf_parser(pdf_path)
+        else:
+            overarching_wrapper.remove_pdf_parser()
 
         for agent_name, system_message in st.session_state.custom_agents.items():
             if agent_name not in st.session_state.custom_agent_names:
+                overarching_wrapper.remove_custom_agent(agent_name)
                 continue
-            overarching_wrapper.add_agent(agent_name, system_message)
+            overarching_wrapper.add_custom_agent(agent_name, system_message)
 
         result, images = overarching_wrapper.initiate_chat(user_prompt)
         for image in reversed(images):

@@ -13,6 +13,7 @@ from wrappers.chat_wrapper_mixin import ChatWrapperMixin
 
 
 class BrowserWrapper(ChatWrapperMixin):
+    AGENT_NAME = "web_retriever"
     GSEARCH_CUSTOM_SEARCH_ID: str = "15c5c6f98a3d246ca"
     MAX_TOKENS: int = 10000
 
@@ -35,7 +36,7 @@ class BrowserWrapper(ChatWrapperMixin):
     @staticmethod
     def get_web_retriever(config_list: List[Dict]) -> ConversableAgent:
         return ConversableAgent(
-            name="web_retriever",
+            name=BrowserWrapper.AGENT_NAME,
             system_message="""
                 You can use the following functions to help you generate the answer:
 

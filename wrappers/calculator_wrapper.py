@@ -6,6 +6,7 @@ from wrappers.chat_wrapper_mixin import ChatWrapperMixin
 
 
 class CalculatorWrapper(ChatWrapperMixin):
+    AGENT_NAME: str = 'calculator'
 
     def __init__(self, config_list: List[Dict]) -> None:
         self.user_proxy = UserProxyAgent(
@@ -60,7 +61,7 @@ class CalculatorWrapper(ChatWrapperMixin):
     @staticmethod
     def get_calculator(config_list: List[Dict]) -> ConversableAgent:
         return ConversableAgent(
-            name="calculator",
+            name=CalculatorWrapper.AGENT_NAME,
             system_message="""
             You are a calculator. Use the following functions to provide the answer:
 

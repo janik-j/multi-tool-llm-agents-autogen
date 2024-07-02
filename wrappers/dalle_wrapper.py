@@ -6,6 +6,7 @@ from autogen.agentchat.contrib.capabilities import generate_images
 from typing import List, Dict
 
 class DalleWrapper(object):
+    AGENT_NAME: str = "dalle"
 
     def __init__(self, gpt_config: str, gpt_vision_config: str, dalle_config: str):
         self.gpt_config = gpt_config
@@ -43,7 +44,7 @@ class DalleWrapper(object):
     def get_dalle_agent(llm_config : List[Dict], gpt_vision_config : List[Dict], dalle_config : List[Dict]) -> ConversableAgent:
         # Create the agent
         agent = ConversableAgent(
-            name="dalle",
+            name=DalleWrapper.AGENT_NAME,
             llm_config=gpt_vision_config,
             max_consecutive_auto_reply=3,
             human_input_mode="NEVER",

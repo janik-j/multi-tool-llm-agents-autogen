@@ -6,6 +6,7 @@ from wrappers.chat_wrapper_mixin import ChatWrapperMixin
 
 
 class MultimodalWrapper(ChatWrapperMixin):
+    AGENT_NAME = 'image_explainer'
 
     def __init__(self, text_config_list: List[Dict], vision_config_list: List[Dict]) -> None:
         self.user_proxy = UserProxyAgent(
@@ -24,7 +25,7 @@ class MultimodalWrapper(ChatWrapperMixin):
     @staticmethod
     def get_image_explainer(vision_config_list: List[Dict]) -> MultimodalConversableAgent:
         return MultimodalConversableAgent(
-            name="image_explainer",
+            name=MultimodalWrapper.AGENT_NAME,
             human_input_mode="NEVER",
             llm_config={"cache_seed": None, "temperature": 0, "config_list": vision_config_list},
         )

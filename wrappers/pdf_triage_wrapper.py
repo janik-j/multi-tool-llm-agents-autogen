@@ -11,6 +11,7 @@ from wrappers.chat_wrapper_mixin import ChatWrapperMixin
 
 
 class PdfTriageWrapper(ChatWrapperMixin):
+    AGENT_NAME = "pdf_parser"
 
     def __init__(self, config_list: List[Dict], pdf_path: Optional[str]) -> None:
         self.pdf_path = pdf_path
@@ -75,7 +76,7 @@ class PdfTriageWrapper(ChatWrapperMixin):
     @staticmethod
     def get_pdf_parser(config_list: List[Dict]) -> ConversableAgent:
         return ConversableAgent(
-            name="pdf_parser",
+            name=PdfTriageWrapper.AGENT_NAME,
             system_message="""
             You can use the following functions to help you generate the answer:
             
