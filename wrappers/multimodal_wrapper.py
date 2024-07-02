@@ -2,8 +2,10 @@ from autogen.agentchat import ChatResult, UserProxyAgent
 from autogen.agentchat.contrib.multimodal_conversable_agent import MultimodalConversableAgent
 from typing import Dict, List, Optional
 
+from wrappers.chat_wrapper_mixin import ChatWrapperMixin
 
-class MultimodalWrapper(object):
+
+class MultimodalWrapper(ChatWrapperMixin):
 
     def __init__(self, text_config_list: List[Dict], vision_config_list: List[Dict]) -> None:
         self.user_proxy = UserProxyAgent(
@@ -18,6 +20,8 @@ class MultimodalWrapper(object):
             code_execution_config={"use_docker": False},
         )
         self.image_explainer = self.get_image_explainer(vision_config_list)
+
+        self.register_replies_callback([self.user_proxy, self.image_explainer])
 
     @staticmethod
     def get_image_explainer(vision_config_list: List[Dict]) -> MultimodalConversableAgent:

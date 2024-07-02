@@ -2,11 +2,11 @@ import streamlit as st
 import tempfile
 from autogen.io.base import IOStream
 
-from demo import IOStreamlitChat
+from demo import IOStreamlitNoOp
 from wrappers import PdfTriageWrapper
 
 
-IOStream.set_global_default(IOStreamlitChat())
+IOStream.set_global_default(IOStreamlitNoOp())
 
 st.title("AutoGen PDF Triage")
 

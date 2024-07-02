@@ -6,8 +6,10 @@ from functools import partial
 from llama_index.core import SimpleDirectoryReader, VectorStoreIndex
 from typing import Dict, List, Optional
 
+from wrappers.chat_wrapper_mixin import ChatWrapperMixin
 
-class PdfTriageWrapper(object):
+
+class PdfTriageWrapper(ChatWrapperMixin):
 
     def __init__(self, config_list: List[Dict], pdf_path: Optional[str]) -> None:
         self.pdf_path = pdf_path
@@ -25,6 +27,7 @@ class PdfTriageWrapper(object):
         )
         self.pdf_parser = self.get_pdf_parser(config_list)
 
+        self.register_replies_callback([self.user_proxy, self.pdf_parser])
         self.register_functions(
             self.user_proxy,
             self.pdf_parser,

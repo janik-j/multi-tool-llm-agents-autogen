@@ -2,8 +2,10 @@ from autogen import register_function
 from autogen.agentchat import ChatResult, ConversableAgent, UserProxyAgent
 from typing import Dict, List, Union
 
+from wrappers.chat_wrapper_mixin import ChatWrapperMixin
 
-class CalculatorWrapper(object):
+
+class CalculatorWrapper(ChatWrapperMixin):
 
     def __init__(self, config_list: List[Dict]) -> None:
         self.user_proxy = UserProxyAgent(
@@ -19,10 +21,8 @@ class CalculatorWrapper(object):
         )
         self.calculator = self.get_calculator(config_list)
 
-        self.register_functions(
-            self.user_proxy,
-            self.calculator,
-        )
+        self.register_replies_callback([self.user_proxy, self.calculator])
+        self.register_functions(self.user_proxy, self.calculator)
 
     @staticmethod
     def register_functions(

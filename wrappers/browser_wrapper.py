@@ -1,4 +1,4 @@
-from autogen import ChatResult, ConversableAgent, UserProxyAgent, register_function
+from autogen import Agent, ChatResult, ConversableAgent, UserProxyAgent, register_function
 from functools import partial
 from googleapiclient.discovery import build
 from selenium import webdriver
@@ -9,8 +9,10 @@ from typing import Dict, List
 from webdriver_manager.chrome import ChromeDriverManager
 from xvfbwrapper import Xvfb
 
+from wrappers.chat_wrapper_mixin import ChatWrapperMixin
 
-class BrowserWrapper(object):
+
+class BrowserWrapper(ChatWrapperMixin):
     GSEARCH_CUSTOM_SEARCH_ID: str = "15c5c6f98a3d246ca"
     MAX_TOKENS: int = 10000
 
@@ -28,6 +30,7 @@ class BrowserWrapper(object):
         )
         self.web_retriever = self.get_web_retriever(config_list)
 
+        self.register_replies_callback([self.user_proxy, self.web_retriever])
         self.register_functions(self.user_proxy, self.web_retriever, gsearch_api_key)
 
     @staticmethod
