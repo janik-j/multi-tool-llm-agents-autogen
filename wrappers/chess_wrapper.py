@@ -26,9 +26,9 @@ class ChessWrapper(object):
     Have fun!
     """
 
-    def __init__(self, config_list: List[Dict], number_of_moves: int) -> None:
+    def __init__(self, config_list: List[Dict], number_of_moves: int, display_as_streamlit: bool = True) -> None:
         board = chess.Board()
-        self.board_agent = BoardAgent(board=board, config_list=config_list)
+        self.board_agent = BoardAgent(board=board, config_list=config_list, display_as_streamlit=display_as_streamlit)
         self.player_black = ChessPlayerAgent(
             color="black",
             board_agent=self.board_agent,

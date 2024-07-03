@@ -17,7 +17,7 @@ class BoardAgent(autogen.AssistantAgent):
     board: chess.Board
     correct_move_messages: Dict[autogen.Agent, List[Dict]]
 
-    def __init__(self, board: chess.Board, config_list: List[Dict]):
+    def __init__(self, board: chess.Board, config_list: List[Dict], display_as_streamlit: bool = True) -> None:
         super().__init__(
             name="BoardAgent",
             system_message=self.sys_msg,
@@ -27,6 +27,7 @@ class BoardAgent(autogen.AssistantAgent):
         self.register_reply(autogen.ConversableAgent, BoardAgent._generate_board_reply)
         self.board = board
         self.correct_move_messages = defaultdict(list)
+        self.display_as_streamlit = display_as_streamlit
 
     def _generate_board_reply(
         self,
@@ -56,9 +57,20 @@ class BoardAgent(autogen.AssistantAgent):
                 fill={m.from_square: "gray"},
                 size=200
             )
-            # center the SVG image
-            centered_board = f"<div style=\"text-align:center;\">{board}</div>"
-            st.write(centered_board, unsafe_allow_html=True)
+            if self.display_as_streamlit is True:
+                # center the SVG image
+                centered_board = f"<div style=\"text-align:center;\">{board}</div>"
+                st.write(centered_board, unsafe_allow_html=True)
+            else:
+                from IPython.display import display
+                display(
+                    chess.svg.board(
+                        self.board,
+                        arrows=[(m.from_square, m.to_square)],
+                        fill={m.from_square: "gray"},
+                        size=200,
+                    )
+                )
             self.correct_move_messages[sender].extend([message, self._message_to_dict(uci_move)])
             self.correct_move_messages[sender][-1]["role"] = "assistant"
             return True, uci_move
