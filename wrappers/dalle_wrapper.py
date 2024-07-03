@@ -6,6 +6,7 @@ from typing import Any, Dict, List, Tuple
 
 class DalleWrapper(object):
     AGENT_NAME: str = "dalle"
+    CRITIC_AGENT_NAME: str = "critic"
 
     CRITIC_SYSTEM_MESSAGE = """
         You need to improve the prompt of the user.
@@ -36,7 +37,7 @@ class DalleWrapper(object):
     @staticmethod
     def get_dalle_critic_agent(gpt_vision_config: Dict[str, Any]) -> ConversableAgent:
         return ConversableAgent(
-            name="critic",
+            name=DalleWrapper.CRITIC_AGENT_NAME,
             llm_config=gpt_vision_config,
             system_message=DalleWrapper.CRITIC_SYSTEM_MESSAGE,
             max_consecutive_auto_reply=1,

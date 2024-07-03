@@ -53,6 +53,7 @@ class OverarchingWrapper(ChatWrapperMixin):
 
     def add_dalle(self) -> None:
         api_key = self.config_list[0]["api_key"]
+
         self.dalle = DalleWrapper.get_dalle_agent(
             llm_config={"cache_seed": None, "temperature": 0, "config_list": self.config_list},
             gpt_vision_config={"config_list": [{"model": "gpt-4-vision-preview", "api_key": api_key}], "timeout": 120, "temperature": 0.7},
@@ -60,9 +61,15 @@ class OverarchingWrapper(ChatWrapperMixin):
         )
         self.agents[DalleWrapper.AGENT_NAME] = self.dalle
 
+        critic_agent = DalleWrapper.get_dalle_critic_agent(
+            {"cache_seed": None, "temperature": 0, "config_list": self.config_list}
+        )
+        self.agents[DalleWrapper.CRITIC_AGENT_NAME] = critic_agent
+
     def remove_dalle(self) -> None:
         self.dalle = None
         self.agents.pop(DalleWrapper.AGENT_NAME, None)
+        self.agents.pop(DalleWrapper.CRITIC_AGENT_NAME, None)
 
     def add_web_retriever(self, gsearch_api_key: str) -> None:
         web_retriever_agent = BrowserWrapper.get_web_retriever(self.config_list)
