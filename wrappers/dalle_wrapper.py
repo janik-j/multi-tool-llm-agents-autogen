@@ -1,14 +1,23 @@
-import os
 from PIL import Image
-from autogen import ConversableAgent
+from autogen import ChatResult, ConversableAgent
 from autogen.agentchat.contrib import img_utils
 from autogen.agentchat.contrib.capabilities import generate_images
-from typing import List, Dict
+from typing import Any, Dict, List, Tuple
 
 class DalleWrapper(object):
     AGENT_NAME: str = "dalle"
 
-    def __init__(self, gpt_config: str, gpt_vision_config: str, dalle_config: str):
+    CRITIC_SYSTEM_MESSAGE = """
+        You need to improve the prompt of the user.
+        Optimize it in a way to create an image that is better in terms of color, shape, text (clarity), and other things.
+        Reply with the following format:
+
+        PROMPT: here is the updated prompt!
+
+        If you have no better prompt, just say TERMINATE
+        """
+
+    def __init__(self, gpt_config: Dict[str, Any], gpt_vision_config: Dict[str, Any], dalle_config: Dict[str, Any]):
         self.gpt_config = gpt_config
         self.gpt_vision_config = gpt_vision_config
         self.dalle_config = dalle_config
@@ -24,24 +33,22 @@ class DalleWrapper(object):
                     return content["text"].rstrip().endswith("TERMINATE")
         return False
 
-    def get_dalle_critic_agent(gpt_vision_config : List[Dict]) -> ConversableAgent:
-        CRITIC_SYSTEM_MESSAGE = """You need to improve the prompt of the user.
-            Optimize it in a way to create an image that is better in terms of color, shape, text (clarity), and other things.
-            Reply with the following format:
-
-            PROMPT: here is the updated prompt!
-
-            If you have no better prompt, just say TERMINATE
-            """
+    @staticmethod
+    def get_dalle_critic_agent(gpt_vision_config: Dict[str, Any]) -> ConversableAgent:
         return ConversableAgent(
             name="critic",
             llm_config=gpt_vision_config,
-            system_message=CRITIC_SYSTEM_MESSAGE,
+            system_message=DalleWrapper.CRITIC_SYSTEM_MESSAGE,
             max_consecutive_auto_reply=1,
             human_input_mode="NEVER",
         )
 
-    def get_dalle_agent(llm_config : List[Dict], gpt_vision_config : List[Dict], dalle_config : List[Dict]) -> ConversableAgent:
+    @staticmethod
+    def get_dalle_agent(
+            llm_config: Dict[str, Any],
+            gpt_vision_config: Dict[str, Any],
+            dalle_config: Dict[str, Any],
+    ) -> ConversableAgent:
         # Create the agent
         agent = ConversableAgent(
             name=DalleWrapper.AGENT_NAME,
@@ -59,6 +66,7 @@ class DalleWrapper(object):
         image_gen_capability.add_to_agent(agent)
         return agent
 
+    @staticmethod
     def extract_images(sender: ConversableAgent, recipient: ConversableAgent) -> List[Image.Image]:
         images = []
         all_messages = sender.chat_messages.get(recipient, [])
@@ -74,12 +82,11 @@ class DalleWrapper(object):
                     images.append(img_utils.get_pil_image(img_data))
 
         return images
-    
 
     # Main function to generate and critique images
-    def generate_and_critique_image(self, prompt: str):
-        dalle = self.get_dalle_agent(self.config_list, self.gpt_vision_config, self.dalle_config)
-        critic = self.critic_agent()
+    def generate_and_critique_image(self, prompt: str) -> Tuple[ChatResult, List[Image.Image]]:
+        dalle = self.get_dalle_agent(self.gpt_config, self.gpt_vision_config, self.dalle_config)
+        critic = self.get_dalle_critic_agent(self.gpt_vision_config)
 
         result = dalle.initiate_chat(critic, message=prompt)
         images = self.extract_images(dalle, critic)

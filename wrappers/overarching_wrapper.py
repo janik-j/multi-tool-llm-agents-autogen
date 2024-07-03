@@ -1,6 +1,7 @@
 import autogen
-from autogen import ConversableAgent
-from typing import Dict, List, Optional
+from PIL import Image
+from autogen import ChatResult, ConversableAgent
+from typing import Dict, List, Optional, Tuple
 from wrappers.browser_wrapper import BrowserWrapper
 from wrappers.calculator_wrapper import CalculatorWrapper
 from wrappers.chat_wrapper_mixin import ChatWrapperMixin
@@ -23,6 +24,7 @@ class OverarchingWrapper(ChatWrapperMixin):
             system_message="""
                 You are a human user.
                 If the question has been answered, reply with TERMINATE.
+                If the request was to generate an image and the image was generated, reply with TERMINATE.
                 """,
             human_input_mode="NEVER",
             max_consecutive_auto_reply=10,
@@ -99,7 +101,7 @@ class OverarchingWrapper(ChatWrapperMixin):
         self.is_pdf_attached = False
         self.agents.pop(PdfTriageWrapper.AGENT_NAME, None)
 
-    def initiate_chat(self, user_prompt: str) -> None:
+    def initiate_chat(self, user_prompt: str) -> Tuple[ChatResult, List[Image.Image]]:
         agents = self.agents.values()
         group_chat = autogen.GroupChat(
             agents=agents,
@@ -141,4 +143,4 @@ class OverarchingWrapper(ChatWrapperMixin):
         if self.dalle is None:
             return result, []
         else:
-            return result, DalleWrapper.extract_images(self.dalle, self.manager)
+            return result, DalleWrapper.extract_images(self.dalle, manager)

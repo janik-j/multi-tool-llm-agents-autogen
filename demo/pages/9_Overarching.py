@@ -131,7 +131,9 @@ with st.form("overarching"):
 
         result, images = overarching_wrapper.initiate_chat(user_prompt)
         for image in reversed(images):
-            st.image(image.resize((300, 300)))
+            _, central_column, _ = st.columns(3)
+            with central_column:
+                st.image(image.resize((300, 300)))
 
         for tmp_file in tmp_files:
             tmp_file.close()

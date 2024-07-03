@@ -46,4 +46,6 @@ if prompt := st.chat_input():
         dalle_wrapper = DalleWrapper(gpt_config, gpt_vision_config, dalle_config)
         result, images = dalle_wrapper.generate_and_critique_image(prompt)
         for image in reversed(images):
-            st.image(image.resize((300, 300)))
+            _, central_column, _ = st.columns(3)
+            with central_column:
+                st.image(image.resize((300, 300)))
