@@ -106,7 +106,7 @@ with st.form("overarching"):
         if image_explainer_enabled and uploaded_image is not None:
             image_tmp_file = tempfile.NamedTemporaryFile(mode="wb")
             image_tmp_file.write(uploaded_image.read())
-            tmp_files.append(uploaded_image)
+            tmp_files.append(image_tmp_file)
             image_path = image_tmp_file.name
 
             overarching_wrapper.add_image_explainer(image_path)
@@ -116,7 +116,7 @@ with st.form("overarching"):
         if pdf_parser_enabled and uploaded_pdf is not None:
             pdf_tmp_file = tempfile.NamedTemporaryFile(mode="wb")
             pdf_tmp_file.write(uploaded_pdf.read())
-            tmp_files.append(uploaded_pdf)
+            tmp_files.append(pdf_tmp_file)
             pdf_path = pdf_tmp_file.name
 
             overarching_wrapper.add_pdf_parser(pdf_path)
