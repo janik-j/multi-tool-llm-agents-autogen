@@ -72,7 +72,7 @@ class OverarchingWrapper(ChatWrapperMixin):
         self.agents[DalleWrapper.AGENT_NAME] = self.dalle
 
         critic_agent = DalleWrapper.get_dalle_critic_agent(
-            {"cache_seed": None, "temperature": 0, "config_list": self.config_list}
+            {"cache_seed": None, "seed": 7, "temperature": 0, "config_list": self.config_list}
         )
         self.agents[DalleWrapper.CRITIC_AGENT_NAME] = critic_agent
 
@@ -93,7 +93,7 @@ class OverarchingWrapper(ChatWrapperMixin):
         self.image_path = image_path
 
         image_explainer_agent = MultimodalWrapper.get_image_explainer(
-            [{"model": "gpt-4o", "api_key": self.config_list[0]["api_key"]}]
+            [{"cache_seed": None, "seed": 7, "model": "gpt-4o", "api_key": self.config_list[0]["api_key"]}]
         )
         self.agents[MultimodalWrapper.AGENT_NAME] = image_explainer_agent
 
