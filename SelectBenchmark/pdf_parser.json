@@ -5,7 +5,7 @@
       {
         "id": "TC001",
         "name": "Abstract Extraction",
-        "input": "Extract and summarize the abstract from this paper.",
+        "input": "Extract and summarize the abstract.",
         "path_url": "https://arxiv.org/pdf/1706.03762.pdf",
         "expected_agent": "PDF_parser",
         "success_criteria": [
@@ -16,7 +16,7 @@
       {
         "id": "TC002",
         "name": "Author Identification",
-        "input": "List all authors of this paper.",
+        "input": "List all the authors.",
         "path_url": "https://arxiv.org/pdf/1810.04805.pdf",
         "expected_agent": "PDF_parser",
         "success_criteria": [
@@ -38,7 +38,7 @@
       {
         "id": "TC004",
         "name": "Keyword Identification",
-        "input": "Identify and list the main keywords or key phrases from this paper.",
+        "input": "Identify and list the main keywords or key phrases.",
         "path_url": "https://arxiv.org/pdf/2207.01888.pdf",
         "expected_agent": "PDF_parser",
         "success_criteria": [
@@ -75,7 +75,7 @@
       {
         "id": "TC007",
         "name": "Table Content Extraction",
-        "input": "Extract the headlines of the first table in this paper.",
+        "input": "Extract the headlines",
         "path_url": "https://arxiv.org/pdf/1905.11946.pdf",
         "expected_agent": "PDF_parser",
         "success_criteria": [
@@ -141,7 +141,7 @@
       {
         "id": "TC013",
         "name": "Authors List",
-        "input": "List the authors of the paper.",
+        "input": "List the authors.",
         "path_url": "https://arxiv.org/pdf/1803.02155.pdf",
         "expected_agent": "PDF_parser",
         "success_criteria": [
@@ -151,7 +151,7 @@
       {
         "id": "TC014",
         "name": "Author's Affiliation",
-        "input": "At which institutions do the authors of this paper work?",
+        "input": "At which institutions do the authors work?",
         "path_url": "https://arxiv.org/pdf/1909.11942.pdf",
         "expected_agent": "PDF_parser",
         "success_criteria": [
@@ -225,11 +225,8 @@
       }
     ],
     "evaluation_metrics": {
-      "accuracy": "Percentage of test cases where the extracted information is accurate and relevant",
-      "completeness": "Assessment of how thoroughly the requested information is extracted",
-      "relevance": "Evaluation of how well the extracted information addresses the specific question asked",
-      "formatting": "Assessment of how well the extracted information is structured and presented",
-      "efficiency": "Evaluation of the agent's ability to quickly locate and extract the requested information"
+        "correctness": "Percentage of test cases where the PDF_parser produces the expected output",
+        "agent_selection": "Percentage of test cases where the PDF_parser agent is correctly selected"
     }
   }
   

@@ -224,11 +224,8 @@
       }
     ],
     "evaluation_metrics": {
-      "accuracy": "Percentage of test cases where the generated image meets all success criteria",
-      "creativity": "Subjective rating of the uniqueness and inventiveness of the generated images",
-      "consistency": "Degree to which generated images consistently match the given prompts",
-      "quality": "Assessment of image resolution, clarity, and overall visual appeal",
-      "agent_selection": "Percentage of test cases where the DALLE agent was correctly selected"
+        "correctness": "Percentage of test cases where the DALLE agent produces the expected output",
+        "agent_selection": "Percentage of test cases where the DALLE agent is correctly selected"
     }
   }
   

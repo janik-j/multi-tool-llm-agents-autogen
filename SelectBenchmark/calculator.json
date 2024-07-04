@@ -204,8 +204,7 @@
       }
     ],
     "evaluation_metrics": {
-      "accuracy": "Percentage of test cases where the correct result was returned",
-      "response_time": "Average time taken to calculate and return the result",
-      "agent_selection": "Percentage of test cases where the calculator agent was correctly selected"
-    }
+      "correctness": "Percentage of test cases where the calculator produces the expected output",
+      "agent_selection": "Percentage of test cases where the calculator agent is correctly selected"
+  }
   }

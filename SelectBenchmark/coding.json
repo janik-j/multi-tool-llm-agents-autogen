@@ -6,7 +6,7 @@
         "id": "TC001",
         "name": "Fibonacci Sequence",
         "input": "Write a function that generates the first n numbers of the Fibonacci sequence. Test it with n = 10 and save the result to fibonacci.txt.",
-        "expected_agent": "python",
+        "expected_agent": "coding",
         "success_criteria": [
           "Function correctly generates Fibonacci sequence",
           "Output for n = 10 is correct",
@@ -17,7 +17,7 @@
         "id": "TC002",
         "name": "Prime Number Generator",
         "input": "Create a function that generates all prime numbers up to a given number n. Use it to find all primes up to 1000 and save them to primes.txt.",
-        "expected_agent": "python",
+        "expected_agent": "coding",
         "success_criteria": [
           "Function correctly identifies prime numbers",
           "All primes up to 1000 are generated",
@@ -28,7 +28,7 @@
         "id": "TC003",
         "name": "Palindrome Checker",
         "input": "Write a function that checks if a given string is a palindrome (reads the same backwards as forwards). Test it on the following strings and save results to palindromes.txt: 'racecar', 'hello', 'A man a plan a canal Panama'.",
-        "expected_agent": "python",
+        "expected_agent": "coding",
         "success_criteria": [
           "Function correctly identifies palindromes",
           "All test cases are checked",
@@ -39,7 +39,7 @@
         "id": "TC004",
         "name": "Binary Search Implementation",
         "input": "Implement a binary search function. Use it to search for the numbers 7, 15, and 30 in the sorted list [1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 25, 27, 29]. Save the results to binary_search_results.txt.",
-        "expected_agent": "python",
+        "expected_agent": "coding",
         "success_criteria": [
           "Binary search is correctly implemented",
           "Function finds correct positions for test numbers",
@@ -50,7 +50,7 @@
         "id": "TC005",
         "name": "Matrix Multiplication",
         "input": "Write a function to multiply two matrices. Test it with the following matrices and save the result to matrix_result.txt:\nA = [[1, 2], [3, 4]]\nB = [[5, 6], [7, 8]]",
-        "expected_agent": "python",
+        "expected_agent": "coding",
         "success_criteria": [
           "Matrix multiplication is correctly implemented",
           "Result for test matrices is correct",
@@ -61,7 +61,7 @@
         "id": "TC006",
         "name": "Sorting Algorithm Implementation",
         "input": "Implement the quicksort algorithm. Use it to sort the list [64, 34, 25, 12, 22, 11, 90] and save the sorted list to quicksort_result.txt.",
-        "expected_agent": "python",
+        "expected_agent": "coding",
         "success_criteria": [
           "Quicksort algorithm is correctly implemented",
           "List is properly sorted",
@@ -72,7 +72,7 @@
         "id": "TC007",
         "name": "File Word Counter",
         "input": "Create a program that reads a text file, counts the occurrence of each word, and saves the top 10 most frequent words to word_frequency.txt. Use it on a file named sample.txt with the content 'The quick brown fox jumps over the lazy dog. The dog barks.'",
-        "expected_agent": "python",
+        "expected_agent": "coding",
         "success_criteria": [
           "Program correctly reads the file and counts words",
           "Top 10 most frequent words are identified",
@@ -83,7 +83,7 @@
         "id": "TC008",
         "name": "Object-Oriented Programming",
         "input": "Create a 'BankAccount' class with methods for deposit, withdraw, and check_balance. Demonstrate its usage with a series of transactions and save the final balance to account_balance.txt.",
-        "expected_agent": "python",
+        "expected_agent": "coding",
         "success_criteria": [
           "BankAccount class is correctly implemented with all methods",
           "Transactions are properly handled",
@@ -94,7 +94,7 @@
         "id": "TC009",
         "name": "Recursive Factorial",
         "input": "Write a recursive function to calculate the factorial of a number. Use it to calculate the factorial of 10 and save the result to factorial_result.txt.",
-        "expected_agent": "python",
+        "expected_agent": "coding",
         "success_criteria": [
           "Recursive factorial function is correctly implemented",
           "Factorial of 10 is correctly calculated",
@@ -105,7 +105,7 @@
         "id": "TC010",
         "name": "List Comprehension",
         "input": "Use list comprehension to create a list of all numbers from 1 to 100 that are divisible by both 3 and 5. Save the result to divisible_numbers.txt.",
-        "expected_agent": "python",
+        "expected_agent": "coding",
         "success_criteria": [
           "List comprehension is correctly used",
           "All numbers divisible by both 3 and 5 are identified",
@@ -116,7 +116,7 @@
         "id": "TC011",
         "name": "Exception Handling",
         "input": "Write a function that takes two numbers as input and returns their division. Handle potential exceptions (like division by zero) and test it with various inputs. Save the results to division_results.txt.",
-        "expected_agent": "python",
+        "expected_agent": "coding",
         "success_criteria": [
           "Function correctly performs division",
           "Exceptions are properly handled",
@@ -127,7 +127,7 @@
         "id": "TC012",
         "name": "Regular Expression",
         "input": "Write a function that uses regular expressions to validate email addresses. Test it on the following addresses and save results to email_validation.txt: 'user@example.com', 'invalid.email', 'another_user@domain.co.uk'.",
-        "expected_agent": "python",
+        "expected_agent": "coding",
         "success_criteria": [
           "Regular expression correctly validates email addresses",
           "All test cases are checked",
@@ -138,7 +138,7 @@
         "id": "TC013",
         "name": "Lambda Functions",
         "input": "Use lambda functions with map() and filter() to square all numbers in a list and then only keep the ones above 50. Use the list [1, 4, 9, 16, 25, 36, 49, 64, 81, 100] and save the result to lambda_result.txt.",
-        "expected_agent": "python",
+        "expected_agent": "coding",
         "success_criteria": [
           "Lambda functions are correctly used with map() and filter()",
           "Numbers are squared and filtered properly",
@@ -149,7 +149,7 @@
         "id": "TC014",
         "name": "Decorator Implementation",
         "input": "Create a decorator that measures the execution time of a function. Use it to decorate a function that sorts a list of 10000 random numbers. Save the execution time to execution_time.txt.",
-        "expected_agent": "python",
+        "expected_agent": "coding",
         "success_criteria": [
           "Decorator is correctly implemented",
           "Execution time is accurately measured",
@@ -160,7 +160,7 @@
         "id": "TC015",
         "name": "Generator Function",
         "input": "Write a generator function that yields all perfect squares up to a given number n. Use it to find perfect squares up to 1000 and save them to perfect_squares.txt.",
-        "expected_agent": "python",
+        "expected_agent": "coding",
         "success_criteria": [
           "Generator function correctly yields perfect squares",
           "All perfect squares up to 1000 are generated",
@@ -171,7 +171,7 @@
         "id": "TC016",
         "name": "JSON Processing",
         "input": "Create a JSON file named 'data.json' with an array of dictionaries representing books (title, author, year). Write a Python script to read this file, sort the books by year, and save the sorted list to sorted_books.json.",
-        "expected_agent": "python",
+        "expected_agent": "coding",
         "success_criteria": [
           "JSON file is correctly read and parsed",
           "Books are properly sorted by year",
@@ -182,7 +182,7 @@
         "id": "TC017",
         "name": "Recursive Directory Traversal",
         "input": "Write a function that recursively traverses a directory and its subdirectories, listing all files. Test it on a directory named 'test_dir' and save the output to directory_contents.txt.",
-        "expected_agent": "python",
+        "expected_agent": "coding",
         "success_criteria": [
           "Function correctly traverses directories recursively",
           "All files are listed",
@@ -193,7 +193,7 @@
         "id": "TC018",
         "name": "Custom Iterator",
         "input": "Create a custom iterator class that generates a sequence of prime numbers. Use it to generate the first 100 prime numbers and save them to prime_iterator.txt.",
-        "expected_agent": "python",
+        "expected_agent": "coding",
         "success_criteria": [
           "Custom iterator is correctly implemented",
           "First 100 prime numbers are generated",
@@ -204,7 +204,7 @@
         "id": "TC019",
         "name": "Context Manager",
         "input": "Implement a context manager for file handling that automatically closes the file and logs the operations. Use it to write 'Hello, World!' to a file named 'output.txt' and save the log to file_log.txt.",
-        "expected_agent": "python",
+        "expected_agent": "coding",
         "success_criteria": [
           "Context manager is correctly implemented",
           "File operations are properly logged",
@@ -215,7 +215,7 @@
         "id": "TC020",
         "name": "Multithreading",
         "input": "Write a multithreaded program that downloads 5 large files simultaneously from given URLs. Save the download times for each file to download_times.txt.",
-        "expected_agent": "python",
+        "expected_agent": "coding",
         "success_criteria": [
           "Multithreading is correctly implemented",
           "Files are downloaded simultaneously",
@@ -225,9 +225,6 @@
     ],
     "evaluation_metrics": {
       "correctness": "Percentage of test cases where the code produces the expected output",
-      "code_quality": "Evaluation of code readability, efficiency, and adherence to PEP 8 standards",
-      "error_handling": "Assessment of how well the code handles potential errors or edge cases",
-      "algorithmic_efficiency": "Evaluation of the efficiency of implemented algorithms",
-      "python_feature_utilization": "Assessment of appropriate use of Python-specific features and standard library"
-    }
+      "agent_selection": "Percentage of test cases where the code agent is correctly selected"
+  }
   }

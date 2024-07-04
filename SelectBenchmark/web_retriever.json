@@ -225,10 +225,7 @@
       }
     ],
     "evaluation_metrics": {
-      "accuracy": "Percentage of test cases where the retrieved information is correct and meets all success criteria",
-      "relevance": "Degree to which the retrieved information directly answers the query",
-      "timeliness": "Assessment of how current the retrieved information is",
-      "source_quality": "Evaluation of the credibility and reliability of the information sources used",
-      "agent_selection": "Percentage of test cases where the WebRetriever agent was correctly selected"
-    }
+      "correctness": "Percentage of test cases where the web_retriever produces the expected output",
+      "agent_selection": "Percentage of test cases where the web_retriever agent is correctly selected"
+  }
   }

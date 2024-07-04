@@ -215,10 +215,7 @@
       }
     ],
     "evaluation_metrics": {
-      "accuracy": "Percentage of test cases where the image description is accurate and relevant",
-      "detail": "Assessment of the level of detail provided in the image descriptions",
-      "relevance": "Evaluation of how well the response addresses the specific question asked",
-      "cultural_sensitivity": "Assessment of the agent's ability to describe cultural elements respectfully and accurately",
-      "reasoning": "Evaluation of the agent's ability to make logical inferences or predictions based on the image content"
-    }
+      "correctness": "Percentage of test cases where the image_retriever produces the expected output",
+      "agent_selection": "Percentage of test cases where the image_retriever agent is correctly selected"
+  }
   }
