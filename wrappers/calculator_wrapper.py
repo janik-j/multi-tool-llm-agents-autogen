@@ -1,3 +1,4 @@
+import math
 from autogen import register_function
 from autogen.agentchat import ChatResult, ConversableAgent, UserProxyAgent
 from typing import Dict, List, Union
@@ -57,6 +58,34 @@ class CalculatorWrapper(ChatWrapperMixin):
             name="divide",
             description="Execute divide(x, y) to retrieve x / y.",
         )
+        register_function(
+            CalculatorWrapper.pow,
+            caller=calculator,
+            executor=user_proxy,
+            name="pow",
+            description="Execute pow(x, d) to retrieve x^y.",
+        )
+        register_function(
+            CalculatorWrapper.log,
+            caller=calculator,
+            executor=user_proxy,
+            name="log",
+            description="Execute log(x) to retrieve logarithm of x.",
+        )
+        register_function(
+            CalculatorWrapper.gcd,
+            caller=calculator,
+            executor=user_proxy,
+            name="gcd",
+            description="Execute gcd(x, y) to retrieve the greatest common divisor of x and y.",
+        )
+        register_function(
+            CalculatorWrapper.lcm,
+            caller=calculator,
+            executor=user_proxy,
+            name="lcm",
+            description="Execute lcm(x, y) to retrieve the least common multiple of x and y.",
+        )
 
     @staticmethod
     def get_calculator(config_list: List[Dict]) -> ConversableAgent:
@@ -95,6 +124,22 @@ class CalculatorWrapper(ChatWrapperMixin):
     @staticmethod
     def divide(x: Union[int, float], y: Union[int, float]) -> Union[int, float]:
         return x / y
+
+    @staticmethod
+    def pow(x: Union[int, float], d: Union[int, float]) -> Union[int, float]:
+        return x ** d
+
+    @staticmethod
+    def log(x: Union[int, float]) -> Union[int, float]:
+        return math.log(x)
+
+    @staticmethod
+    def gcd(x: Union[int, float], y: Union[int, float]) -> Union[int, float]:
+        return math.gcd(x, y)
+
+    @staticmethod
+    def lcm(x: Union[int, float], y: Union[int, float]) -> Union[int, float]:
+        return math.lcm(x, y)
 
     def initiate_chat(self, user_prompt: str) -> ChatResult:
         self.calculator.reset()
