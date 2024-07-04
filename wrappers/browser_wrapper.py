@@ -7,6 +7,7 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 from typing import Dict, List
 from webdriver_manager.chrome import ChromeDriverManager
+from webdriver_manager.core.os_manager import ChromeType
 from xvfbwrapper import Xvfb
 
 from wrappers.chat_wrapper_mixin import ChatWrapperMixin
@@ -102,7 +103,7 @@ class BrowserWrapper(ChatWrapperMixin):
             chrome_options.add_argument('--disable-dev-shm-usage')
             chrome_options.add_argument('--headless')
 
-            service = Service(ChromeDriverManager().install())
+            service = Service(ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install())
             driver = webdriver.Chrome(service=service, options=chrome_options)
 
             try:
