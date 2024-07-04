@@ -11,7 +11,7 @@ IOStream.set_global_default(IOStreamlitNoOp())
 st.title("AutoGen Overarching Agent")
 
 openai_api_key = st.sidebar.text_input("OpenAI API Key")
-openai_model = st.sidebar.selectbox("OpenAI Model", ["gpt-3.5-turbo", "gpt-4", "gpt-4o"])
+openai_model = st.sidebar.selectbox("OpenAI Text Model", ["gpt-3.5-turbo", "gpt-4", "gpt-4o"])
 gsearch_api_key = st.sidebar.text_input("Google Search API Key")
 
 config_list = [{"model": openai_model, "api_key": openai_api_key}]
