@@ -26,7 +26,7 @@ class BrowserWrapper(ChatWrapperMixin):
                 """,
             human_input_mode="NEVER",
             max_consecutive_auto_reply=10,
-            llm_config={"cache_seed": None, "temperature": 0, "config_list": config_list},
+            llm_config={"cache_seed": None, "seed": 7, "temperature": 0, "config_list": config_list},
             code_execution_config={"use_docker": False},
         )
         self.web_retriever = self.get_web_retriever(config_list)
@@ -46,7 +46,7 @@ class BrowserWrapper(ChatWrapperMixin):
             human_input_mode="NEVER",
             max_consecutive_auto_reply=10,
             is_termination_msg=BrowserWrapper.is_termination_message,
-            llm_config={"cache_seed": None, "temperature": 0, "config_list": config_list},
+            llm_config={"cache_seed": None, "seed": 7, "temperature": 0, "config_list": config_list},
         )
 
     @staticmethod

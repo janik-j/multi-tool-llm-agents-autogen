@@ -17,7 +17,7 @@ class MultimodalWrapper(ChatWrapperMixin):
                 """,
             human_input_mode="NEVER",
             max_consecutive_auto_reply=10,
-            llm_config={"cache_seed": None, "temperature": 0, "config_list": text_config_list},
+            llm_config={"cache_seed": None, "seed": 7, "temperature": 0, "config_list": text_config_list},
             code_execution_config={"use_docker": False},
         )
         self.image_explainer = self.get_image_explainer(vision_config_list)
@@ -27,7 +27,7 @@ class MultimodalWrapper(ChatWrapperMixin):
         return MultimodalConversableAgent(
             name=MultimodalWrapper.AGENT_NAME,
             human_input_mode="NEVER",
-            llm_config={"cache_seed": None, "temperature": 0, "config_list": vision_config_list},
+            llm_config={"cache_seed": None, "seed": 7, "temperature": 0, "config_list": vision_config_list},
         )
 
     def initiate_chat(self, user_prompt: str, user_image_path: Optional[str]) -> ChatResult:

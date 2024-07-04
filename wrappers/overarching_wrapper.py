@@ -28,7 +28,7 @@ class OverarchingWrapper(ChatWrapperMixin):
                 """,
             human_input_mode="NEVER",
             max_consecutive_auto_reply=10,
-            llm_config={"cache_seed": None, "temperature": 0, "config_list": self.config_list},
+            llm_config={"cache_seed": None, "seed": 7, "temperature": 0, "config_list": self.config_list},
         )
         self.agents[self.user_proxy.name] = self.user_proxy
 
@@ -36,7 +36,7 @@ class OverarchingWrapper(ChatWrapperMixin):
         agent = autogen.AssistantAgent(
             name=agent_name,
             system_message=system_message,
-            llm_config={"cache_seed": None, "temperature": 0, "config_list": self.config_list},
+            llm_config={"cache_seed": None, "seed": 7, "temperature": 0, "config_list": self.config_list},
         )
         self.agents[agent.name] = agent
 
@@ -55,9 +55,19 @@ class OverarchingWrapper(ChatWrapperMixin):
         api_key = self.config_list[0]["api_key"]
 
         self.dalle = DalleWrapper.get_dalle_agent(
-            llm_config={"cache_seed": None, "temperature": 0, "config_list": self.config_list},
-            gpt_vision_config={"config_list": [{"model": "gpt-4-vision-preview", "api_key": api_key}], "timeout": 120, "temperature": 0.7},
-            dalle_config={"config_list": [{"model": "dall-e-3", "api_key": api_key}], "timeout": 120,"temperature": 0.7},
+            llm_config={"cache_seed": None, "seed": 7, "temperature": 0, "config_list": self.config_list},
+            gpt_vision_config={
+                "config_list": [{"model": "gpt-4-vision-preview", "api_key": api_key}],
+                "timeout": 120,
+                "temperature": 0.7,
+                "seed": 7,
+            },
+            dalle_config={
+                "config_list": [{"model": "dall-e-3", "api_key": api_key}],
+                "timeout": 120,
+                "temperature": 0.7,
+                "seed": 7,
+            },
         )
         self.agents[DalleWrapper.AGENT_NAME] = self.dalle
 
@@ -123,7 +133,7 @@ class OverarchingWrapper(ChatWrapperMixin):
                         You are a group chat manager.
                         If the question has been answered, reply with TERMINATE.
                         """,
-            llm_config={"cache_seed": None, "temperature": 0, "config_list": self.config_list},
+            llm_config={"cache_seed": None, "seed": 7, "temperature": 0, "config_list": self.config_list},
         )
 
         for agent in agents:
