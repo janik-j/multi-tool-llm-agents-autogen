@@ -2,9 +2,11 @@ from autogen import ChatResult, ConversableAgent, UserProxyAgent, register_funct
 from functools import partial
 from googleapiclient.discovery import build
 from selenium import webdriver
+from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 from typing import Dict, List
+from webdriver_manager.chrome import ChromeDriverManager
 from xvfbwrapper import Xvfb
 
 from wrappers.chat_wrapper_mixin import ChatWrapperMixin
@@ -100,7 +102,8 @@ class BrowserWrapper(ChatWrapperMixin):
             chrome_options.add_argument('--disable-dev-shm-usage')
             chrome_options.add_argument('--headless')
 
-            driver = webdriver.Chrome(options=chrome_options)
+            service = Service(ChromeDriverManager().install())
+            driver = webdriver.Chrome(service=service, options=chrome_options)
 
             try:
                 driver.get(url)
