@@ -77,6 +77,26 @@ with st.form("overarching"):
     if overarching_submitted and openai_api_key.startswith("sk-") and (not web_retriever_enabled or gsearch_api_key):
         tmp_files = []
 
+        if image_explainer_enabled and uploaded_image is not None:
+            image_tmp_file = tempfile.NamedTemporaryFile(mode="wb")
+            image_tmp_file.write(uploaded_image.read())
+            tmp_files.append(image_tmp_file)
+            image_path = image_tmp_file.name
+
+            overarching_wrapper.add_image_explainer(image_path)
+        else:
+            overarching_wrapper.remove_image_explainer()
+
+        if pdf_parser_enabled and uploaded_pdf is not None:
+            pdf_tmp_file = tempfile.NamedTemporaryFile(mode="wb")
+            pdf_tmp_file.write(uploaded_pdf.read())
+            tmp_files.append(pdf_tmp_file)
+            pdf_path = pdf_tmp_file.name
+
+            overarching_wrapper.add_pdf_parser(pdf_path)
+        else:
+            overarching_wrapper.remove_pdf_parser()
+
         if calculator_enabled:
             overarching_wrapper.add_calculator()
         else:
@@ -102,26 +122,6 @@ with st.form("overarching"):
             overarching_wrapper.add_web_retriever(gsearch_api_key)
         else:
             overarching_wrapper.remove_web_retriever()
-
-        if image_explainer_enabled and uploaded_image is not None:
-            image_tmp_file = tempfile.NamedTemporaryFile(mode="wb")
-            image_tmp_file.write(uploaded_image.read())
-            tmp_files.append(image_tmp_file)
-            image_path = image_tmp_file.name
-
-            overarching_wrapper.add_image_explainer(image_path)
-        else:
-            overarching_wrapper.remove_image_explainer()
-
-        if pdf_parser_enabled and uploaded_pdf is not None:
-            pdf_tmp_file = tempfile.NamedTemporaryFile(mode="wb")
-            pdf_tmp_file.write(uploaded_pdf.read())
-            tmp_files.append(pdf_tmp_file)
-            pdf_path = pdf_tmp_file.name
-
-            overarching_wrapper.add_pdf_parser(pdf_path)
-        else:
-            overarching_wrapper.remove_pdf_parser()
 
         for agent_name, system_message in st.session_state.custom_agents.items():
             if agent_name not in st.session_state.custom_agent_names:
