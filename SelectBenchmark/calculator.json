@@ -1,0 +1,211 @@
+{
+    "benchmark_name": "calculator_agent",
+    "version": "1.0",
+    "test_cases": [
+      {
+        "id": "TC001",
+        "name": "Simple Addition",
+        "input": "What is 5 + 3?",
+        "expected_agent": "calculator",
+        "expected_result": 8,
+        "success_criteria": [
+          "Correct result (8) is returned"
+        ]
+      },
+      {
+        "id": "TC002",
+        "name": "Simple Subtraction",
+        "input": "Calculate 10 - 4",
+        "expected_agent": "calculator",
+        "expected_result": 6,
+        "success_criteria": [
+          "Correct result (6) is returned"
+        ]
+      },
+      {
+        "id": "TC003",
+        "name": "Simple Multiplication",
+        "input": "Multiply 7 and 6",
+        "expected_agent": "calculator",
+        "expected_result": 42,
+        "success_criteria": [
+          "Correct result (42) is returned"
+        ]
+      },
+      {
+        "id": "TC004",
+        "name": "Simple Division",
+        "input": "Divide 20 by 5",
+        "expected_agent": "calculator",
+        "expected_result": 4,
+        "success_criteria": [
+          "Correct result (4) is returned"
+        ]
+      },
+      {
+        "id": "TC005",
+        "name": "Mixed Operations",
+        "input": "What is (10 + 5) * 2 - 8?",
+        "expected_agent": "calculator",
+        "expected_result": 22,
+        "success_criteria": [
+          "Correct result (22) is returned"
+        ]
+      },
+      {
+        "id": "TC006",
+        "name": "Decimal Addition",
+        "input": "Add 3.14 and 2.86",
+        "expected_agent": "calculator",
+        "expected_result": 6,
+        "success_criteria": [
+          "Correct result (6) is returned"
+        ]
+      },
+      {
+        "id": "TC007",
+        "name": "Negative Number Subtraction",
+        "input": "What's the result of 5 minus -3?",
+        "expected_agent": "calculator",
+        "expected_result": 8,
+        "success_criteria": [
+          "Correct result (8) is returned"
+        ]
+      },
+      {
+        "id": "TC008",
+        "name": "Large Number Multiplication",
+        "input": "Multiply 1234 by 5678",
+        "expected_agent": "calculator",
+        "expected_result": 7006652,
+        "success_criteria": [
+          "Correct result (7006652) is returned"
+        ]
+      },
+      {
+        "id": "TC009",
+        "name": "Division with Remainder",
+        "input": "What is 17 divided by 3?",
+        "expected_agent": "calculator",
+        "expected_result": 5.666666667,
+        "success_criteria": [
+          "Correct result (approximately 5.67) is returned"
+        ]
+      },
+      {
+        "id": "TC010",
+        "name": "Percentage Calculation",
+        "input": "What is 15% of 80?",
+        "expected_agent": "calculator",
+        "expected_result": 12,
+        "success_criteria": [
+          "Correct result (12) is returned"
+        ]
+      },
+      {
+        "id": "TC011",
+        "name": "Square Root",
+        "input": "Calculate the square root of 144",
+        "expected_agent": "calculator",
+        "expected_result": 12,
+        "success_criteria": [
+          "Correct result (12) is returned"
+        ]
+      },
+      {
+        "id": "TC012",
+        "name": "Multiplication",
+        "input": "What is 2 * 8 * 5 * 4?",
+        "expected_agent": "calculator",
+        "expected_result": 320,
+        "success_criteria": [
+          "Correct result (320) is returned"
+        ]
+      },
+      {
+        "id": "TC013",
+        "name": "Negative Number Addition",
+        "input": "What's the sum of -15 and 7?",
+        "expected_agent": "calculator",
+        "expected_result": -8,
+        "success_criteria": [
+          "Correct result (-8) is returned"
+        ]
+      },
+      {
+        "id": "TC014",
+        "name": "Decimal Multiplication",
+        "input": "Multiply 3.7 by 2.5",
+        "expected_agent": "calculator",
+        "expected_result": 9.25,
+        "success_criteria": [
+          "Correct result (9.25) is returned"
+        ]
+      },
+      {
+        "id": "TC015",
+        "name": "Large Number Division",
+        "input": "Divide 1000000 by 1000",
+        "expected_agent": "calculator",
+        "expected_result": 1000,
+        "success_criteria": [
+          "Correct result (1000) is returned"
+        ]
+      },
+      {
+        "id": "TC016",
+        "name": "Mixed Operations with Parentheses",
+        "input": "Calculate (10 + 5) * (20 - 15) / 5",
+        "expected_agent": "calculator",
+        "expected_result": 15,
+        "success_criteria": [
+          "Correct result (15) is returned"
+        ]
+      },
+      {
+        "id": "TC017",
+        "name": "Complex Expression",
+        "input": "Evaluate (5 + 3) * 4 / 2 - 7",
+        "expected_agent": "calculator",
+        "expected_result": 9,
+        "success_criteria": [
+          "Correct result (9) is returned"
+        ]
+      },
+      {
+        "id": "TC018",
+        "name": "Factorial",
+        "input": "What's the factorial of 5?",
+        "expected_agent": "calculator",
+        "expected_result": 120,
+        "success_criteria": [
+          "Correct result (120) is returned"
+        ]
+      },
+      {
+        "id": "TC019",
+        "name": "Greatest Common Divisor",
+        "input": "Find the GCD of 48 and 18",
+        "expected_agent": "calculator",
+        "expected_result": 6,
+        "success_criteria": [
+          "Correct result (6) is returned"
+        ]
+      },
+      {
+        "id": "TC020",
+        "name": "Least Common Multiple",
+        "input": "Calculate the LCM of 12 and 18",
+        "expected_agent": "calculator",
+        "expected_result": 36,
+        "success_criteria": [
+          "Correct result (36) is returned"
+        ]
+      }
+    ],
+    "evaluation_metrics": {
+      "accuracy": "Percentage of test cases where the correct result was returned",
+      "response_time": "Average time taken to calculate and return the result",
+      "agent_selection": "Percentage of test cases where the calculator agent was correctly selected"
+    }
+  }

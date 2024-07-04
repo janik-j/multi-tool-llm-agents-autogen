@@ -1,0 +1,234 @@
+{
+    "benchmark_name": "web_retriever_agent",
+    "version": "1.0",
+    "test_cases": [
+      {
+        "id": "TC001",
+        "name": "Current News Retrieval",
+        "input": "What are the top headlines in world news today?",
+        "expected_agent": "web_retriever",
+        "success_criteria": [
+          "Returns a list of current top world news headlines",
+          "Information is from reputable news sources",
+          "Headlines are no more than 24 hours old"
+        ]
+      },
+      {
+        "id": "TC002",
+        "name": "Weather Information",
+        "input": "What's the weather forecast for New York City for the next 3 days?",
+        "expected_agent": "web_retriever",
+        "success_criteria": [
+          "Provides weather forecast for New York City",
+          "Covers the next 3 days",
+          "Includes temperature and general weather conditions"
+        ]
+      },
+      {
+        "id": "TC003",
+        "name": "Stock Market Data",
+        "input": "What's the current stock price of Apple Inc.?",
+        "expected_agent": "web_retriever",
+        "success_criteria": [
+          "Returns the current stock price of Apple Inc. (AAPL)",
+          "Price is no more than 20 minutes old",
+          "Includes the stock exchange where the price was quoted"
+        ]
+      },
+      {
+        "id": "TC004",
+        "name": "Sports Results",
+        "input": "Who won the last NBA championship?",
+        "expected_agent": "web_retriever",
+        "success_criteria": [
+          "Correctly identifies the most recent NBA champion",
+          "Provides the year of the championship",
+          "Includes the team they defeated in the finals"
+        ]
+      },
+      {
+        "id": "TC005",
+        "name": "Movie Information",
+        "input": "What are the top 5 highest-grossing movies of all time?",
+        "expected_agent": "web_retriever",
+        "success_criteria": [
+          "Lists the top 5 highest-grossing movies",
+          "Includes the gross revenue for each movie",
+          "Information is up-to-date"
+        ]
+      },
+      {
+        "id": "TC06",
+        "name": "Euro 2024 Match Schedule",
+        "input": "When did Spain play against Germany in the Euros 2024?",
+        "expected_agent": "web_retriever",
+        "expected_result": "05.07.2024",
+        "success_criteria": [
+          "Correctly identifies the date as 05.07.2024",
+          "Confirms that this is a match between Spain and Germany in Euro 2024",
+          "Potentially provides additional context about the tournament or match"
+        ]
+      },
+      {
+        "id": "TC007",
+        "name": "Currency Exchange Rate",
+        "input": "What's the current exchange rate between USD and EUR?",
+        "expected_agent": "web_retriever", 
+        "success_criteria": [
+          "Provides the current USD to EUR exchange rate",
+          "Rate is no more than 1 hour old",
+          "Specifies the source of the exchange rate information"
+        ]
+      },
+      {
+        "id": "TC008",
+        "name": "Celebrity Information",
+        "input": "How old is Tom Hanks and what was his latest movie?",
+        "expected_agent": "web_retriever",
+        "success_criteria": [
+          "Correctly states Tom Hanks' current age",
+          "Identifies his most recent movie release",
+          "Information is accurate and up-to-date"
+        ]
+      },
+      {
+        "id": "TC009",
+        "name": "Recent Historical Event",
+        "input": "What was the outcome of the most recent presidential election in France?",
+        "expected_agent": "web_retriever",
+        "success_criteria": [
+          "Provides the name of the winner of the most recent French presidential election",
+          "Includes the year of the election",
+          "May provide brief additional context such as the margin of victory"
+        ]
+      },  
+      {
+        "id": "TC010",
+        "name": "Product Price Comparison",
+        "input": "What's the price range for the latest iPhone model across major retailers?",
+        "expected_agent": "web_retriever",
+        "success_criteria": [
+          "Provides price range for the latest iPhone model",
+          "Includes prices from at least 3 major retailers",
+          "Information is current (no more than 24 hours old)"
+        ]
+      },
+      {
+        "id": "TC011",
+        "name": "Current Scientific Research",
+        "input": "What are the latest findings in research on giant sequoia trees' resilience to climate change?",
+        "expected_agent": "web_retriever",
+        "success_criteria": [
+          "Provides information on recent (within the last 2 years) research findings",
+          "Information is from a reputable scientific source",
+          "Includes the implications of these findings for conservation efforts"
+        ]
+      },
+      {
+        "id": "TC012",
+        "name": "Technology News",
+        "input": "What are the latest developments in artificial intelligence?",
+        "expected_agent": "web_retriever",
+        "success_criteria": [
+          "Provides recent news or breakthroughs in AI",
+          "Information is from the last 30 days",
+          "Includes sources from reputable tech news outlets"
+        ]
+      },
+      {
+        "id": "TC013",
+        "name": "Recent Literary Award",
+        "input": "Who won the most recent Booker Prize and for which book?",
+        "expected_agent": "web_retriever",
+        "success_criteria": [
+          "Correctly identifies the most recent Booker Prize winner",
+          "Provides the title of the winning book",
+          "Includes the year of the award"
+        ]
+      },
+      {
+        "id": "TC014",
+        "name": "Travel Information",
+        "input": "What are the entry requirements for U.S. citizens traveling to Japan?",
+        "expected_agent": "web_retriever",
+        "success_criteria": [
+          "Lists current entry requirements for U.S. citizens to Japan",
+          "Includes visa information if applicable",
+          "Mentions any COVID-19 related restrictions or requirements"
+        ]
+      },
+      {
+        "id": "TC015",
+        "name": "Music Chart Information",
+        "input": "What's the current number one song on the Billboard Hot 100?",
+        "expected_agent": "web_retriever",
+        "success_criteria": [
+          "Identifies the current #1 song on the Billboard Hot 100",
+          "Includes the artist name",
+          "Information is from the most recent chart update"
+        ]
+      },
+      {
+        "id": "TC016",
+        "name": "Current Health Guidelines",
+        "input": "What are the current recommended daily intake levels for vitamin D according to the WHO?",
+        "expected_agent": "web_retriever",
+        "success_criteria": [
+          "Provides the most up-to-date WHO recommendations for daily vitamin D intake",
+          "Specifies different recommendations for different age groups if applicable",
+          "Includes the date or year of the most recent guidelines"
+        ]
+      },
+      {
+        "id": "TC017",
+        "name": "Educational Institution Ranking",
+        "input": "What are the top 5 universities in the world according to the latest rankings?",
+        "expected_agent": "web_retriever",
+        "success_criteria": [
+          "Lists the top 5 universities from a recognized global ranking",
+          "Specifies the ranking system used (e.g., QS World University Rankings)",
+          "Information is from the most recent ranking release"
+        ]
+      },
+      {
+        "id": "TC018",
+        "name": "Legal Information",
+        "input": "What is the current federal minimum wage in the United States?",
+        "expected_agent": "web_retriever",
+        "success_criteria": [
+          "Provides the current federal minimum wage in the U.S.",
+          "Information is up-to-date and accurate",
+          "May mention any pending changes or state variations"
+        ]
+      },
+      {
+        "id": "TC019",
+        "name": "Environmental Data",
+        "input": "What is the current air quality index in Beijing?",
+        "expected_agent": "web_retriever",
+        "success_criteria": [
+          "Provides the current Air Quality Index (AQI) for Beijing",
+          "Information is no more than 3 hours old",
+          "Includes the source of the air quality data"
+        ]
+      },
+      {
+        "id": "TC020",
+        "name": "Software Version Information",
+        "input": "What is the latest stable version of Python and when was it released?",
+        "expected_agent": "web_retriever",
+        "success_criteria": [
+          "Identifies the latest stable version of Python",
+          "Provides the release date of this version",
+          "Information is accurate and up-to-date"
+        ]
+      }
+    ],
+    "evaluation_metrics": {
+      "accuracy": "Percentage of test cases where the retrieved information is correct and meets all success criteria",
+      "relevance": "Degree to which the retrieved information directly answers the query",
+      "timeliness": "Assessment of how current the retrieved information is",
+      "source_quality": "Evaluation of the credibility and reliability of the information sources used",
+      "agent_selection": "Percentage of test cases where the WebRetriever agent was correctly selected"
+    }
+  }

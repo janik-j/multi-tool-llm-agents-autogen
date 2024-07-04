@@ -1,0 +1,224 @@
+{
+    "benchmark_name": "image_retriever_agent",
+    "version": "1.0",
+    "test_cases": [
+      {
+        "id": "TC001",
+        "name": "Landscape Description",
+        "input": "Describe this landscape. What time of day do you think it is?",
+        "path_url": "https://images.unsplash.com/photo-1472214103451-9374bd1c798e",
+        "expected_agent": "image_retriever",
+        "success_criteria": [
+          "Provides a detailed description of the landscape (grass, stones, mountains, sky)",
+          "Makes a reasonable estimate of the time of day (Sunset, Dawn, Noon, Sunrise, etc.)"
+        ]
+      },
+      {
+        "id": "TC002",
+        "name": "Animal Identification",
+        "input": "What animal is this and what is it doing?",
+        "path_url": "https://images.unsplash.com/photo-1530281700549-e82e7bf110d6?q=80&w=1976&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        "expected_agent": "image_retriever",
+        "success_criteria": [
+          "Animal is a dog",
+          "Running at the beach close to waves" 
+        ]
+      },
+      {
+        "id": "TC003",
+        "name": "Food Analysis",
+        "input": "What ingredients can you identify in this dish?",
+        "path_url": "https://images.unsplash.com/photo-1540189549336-e6e99c3679fe",
+        "expected_agent": "image_retriever",
+        "success_criteria": [
+          "Provides a general description of the type of dish such as a salad and an orange juice",
+          "Ingredients of salad include olives, walnuts, onion, salad, carrots, feta"
+        ]
+      },
+      {
+        "id": "TC004",
+        "name": "Architecture Identification",
+        "input": "What style of architecture is shown in this image?",
+        "path_url": "https://images.unsplash.com/photo-1704839562146-3e4c2c1ef84a?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        "expected_agent": "image_retriever",
+        "success_criteria": [
+          "Brutalist architecture",
+          "Stadium / concert hall or similar building"
+        ]
+      },
+      {
+        "id": "TC005",
+        "name": "Weather Assessment",
+        "input": "Based on this image, what's the weather like?",
+        "path_url": "https://images.unsplash.com/photo-1514632595-4944383f2737",
+        "expected_agent": "image_retriever",
+        "success_criteria": [
+          "Describes the apparent weather conditions (snowing)",
+          "Provides evidence from the image to support the weather assessment"
+        ]
+      },
+      {
+        "id": "TC006",
+        "name": "Art Style Analysis",
+        "input": "What style of painting is this? Describe its key features.",
+        "path_url": "https://images.unsplash.com/photo-1615184697985-c9bde1b07da7?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        "expected_agent": "image_retriever",
+        "success_criteria": [
+          "Identifies the style of painting (abstract art)",
+          "Describes key features and techniques visible in the artwork"
+        ]
+      },
+      {
+        "id": "TC007",
+        "name": "Vehicle Identification",
+        "input": "What type of vehicle is this and what era is it from?",
+        "path_url": "https://images.unsplash.com/photo-1635785657876-96567c4027f3?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        "expected_agent": "image_retriever",
+        "success_criteria": [
+          "Trabant produced in east germany",
+          "Provides an estimate of the era or decade the vehicle is from (produced from 1957 to 1991)"
+        ]
+      },
+      {
+        "id": "TC008",
+        "name": "Sports Scene Analysis",
+        "input": "What sport is being played here and what's happening in the image?",
+        "path_url": "https://images.unsplash.com/photo-1587329310686-91414b8e3cb7",
+        "expected_agent": "image_retriever",
+        "success_criteria": [
+          "Identifies the sport being played (ball sports) and the specific sport (football)",
+          "Describes the specific action or moment captured in the image (ball hitting the goal)"
+        ]
+      },
+      {
+        "id": "TC009",
+        "name": "Technology Identification",
+        "input": "What piece of technology is shown here and what might it be used for?",
+        "path_url": "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158",
+        "expected_agent": "image_retriever",
+        "success_criteria": [
+          "Correctly identifies the piece of technology (computer in a labratory setting)"
+        ]
+      },
+      {
+        "id": "TC010",
+        "name": "Emotion Recognition",
+        "input": "What emotion is the person in this image expressing?",
+        "path_url": "https://images.unsplash.com/photo-1511988617509-a57c8a288659",
+        "expected_agent": "image_retriever",
+        "success_criteria": [
+          "Identifies the primary emotion expressed (joy, joyous, happy, happiness)",
+          "Describes facial or body language cues that indicate the emotion (laughing, smiling)"
+        ]
+      },
+      {
+        "id": "TC011",
+        "name": "Basic Animal Identification",
+        "input": "What animal is shown in this image?",
+        "path_url": "https://images.unsplash.com/photo-1474511320723-9a56873867b5",
+        "expected_agent": "image_retriever",
+        "success_criteria": [
+          "Correctly identifies the animal as a fox"
+        ]
+      },
+      {
+        "id": "TC012",
+        "name": "Musical Instrument Identification",
+        "input": "What musical instruments can you see in this image?",
+        "path_url": "https://images.unsplash.com/photo-1564186763535-ebb21ef5277f",
+        "expected_agent": "image_retriever",
+        "success_criteria": [
+          "Identifies guitar"
+        ]
+      },
+      {
+        "id": "TC013",
+        "name": "Basic Food Identification",
+        "input": "What fruit is shown in this image?",
+        "path_url": "https://images.unsplash.com/photo-1587132137056-bfbf0166836e",
+        "expected_agent": "image_retriever",
+        "success_criteria": [
+          "Correctly identifies the fruit as banana"
+        ]
+      },
+      {
+        "id": "TC014",
+        "name": "Simple Vehicle Identification",
+        "input": "What type of vehicle is shown in this image?",
+        "path_url": "https://images.unsplash.com/photo-1502877338535-766e1452684a",
+        "expected_agent": "image_retriever",
+        "success_criteria": [
+          "Identifies the vehicle as a bmw"
+        ]
+      },
+      {
+        "id": "TC015",
+        "name": "Interior Design Analysis",
+        "input": "What style of interior design is shown here? What era does it represent?",
+        "path_url": "https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf",
+        "expected_agent": "image_retriever",
+        "success_criteria": [
+          "Identifies the interior design style",
+          "Estimates the era or decade the style represents",
+          "Points out key design elements that define the style"
+        ]
+      },
+      {
+        "id": "TC016",
+        "name": "Basic Landmark Identification",
+        "input": "What famous landmark is shown in this image?",
+        "path_url": "https://images.unsplash.com/photo-1564507592333-c60657eea523",
+        "expected_agent": "image_retriever",
+        "success_criteria": [
+          "Correctly identifies the landmark as the Taj Mahal"
+        ]
+      },
+      {
+        "id": "TC017",
+        "name": "Simple Pet Identification",
+        "input": "What common household pet is shown in this image?",
+        "path_url": "https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba",
+        "expected_agent": "image_retriever",
+        "success_criteria": [
+          "Identifies the animal as a cat"
+        ]
+      },
+      {
+        "id": "TC018",
+        "name": "Basic Footwear Identification",
+        "input": "What type of footwear is displayed in this image?",
+        "path_url": "https://images.unsplash.com/photo-1595341888016-a392ef81b7de",
+        "expected_agent": "image_retriever",
+        "success_criteria": [
+          "Identifies the footwear as a pair of sneakers or running shoes"
+        ]
+      },
+      {
+        "id": "TC019",
+        "name": "Basic Vegetation Identification",
+        "input": "What type of tree is prominently featured in this image?",
+        "path_url": "https://images.unsplash.com/photo-1523712999610-f77fbcfc3843",
+        "expected_agent": "image_retriever",
+        "success_criteria": [
+          "Identifies the trees as pine trees or evergreens"
+        ]
+      },
+      {
+        "id": "TC020",
+        "name": "Basic Electronic Device Identification",
+        "input": "What common electronic device is displayed in this image?",
+        "path_url": "https://images.unsplash.com/photo-1610945265064-0e34e5519bbf",
+        "expected_agent": "image_retriever",
+        "success_criteria": [
+          "Correctly identifies the device as a smartphone or mobile phone"
+        ]
+      }
+    ],
+    "evaluation_metrics": {
+      "accuracy": "Percentage of test cases where the image description is accurate and relevant",
+      "detail": "Assessment of the level of detail provided in the image descriptions",
+      "relevance": "Evaluation of how well the response addresses the specific question asked",
+      "cultural_sensitivity": "Assessment of the agent's ability to describe cultural elements respectfully and accurately",
+      "reasoning": "Evaluation of the agent's ability to make logical inferences or predictions based on the image content"
+    }
+  }

@@ -1,0 +1,236 @@
+{
+    "benchmark_name": "pdf_parser_agent",
+    "version": "1.0",
+    "test_cases": [
+      {
+        "id": "TC001",
+        "name": "Abstract Extraction",
+        "input": "Extract and summarize the abstract from this paper.",
+        "path_url": "https://arxiv.org/pdf/1706.03762.pdf",
+        "expected_agent": "PDF_parser",
+        "success_criteria": [
+          "Propose a new simple network architecture, the Transformer,based solely on attention mechanisms, dispensing with recurrence and convolutionsentirely",
+          "Provides a concise summary of the abstract's key points"
+        ]
+      },
+      {
+        "id": "TC002",
+        "name": "Author Identification",
+        "input": "List all authors of this paper.",
+        "path_url": "https://arxiv.org/pdf/1810.04805.pdf",
+        "expected_agent": "PDF_parser",
+        "success_criteria": [
+          "Accurately identifies and lists all authors of the paper (Jacob Devlin Ming-Wei Chang Kenton Lee Kristina Toutanova)",
+          "Presents the authors' names in the correct order"
+        ]
+      },
+      {
+        "id": "TC003",
+        "name": "Reference Extraction",
+        "input": "Extract all references from this paper and list the first five.",
+        "path_url": "https://arxiv.org/pdf/1512.03385.pdf",
+        "expected_agent": "PDF_parser",
+        "success_criteria": [
+          "Correctly identifies the references section",
+          "Extracts and lists the first five references accurately [1] Y. Bengio, P. Simard, and P. Frasconi., [2] C. M. Bishop, [3] W. L. Briggs, S. F. McCormick, et al, [4] K. Chatfield, V. Lempitsky, A. Vedaldi, and A. Zisserman, [5] M. Everingham, L. Van Gool, C. K. Williams, J. Winn, and A. Zisserman. "
+        ]
+      },
+      {
+        "id": "TC004",
+        "name": "Keyword Identification",
+        "input": "Identify and list the main keywords or key phrases from this paper.",
+        "path_url": "https://arxiv.org/pdf/2207.01888.pdf",
+        "expected_agent": "PDF_parser",
+        "success_criteria": [
+          "Extracts relevant keywords or key phrases from the paper (Keywords: Keyword extraction, TextRank algorithm, Document clustering, Named-Entity Recognition)",
+          "Provides a list of at least 5 pertinent keywords/phrases"
+        ]
+      },
+      {
+        "id": "TC005",
+        "name": "Figure Caption Extraction",
+        "input": "Extract the captions of all figures in this paper.",
+        "path_url": "https://arxiv.org/pdf/1412.6980.pdf",
+        "expected_agent": "PDF_parser",
+        "success_criteria": [
+          "Identifies all figures in the paper",
+          "Accurately extracts and lists the captions for each figure",
+          "Figure 1: Logistic regression training negative log likelihood on MNIST images and IMDB movie reviews with 10,000 bag-of-words (BoW) feature vectors",
+          "Figure 2: Training of multilayer neural networks on MNIST images. (a) Neural networks using dropout stochastic regularization. (b) Neural networks with deterministic cost function. We compare with the sum-of-functions (SFO) optimizer (Sohl-Dickstein et al., 2014)",
+          "Figure 3: Convolutional neural networks training cost. (left) Training cost for the first three epochs. (right) Training cost over 45 epochs. CIFAR-10 with c64-c64-c128-1000 architectur",
+          "Figure 4: Effect of bias-correction terms (red line) versus no bias correction terms (green line) after 10 epochs (left) and 100 epochs (right) on the loss (y-axes) when learning a Variational AutoEncoder (VAE) (Kingma & Welling, 2013), for different settings of stepsize α (x-axes) and hyperparameters β1 and β2."
+        ]
+      },
+      {
+        "id": "TC006",
+        "name": "Section Titles Extraction",
+        "input": "List all main section titles of this paper in order.",
+        "path_url": "https://arxiv.org/pdf/1901.02860.pdf",
+        "expected_agent": "PDF_parser",
+        "success_criteria": [
+          "Correctly identifies all main section titles",
+          "Introduction, Related Work, Model, Experiments, Conclusions, Acknowledgments"
+        ]
+      },
+      {
+        "id": "TC007",
+        "name": "Table Content Extraction",
+        "input": "Extract the headlines of the first table in this paper.",
+        "path_url": "https://arxiv.org/pdf/1905.11946.pdf",
+        "expected_agent": "PDF_parser",
+        "success_criteria": [
+          "Accurately identifies the first table in the paper",
+          "Correctly extracts and presents the table's content",
+          "Stage, Operator, Resolution, #Channels, #Layers"
+        ]
+      },
+      {
+        "id": "TC008",
+        "name": "Conclusion Summary",
+        "input": "Summarize the conclusion section of this paper.",
+        "path_url": "https://arxiv.org/pdf/1706.03762.pdf",
+        "expected_agent": "PDF_parser",
+        "success_criteria": [
+          "Locates the conclusion section of the paper",
+          "Provides a concise summary of the main points in the conclusion",
+          "Presented the Transformer, the first sequence transduction model based entirely onattention, replacing the recurrent layers most commonly used in encoder-decoder architectures with multi-headed self-attention"
+        ]
+      },
+      {
+        "id": "TC009",
+        "name": "Algorithm Extraction",
+        "input": "Extract and present any pseudocode described in this paper.",
+        "path_url": "https://arxiv.org/pdf/1703.06870.pdf",
+        "expected_agent": "PDF_parser",
+        "success_criteria": [
+          "Identifies any algorithms presented in the paper",
+          "No pseuocode in the paper"
+        ]
+      },
+      {
+        "id": "TC010",
+        "name": "Citation Count",
+        "input": "Count and report the total number of citations in this paper.",
+        "path_url": "https://arxiv.org/pdf/2207.01888.pdf",
+        "expected_agent": "PDF_parser",
+        "success_criteria": [
+          "Accurately counts all citations in the paper",
+          "Reports the total number of citations (65)"
+        ]
+      },
+      {
+        "id": "TC011",
+        "name": "Equation Extraction",
+        "input": "How many mathematical equations are in this paper.",
+        "path_url": "https://arxiv.org/pdf/2102.12092.pdf",
+        "expected_agent": "PDF_parser",
+        "success_criteria": [
+          "Identifies all mathematical equations in the paper (3)"
+        ]
+      },
+      {
+        "id": "TC012",
+        "name": "Future Work Identification",
+        "input": "Identify and summarize any mentions of future work or research directions in this paper.",
+        "path_url": "https://arxiv.org/pdf/1910.03771.pdf",
+        "expected_agent": "PDF_parser",
+        "success_criteria": [
+          "Locates mentions of future work or research directions (no research direction provided)"
+        ]
+      },
+      {
+        "id": "TC013",
+        "name": "Authors List",
+        "input": "List the authors of the paper.",
+        "path_url": "https://arxiv.org/pdf/1803.02155.pdf",
+        "expected_agent": "PDF_parser",
+        "success_criteria": [
+          "Authors: Peter Shaw, Jakob Uszkoreit, Ashish Vaswani"
+        ]
+      },
+      {
+        "id": "TC014",
+        "name": "Author's Affiliation",
+        "input": "At which institutions do the authors of this paper work?",
+        "path_url": "https://arxiv.org/pdf/1909.11942.pdf",
+        "expected_agent": "PDF_parser",
+        "success_criteria": [
+          "Work at: Google Research, Toyota Technological Institute at Chicago"
+        ]
+      },
+      {
+        "id": "TC015",
+        "name": "References",
+        "input": "What is the first reference in this paper.",
+        "path_url": "https://arxiv.org/pdf/1810.04805.pdf",
+        "expected_agent": "PDF_parser",
+        "success_criteria": [
+          "Identifies the first reference: Alan Akbik, Duncan Blythe, and Roland Vollgraf. 2018. Contextual string embeddings for sequence labeling. In Proceedings of the 27th International Conference on Computational Linguistics, pages 1638–1649."
+        ]
+      },
+      {
+        "id": "TC016",
+        "name": "Publication Date Extraction",
+        "input": "Extract the publication or submission date of this paper.",
+        "path_url": "https://arxiv.org/pdf/1706.03762.pdf",
+        "expected_agent": "PDF_parser",
+        "success_criteria": [
+          "Accurately identifies and extracts the publication or submission date (2 Aug 2023)"
+        ]
+      },
+      {
+        "id": "TC017",
+        "name": "Title Extraction",
+        "input": "Extract the full title of this paper.",
+        "path_url": "https://arxiv.org/pdf/1706.03762.pdf",
+        "expected_agent": "PDF_parser",
+        "success_criteria": [
+          "Extracts the exact title: 'Attention Is All You Need'",
+          "Returns the title without any additional text or formatting"
+        ]
+      },
+      {
+        "id": "TC018",
+        "name": "First Author Extraction",
+        "input": "Extract the name of the first author of this paper.",
+        "path_url": "https://arxiv.org/pdf/1810.04805.pdf",
+        "expected_agent": "PDF_parser",
+        "success_criteria": [
+          "Extracts the name of the first author: 'Jacob Devlin'",
+          "Returns only the author's name without any additional text"
+        ]
+      },
+      {
+        "id": "TC019",
+        "name": "Abstract Word Count",
+        "input": "Count the number of words in the abstract of this paper.",
+        "path_url": "https://arxiv.org/pdf/1512.03385.pdf",
+        "expected_agent": "PDF_parser",
+        "success_criteria": [
+          "Correctly identifies the abstract section",
+          "Returns the exact word count: 200 words",
+          "Excludes title, author names, and keywords from the count"
+        ]
+      },
+      {
+        "id": "TC020",
+        "name": "Publication Year Extraction",
+        "input": "Extract the publication year of this paper.",
+        "path_url": "https://arxiv.org/pdf/1905.11946.pdf",
+        "expected_agent": "PDF_parser",
+        "success_criteria": [
+          "Extracts the correct publication year: '2020'",
+          "Returns only the year as a four-digit number"
+        ]
+      }
+    ],
+    "evaluation_metrics": {
+      "accuracy": "Percentage of test cases where the extracted information is accurate and relevant",
+      "completeness": "Assessment of how thoroughly the requested information is extracted",
+      "relevance": "Evaluation of how well the extracted information addresses the specific question asked",
+      "formatting": "Assessment of how well the extracted information is structured and presented",
+      "efficiency": "Evaluation of the agent's ability to quickly locate and extract the requested information"
+    }
+  }
+  
+  

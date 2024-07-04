@@ -1,0 +1,234 @@
+{
+    "benchmark_name": "DALLE_agent",
+    "version": "1.0",
+    "test_cases": [
+      {
+        "id": "TC001",
+        "name": "Simple Object Generation",
+        "input": "Generate a close-up shot of a red apple",
+        "expected_agent": "dalle",
+        "success_criteria": [
+          "Image contains a clearly recognizable red apple",
+          "Image is of high quality and resolution",
+          "Image is a close-up shot"
+        ]
+      },
+      {
+        "id": "TC002",
+        "name": "Complex Scene Generation",
+        "input": "Create an image of a futuristic city skyline at night",
+        "expected_agent": "dalle",
+        "success_criteria": [
+          "Image depicts a city skyline with futuristic elements",
+          "Night-time atmosphere is conveyed",
+          "Image shows detail and creativity in architectural designs"
+        ]
+      },
+      {
+        "id": "TC003",
+        "name": "Abstract Concept Visualization",
+        "input": "Visualize the concept of time as an abstract image",
+        "expected_agent": "dalle",
+        "success_criteria": [
+          "Image presents an abstract representation related to time",
+          "Creative interpretation of the concept is evident",
+          "Image evokes a sense of time passing or movement"
+        ]
+      },
+      {
+        "id": "TC004",
+        "name": "Character Design",
+        "input": "Design a friendly alien character for a children's book",
+        "expected_agent": "dalle",
+        "success_criteria": [
+          "Image shows a non-threatening alien character",
+          "Character design is suitable for a children's book",
+          "Character has distinct and memorable features"
+        ]
+      },
+      {
+        "id": "TC005",
+        "name": "Landscape Generation",
+        "input": "Generate a mountain lake at sunset",
+        "expected_agent": "dalle",
+        "success_criteria": [
+          "Image depicts a mountain lake scene",
+          "Sunset lighting and colors are present",
+          "Scene conveys a serene atmosphere"
+        ]
+      },
+      {
+        "id": "TC006",
+        "name": "Food Illustration",
+        "input": "Create an appetizing visual ad of a gourmet burger with all the trimmings",
+        "expected_agent": "dalle",
+        "success_criteria": [
+          "Image shows a detailed, realistic burger ad",
+          "Various ingredients are visible and identifiable",
+          "Overall composition is visually appealing"
+        ]
+      },
+      {
+        "id": "TC007",
+        "name": "Animal in Action",
+        "input": "Generate an image of a cheetah running at full speed",
+        "expected_agent": "dalle",
+        "success_criteria": [
+          "Image depicts a cheetah in a running pose",
+          "Sense of speed and movement is conveyed",
+          "Cheetah's features and spots are accurately represented"
+        ]
+      },
+      {
+        "id": "TC008",
+        "name": "Historical Scene Recreation",
+        "input": "Create an image depicting the signing of the Declaration of Independence",
+        "expected_agent": "dalle",
+        "success_criteria": [
+          "Image shows a scene reminiscent of the historical event",
+          "Multiple human figures in period-appropriate clothing are present",
+          "Setting and details are consistent with the 18th century"
+        ]
+      },
+      {
+        "id": "TC009",
+        "name": "Fantastical Creature",
+        "input": "Generate an image of a dragon perched on a castle tower",
+        "expected_agent": "dalle",
+        "success_criteria": [
+          "Image contains a recognizable dragon figure",
+          "Castle tower is present and proportionate",
+          "Scene conveys a fantasy atmosphere"
+        ]
+      },
+      {
+        "id": "TC010",
+        "name": "Seasonal Illustration",
+        "input": "Create a painting that captures the essence of autumn in a park",
+        "expected_agent": "dalle",
+        "success_criteria": [
+          "Painting depicts a park-like setting",
+          "Autumn elements such as colored leaves are present",
+          "Overall color palette is consistent with autumn tones"
+        ]
+      },
+      {
+        "id": "TC011",
+        "name": "Emotional Expression",
+        "input": "Create a photo that conveys the emotion of joy",
+        "expected_agent": "dalle",
+        "success_criteria": [
+          "Photo evokes a sense of joy or happiness",
+          "Visual elements or characters express positive emotions",
+          "Color palette and composition contribute to the joyful atmosphere"
+        ]
+      },
+      {
+        "id": "TC012",
+        "name": "Architectural Visualization",
+        "input": "Create an image of a modern, eco-friendly house design",
+        "expected_agent": "dalle",
+        "success_criteria": [
+          "Image shows a house with modern architectural features",
+          "Eco-friendly elements (e.g., solar panels, green roof) are visible",
+          "Design appears realistic and potentially buildable"
+        ]
+      },
+      {
+        "id": "TC013",
+        "name": "Sports Action Shot",
+        "input": "Generate an image of a basketball player dunking",
+        "expected_agent": "dalle",
+        "success_criteria": [
+          "Image depicts a basketball player in a dunking pose",
+          "Basketball and hoop are present",
+          "Sense of action and athleticism is conveyed"
+        ]
+      },
+      {
+        "id": "TC014",
+        "name": "Still Life Composition",
+        "input": "Create a still life image of a vase of sunflowers",
+        "expected_agent": "dalle",
+        "success_criteria": [
+          "Image shows a vase containing sunflowers",
+          "Composition follows still life artistic principles",
+          "Lighting and details give a realistic appearance"
+        ]
+      },
+      {
+        "id": "TC015",
+        "name": "Fashion Design Visualization",
+        "input": "Generate an image of a futuristic fashion design on a model",
+        "expected_agent": "dalle",
+        "success_criteria": [
+          "Image shows a human figure wearing distinctive clothing",
+          "Clothing design incorporates futuristic elements",
+          "Overall composition resembles a fashion illustration"
+        ]
+      },
+      {
+        "id": "TC016",
+        "name": "Vehicle Concept Art",
+        "input": "Create an image of a flying car in a retro-futuristic style",
+        "expected_agent": "dalle",
+        "success_criteria": [
+          "Image depicts a car with flying capabilities",
+          "Design incorporates both retro and futuristic elements",
+          "Vehicle appears functional within the imagined context"
+        ]
+      },
+      {
+        "id": "TC017",
+        "name": "Macro Photography Simulation",
+        "input": "Generate a macro photo of a butterfly wing",
+        "expected_agent": "dalle",
+        "success_criteria": [
+          "Photo shows a close-up view of a butterfly wing",
+          "Fine details of wing scales are visible",
+          "Composition mimics macro photography techniques"
+        ]
+      },
+      {
+        "id": "TC018",
+        "name": "Movie Poster Design",
+        "input": "Create a movie poster for a sci-fi film titled 'Beyond the Stars'",
+        "expected_agent": "dalle",
+        "success_criteria": [
+          "Image resembles a movie poster layout",
+          "Sci-fi elements are prominently featured",
+          "Title 'Beyond the Stars' is incorporated into the design"
+        ]
+      },
+      {
+        "id": "TC019",
+        "name": "Product Visualization",
+        "input": "Show me a sleek, modern smartwatch",
+        "expected_agent": "dalle",
+        "success_criteria": [
+          "Image shows a recognizable smartwatch",
+          "Design appears modern and technologically advanced",
+          "Details of the watch face and band are clearly visible"
+        ]
+      },
+      {
+        "id": "TC020",
+        "name": "Cultural Fusion Art",
+        "input": "Create fusion art that blends elements of traditional Japanese and African art styles",
+        "expected_agent": "dalle",
+        "success_criteria": [
+          "Image incorporates recognizable elements from both Japanese and African art",
+          "Fusion of styles is evident and harmonious",
+          "Overall composition is aesthetically pleasing and balanced"
+        ]
+      }
+    ],
+    "evaluation_metrics": {
+      "accuracy": "Percentage of test cases where the generated image meets all success criteria",
+      "creativity": "Subjective rating of the uniqueness and inventiveness of the generated images",
+      "consistency": "Degree to which generated images consistently match the given prompts",
+      "quality": "Assessment of image resolution, clarity, and overall visual appeal",
+      "agent_selection": "Percentage of test cases where the DALLE agent was correctly selected"
+    }
+  }
+  
