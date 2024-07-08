@@ -103,19 +103,25 @@ def load_content(url: str):
             
             return tmp_file.name
 
-def evaluate_agent_selection(expected_agent: str, chat_history: List[Dict], llm_evaluator: LLMEvaluator) -> Tuple[bool, str]:
+def evaluate_agent_selection(expected_agent: str, chat_history: List[Dict]) -> Tuple[bool, str, List[str]]:
     actual_agent = None
+    agent_types = set()
+    
     for message in chat_history:
-        if message.get('name') and message.get('name').lower() == expected_agent.lower():
-            actual_agent = message['name']
-            break
+        if 'name' in message and message['name']:
+            agent_types.add(message['name'].lower())
+            if message['name'].lower() == expected_agent.lower():
+                actual_agent = message['name']
     
     if actual_agent is None:
         actual_agent = "Unknown"
+
+    agent_types.discard("chatbot")
+    expected_agent_in_list = expected_agent.lower() in agent_types
+    only_expected_agent_in_list = agent_types == {expected_agent.lower()}
     
-    prompt = f"Was the correct agent selected and used? Expected: {expected_agent.lower()}, Actual: {actual_agent.lower()}. Answer with yes or no."
-    evaluation = llm_evaluator.evaluate(prompt)
-    return "yes" in evaluation.lower(), prompt
+    return expected_agent_in_list, only_expected_agent_in_list, list(agent_types)
+
 
 def evaluate_success_criteria(result: str, success_criteria: List[str], llm_evaluator: LLMEvaluator) -> Tuple[bool, List[str]]:
     criteria_met = []
@@ -142,7 +148,7 @@ def save_image(image: Image.Image, log_folder: str, agent_name: str, test_case_i
     return os.path.relpath(image_path, log_folder)
 
 def save_chat_result(chat_result: autogen.ChatResult, log_folder: str, test_case_id: str, 
-                     correct_agent: bool, success: bool, agent_selection_prompt: str, 
+                     correct_agent: bool, only_correct_agent : bool, called_agents : List[str], success: bool,
                      success_criteria_prompts: List[str], agent_name: str, image_urls: List[str]):
     os.makedirs(log_folder, exist_ok=True)
     filename = generate_filename(agent_name, test_case_id, ".json")
@@ -152,8 +158,9 @@ def save_chat_result(chat_result: autogen.ChatResult, log_folder: str, test_case
         "result": chat_result.summary,
         "chat_history": chat_result.chat_history,
         "cost": chat_result.cost,
-        "agent_selection_prompt": agent_selection_prompt,
         "correct_agent": correct_agent,
+        "only_correct_agent": only_correct_agent,
+        "called_agents": called_agents,
         "success_criteria_prompts": success_criteria_prompts,
         "success": success,
         "image_urls": image_urls
@@ -163,24 +170,55 @@ def save_chat_result(chat_result: autogen.ChatResult, log_folder: str, test_case
         json.dump(result_dict, f, indent=2)
     
     logger.info(f"Chat result saved to {file_path}")
+    
+def save_final_result(all_results: Dict[str, List[Dict]], log_folder: str):
+    os.makedirs(log_folder, exist_ok=True)
+    filename = f"final_results_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json"
+    file_path = os.path.join(log_folder, filename)
+    
+    final_results = {}
+    for benchmark_name, results in all_results.items():
+        correct_agent_count = sum(r['correct_agent'] for r in results)
+        only_correct_agent_count = sum(r['only_correct_agent'] for r in results)
+        success_count = sum(r['success'] for r in results)
+        total_tests = len(results)
+        
+        final_results[benchmark_name] = {
+            "correct_agent": {
+                "count": f"{correct_agent_count}/{total_tests}",
+                "percentage": (correct_agent_count / total_tests) * 100 if total_tests > 0 else 0
+            },
+            "only_correct_agent": {
+                "count": f"{only_correct_agent_count}/{total_tests}",
+                "percentage": (only_correct_agent_count / total_tests) * 100 if total_tests > 0 else 0
+            },
+            "success_criteria_met": {
+                "count": f"{success_count}/{total_tests}",
+                "percentage": (success_count / total_tests) * 100 if total_tests > 0 else 0
+            }
+        }
+    
+    with open(file_path, 'w') as f:
+        json.dump(final_results, f, indent=2)
+    
+    logger.info(f"Final results saved to {file_path}")
+    return file_path
 
-def run_benchmark(benchmark_data: Dict, llm_evaluator: LLMEvaluator, log_folder: str, max_samples: int):
+def run_benchmark(benchmark_data: Dict, llm_evaluator: LLMEvaluator, log_folder: str, max_samples: int, config_list: List[Dict], enabled_agents: List[str], gsearch_api_key: str):
     results = []
     for test_case in benchmark_data['test_cases'][:max_samples]:
+        setup_overarching_wrapper(config_list, enabled_agents, gsearch_api_key)
         input_text = test_case['input']
         expected_agent = test_case['expected_agent']
         success_criteria = test_case['success_criteria']
 
         if 'path_url' in test_case:
             content_path = load_content(test_case['path_url'])
-            print("Content path: ", content_path)
-            print("Expected agent: ", expected_agent)
             if expected_agent.lower() == 'pdf_parser':
                 st.session_state.overarching_wrapper.add_pdf_parser(content_path)
             elif expected_agent.lower() == 'image_explainer':
                 st.session_state.overarching_wrapper.add_image_explainer(content_path)
-        print("PDF: " + str(st.session_state.overarching_wrapper.is_pdf_attached))
-        print("Image: " + str(st.session_state.overarching_wrapper.image_path))
+
         chat_result, images = st.session_state.overarching_wrapper.initiate_chat(input_text)
 
         image_urls = []
@@ -192,17 +230,17 @@ def run_benchmark(benchmark_data: Dict, llm_evaluator: LLMEvaluator, log_folder:
             image_urls.append(image_url)
     
         chat_history = chat_result.chat_history
-        print("DALLE chat result: ", chat_result)
 
-        correct_agent, agent_selection_prompt = evaluate_agent_selection(expected_agent, chat_history, llm_evaluator)
+        correct_agent, only_correct_agent, called_agents = evaluate_agent_selection(expected_agent, chat_history)
         success, success_criteria_prompts = evaluate_success_criteria(chat_history, success_criteria, llm_evaluator)
 
-        save_chat_result(chat_result, log_folder, test_case['id'], correct_agent, success, 
-                         agent_selection_prompt, success_criteria_prompts, expected_agent, image_urls)
+        save_chat_result(chat_result, log_folder, test_case['id'], correct_agent, only_correct_agent, called_agents,
+                         success, success_criteria_prompts, expected_agent, image_urls)
 
         results.append({
             'test_case_id': test_case['id'],
             'correct_agent': correct_agent,
+            'only_correct_agent': only_correct_agent, 
             'success': success
         })
 
@@ -237,7 +275,6 @@ def main():
         elif "web_retriever" in enabled_agents and not gsearch_api_key:
             st.warning("Please enter your Google Search API key!", icon="⚠")
         else:
-            setup_overarching_wrapper(config_list, enabled_agents, gsearch_api_key)
             llm_evaluator = LLMEvaluator(config_list[0])
 
             working_dir = os.getcwd()
@@ -246,22 +283,27 @@ def main():
 
             loader = SelectBenchmarkLoader(benchmark_directory, enabled_agents=enabled_agents)
             loaded_benchmarks = loader.load_benchmarks()
-
             all_results = {}
             for benchmark_name, benchmark_data in loaded_benchmarks.items():
                 st.write(f"\nRunning benchmark: {benchmark_name}")
-                results = run_benchmark(benchmark_data, llm_evaluator, log_folder, max_samples)
+                results = run_benchmark(benchmark_data, llm_evaluator, log_folder, max_samples, config_list, enabled_agents, gsearch_api_key)
                 all_results[benchmark_name] = results
 
             # Display results
             for benchmark_name, results in all_results.items():
                 st.write(f"\nResults for {benchmark_name}:")
                 correct_agent_count = sum(r['correct_agent'] for r in results)
+                only_correct_agent_count = sum(r['only_correct_agent'] for r in results)
                 success_count = sum(r['success'] for r in results)
                 total_tests = len(results)
                 
                 st.write(f"Correct agent selection: {correct_agent_count}/{total_tests}")
+                st.write(f"Only correct agent selection: {only_correct_agent_count}/{total_tests}")
                 st.write(f"Success criteria met: {success_count}/{total_tests}")
+            
+            # Save final results
+            final_result_path = save_final_result(all_results, log_folder)
+            st.success(f"Final results saved to: {final_result_path}")
 
 if __name__ == "__main__":
     main()
