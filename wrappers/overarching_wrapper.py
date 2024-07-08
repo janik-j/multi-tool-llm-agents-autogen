@@ -119,6 +119,7 @@ class OverarchingWrapper(ChatWrapperMixin):
         self.agents.pop(PdfTriageWrapper.AGENT_NAME, None)
 
     def initiate_chat(self, user_prompt: str) -> Tuple[ChatResult, List[Image.Image]]:
+
         agents = self.agents.values()
         group_chat = autogen.GroupChat(
             agents=agents,
