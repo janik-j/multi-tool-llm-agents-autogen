@@ -1,3 +1,4 @@
+import os
 from autogen import ChatResult, ConversableAgent, UserProxyAgent, register_function
 from functools import partial
 from googleapiclient.discovery import build
@@ -18,6 +19,8 @@ class BrowserWrapper(ChatWrapperMixin):
     MAX_TOKENS: int = 10000
 
     def __init__(self, config_list: List[Dict], gsearch_api_key: str) -> None:
+        os.environ["PATH"] += os.pathsep + '/opt/X11/bin'
+
         self.user_proxy = UserProxyAgent(
             name="user_proxy",
             system_message="""
