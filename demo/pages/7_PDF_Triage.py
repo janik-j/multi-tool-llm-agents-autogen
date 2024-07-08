@@ -30,7 +30,7 @@ with st.form("pdf_triage"):
             pdf_triage_wrapper = PdfTriageWrapper(config_list, pdf_path=None)
             pdf_triage_wrapper.initiate_chat(question)
         else:
-            with tempfile.NamedTemporaryFile(mode="wb") as f:
+            with tempfile.NamedTemporaryFile(suffix=".pdf", mode="wb") as f:
                 f.write(uploaded_file.read())
                 pdf_triage_wrapper = PdfTriageWrapper(config_list, pdf_path=f.name)
                 pdf_triage_wrapper.initiate_chat(question)

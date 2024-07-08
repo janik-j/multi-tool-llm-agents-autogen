@@ -132,6 +132,7 @@ class OverarchingWrapper(ChatWrapperMixin):
             groupchat=group_chat,
             system_message="""
                         You are a group chat manager.
+                        When asked a question, aim to select the smallest possible set of speakers to answer.
                         If the question has been answered, reply with TERMINATE.
                         """,
             llm_config={"cache_seed": None, "seed": 7, "temperature": 0, "config_list": self.config_list},
