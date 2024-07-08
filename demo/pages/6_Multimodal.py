@@ -29,6 +29,7 @@ with st.form("multimodal"):
         if uploaded_file is None:
             multimodal_wrapper.initiate_chat(question, user_image_path=None)
         else:
-            with tempfile.NamedTemporaryFile(mode="wb") as f:
+            file_type = uploaded_file.type.split("/")[-1]
+            with tempfile.NamedTemporaryFile(prefix=f".{file_type}", mode="wb") as f:
                 f.write(uploaded_file.read())
                 multimodal_wrapper.initiate_chat(question, user_image_path=f.name)
