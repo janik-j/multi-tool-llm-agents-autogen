@@ -16,6 +16,8 @@ class ChatWrapperMixin(object):
         "system": "https://img.icons8.com/?size=100&id=iSNxtIhB8C9B&format=png&color=000000",
         "user_proxy": "https://cdn-icons-png.flaticon.com/512/4333/4333609.png",
         "web_retriever": "https://img.icons8.com/?size=100&id=TfgcKLCFPMgk&format=png&color=000000",
+        "coding": "https://img.icons8.com/?size=100&id=n0X3RRyAOlyK&format=png&color=000000",
+        "code_safeguard": "https://img.icons8.com/?size=100&id=snY6hXIMNPJY&format=png&color=000000",
     }
 
     @staticmethod

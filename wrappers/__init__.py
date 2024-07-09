@@ -12,6 +12,7 @@ from .overarching_wrapper import OverarchingWrapper
 from .pdf_triage_wrapper import PdfTriageWrapper
 from .rag_no_interaction_wrapper import RagNoInteractionWrapper
 from .rag_wrapper import RagWrapper
+from .coding_wrapper import CodingWrapper
 
 __all__ = [
     "BrowserWrapper",
@@ -28,4 +29,5 @@ __all__ = [
     "PdfTriageWrapper",
     "RagNoInteractionWrapper",
     "RagWrapper",
+    "CodingWrapper"
 ]

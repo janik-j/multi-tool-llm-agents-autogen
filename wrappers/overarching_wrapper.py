@@ -8,6 +8,7 @@ from wrappers.chat_wrapper_mixin import ChatWrapperMixin
 from wrappers.dalle_wrapper import DalleWrapper
 from wrappers.multimodal_wrapper import MultimodalWrapper
 from wrappers.pdf_triage_wrapper import PdfTriageWrapper
+from wrappers.coding_wrapper import CodingWrapper
 
 
 class OverarchingWrapper(ChatWrapperMixin):
@@ -117,6 +118,18 @@ class OverarchingWrapper(ChatWrapperMixin):
     def remove_pdf_parser(self) -> None:
         self.is_pdf_attached = False
         self.agents.pop(PdfTriageWrapper.AGENT_NAME, None)
+
+    def add_coding(self) -> None:
+        coding_agent = CodingWrapper.get_coding_agent(self.config_list)
+        safeguard_agent = CodingWrapper.get_safeguard_agent(self.config_list)
+        self.agents[CodingWrapper.AGENT_NAME] = coding_agent
+        self.agents[CodingWrapper.SAFEGUARD_NAME] = safeguard_agent
+        CodingWrapper.register_functions(self.user_proxy, safeguard_agent)
+
+    def remove_coding(self) -> None:
+        self.agents.pop(CodingWrapper.AGENT_NAME, None)
+        self.agents.pop(CodingWrapper.SAFEGUARD_NAME, None)
+
 
     def initiate_chat(self, user_prompt: str) -> Tuple[ChatResult, List[Image.Image]]:
 

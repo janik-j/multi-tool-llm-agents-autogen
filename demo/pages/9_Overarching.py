@@ -24,6 +24,7 @@ dalle_enabled = st.checkbox("DALLE")
 web_retriever_enabled = st.checkbox("Web Retriever")
 image_explainer_enabled = st.checkbox("Image Explainer")
 pdf_parser_enabled = st.checkbox("PDF Parser")
+coding_enabled = st.checkbox("Coding")
 
 if "custom_agent_names" not in st.session_state:
     st.session_state.custom_agent_names = []
@@ -102,6 +103,11 @@ with st.form("overarching"):
             overarching_wrapper.add_calculator()
         else:
             overarching_wrapper.remove_calculator()
+
+        if coding_enabled:
+            overarching_wrapper.add_coding()
+        else:
+            overarching_wrapper.remove_coding()
 
         if chatbot_enabled:
             overarching_wrapper.add_custom_agent(
