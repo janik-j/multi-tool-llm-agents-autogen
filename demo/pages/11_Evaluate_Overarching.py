@@ -57,6 +57,7 @@ def setup_overarching_wrapper(config_list: List[Dict], enabled_agents: List[str]
     
     # Reset the wrapper by removing all agents
     wrapper.remove_calculator()
+    wrapper.remove_coding()
     wrapper.remove_dalle()
     wrapper.remove_image_explainer()
     wrapper.remove_pdf_parser()
@@ -69,11 +70,14 @@ def setup_overarching_wrapper(config_list: List[Dict], enabled_agents: List[str]
             agent_name="chatbot",
             system_message="You are a chatbot, you can answer text queries. In case no other agents can answer, you should step in."
         )
+    if "coding" in enabled_agents:
+        wrapper.add_coding()
     if "dalle" in enabled_agents:
         wrapper.add_dalle()
     if "web_retriever" in enabled_agents:
         wrapper.add_web_retriever(gsearch_api_key)
-    
+
+        
     return wrapper
 
 
@@ -117,6 +121,7 @@ def evaluate_agent_selection(expected_agent: str, chat_history: List[Dict]) -> T
         actual_agent = "Unknown"
 
     agent_types.discard("chatbot")
+    agent_types.discard("code_safeguard")
     expected_agent_in_list = expected_agent.lower() in agent_types
     only_expected_agent_in_list = agent_types == {expected_agent.lower()}
     
