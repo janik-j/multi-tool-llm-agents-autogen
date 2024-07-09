@@ -9,7 +9,7 @@ class DalleWrapper(object):
     CRITIC_AGENT_NAME: str = "critic"
 
     CRITIC_SYSTEM_MESSAGE = """
-        You need to improve the prompt of the user.
+        You need to improve the prompt of the user when the user want to creates an image. You can't critizise anything else.
         Optimize it in a way to create an image that is better in terms of color, shape, text (clarity), and other things.
         Reply with the following format:
 
