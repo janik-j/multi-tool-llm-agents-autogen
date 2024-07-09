@@ -22,7 +22,7 @@ IOStream.set_global_default(IOStreamlitNoOp())
 
 def load_api_keys():
     openai_api_key = st.sidebar.text_input("OpenAI API Key")
-    openai_model = st.sidebar.selectbox("OpenAI Model", ["gpt-3.5-turbo", "gpt-4", "gpt-4-0314"])
+    openai_model = st.sidebar.selectbox("OpenAI Model", ["gpt-3.5-turbo", "gpt-4", "gpt-4-0314", "gpt-4o-2024-05-13"])
     gsearch_api_key = st.sidebar.text_input("Google Search API Key")
     return openai_api_key, openai_model, gsearch_api_key
 
@@ -255,7 +255,7 @@ def main():
             st.warning("Please enter your Google Search API key!", icon="⚠")
         else:
             st.write("Starting evaluation...")
-            selected_mode = "multiagent" if evaluation_mode == "Autogen Multiagent" else "gpt-4o"
+            selected_mode = "multiagent" if evaluation_mode == "Autogen Multiagent" else "vanilla_gpt-4o"
             working_dir = os.getcwd()
             benchmark_directory = os.path.join(working_dir, "SelectBenchmark")
             log_folder = os.path.join(working_dir, f"SelectBenchmark_logs_{selected_mode}")

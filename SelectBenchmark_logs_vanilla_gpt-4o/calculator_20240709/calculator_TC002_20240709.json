@@ -1,0 +1,22 @@
+{
+  "result": null,
+  "chat_history": [
+    {
+      "role": "user",
+      "content": "Calculate 10 - 4"
+    },
+    {
+      "role": "assistant",
+      "content": "10 - 4 equals 6."
+    }
+  ],
+  "cost": null,
+  "correct_agent": false,
+  "only_correct_agent": false,
+  "called_agents": [],
+  "success_criteria_prompts": [
+    "Does the following result meet this criterion: 'Correct result (6) is returned'?\nResult: [{'role': 'user', 'content': 'Calculate 10 - 4'}, {'role': 'assistant', 'content': '10 - 4 equals 6.'}]\nAnswer with yes or no."
+  ],
+  "success": true,
+  "image_paths": []
+}

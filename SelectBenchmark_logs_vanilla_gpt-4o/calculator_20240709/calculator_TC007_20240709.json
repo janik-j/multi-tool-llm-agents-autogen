@@ -1,0 +1,22 @@
+{
+  "result": null,
+  "chat_history": [
+    {
+      "role": "user",
+      "content": "What's the result of 5 minus -3?"
+    },
+    {
+      "role": "assistant",
+      "content": "When you subtract a negative number, it is the same as adding the positive equivalent of that number. So, 5 minus -3 is the same as 5 plus 3.\n\n\\[ 5 - (-3) = 5 + 3 = 8 \\]\n\nTherefore, the result is 8."
+    }
+  ],
+  "cost": null,
+  "correct_agent": false,
+  "only_correct_agent": false,
+  "called_agents": [],
+  "success_criteria_prompts": [
+    "Does the following result meet this criterion: 'Correct result (8) is returned'?\nResult: [{'role': 'user', 'content': \"What's the result of 5 minus -3?\"}, {'role': 'assistant', 'content': 'When you subtract a negative number, it is the same as adding the positive equivalent of that number. So, 5 minus -3 is the same as 5 plus 3.\\n\\n\\\\[ 5 - (-3) = 5 + 3 = 8 \\\\]\\n\\nTherefore, the result is 8.'}]\nAnswer with yes or no."
+  ],
+  "success": true,
+  "image_paths": []
+}

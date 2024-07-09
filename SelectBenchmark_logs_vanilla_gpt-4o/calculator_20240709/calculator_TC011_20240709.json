@@ -1,0 +1,22 @@
+{
+  "result": null,
+  "chat_history": [
+    {
+      "role": "user",
+      "content": "Calculate the square root of 144"
+    },
+    {
+      "role": "assistant",
+      "content": "The square root of 144 is 12."
+    }
+  ],
+  "cost": null,
+  "correct_agent": false,
+  "only_correct_agent": false,
+  "called_agents": [],
+  "success_criteria_prompts": [
+    "Does the following result meet this criterion: 'Correct result (12) is returned'?\nResult: [{'role': 'user', 'content': 'Calculate the square root of 144'}, {'role': 'assistant', 'content': 'The square root of 144 is 12.'}]\nAnswer with yes or no."
+  ],
+  "success": true,
+  "image_paths": []
+}

@@ -1,0 +1,22 @@
+{
+  "result": null,
+  "chat_history": [
+    {
+      "role": "user",
+      "content": "What is 15% of 80?"
+    },
+    {
+      "role": "assistant",
+      "content": "To find 15% of 80, you can use the following calculation:\n\n\\[ 15\\% \\text{ of } 80 = \\frac{15}{100} \\times 80 \\]\n\nFirst, convert the percentage to a decimal by dividing by 100:\n\n\\[ 15\\% = \\frac{15}{100} = 0.15 \\]\n\nThen, multiply this decimal by 80:\n\n\\[ 0.15 \\times 80 = 12 \\]\n\nSo, 15% of 80 is 12."
+    }
+  ],
+  "cost": null,
+  "correct_agent": false,
+  "only_correct_agent": false,
+  "called_agents": [],
+  "success_criteria_prompts": [
+    "Does the following result meet this criterion: 'Correct result (12) is returned'?\nResult: [{'role': 'user', 'content': 'What is 15% of 80?'}, {'role': 'assistant', 'content': 'To find 15% of 80, you can use the following calculation:\\n\\n\\\\[ 15\\\\% \\\\text{ of } 80 = \\\\frac{15}{100} \\\\times 80 \\\\]\\n\\nFirst, convert the percentage to a decimal by dividing by 100:\\n\\n\\\\[ 15\\\\% = \\\\frac{15}{100} = 0.15 \\\\]\\n\\nThen, multiply this decimal by 80:\\n\\n\\\\[ 0.15 \\\\times 80 = 12 \\\\]\\n\\nSo, 15% of 80 is 12.'}]\nAnswer with yes or no."
+  ],
+  "success": true,
+  "image_paths": []
+}

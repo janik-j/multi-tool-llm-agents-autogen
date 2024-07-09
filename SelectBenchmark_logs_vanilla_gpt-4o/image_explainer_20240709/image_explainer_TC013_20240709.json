@@ -1,0 +1,22 @@
+{
+  "result": null,
+  "chat_history": [
+    {
+      "role": "user",
+      "content": "What fruit is shown in this image?"
+    },
+    {
+      "role": "assistant",
+      "content": "The fruit shown in the image is a banana."
+    }
+  ],
+  "cost": null,
+  "correct_agent": false,
+  "only_correct_agent": false,
+  "called_agents": [],
+  "success_criteria_prompts": [
+    "Does the following result meet this criterion: 'Correctly identifies the fruit as banana'?\nResult: [{'role': 'user', 'content': 'What fruit is shown in this image?'}, {'role': 'assistant', 'content': 'The fruit shown in the image is a banana.'}]\nAnswer with yes or no."
+  ],
+  "success": true,
+  "image_paths": []
+}

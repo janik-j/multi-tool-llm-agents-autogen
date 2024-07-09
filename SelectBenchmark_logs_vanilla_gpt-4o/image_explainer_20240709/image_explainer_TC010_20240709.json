@@ -1,0 +1,22 @@
+{
+  "result": null,
+  "chat_history": [
+    {
+      "role": "user",
+      "content": "What is the person wearing?"
+    },
+    {
+      "role": "assistant",
+      "content": "The person is wearing a pink baseball cap and a dark-colored jacket."
+    }
+  ],
+  "cost": null,
+  "correct_agent": false,
+  "only_correct_agent": false,
+  "called_agents": [],
+  "success_criteria_prompts": [
+    "Does the following result meet this criterion: 'Identifies that the person is wearing a dark jacket and a pink cap'?\nResult: [{'role': 'user', 'content': 'What is the person wearing?'}, {'role': 'assistant', 'content': 'The person is wearing a pink baseball cap and a dark-colored jacket.'}]\nAnswer with yes or no."
+  ],
+  "success": true,
+  "image_paths": []
+}

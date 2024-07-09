@@ -1,0 +1,22 @@
+{
+  "result": null,
+  "chat_history": [
+    {
+      "role": "user",
+      "content": "At which institutions do the authors work?"
+    },
+    {
+      "role": "assistant",
+      "content": "The authors of the paper \"ALBERT: A Lite BERT for Self-Supervised Learning of Language Representations\" work at the following institutions:\n\n1. Zhenzhong Lan, Sebastian Goodman, Piyush Sharma, and Radu Soricut are affiliated with Google Research.\n2. Mingda Chen and Kevin Gimpel are affiliated with the Toyota Technological Institute at Chicago (TTIC)."
+    }
+  ],
+  "cost": null,
+  "correct_agent": false,
+  "only_correct_agent": false,
+  "called_agents": [],
+  "success_criteria_prompts": [
+    "Does the following result meet this criterion: 'Work at: Google Research, Toyota Technological Institute at Chicago'?\nResult: [{'role': 'user', 'content': 'At which institutions do the authors work?'}, {'role': 'assistant', 'content': 'The authors of the paper \"ALBERT: A Lite BERT for Self-Supervised Learning of Language Representations\" work at the following institutions:\\n\\n1. Zhenzhong Lan, Sebastian Goodman, Piyush Sharma, and Radu Soricut are affiliated with Google Research.\\n2. Mingda Chen and Kevin Gimpel are affiliated with the Toyota Technological Institute at Chicago (TTIC).'}]\nAnswer with yes or no."
+  ],
+  "success": true,
+  "image_paths": []
+}

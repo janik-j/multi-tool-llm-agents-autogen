@@ -1,0 +1,22 @@
+{
+  "result": null,
+  "chat_history": [
+    {
+      "role": "user",
+      "content": "What is (10 + 5) * 2 - 8?"
+    },
+    {
+      "role": "assistant",
+      "content": "Let's break down the expression step by step:\n\n1. First, perform the addition inside the parentheses:\n   \\( 10 + 5 = 15 \\)\n\n2. Next, multiply the result by 2:\n   \\( 15 * 2 = 30 \\)\n\n3. Finally, subtract 8 from the result:\n   \\( 30 - 8 = 22 \\)\n\nSo, \\( (10 + 5) * 2 - 8 = 22 \\)."
+    }
+  ],
+  "cost": null,
+  "correct_agent": false,
+  "only_correct_agent": false,
+  "called_agents": [],
+  "success_criteria_prompts": [
+    "Does the following result meet this criterion: 'Correct result (22) is returned'?\nResult: [{'role': 'user', 'content': 'What is (10 + 5) * 2 - 8?'}, {'role': 'assistant', 'content': \"Let's break down the expression step by step:\\n\\n1. First, perform the addition inside the parentheses:\\n   \\\\( 10 + 5 = 15 \\\\)\\n\\n2. Next, multiply the result by 2:\\n   \\\\( 15 * 2 = 30 \\\\)\\n\\n3. Finally, subtract 8 from the result:\\n   \\\\( 30 - 8 = 22 \\\\)\\n\\nSo, \\\\( (10 + 5) * 2 - 8 = 22 \\\\).\"}]\nAnswer with yes or no."
+  ],
+  "success": true,
+  "image_paths": []
+}

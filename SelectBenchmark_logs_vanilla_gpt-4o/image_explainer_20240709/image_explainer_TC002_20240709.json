@@ -1,0 +1,23 @@
+{
+  "result": null,
+  "chat_history": [
+    {
+      "role": "user",
+      "content": "What animal is this and what is it doing?"
+    },
+    {
+      "role": "assistant",
+      "content": "This is a dog, and it appears to be running or playing in the shallow water at the edge of a beach. The dog looks happy and energetic, with its tongue out and ears flapping as it moves through the water."
+    }
+  ],
+  "cost": null,
+  "correct_agent": false,
+  "only_correct_agent": false,
+  "called_agents": [],
+  "success_criteria_prompts": [
+    "Does the following result meet this criterion: 'Animal is a dog'?\nResult: [{'role': 'user', 'content': 'What animal is this and what is it doing?'}, {'role': 'assistant', 'content': 'This is a dog, and it appears to be running or playing in the shallow water at the edge of a beach. The dog looks happy and energetic, with its tongue out and ears flapping as it moves through the water.'}]\nAnswer with yes or no.",
+    "Does the following result meet this criterion: 'Running at the beach close to waves'?\nResult: [{'role': 'user', 'content': 'What animal is this and what is it doing?'}, {'role': 'assistant', 'content': 'This is a dog, and it appears to be running or playing in the shallow water at the edge of a beach. The dog looks happy and energetic, with its tongue out and ears flapping as it moves through the water.'}]\nAnswer with yes or no."
+  ],
+  "success": true,
+  "image_paths": []
+}

@@ -1,0 +1,22 @@
+{
+  "result": null,
+  "chat_history": [
+    {
+      "role": "user",
+      "content": "What's the sum of -15 and 7?"
+    },
+    {
+      "role": "assistant",
+      "content": "To find the sum of -15 and 7, you simply add the two numbers together:\n\n\\[\n-15 + 7 = -8\n\\]\n\nSo, the sum of -15 and 7 is -8."
+    }
+  ],
+  "cost": null,
+  "correct_agent": false,
+  "only_correct_agent": false,
+  "called_agents": [],
+  "success_criteria_prompts": [
+    "Does the following result meet this criterion: 'Correct result (-8) is returned'?\nResult: [{'role': 'user', 'content': \"What's the sum of -15 and 7?\"}, {'role': 'assistant', 'content': 'To find the sum of -15 and 7, you simply add the two numbers together:\\n\\n\\\\[\\n-15 + 7 = -8\\n\\\\]\\n\\nSo, the sum of -15 and 7 is -8.'}]\nAnswer with yes or no."
+  ],
+  "success": true,
+  "image_paths": []
+}

@@ -1,0 +1,22 @@
+{
+  "result": null,
+  "chat_history": [
+    {
+      "role": "user",
+      "content": "What is the first reference in this paper."
+    },
+    {
+      "role": "assistant",
+      "content": "The first reference in the paper is:\n\nDai, A. M., & Le, Q. V. (2015). Semi-supervised sequence learning. In Advances in neural information processing systems (pp. 3079-3087)."
+    }
+  ],
+  "cost": null,
+  "correct_agent": false,
+  "only_correct_agent": false,
+  "called_agents": [],
+  "success_criteria_prompts": [
+    "Does the following result meet this criterion: 'Identifies the first reference: Alan Akbik, Duncan Blythe, and Roland Vollgraf. 2018. Contextual string embeddings for sequence labeling. In Proceedings of the 27th International Conference on Computational Linguistics, pages 1638\u20131649.'?\nResult: [{'role': 'user', 'content': 'What is the first reference in this paper.'}, {'role': 'assistant', 'content': 'The first reference in the paper is:\\n\\nDai, A. M., & Le, Q. V. (2015). Semi-supervised sequence learning. In Advances in neural information processing systems (pp. 3079-3087).'}]\nAnswer with yes or no."
+  ],
+  "success": false,
+  "image_paths": []
+}
