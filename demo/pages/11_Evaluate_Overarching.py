@@ -15,6 +15,7 @@ from datetime import datetime
 from PIL import Image, ImageOps
 import mimetypes
 import io
+import base64
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -43,6 +44,33 @@ class LLMEvaluator:
             logger.error(f"Error in LLM evaluation: {str(e)}")
             return "Error in evaluation"
 
+class ImageEvaluator:
+    def __init__(self, config: Dict):
+        self.api_key = config['api_key']
+        self.model = config['model']
+        self.client = OpenAI(api_key=self.api_key)
+
+    def verify_image(self, image_path: str, expected_content: str) -> Tuple[bool, str]:
+        try:
+            with open(image_path, "rb") as image_file:
+                response = self.client.chat.completions.create(
+                    model="gpt-4-vision-preview",
+                    messages=[
+                        {"role": "system", "content": "You are an AI assistant tasked with verifying the content of images."},
+                        {"role": "user", "content": [
+                            {"type": "text", "text": f"Does this image accurately represent the following description: '{expected_content}'? Please provide a yes or no answer, followed by a brief explanation."},
+                            {"type": "image_url", "image_url": {"url": f"data:image/jpeg;base64,{base64.b64encode(image_file.read()).decode()}"}}
+                        ]}
+                    ],
+                    max_tokens=300
+                )
+            result = response.choices[0].message.content.strip()
+            verification = result.lower().startswith("yes")
+            return verification, result
+        except Exception as e:
+            logger.error(f"Error in image verification: {str(e)}")
+            return False, f"Error in verification: {str(e)}"
+        
 def load_api_keys():
     openai_api_key = st.sidebar.text_input("OpenAI API Key")
     openai_model = st.sidebar.selectbox("OpenAI Model", ["gpt-3.5-turbo", "gpt-4", "gpt-4-0314"])
@@ -108,35 +136,56 @@ def load_content(url: str):
             return tmp_file.name
 
 def evaluate_agent_selection(expected_agent: str, chat_history: List[Dict]) -> Tuple[bool, str, List[str]]:
-    actual_agent = None
-    agent_types = set()
-    
+    expected_agent_combinations = {
+        "calculator": {"calculator"},
+        "web_retriever": {"web_retriever"},
+        "pdf_parser": {"pdf_parser"},
+        "image_explainer": {"image_explainer"},
+        "dalle": {"dalle", "critic"},
+        "coding": {"coding", "code_safeguard"},
+    }
+    actual_agents  = set()
+
     for message in chat_history:
         if 'name' in message and message['name']:
-            agent_types.add(message['name'].lower())
+            actual_agents .add(message['name'].lower())
             if message['name'].lower() == expected_agent.lower():
                 actual_agent = message['name']
     
     if actual_agent is None:
         actual_agent = "Unknown"
 
-    agent_types.discard("chatbot")
-    agent_types.discard("code_safeguard")
-    expected_agent_in_list = expected_agent.lower() in agent_types
-    only_expected_agent_in_list = agent_types == {expected_agent.lower()}
+    actual_agents .discard("chatbot")
+
+    expected_agent_set = expected_agent_combinations.get(expected_agent.lower())
+    expected_agents_present = expected_agent_set.issubset(actual_agents)
+    only_expected_agents = actual_agents == expected_agent_set
     
-    return expected_agent_in_list, only_expected_agent_in_list, list(agent_types)
+    return expected_agents_present, only_expected_agents, list(actual_agents)
 
 
-def evaluate_success_criteria(result: str, success_criteria: List[str], llm_evaluator: LLMEvaluator) -> Tuple[bool, List[str]]:
-    criteria_met = []
-    prompts = []
-    for criterion in success_criteria:
-        prompt = f"Does the following result meet this criterion: '{criterion}'?\nResult: {result}\nAnswer with yes or no."
-        evaluation = llm_evaluator.evaluate(prompt)
-        criteria_met.append("yes" in evaluation.lower())
-        prompts.append(prompt)
-    return all(criteria_met), prompts
+def evaluate_success_criteria(result: str, success_criteria: List[str], llm_evaluator: LLMEvaluator, 
+                              is_dalle: bool = False, image_evaluator: ImageEvaluator = None, 
+                              image_paths: List[str] = None, expected_content: str = None) -> Tuple[bool, List[str]]:
+    if is_dalle and image_evaluator and image_paths and expected_content:
+        verification_results = []
+        explanations = []
+        for image_path in image_paths:
+            verification, explanation = image_evaluator.verify_image(image_path, expected_content)
+            verification_results.append(verification)
+            explanations.append(explanation)
+        
+        success = all(verification_results)
+        return success, explanations
+    else:
+        criteria_met = []
+        prompts = []
+        for criterion in success_criteria:
+            prompt = f"Does the following result meet this criterion: '{criterion}'?\nResult: {result}\nAnswer with yes or no."
+            evaluation = llm_evaluator.evaluate(prompt)
+            criteria_met.append("yes" in evaluation.lower())
+            prompts.append(prompt)
+        return all(criteria_met), prompts
 
 def generate_filename(agent_name: str, test_case_id: str, extension: str) -> str:
     timestamp = datetime.now().strftime("%Y%m%d")
@@ -209,7 +258,7 @@ def save_final_result(all_results: Dict[str, List[Dict]], log_folder: str):
     logger.info(f"Final results saved to {file_path}")
     return file_path
 
-def run_benchmark(benchmark_data: Dict, llm_evaluator: LLMEvaluator, log_folder: str, max_samples: int, config_list: List[Dict], enabled_agents: List[str], gsearch_api_key: str):
+def run_benchmark(benchmark_data: Dict, llm_evaluator: LLMEvaluator, image_evaluator: ImageEvaluator, log_folder: str, max_samples: int, config_list: List[Dict], enabled_agents: List[str], gsearch_api_key: str):
     results = []
     for test_case in benchmark_data['test_cases'][:max_samples]:
         setup_overarching_wrapper(config_list, enabled_agents, gsearch_api_key)
@@ -226,21 +275,27 @@ def run_benchmark(benchmark_data: Dict, llm_evaluator: LLMEvaluator, log_folder:
 
         chat_result, images = st.session_state.overarching_wrapper.initiate_chat(input_text)
 
-        image_urls = []
+        image_paths = []
         for idx, image in enumerate(reversed(images)):
             _, central_column, _ = st.columns(3)
             with central_column:
                 st.image(image.resize((300, 300)))
-            image_url = save_image(image, log_folder, expected_agent, f"{test_case['id']}_{idx}")
-            image_urls.append(image_url)
-    
+            image_path = save_image(image, log_folder, expected_agent, f"{test_case['id']}_{idx}")
+            image_paths.append(os.path.join(log_folder, image_path))
+
         chat_history = chat_result.chat_history
 
         correct_agent, only_correct_agent, called_agents = evaluate_agent_selection(expected_agent, chat_history)
-        success, success_criteria_prompts = evaluate_success_criteria(chat_history, success_criteria, llm_evaluator)
+        
+        is_dalle = expected_agent.lower() == 'dalle'
+        success, success_criteria_prompts = evaluate_success_criteria(
+            chat_history, success_criteria, llm_evaluator,
+            is_dalle=is_dalle, image_evaluator=image_evaluator,
+            image_paths=image_paths, expected_content=input_text
+        )
 
         save_chat_result(chat_result, log_folder, test_case['id'], correct_agent, only_correct_agent, called_agents,
-                         success, success_criteria_prompts, expected_agent, image_urls)
+                         success, success_criteria_prompts, expected_agent, image_paths)
 
         results.append({
             'test_case_id': test_case['id'],
@@ -248,6 +303,7 @@ def run_benchmark(benchmark_data: Dict, llm_evaluator: LLMEvaluator, log_folder:
             'only_correct_agent': only_correct_agent, 
             'success': success
         })
+
 
         if 'path_url' in test_case:
             if expected_agent.lower() == 'pdf_parser':
@@ -281,6 +337,7 @@ def main():
             st.warning("Please enter your Google Search API key!", icon="⚠")
         else:
             llm_evaluator = LLMEvaluator(config_list[0])
+            image_evaluator = ImageEvaluator(config_list[0])
 
             working_dir = os.getcwd()
             benchmark_directory = os.path.join(working_dir, "SelectBenchmark")
@@ -291,7 +348,7 @@ def main():
             all_results = {}
             for benchmark_name, benchmark_data in loaded_benchmarks.items():
                 st.write(f"\nRunning benchmark: {benchmark_name}")
-                results = run_benchmark(benchmark_data, llm_evaluator, log_folder, max_samples, config_list, enabled_agents, gsearch_api_key)
+                results = run_benchmark(benchmark_data, llm_evaluator, image_evaluator, log_folder, max_samples, config_list, enabled_agents, gsearch_api_key)
                 all_results[benchmark_name] = results
 
             # Display results
