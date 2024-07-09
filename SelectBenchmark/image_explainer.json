@@ -102,13 +102,12 @@
       },
       {
         "id": "TC010",
-        "name": "Emotion Recognition",
-        "input": "What emotion is the person in this image expressing?",
-        "path_url": "https://images.unsplash.com/photo-1511988617509-a57c8a288659",
+        "name": "Clothes Recognition",
+        "input": "What is the person wearing?",
+        "path_url": "https://images.unsplash.com/photo-1719968070073-c6e644a25976?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
         "expected_agent": "image_explainer",
         "success_criteria": [
-          "Identifies the primary emotion expressed (joy, joyous, happy, happiness)",
-          "Describes facial or body language cues that indicate the emotion (laughing, smiling)"
+          "Identifies that the person is wearing a dark jacket and a pink cap"
         ]
       },
       {

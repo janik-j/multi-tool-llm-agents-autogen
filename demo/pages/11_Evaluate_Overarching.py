@@ -16,6 +16,8 @@ from PIL import Image, ImageOps
 import mimetypes
 import io
 import base64
+import matplotlib.pyplot as plt
+import numpy as np
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -144,18 +146,15 @@ def evaluate_agent_selection(expected_agent: str, chat_history: List[Dict]) -> T
         "dalle": {"dalle", "critic"},
         "coding": {"coding", "code_safeguard"},
     }
-    actual_agents  = set()
 
+    actual_agents = set()
     for message in chat_history:
         if 'name' in message and message['name']:
-            actual_agents .add(message['name'].lower())
-            if message['name'].lower() == expected_agent.lower():
-                actual_agent = message['name']
-    
-    if actual_agent is None:
-        actual_agent = "Unknown"
+            actual_agents.add(message['name'].lower())
 
-    actual_agents .discard("chatbot")
+    # Remove generic agents
+    actual_agents.discard("chatbot")
+
 
     expected_agent_set = expected_agent_combinations.get(expected_agent.lower())
     expected_agents_present = expected_agent_set.issubset(actual_agents)
@@ -201,13 +200,10 @@ def save_image(image: Image.Image, log_folder: str, agent_name: str, test_case_i
     
     return os.path.relpath(image_path, log_folder)
 
-def save_chat_result(chat_result: autogen.ChatResult, log_folder: str, test_case_id: str, 
-                     correct_agent: bool, only_correct_agent : bool, called_agents : List[str], success: bool,
-                     success_criteria_prompts: List[str], agent_name: str, image_urls: List[str]):
-    os.makedirs(log_folder, exist_ok=True)
-    filename = generate_filename(agent_name, test_case_id, ".json")
-    file_path = os.path.join(log_folder, filename)
-    
+def save_chat_result(chat_result: autogen.ChatResult, result_file_path: str,
+                     correct_agent: bool, only_correct_agent: bool, called_agents: List[str], success: bool,
+                     success_criteria_prompts: List[str], image_paths: List[str]) -> bool:
+    # Prepare result dictionary
     result_dict = {
         "result": chat_result.summary,
         "chat_history": chat_result.chat_history,
@@ -217,26 +213,44 @@ def save_chat_result(chat_result: autogen.ChatResult, log_folder: str, test_case
         "called_agents": called_agents,
         "success_criteria_prompts": success_criteria_prompts,
         "success": success,
-        "image_urls": image_urls
+        "image_paths": image_paths
     }
-    
-    with open(file_path, 'w') as f:
+
+    # Save result
+    with open(result_file_path, 'w') as f:
         json.dump(result_dict, f, indent=2)
     
-    logger.info(f"Chat result saved to {file_path}")
-    
-def save_final_result(all_results: Dict[str, List[Dict]], log_folder: str):
+    logger.info(f"Chat result saved to {result_file_path}")
+    return True
+
+def save_final_result(log_folder: str) -> tuple[str, str]:
     os.makedirs(log_folder, exist_ok=True)
-    filename = f"final_results_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json"
+    timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
+    filename = f"final_results_{timestamp}.json"
     file_path = os.path.join(log_folder, filename)
-    
+
     final_results = {}
-    for benchmark_name, results in all_results.items():
-        correct_agent_count = sum(r['correct_agent'] for r in results)
-        only_correct_agent_count = sum(r['only_correct_agent'] for r in results)
-        success_count = sum(r['success'] for r in results)
-        total_tests = len(results)
+    
+    # Get all benchmark folders
+    benchmark_folders = [f for f in os.listdir(log_folder) if os.path.isdir(os.path.join(log_folder, f))]
+    
+    for benchmark_folder in benchmark_folders:
+        benchmark_path = os.path.join(log_folder, benchmark_folder)
+        json_files = [f for f in os.listdir(benchmark_path) if f.endswith('.json')]
         
+        correct_agent_count = 0
+        only_correct_agent_count = 0
+        success_count = 0
+        total_tests = len(json_files)
+        
+        for json_file in json_files:
+            with open(os.path.join(benchmark_path, json_file), 'r') as f:
+                result = json.load(f)
+                correct_agent_count += int(result['correct_agent'])
+                only_correct_agent_count += int(result['only_correct_agent'])
+                success_count += int(result['success'])
+        
+        benchmark_name = benchmark_folder.split('_')[0]  
         final_results[benchmark_name] = {
             "correct_agent": {
                 "count": f"{correct_agent_count}/{total_tests}",
@@ -251,20 +265,69 @@ def save_final_result(all_results: Dict[str, List[Dict]], log_folder: str):
                 "percentage": (success_count / total_tests) * 100 if total_tests > 0 else 0
             }
         }
-    
+
     with open(file_path, 'w') as f:
         json.dump(final_results, f, indent=2)
     
     logger.info(f"Final results saved to {file_path}")
-    return file_path
+
+    # Create plot
+    methods = list(final_results.keys())
+    success_rates = [result['success_criteria_met']['percentage'] for result in final_results.values()]
+    correct_agent_rates = [result['correct_agent']['percentage'] for result in final_results.values()]
+    only_correct_agent_rates = [result['only_correct_agent']['percentage'] for result in final_results.values()]
+
+    x = np.arange(len(methods))
+    width = 0.25
+
+    fig, ax = plt.subplots(figsize=(12, 6))
+    
+    # Plot bars
+    ax.bar(x - width, success_rates, width, label='Success Ratio', color='salmon', edgecolor='black', linewidth=0.5)
+    ax.bar(x, correct_agent_rates, width, label='Correct Agent Called', color='lightblue', edgecolor='black', linewidth=0.5)
+    ax.bar(x + width, only_correct_agent_rates, width, label='Only Correct Agent Called', color='lightgreen', edgecolor='black', linewidth=0.5)
+
+    ax.set_xlabel('Methods')
+    ax.set_ylabel('Percentage (%)')
+    ax.set_title('AutoGen Agent Performance across 20 Problems')
+    ax.set_xticks(x)
+    ax.set_xticklabels(methods, rotation=45, ha='right')
+    ax.legend()
+
+    ax.set_ylim(0, 100)
+    ax.set_yticks(range(0, 101, 10))
+    ax.grid(axis='y', linestyle='--', alpha=0.7)
+
+    fig.tight_layout()
+
+    # Save the plot
+    plot_filename = f"benchmark_results_plot_{timestamp}.png"
+    plot_path = os.path.join(log_folder, plot_filename)
+    plt.savefig(plot_path, dpi=300, bbox_inches='tight')
+    plt.close()
+
+    logger.info(f"Benchmark results plot saved to {plot_path}")
+
+    return file_path,
 
 def run_benchmark(benchmark_data: Dict, llm_evaluator: LLMEvaluator, image_evaluator: ImageEvaluator, log_folder: str, max_samples: int, config_list: List[Dict], enabled_agents: List[str], gsearch_api_key: str):
     results = []
     for test_case in benchmark_data['test_cases'][:max_samples]:
-        setup_overarching_wrapper(config_list, enabled_agents, gsearch_api_key)
         input_text = test_case['input']
         expected_agent = test_case['expected_agent']
         success_criteria = test_case['success_criteria']
+
+        date_str = datetime.now().strftime("%Y%m%d")
+        agent_folder = os.path.join(log_folder, f"{expected_agent.lower()}_{date_str}")
+        os.makedirs(agent_folder, exist_ok=True)
+
+        result_filename = f"{expected_agent}_{test_case['id']}_{date_str}.json"
+        result_file_path = os.path.join(agent_folder, result_filename)
+        if os.path.exists(result_file_path):
+            logger.info(f"Result file already exists for test case {test_case['id']}. Skipping.")
+            continue
+
+        setup_overarching_wrapper(config_list, enabled_agents, gsearch_api_key)
 
         if 'path_url' in test_case:
             content_path = load_content(test_case['path_url'])
@@ -280,8 +343,10 @@ def run_benchmark(benchmark_data: Dict, llm_evaluator: LLMEvaluator, image_evalu
             _, central_column, _ = st.columns(3)
             with central_column:
                 st.image(image.resize((300, 300)))
-            image_path = save_image(image, log_folder, expected_agent, f"{test_case['id']}_{idx}")
-            image_paths.append(os.path.join(log_folder, image_path))
+            image_filename = f"{expected_agent}_{test_case['id']}_{idx}_{date_str}.png"
+            image_path = os.path.join(agent_folder, image_filename)
+            image.save(image_path)
+            image_paths.append(os.path.relpath(image_path, log_folder))
 
         chat_history = chat_result.chat_history
 
@@ -294,8 +359,8 @@ def run_benchmark(benchmark_data: Dict, llm_evaluator: LLMEvaluator, image_evalu
             image_paths=image_paths, expected_content=input_text
         )
 
-        save_chat_result(chat_result, log_folder, test_case['id'], correct_agent, only_correct_agent, called_agents,
-                         success, success_criteria_prompts, expected_agent, image_paths)
+        save_chat_result(chat_result, result_file_path, correct_agent, only_correct_agent, called_agents,
+                         success, success_criteria_prompts, image_paths)
 
         results.append({
             'test_case_id': test_case['id'],
@@ -303,7 +368,6 @@ def run_benchmark(benchmark_data: Dict, llm_evaluator: LLMEvaluator, image_evalu
             'only_correct_agent': only_correct_agent, 
             'success': success
         })
-
 
         if 'path_url' in test_case:
             if expected_agent.lower() == 'pdf_parser':
@@ -328,7 +392,7 @@ def main():
     )
     enabled_agents = ["chatbot"] + enabled_agents
 
-    max_samples = st.number_input("Max samples per agent", min_value=1, value=5, step=1)
+    max_samples = st.number_input("Max samples per agent", min_value=1, max_value=20, value=20, step=1)
 
     if st.button("Evaluate Overarching Agent"):
         if not openai_api_key.startswith("sk-"):
@@ -351,20 +415,8 @@ def main():
                 results = run_benchmark(benchmark_data, llm_evaluator, image_evaluator, log_folder, max_samples, config_list, enabled_agents, gsearch_api_key)
                 all_results[benchmark_name] = results
 
-            # Display results
-            for benchmark_name, results in all_results.items():
-                st.write(f"\nResults for {benchmark_name}:")
-                correct_agent_count = sum(r['correct_agent'] for r in results)
-                only_correct_agent_count = sum(r['only_correct_agent'] for r in results)
-                success_count = sum(r['success'] for r in results)
-                total_tests = len(results)
-                
-                st.write(f"Correct agent selection: {correct_agent_count}/{total_tests}")
-                st.write(f"Only correct agent selection: {only_correct_agent_count}/{total_tests}")
-                st.write(f"Success criteria met: {success_count}/{total_tests}")
-            
             # Save final results
-            final_result_path = save_final_result(all_results, log_folder)
+            final_result_path = save_final_result(log_folder)
             st.success(f"Final results saved to: {final_result_path}")
 
 if __name__ == "__main__":
