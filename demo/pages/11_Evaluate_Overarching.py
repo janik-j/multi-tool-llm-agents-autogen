@@ -289,7 +289,7 @@ def save_final_result(log_folder: str) -> tuple[str, str]:
 
     ax.set_xlabel('Methods')
     ax.set_ylabel('Percentage (%)')
-    ax.set_title('AutoGen Agent Performance across 20 Problems')
+    ax.set_title('AutoGen Agent Performance on SelectBenchmark')
     ax.set_xticks(x)
     ax.set_xticklabels(methods, rotation=45, ha='right')
     ax.legend()
@@ -344,9 +344,10 @@ def run_benchmark(benchmark_data: Dict, llm_evaluator: LLMEvaluator, image_evalu
             with central_column:
                 st.image(image.resize((300, 300)))
             image_filename = f"{expected_agent}_{test_case['id']}_{idx}_{date_str}.png"
-            image_path = os.path.join(agent_folder, image_filename)
+            image_path = os.path.abspath(os.path.join(agent_folder, image_filename))
             image.save(image_path)
-            image_paths.append(os.path.relpath(image_path, log_folder))
+            image_paths.append(image_path)
+            logger.info(f"Saved image to: {image_path}")
 
         chat_history = chat_result.chat_history
 

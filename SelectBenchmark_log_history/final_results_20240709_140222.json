@@ -33,12 +33,12 @@
       "percentage": 90.0
     },
     "only_correct_agent": {
-      "count": "14/20",
-      "percentage": 70.0
+      "count": "15/20",
+      "percentage": 75.0
     },
     "success_criteria_met": {
-      "count": "0/20",
-      "percentage": 0.0
+      "count": "7/20",
+      "percentage": 35.0
     }
   },
   "image": {
