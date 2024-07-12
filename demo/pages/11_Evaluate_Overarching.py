@@ -124,7 +124,8 @@ def run_benchmark(benchmark_data: Dict, evaluator: SelectBenchmarkEvaluator, log
         expected_agent = test_case['expected_agent']
         success_criteria = test_case['success_criteria']
 
-        date_str = datetime.now().strftime("%Y%m%d")
+        #date_str = datetime.now().strftime("%Y%m%d")
+        date_str = "20240709"
         agent_folder = os.path.join(log_folder, f"{expected_agent.lower()}_{date_str}")
         os.makedirs(agent_folder, exist_ok=True)
 

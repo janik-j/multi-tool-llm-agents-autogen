@@ -1,230 +1,150 @@
 {
-    "benchmark_name": "coding_agent",
-    "version": "1.0",
-    "test_cases": [
-      {
-        "id": "TC001",
-        "name": "Fibonacci Sequence",
-        "input": "Write a function that generates the first n numbers of the Fibonacci sequence. Test it with n = 10 and save the result to fibonacci.txt.",
-        "expected_agent": "coding",
-        "success_criteria": [
-          "Function correctly generates Fibonacci sequence",
-          "Output for n = 10 is correct",
-          "Result is saved to fibonacci.txt"
-        ]
-      },
-      {
-        "id": "TC002",
-        "name": "Prime Number Generator",
-        "input": "Create a function that generates all prime numbers up to a given number n. Use it to find all primes up to 1000 and save them to primes.txt.",
-        "expected_agent": "coding",
-        "success_criteria": [
-          "Function correctly identifies prime numbers",
-          "All primes up to 1000 are generated",
-          "Results are saved to primes.txt"
-        ]
-      },
-      {
-        "id": "TC003",
-        "name": "Palindrome Checker",
-        "input": "Write a function that checks if a given string is a palindrome (reads the same backwards as forwards). Test it on the following strings and save results to palindromes.txt: 'racecar', 'hello', 'A man a plan a canal Panama'.",
-        "expected_agent": "coding",
-        "success_criteria": [
-          "Function correctly identifies palindromes",
-          "All test cases are checked",
-          "Results are saved to palindromes.txt"
-        ]
-      },
-      {
-        "id": "TC004",
-        "name": "Binary Search Implementation",
-        "input": "Implement a binary search function. Use it to search for the numbers 7, 15, and 30 in the sorted list [1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 25, 27, 29]. Save the results to binary_search_results.txt.",
-        "expected_agent": "coding",
-        "success_criteria": [
-          "Binary search is correctly implemented",
-          "Function finds correct positions for test numbers",
-          "Results are saved to binary_search_results.txt"
-        ]
-      },
-      {
-        "id": "TC005",
-        "name": "Matrix Multiplication",
-        "input": "Write a function to multiply two matrices. Test it with the following matrices and save the result to matrix_result.txt:\nA = [[1, 2], [3, 4]]\nB = [[5, 6], [7, 8]]",
-        "expected_agent": "coding",
-        "success_criteria": [
-          "Matrix multiplication is correctly implemented",
-          "Result for test matrices is correct",
-          "Output is saved to matrix_result.txt"
-        ]
-      },
-      {
-        "id": "TC006",
-        "name": "Sorting Algorithm Implementation",
-        "input": "Implement the quicksort algorithm. Use it to sort the list [64, 34, 25, 12, 22, 11, 90] and save the sorted list to quicksort_result.txt.",
-        "expected_agent": "coding",
-        "success_criteria": [
-          "Quicksort algorithm is correctly implemented",
-          "List is properly sorted",
-          "Sorted list is saved to quicksort_result.txt"
-        ]
-      },
-      {
-        "id": "TC007",
-        "name": "File Word Counter",
-        "input": "Create a program that reads a text file, counts the occurrence of each word, and saves the top 10 most frequent words to word_frequency.txt. Use it on a file named sample.txt with the content 'The quick brown fox jumps over the lazy dog. The dog barks.'",
-        "expected_agent": "coding",
-        "success_criteria": [
-          "Program correctly reads the file and counts words",
-          "Top 10 most frequent words are identified",
-          "Results are saved to word_frequency.txt"
-        ]
-      },
-      {
-        "id": "TC008",
-        "name": "Object-Oriented Programming",
-        "input": "Create a 'BankAccount' class with methods for deposit, withdraw, and check_balance. Demonstrate its usage with a series of transactions and save the final balance to account_balance.txt.",
-        "expected_agent": "coding",
-        "success_criteria": [
-          "BankAccount class is correctly implemented with all methods",
-          "Transactions are properly handled",
-          "Final balance is saved to account_balance.txt"
-        ]
-      },
-      {
-        "id": "TC009",
-        "name": "Recursive Factorial",
-        "input": "Write a recursive function to calculate the factorial of a number. Use it to calculate the factorial of 10 and save the result to factorial_result.txt.",
-        "expected_agent": "coding",
-        "success_criteria": [
-          "Recursive factorial function is correctly implemented",
-          "Factorial of 10 is correctly calculated",
-          "Result is saved to factorial_result.txt"
-        ]
-      },
-      {
-        "id": "TC010",
-        "name": "List Comprehension",
-        "input": "Use list comprehension to create a list of all numbers from 1 to 100 that are divisible by both 3 and 5. Save the result to divisible_numbers.txt.",
-        "expected_agent": "coding",
-        "success_criteria": [
-          "List comprehension is correctly used",
-          "All numbers divisible by both 3 and 5 are identified",
-          "Results are saved to divisible_numbers.txt"
-        ]
-      },
-      {
-        "id": "TC011",
-        "name": "Exception Handling",
-        "input": "Write a function that takes two numbers as input and returns their division. Handle potential exceptions (like division by zero) and test it with various inputs. Save the results to division_results.txt.",
-        "expected_agent": "coding",
-        "success_criteria": [
-          "Function correctly performs division",
-          "Exceptions are properly handled",
-          "Test results are saved to division_results.txt"
-        ]
-      },
-      {
-        "id": "TC012",
-        "name": "Regular Expression",
-        "input": "Write a function that uses regular expressions to validate email addresses. Test it on the following addresses and save results to email_validation.txt: 'user@example.com', 'invalid.email', 'another_user@domain.co.uk'.",
-        "expected_agent": "coding",
-        "success_criteria": [
-          "Regular expression correctly validates email addresses",
-          "All test cases are checked",
-          "Results are saved to email_validation.txt"
-        ]
-      },
-      {
-        "id": "TC013",
-        "name": "Lambda Functions",
-        "input": "Use lambda functions with map() and filter() to square all numbers in a list and then only keep the ones above 50. Use the list [1, 4, 9, 16, 25, 36, 49, 64, 81, 100] and save the result to lambda_result.txt.",
-        "expected_agent": "coding",
-        "success_criteria": [
-          "Lambda functions are correctly used with map() and filter()",
-          "Numbers are squared and filtered properly",
-          "Result is saved to lambda_result.txt"
-        ]
-      },
-      {
-        "id": "TC014",
-        "name": "Decorator Implementation",
-        "input": "Create a decorator that measures the execution time of a function. Use it to decorate a function that sorts a list of 10000 random numbers. Save the execution time to execution_time.txt.",
-        "expected_agent": "coding",
-        "success_criteria": [
-          "Decorator is correctly implemented",
-          "Execution time is accurately measured",
-          "Result is saved to execution_time.txt"
-        ]
-      },
-      {
-        "id": "TC015",
-        "name": "Generator Function",
-        "input": "Write a generator function that yields all perfect squares up to a given number n. Use it to find perfect squares up to 1000 and save them to perfect_squares.txt.",
-        "expected_agent": "coding",
-        "success_criteria": [
-          "Generator function correctly yields perfect squares",
-          "All perfect squares up to 1000 are generated",
-          "Results are saved to perfect_squares.txt"
-        ]
-      },
-      {
-        "id": "TC016",
-        "name": "JSON Processing",
-        "input": "Create a JSON file named 'data.json' with an array of dictionaries representing books (title, author, year). Write a Python script to read this file, sort the books by year, and save the sorted list to sorted_books.json.",
-        "expected_agent": "coding",
-        "success_criteria": [
-          "JSON file is correctly read and parsed",
-          "Books are properly sorted by year",
-          "Sorted list is saved to sorted_books.json"
-        ]
-      },
-      {
-        "id": "TC017",
-        "name": "Recursive Directory Traversal",
-        "input": "Write a function that recursively traverses a directory and its subdirectories, listing all files. Test it on a directory named 'test_dir' and save the output to directory_contents.txt.",
-        "expected_agent": "coding",
-        "success_criteria": [
-          "Function correctly traverses directories recursively",
-          "All files are listed",
-          "Output is saved to directory_contents.txt"
-        ]
-      },
-      {
-        "id": "TC018",
-        "name": "Custom Iterator",
-        "input": "Create a custom iterator class that generates a sequence of prime numbers. Use it to generate the first 100 prime numbers and save them to prime_iterator.txt.",
-        "expected_agent": "coding",
-        "success_criteria": [
-          "Custom iterator is correctly implemented",
-          "First 100 prime numbers are generated",
-          "Results are saved to prime_iterator.txt"
-        ]
-      },
-      {
-        "id": "TC019",
-        "name": "Context Manager",
-        "input": "Implement a context manager for file handling that automatically closes the file and logs the operations. Use it to write 'Hello, World!' to a file named 'output.txt' and save the log to file_log.txt.",
-        "expected_agent": "coding",
-        "success_criteria": [
-          "Context manager is correctly implemented",
-          "File operations are properly logged",
-          "Log is saved to file_log.txt"
-        ]
-      },
-      {
-        "id": "TC020",
-        "name": "Multithreading",
-        "input": "Write a multithreaded program that downloads 5 large files simultaneously from given URLs. Save the download times for each file to download_times.txt.",
-        "expected_agent": "coding",
-        "success_criteria": [
-          "Multithreading is correctly implemented",
-          "Files are downloaded simultaneously",
-          "Download times are saved to download_times.txt"
-        ]
-      }
-    ],
-    "evaluation_metrics": {
-      "correctness": "Percentage of test cases where the code produces the expected output",
-      "agent_selection": "Percentage of test cases where the code agent is correctly selected"
+  "benchmark_name": "coding_agent",
+  "version": "1.0",
+  "test_cases": [
+    {
+      "id": "TC001",
+      "name": "Fibonacci Sequence",
+      "input": "Write a function that generates the first n numbers of the Fibonacci sequence. Return the result for n = 10.",
+      "expected_agent": "coding",
+      "success_criteria": ["The result is [0, 1, 1, 2, 3, 5, 8, 13, 21, 34]"]
+    },
+    {
+      "id": "TC002",
+      "name": "Prime Number Generator",
+      "input": "Create a function that generates all prime numbers up to a given number n. Use it to find all primes up to 100 and return them as a list.", 
+      "expected_agent": "coding",
+      "success_criteria": ["The result is [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97]"]
+    },
+    {
+      "id": "TC003",
+      "name": "Palindrome Checker",
+      "input": "Write a function that checks if a given string is a palindrome (reads the same backwards as forwards). Return a list of booleans for the following strings: 'racecar', 'hello', 'A man a plan a canal Panama'.",
+      "expected_agent": "coding", 
+      "success_criteria": ["The result is [True, False, True]"]
+    },
+    {
+      "id": "TC004",
+      "name": "Binary Search Implementation",
+      "input": "Implement a binary search function. Use it to search for the numbers 7, 15, and 30 in the sorted list [1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 25, 27, 29]. Return the indices where the numbers are found or -1 if not found.",
+      "expected_agent": "coding",
+      "success_criteria": ["The result is [3, 7, -1]"]
+    },
+    {  
+      "id": "TC005",
+      "name": "Matrix Multiplication",
+      "input": "Write a function to multiply two matrices. Return the result for the following matrices:\nA = [[1, 2], [3, 4]]\nB = [[5, 6], [7, 8]]",
+      "expected_agent": "coding",
+      "success_criteria": ["The result is [[19, 22], [43, 50]]"]
+    },
+    {
+      "id": "TC006", 
+      "name": "Sorting Algorithm Implementation",
+      "input": "Implement the quicksort algorithm. Use it to sort the list [64, 34, 25, 12, 22, 11, 90] and return the sorted list.",
+      "expected_agent": "coding",
+      "success_criteria": ["The result is [11, 12, 22, 25, 34, 64, 90] and was obtained using quick sort"]
+    },
+    {
+      "id": "TC007",
+      "name": "Word Frequency Counter",
+      "input": "Create a function that takes a string, counts the occurrence of each word, and returns a dictionary of the top 5 most frequent words. Use it to analyze the following text: 'The quick brown fox jumps over the lazy dog. The dog barks, and the fox runs away.'",
+      "expected_agent": "coding",
+      "success_criteria": ["The result is {'the': 4, 'fox': 2, 'dog': 2, 'quick': 1, 'brown': 1}"]
+    },
+    {
+      "id": "TC008",
+      "name": "Object-Oriented Programming",
+      "input": "Create a 'BankAccount' class with methods for deposit, withdraw, and check_balance. Instantiate a new BankAccount with an initial balance of 100, deposit 50, withdraw 75, and return the final balance.",
+      "expected_agent": "coding",
+      "success_criteria": ["The result is 75"]
+    },
+    {
+      "id": "TC009",
+      "name": "Recursive Factorial",
+      "input": "Write a recursive function to calculate the factorial of a number. Use it to calculate the factorial of 10.",
+      "expected_agent": "coding",
+      "success_criteria": ["The result is 3628800"]
+    },
+    { 
+      "id": "TC010",
+      "name": "List Comprehension", 
+      "input": "Use list comprehension to create a list of all numbers from 1 to 100 that are divisible by both 3 and 5. Return the list.",
+      "expected_agent": "coding",
+      "success_criteria": ["The result is [15, 30, 45, 60, 75, 90]"]
+    },
+    {
+      "id": "TC011",
+      "name": "Exception Handling",
+      "input": "Write a function that takes two numbers as input and returns their division. Handle potential exceptions (like division by zero). Return the result of 10 divided by 2, then 10 divided by 0.",
+      "expected_agent": "coding",
+      "success_criteria": ["The result is [5.0, \"Error: Division by zero\"]"]
+    },
+    {
+      "id": "TC012",
+      "name": "Regular Expression",
+      "input": "Write a function that uses regular expressions to validate email addresses. Return a list indicating if each of the following addresses is valid: 'user@example.com', 'invalid.email', 'another_user@domain.co.uk'.",   
+      "expected_agent": "coding",
+      "success_criteria": ["The result is [True, False, True]"]
+    },
+    { 
+      "id": "TC013",
+      "name": "Lambda Functions",
+      "input": "Use lambda functions with map() and filter() to square all numbers in a list and then only keep the ones above 50. Use the list [1, 4, 9, 16, 25, 36, 49, 64, 81, 100] and return the result.",
+      "expected_agent": "coding",
+      "success_criteria": ["The result is [64, 81, 100]" ]
+    },
+    {
+      "id": "TC014", 
+      "name": "Decorator Implementation",
+      "input": "Create a decorator that doubles the result of a function. Apply it to a function that returns the sum of two numbers. Use the decorated function to add 5 and 10.",
+      "expected_agent": "coding",
+      "success_criteria": ["The result is 30"]
+    },
+    {
+      "id": "TC015",
+      "name": "Reverse Words in a String",
+      "input": "Write a function that takes a string as input and reverses the order of words in the string. The function should return the modified string. Test the function with the following inputs: s1 = 'the sky is blue' and s2 = '  hello world  '.",
+      "expected_agent": "coding",
+      "success_criteria": ["The function returns 'blue is sky the' for input s1 = 'the sky is blue', and returns 'world hello' for input s2 = '  hello world  ' (leading and trailing spaces should be removed)."]
+    },
+    {  
+      "id": "TC016",
+      "name": "Dictionary Manipulation",
+      "input": "Create a dictionary named 'book' with keys 'title', 'author', and 'year' and values 'Pride and Prejudice', 'Jane Austen', and 1813. Return the value associated with the 'author' key.",
+      "expected_agent": "coding", 
+      "success_criteria": ["The result is \"Jane Austen\""]
+    },
+    {
+      "id": "TC017",  
+      "name": "Set Operations",
+      "input": "Given two lists [1, 2, 3, 4, 5] and [4, 5, 6, 7, 8], find their intersection using sets and return it as a list.", 
+      "expected_agent": "coding",
+      "success_criteria": ["The result is [4, 5]"]
+    },
+    {
+      "id": "TC018",
+      "name": "Custom Iterator", 
+      "input": "Create a custom iterator class that returns the squares of numbers from 1 to 5. Use it to print the squares and return the printed output as a list of strings.",
+      "expected_agent": "coding",
+      "success_criteria": ["The result is [\"1\", \"4\", \"9\", \"16\", \"25\"]"]
+    },
+    {
+      "id": "TC019",
+      "name": "Median of Two Sorted Arrays",
+      "input": "Write a function to find the median of two sorted arrays nums1 and nums2 of size m and n respectively. The function should take nums1 and nums2 as input and return a float. Calculate the median for the following inputs: nums1 = [1, 3], nums2 = [2] and nums1 = [1, 2], nums2 = [3, 4].",
+      "expected_agent": "coding",
+      "success_criteria": ["The function returns 2.0 for input nums1 = [1, 3], nums2 = [2], and returns 2.5 for input nums1 = [1, 2], nums2 = [3, 4]. The overall run time complexity should be O(log (m+n))."]
+    },
+    {
+      "id": "TC020",
+      "name": "List Slicing",
+      "input": "Given the list [1, 2, 3, 4, 5, 6, 7, 8, 9, 10], use list slicing to return a new list containing all odd indices of the original list.",  
+      "expected_agent": "coding",
+      "success_criteria": ["The result is [2, 4, 6, 8, 10]"]
+    }
+  ],
+  "evaluation_metrics": {
+    "correctness": "Percentage of test cases where the code produces the expected output",
+    "agent_selection": "Percentage of test cases where the code agent is correctly selected"   
   }
-  }
+}
