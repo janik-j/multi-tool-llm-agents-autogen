@@ -228,7 +228,7 @@ def run_benchmark(benchmark_data: Dict, evaluator: SelectBenchmarkEvaluator, log
 
 def main():
     st.title("Evaluate: Overarching Agent")
-    st.write("This page allows you to evaluate the AutoGen Overarching Agent or vanilla GPT-4o using a suite of benchmarks.")
+    st.write("This page allows you to evaluate the AutoGen Overarching Agent using a suite of benchmarks (SelectBenchmark).")
 
     openai_api_key, openai_model, gsearch_api_key = load_api_keys()
 
