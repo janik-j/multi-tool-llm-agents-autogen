@@ -65,12 +65,11 @@ bar_width = 0.4
 index = range(len(all_filenames))
 
 plt.figure(figsize=(12, 10))
-plt.barh(index, paper_success_rates, bar_width, label='Paper Result (gpt-3.5-turbo-16k)', color='#87CEEB', edgecolor='black')
-plt.barh([i + bar_width for i in index], json_success_rates, bar_width, label='Recreated Result (gpt-3.5-turbo-16k)', color='salmon', edgecolor='black')
+plt.barh(index, paper_success_rates, bar_width, label='Paper Result (gpt-3.5-turbo-16k)', color='#ADD6E3', linewidth=0.5, edgecolor='black')
+plt.barh([i + bar_width for i in index], json_success_rates, bar_width, label='Recreated Result (gpt-3.5-turbo-16k)', color='salmon', linewidth=0.5, edgecolor='black')
 
 plt.xlabel('Success Ratio (%)')
 plt.ylabel('Task')
-plt.title('A7: Performance on MiniWob++ (Results for 23 out of 47 tasks)')
 plt.yticks([i + bar_width / 2 for i in index], all_filenames)
 plt.xticks(range(0, 101, 10))
 plt.xlim(0, 100)

@@ -22,7 +22,7 @@ IOStream.set_global_default(IOStreamlitNoOp())
 
 def load_api_keys():
     openai_api_key = st.sidebar.text_input("OpenAI API Key")
-    openai_model = st.sidebar.selectbox("OpenAI Model", ["gpt-3.5-turbo", "gpt-4", "gpt-4-0314", "gpt-4o-2024-05-13"])
+    openai_model = st.sidebar.selectbox("OpenAI Model", ["gpt-3.5-turbo", "gpt-4", "gpt-4-0314", "gpt-4o-2024-05-13", "gpt-4o-mini-2024-07-18"])
     gsearch_api_key = st.sidebar.text_input("Google Search API Key")
     return openai_api_key, openai_model, gsearch_api_key
 
@@ -236,7 +236,7 @@ def main():
 
     evaluation_mode = st.radio(
         "Select evaluation mode",
-        ("Autogen Multiagent", "Vanilla GPT-4o")
+        ("Autogen Multiagent")
     )
 
     enabled_agents = []
