@@ -234,10 +234,7 @@ def main():
 
     config_list = [{"model": openai_model, "api_key": openai_api_key}]
 
-    evaluation_mode = st.radio(
-        "Select evaluation mode",
-        ("Autogen Multiagent")
-    )
+    evaluation_mode = "Autogen Multiagent"
 
     enabled_agents = []
     enabled_agents = st.multiselect(
