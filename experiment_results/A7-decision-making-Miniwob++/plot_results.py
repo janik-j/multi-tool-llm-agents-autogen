@@ -3,6 +3,10 @@ import os
 import matplotlib.pyplot as plt
 import numpy as np
 
+# The experiments where conducted using the code provided here: https://github.com/qingyun-wu/autogen/tree/2024-03/application/A7-decision-making-MiniWob%2B%2B
+# The results were saved in JSON files in the same directory as this script
+# The results are to be compared to the original results from the paper: https://arxiv.org/pdf/2308.08155
+
 # Original results from page 33: https://arxiv.org/pdf/2308.08155
 paper_result = paper_result = [
     {'filename': 'choose-list', 'value': 5},
