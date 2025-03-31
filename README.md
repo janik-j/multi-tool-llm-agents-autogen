@@ -69,7 +69,7 @@ As a part of this project we:
 
 A detailed overview of the project is also available in our final report:
 
-[View Project Poster (PDF)](presentations/final-report.pdf)
+[Read Project Report (PDF)](presentations/final-report.pdf)
 
 ## Future work
 
