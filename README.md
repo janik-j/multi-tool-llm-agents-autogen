@@ -65,64 +65,6 @@ As a part of this project we:
 4.  Developed a demo using the `Streamlit` Python library for showcasing the internal discussion process for both standalone agents and the parent agent.
 5.  Created a custom `SelectBenchmark` for evaluating the frequency of the calls to correct agents and automated the evaluation process using the LLM-as-evaluator approach.
 
-## Key Components
-
-### SelectBenchmark
-
-To quantitatively assess the performance of our overarching agent, we created `SelectBenchmark`. It comprises 120 tasks across 6 categories, designed to test task routing accuracy and success.
-
-![SelectBenchmark Results (GPT-4o)](public/SelectBenchmark_gpt4o.png)
-*Figure: Performance of the overarching agent on SelectBenchmark using the GPT-4o backbone.*
-
-![SelectBenchmark Results (GPT-3.5)](public/Selectbenchmark_gpt_35.png)
-*Figure: Performance of the overarching agent on SelectBenchmark using the GPT-3.5 backbone.*
-
-## Experiment Visualizations
-
-Below are visualizations corresponding to some of the experiments conducted:
-
-### MATH Dataset Performance
-
-![MATH Results](public/A1-MATH.png)
-
-*Figure: Performance evaluation on the MATH dataset.*
-
-### RAG Performance
-
-![RAG Results (a2-rag)](public/a2-rag.png)
-
-*Figure: RAG Performance visualization.*
-
-![RAG Results (A2-RAG_ours)](public/A2-RAG_ours.png)
-
-*Figure: Alternative RAG Performance visualization.*
-
-![RAG Results (A2-rag (1))](public/A2-rag%20%281%29.png)
-
-*Figure: Another RAG Performance visualization.*
-
-### ALFWorld Text World Interaction
-
-![ALFWorld Results](public/a3-alf.png)
-
-*Figure: Results from the ALFWorld Text World Interaction benchmark.*
-
-### MiniWoB++ Web Interaction
-
-![MiniWoB++ Results](public/A7-miniwob.png)
-
-*Figure: Performance metrics on MiniWoB++ Web Interaction tasks.*
-
-### Miscellaneous Visualizations
-
-![Table Visualization (A5-table_ours)](public/A5-table_ours.png)
-
-*Figure: Table visualization, potentially related to coding experiments or benchmark details.*
-
-![Sample Agent Chat](public/sample_chat.png)
-
-*Figure: Example of an agent interaction/chat flow.*
-
 ## Project Poster
 
 A detailed overview of the project is also available in our final report:
