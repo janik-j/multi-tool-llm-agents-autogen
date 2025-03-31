@@ -11,9 +11,23 @@ Empirical studies demonstrate an advantage of a multi-agent setup over the tradi
 project is based on the paper "Autogen: Enabling next-gen llm applications via multi-agent conversation framework." by
 Wu, Qingyun, et al. and serves as a demonstration of such multi-agent approaches.
 
+## Overarching Agent Architecture
+
+The core of our multi-agent system is the overarching agent, which acts as a manager orchestrating the workflow. It receives the user's request and intelligently delegates the task to the most suitable specialized agent(s) from a predefined pool.
+
+![Overarching Agent Architecture](public/overarching_agent.png)
+*Figure: Illustration of the overarching agent architecture, showing the flow from User Proxy to Manager and delegation to specialized agents.*
+
+To illustrate this we provide an example of a sample chat between different agents.
+
+![Sample Agent Chat](public/sample_chat.png)
+
+*Figure: Example of an agent interaction/chat flow.*
+
 ## Overview
 
-This project delves into the capabilities of multi-agent Large Language Model (LLM) systems, leveraging the **AutoGen framework** \citep{autogen}. Our primary focus is on exploring and evaluating the effectiveness of an **overarching agent** architecture designed to delegate tasks to specialized sub-agents, thereby tackling complex problems across diverse domains (detailed in Section 3 of our accompanying paper).
+This project delves into the capabilities of multi-agent Large Language Model (LLM) systems, leveraging the **AutoGen framework** [AutoGen](https://arxiv.org/pdf/2308.08155)
+. Our primary focus is on exploring and evaluating the effectiveness of an **overarching agent** architecture designed to delegate tasks to specialized sub-agents, thereby tackling complex problems across diverse domains (detailed in Section 3 of our accompanying paper).
 
 The core contributions and activities of this project include:
 
@@ -53,13 +67,6 @@ As a part of this project we:
 
 ## Key Components
 
-### Overarching Agent Architecture
-
-The core of our multi-agent system is the overarching agent, which acts as a manager orchestrating the workflow. It receives the user's request and intelligently delegates the task to the most suitable specialized agent(s) from a predefined pool.
-
-![Overarching Agent Architecture](public/overarching_agent.png)
-*Figure: Illustration of the overarching agent architecture, showing the flow from User Proxy to Manager and delegation to specialized agents.*
-
 ### SelectBenchmark
 
 To quantitatively assess the performance of our overarching agent, we created `SelectBenchmark`. It comprises 120 tasks across 6 categories, designed to test task routing accuracy and success.
@@ -77,42 +84,50 @@ Below are visualizations corresponding to some of the experiments conducted:
 ### MATH Dataset Performance
 
 ![MATH Results](public/A1-MATH.png)
+
 *Figure: Performance evaluation on the MATH dataset.*
 
 ### RAG Performance
 
 ![RAG Results (a2-rag)](public/a2-rag.png)
+
 *Figure: RAG Performance visualization.*
 
 ![RAG Results (A2-RAG_ours)](public/A2-RAG_ours.png)
+
 *Figure: Alternative RAG Performance visualization.*
 
 ![RAG Results (A2-rag (1))](public/A2-rag%20%281%29.png)
+
 *Figure: Another RAG Performance visualization.*
 
 ### ALFWorld Text World Interaction
 
 ![ALFWorld Results](public/a3-alf.png)
+
 *Figure: Results from the ALFWorld Text World Interaction benchmark.*
 
 ### MiniWoB++ Web Interaction
 
 ![MiniWoB++ Results](public/A7-miniwob.png)
+
 *Figure: Performance metrics on MiniWoB++ Web Interaction tasks.*
 
 ### Miscellaneous Visualizations
 
 ![Table Visualization (A5-table_ours)](public/A5-table_ours.png)
+
 *Figure: Table visualization, potentially related to coding experiments or benchmark details.*
 
 ![Sample Agent Chat](public/sample_chat.png)
+
 *Figure: Example of an agent interaction/chat flow.*
 
 ## Project Poster
 
-A detailed overview of the project is also available in our poster:
+A detailed overview of the project is also available in our final report:
 
-[View Project Poster (PDF)](public/poster.pdf)
+[View Project Poster (PDF)](public/final-report.pdf)
 
 ## Future work
 
